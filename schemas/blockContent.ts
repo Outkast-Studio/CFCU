@@ -78,6 +78,15 @@ export default defineType({
     }),
     {
       type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+          validation: (Rule) => Rule.required(),
+        },
+      ],
     },
   ],
 })

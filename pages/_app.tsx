@@ -1,8 +1,10 @@
-import 'tailwindcss/tailwind.css'
+import 'styles/global.css'
 
 import { AppProps } from 'next/app'
 import { lazy, Suspense } from 'react'
-
+import { clsx } from 'clsx'
+import { urlForImage } from 'lib/sanity.image'
+import Image from 'next/image'
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -13,6 +15,20 @@ export interface Seo {
   description: string
   image: string
   keywords: string
+}
+
+export const myPortableTextComponents = {
+  types: {
+    image: ({ value }) => (
+      <Image
+        src={urlForImage(value).quality(80).width(2440).url()}
+        alt={String(value.alt)}
+        width={2440}
+        height={2440}
+        className={clsx('my-[22px] ')}
+      />
+    ),
+  },
 }
 
 const PreviewProvider = lazy(() => import('components/PreviewProvider'))

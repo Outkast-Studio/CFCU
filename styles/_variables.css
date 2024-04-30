@@ -1,0 +1,18 @@
+:root {
+  --gutter: 24px;
+  --columnGap: 10px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --columnGap: 20px;
+    --gutter: 32px;
+  }
+}
+
+@media (min-width: 1600px) {
+  :root {
+    --columnGap: 0px;
+    --gutter: 64px;
+  }
+}

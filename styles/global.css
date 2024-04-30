@@ -1,0 +1,7 @@
+@import './_misc.css';
+@import './_typography.css';
+@import './_variables.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

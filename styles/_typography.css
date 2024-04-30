@@ -1,0 +1,15 @@
+/* Replace with project fonts and update in tailwind.config.js */
+@font-face {
+  font-family: 'Aeonik-Thin';
+  src: url('/fonts/Aeonik-Thin.ttf') format('ttf');
+  font-weight: normal;
+  font-style: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Aeonik-Regular';
+  src: url('/fonts/Aeonik-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: 400;
+  font-display: swap;
+}

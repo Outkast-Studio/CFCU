@@ -9,19 +9,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'accent-1': '#FAFAFA',
-        'accent-2': '#EAEAEA',
-        'accent-7': '#333',
-        success: '#0070f3',
-        cyan: '#79FFE1',
-        'blue-500': '#2276FC',
-        'yellow-100': '#fef7da',
+        backgroundD1: '#0A0A0A',
       },
       spacing: {
         28: '7rem',
       },
       letterSpacing: {
         tighter: '-.04em',
+      },
+      fontFamily: {
+        regular: ['Aeonik-Regular', 'sans-serif'],
+        thin: ['Aeonik-Thin', 'sans-serif'],
+      },
+      spacing: {
+        gutter: 'var(--gutter)',
+        columnGap: 'var(--columnGap)',
       },
       lineHeight: {
         tight: 1.2,
