@@ -20,6 +20,18 @@ interface Query {
 export default function Page(props: PageProps) {
   const [data] = useLiveQuery<Work[]>(props.work, allWorkQuery)
   const { work, draftMode } = props
+  //Presentation laye when stable.
+  // if (draftMode) {
+  //   return (
+  //     <PreviewComponent
+  //       document={work}
+  //       params={props.params}
+  //       documentType="index"
+  //       query={allWorkQuery}
+  //     />
+  //   )
+  // }
+
   return <IndexPage work={data} />
 }
 

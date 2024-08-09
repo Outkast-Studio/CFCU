@@ -21,15 +21,15 @@ export default function PreviewComponent({
     case 'work':
       return (
         <>
-          {/* <Alert />
-          <Work work={data} /> */}
+          <Alert />
+          <Work work={data} />
         </>
       )
     case 'index':
       return (
         <>
-          {/* <Alert />
-          <IndexPage work={data} /> */}
+          <Alert />
+          <IndexPage work={data} />
         </>
       )
     default:
