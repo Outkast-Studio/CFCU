@@ -7,8 +7,6 @@
 import { DRAFT_MODE_ROUTE } from 'lib/sanity.api'
 import { DefaultDocumentNodeResolver } from 'sanity/desk'
 import { Iframe, IframeOptions } from 'sanity-plugin-iframe-pane'
-import authorType from 'schemas/author'
-import postType from 'schemas/post'
 
 const iframeOptions = {
   url: {
@@ -38,17 +36,17 @@ const iframeOptions = {
 export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
   return (S, { schemaType }) => {
     switch (schemaType) {
-      case postType.name:
-        return S.document().views([
-          S.view.form(),
-          S.view.component(Iframe).options(iframeOptions).title('Preview'),
-        ])
-      case 'work':
-      case postType.name:
-        return S.document().views([
-          S.view.form(),
-          S.view.component(Iframe).options(iframeOptions).title('Preview'),
-        ])
+      // case postType.name:
+      //   return S.document().views([
+      //     S.view.form(),
+      //     S.view.component(Iframe).options(iframeOptions).title('Preview'),
+      //   ])
+      // case 'work':
+      // case postType.name:
+      //   return S.document().views([
+      //     S.view.form(),
+      //     S.view.component(Iframe).options(iframeOptions).title('Preview'),
+      //   ])
       default:
         return null
     }

@@ -1,11 +1,11 @@
 import { SchemaTypeDefinition } from 'sanity'
 
 import blockContent from './blockContent'
-import author from './author'
-import post from './post'
 import settings from './settings'
-import work from './work'
+import homepage from './homepage'
+import neosBuild from './objects/neosBuild'
+import neosBuildFeature from './objects/neosBuildFeature'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContent, author, post, settings, work],
+  types: [blockContent, settings, homepage, neosBuild, neosBuildFeature],
 }
