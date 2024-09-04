@@ -1,21 +1,23 @@
 import { readToken } from 'lib/sanity.api'
 import {
-  getAllPostsSlugs,
+  getGlobalSettings,
+  getAllDynamicPageSlugs,
+  getDynamicPageBySlug,
   getClient,
-  getWorkBySlug,
-  getSettings,
 } from 'lib/sanity.client'
-import { Post, Settings, Work, workBySlugQuery } from 'lib/sanity.queries'
+import {
+  dynamicPageBySlugQuery,
+  type GlobalSettingsType,
+} from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import type { SharedPageProps, Seo } from 'pages/_app'
 import WorkPage from 'components/Work'
 import { QueryParams } from 'next-sanity'
-import PreviewComponent from 'components/PreviewComponent'
 import { useLiveQuery } from 'next-sanity/preview'
 import { Layout } from 'components/layouts/Layout'
 interface PageProps extends SharedPageProps {
-  work: Work
-  settings?: Settings
+  dynamicPage: any
+  globalSettings: GlobalSettingsType
   params: QueryParams
   seo: Seo
 }
@@ -25,18 +27,11 @@ interface Query {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const [data] = useLiveQuery<Work>(props.work, workBySlugQuery, props.params)
-
-  // if (draftMode) {
-  //   return (
-  //     <PreviewComponent
-  //       document={work}
-  //       params={props.params}
-  //       documentType="work"
-  //       query={workBySlugQuery}
-  //     />
-  //   )
-  // }
+  const [data] = useLiveQuery<any>(
+    props.dynamicPage,
+    dynamicPageBySlugQuery,
+    props.params,
+  )
   return (
     <Layout seo={props.seo}>
       <WorkPage work={data} />
@@ -48,33 +43,28 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  //Settings can be used to get site settings. Things like naviagiton, social links.
-  //Anything that's pulled from the CMS that needs to be on every page should use the settings
-  //Function
-
-  const [settings, work] = await Promise.all([
-    getSettings(client),
-    getWorkBySlug(client, params.slug),
+  const [globalSettings, dynamicPage] = await Promise.all([
+    getGlobalSettings(client),
+    getDynamicPageBySlug(client, params.slug),
   ])
 
-  const seo = {
-    title: work?.title || '',
-    description: work?.metaDescription || '',
-    image: work?.mainImage || '',
-    keywords: work?.keywords || '',
-  }
-
-  if (!work) {
+  if (!dynamicPage) {
     return {
       notFound: true,
     }
   }
 
+  const seo = {
+    title: dynamicPage?.title || '',
+    description: dynamicPage?.metaDescription || '',
+    image: dynamicPage?.mainImage || '',
+    keywords: dynamicPage?.keywords || '',
+  }
   return {
     props: {
-      work,
+      dynamicPage,
       params,
-      settings,
+      globalSettings,
       draftMode,
       seo,
       token: draftMode ? readToken : '',
@@ -83,8 +73,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
-  const slugs = await getAllPostsSlugs()
-
+  const slugs = await getAllDynamicPageSlugs()
   return {
     paths: slugs?.map(({ slug }) => `/work/${slug}`) || [],
     fallback: 'blocking',

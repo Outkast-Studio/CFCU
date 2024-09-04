@@ -4,6 +4,9 @@
 
 import { definePlugin, type DocumentDefinition } from 'sanity'
 import { type StructureResolver } from 'sanity/desk'
+import { iframeOptions } from './previewPane'
+import { Iframe } from 'sanity-plugin-iframe-pane'
+import globalSettings from 'schemas/globalSettings'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -36,25 +39,29 @@ export const settingsStructure = (
   typeDef: DocumentDefinition,
 ): StructureResolver => {
   return (S) => {
-    // The `Settings` root list item
-    const settingsListItem = // A singleton not using `documentListItem`, eg no built-in preview
-      S.listItem()
-        .title(typeDef.title)
-        .icon(typeDef.icon)
-        .child(
-          S.editor()
-            .id(typeDef.name)
-            .schemaType(typeDef.name)
-            .documentId(typeDef.name),
-        )
+    const hiddenTypes = ['media.tag', 'globalSettings']
 
-    // The default root list items (except custom ones)
+    const globalSettingsListItem = S.listItem()
+      .title(globalSettings.title)
+      .icon(globalSettings.icon)
+      .child(
+        S.editor()
+          .title(globalSettings.title)
+          .id(globalSettings.name)
+          .schemaType(globalSettings.name)
+          .documentId(globalSettings.name)
+          .views([
+            S.view.form(),
+            S.view.component(Iframe).options(iframeOptions).title('Preview'),
+          ]),
+      )
+
     const defaultListItems = S.documentTypeListItems().filter(
-      (listItem) => listItem.getId() !== typeDef.name,
+      (listItem) => !hiddenTypes.includes(listItem.getId()),
     )
 
     return S.list()
       .title('Content')
-      .items([settingsListItem, S.divider(), ...defaultListItems])
+      .items([globalSettingsListItem, S.divider(), ...defaultListItems])
   }
 }

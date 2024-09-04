@@ -6,16 +6,10 @@ import {
   useCdn,
 } from 'lib/sanity.api'
 import {
-  indexQuery,
-  type Post,
-  postAndMoreStoriesQuery,
-  postBySlugQuery,
-  postSlugsQuery,
-  workBySlugQuery,
-  allWorkQuery,
-  workSlugsQuery,
-  type Settings,
-  settingsQuery,
+  type GlobalSettingsType,
+  globalSettingsQuery,
+  dynamicPageSlugsQuery,
+  dynamicPageBySlugQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -45,44 +39,16 @@ export function getClient(preview?: { token: string }): SanityClient {
 
 export const getSanityImageConfig = () => getClient()
 
-export async function getSettings(client: SanityClient): Promise<Settings> {
-  return (await client.fetch(settingsQuery)) || {}
+export async function getGlobalSettings(client: SanityClient) {
+  return (await client.fetch(globalSettingsQuery)) || {}
 }
 
-export async function getAllPosts(client: SanityClient): Promise<Post[]> {
-  return (await client.fetch(indexQuery)) || []
+export async function getDynamicPageBySlug(client: SanityClient, slug: string) {
+  return (await client.fetch(dynamicPageBySlugQuery, { slug })) || ({} as any)
 }
 
-export async function getAllPostsSlugs(): Promise<Pick<Post, 'slug'>[]> {
+export async function getAllDynamicPageSlugs() {
   const client = getClient()
-  const slugs = (await client.fetch<string[]>(postSlugsQuery)) || []
-  return slugs.map((slug) => ({ slug }))
-}
-
-export async function getPostBySlug(
-  client: SanityClient,
-  slug: string,
-): Promise<Post> {
-  return (await client.fetch(postBySlugQuery, { slug })) || ({} as any)
-}
-
-export async function getPostAndMoreStories(
-  client: SanityClient,
-  slug: string,
-): Promise<{ post: Post; morePosts: Post[] }> {
-  return await client.fetch(postAndMoreStoriesQuery, { slug })
-}
-
-export async function getWorkBySlug(client: SanityClient, slug: string) {
-  return (await client.fetch(workBySlugQuery, { slug })) || ({} as any)
-}
-
-export async function getAllWork(client: SanityClient) {
-  return (await client.fetch(allWorkQuery)) || []
-}
-
-export async function getAllWorkSlugs() {
-  const client = getClient()
-  const slugs = (await client.fetch<string[]>(workSlugsQuery)) || []
+  const slugs = (await client.fetch<string[]>(dynamicPageSlugsQuery)) || []
   return slugs.map((slug) => ({ slug }))
 }

@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
-
+import { AutoPreviewPane } from 'components/Sanity/AutoPreviewPane'
 export default defineType({
-  name: 'work',
-  title: 'Work',
+  name: 'dynamicPage',
+  title: 'Dynamic Page',
   type: 'document',
   groups: [
     { name: 'content', title: 'Content' },
@@ -26,24 +26,13 @@ export default defineType({
         maxLength: 96,
       },
     }),
+    //This field is used to trigger the preview pane to open automatically.
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      group: 'content',
-      options: {
-        hotspot: true,
+      type: 'string',
+      name: 'hiddenPreviewField',
+      components: {
+        field: AutoPreviewPane,
       },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-          description:
-            "Describe what's in the image for screen readers and search engines.",
-          validation: (Rule: any) => Rule.required(),
-        },
-      ],
     }),
     defineField({
       name: 'metaDescription',

@@ -10,7 +10,7 @@ import { Iframe, IframeOptions } from 'sanity-plugin-iframe-pane'
 import authorType from 'schemas/author'
 import postType from 'schemas/post'
 
-const iframeOptions = {
+export const iframeOptions = {
   url: {
     origin: 'same-origin',
     preview: (document) => {
@@ -18,13 +18,9 @@ const iframeOptions = {
         return new Error('Missing document')
       }
       switch (document._type) {
-        case 'post':
+        case 'dynamicPage':
           return (document as any)?.slug?.current
-            ? `/posts/${(document as any).slug.current}`
-            : new Error('Missing slug')
-        case 'work':
-          return (document as any)?.slug?.current
-            ? `/work/${(document as any).slug.current}`
+            ? `/dynamic/${(document as any).slug.current}`
             : new Error('Missing slug')
         default:
           return new Error(`Unknown document type: ${document?._type}`)
@@ -43,7 +39,11 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),
         ])
-      case 'work':
+      case 'dynamicPage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
       case postType.name:
         return S.document().views([
           S.view.form(),

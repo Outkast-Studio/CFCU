@@ -1,11 +1,8 @@
 import { SchemaTypeDefinition } from 'sanity'
 
-import blockContent from './blockContent'
-import author from './author'
-import post from './post'
-import settings from './settings'
-import work from './work'
+import globalSettings from './globalSettings'
+import dynamicPage from './dynamicPage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContent, author, post, settings, work],
+  types: [globalSettings, dynamicPage],
 }
