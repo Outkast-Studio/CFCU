@@ -1,8 +1,7 @@
 import { SchemaTypeDefinition } from 'sanity'
-
-import globalSettings from './globalSettings'
-import dynamicPage from './dynamicPage'
+import { schema as singletons } from './singletons'
+import { schema as objects } from './objects'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [globalSettings, dynamicPage],
+  types: [...singletons.types, ...objects.types],
 }

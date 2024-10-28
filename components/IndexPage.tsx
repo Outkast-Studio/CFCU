@@ -1,9 +1,11 @@
-import { GlobalSettingsType } from 'lib/sanity.queries'
-
-export default function Post({
+import { HomepageType, GlobalSettingsType } from 'types/sanity'
+import { clsx } from 'clsx'
+export default function Page({
   globalSettings,
+  homepage,
 }: {
   globalSettings: GlobalSettingsType
+  homepage: HomepageType
 }) {
-  return <main></main>
+  return <main className={clsx('bg-green h-[100vh]')}></main>
 }

@@ -9,7 +9,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        backgroundD1: '#0A0A0A',
+        lavendar: '#AB40FF',
+        purple: '#3C1053',
+        orange: '#F56600',
+        yellow: '#FFC600',
+        green: '#008566',
+        neutralBlack: '#575656',
+        neutralLightGrey: '#EDEDED',
       },
       spacing: {
         28: '7rem',
@@ -28,6 +34,7 @@ module.exports = {
       lineHeight: {
         tight: 1.2,
       },
+
       fontSize: {
         '5xl': '2.5rem',
         '6xl': '2.75rem',

@@ -1,7 +1,7 @@
 /* Replace with project fonts and update in tailwind.config.js */
 @font-face {
-  font-family: 'Aeonik-Thin';
-  src: url('/fonts/Aeonik-Thin.ttf') format('ttf');
+  font-family: 'Codec-200';
+  src: url('/fonts/Code-200.ttf') format('ttf');
   font-weight: normal;
   font-style: 300;
   font-display: swap;

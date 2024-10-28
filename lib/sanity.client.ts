@@ -10,6 +10,7 @@ import {
   globalSettingsQuery,
   dynamicPageSlugsQuery,
   dynamicPageBySlugQuery,
+  homepageQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -51,4 +52,8 @@ export async function getAllDynamicPageSlugs() {
   const client = getClient()
   const slugs = (await client.fetch<string[]>(dynamicPageSlugsQuery)) || []
   return slugs.map((slug) => ({ slug }))
+}
+
+export async function getHomepage(client: SanityClient) {
+  return (await client.fetch(homepageQuery)) || {}
 }

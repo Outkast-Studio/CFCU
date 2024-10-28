@@ -5,6 +5,7 @@ import { lazy, Suspense } from 'react'
 import { clsx } from 'clsx'
 import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
+import Header from 'components/global/Header'
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -32,7 +33,6 @@ export const myPortableTextComponents = {
 }
 
 const PreviewProvider = lazy(() => import('components/PreviewProvider'))
-// const VisualEditing = lazy(() => import('components/VisualEditing'))
 
 export default function App({
   Component,
@@ -40,7 +40,8 @@ export default function App({
 }: AppProps<SharedPageProps>) {
   const { draftMode, token } = pageProps
   return (
-    <>
+    <div>
+      <Header />
       {draftMode ? (
         <PreviewProvider token={token}>
           <Component {...pageProps} />
@@ -48,12 +49,6 @@ export default function App({
       ) : (
         <Component {...pageProps} />
       )}
-      {/* Presentation Layer logic */}
-      {/* {draftMode && (
-        <Suspense>
-          <VisualEditing />
-        </Suspense>
-      )} */}
-    </>
+    </div>
   )
 }

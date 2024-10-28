@@ -9,9 +9,5 @@ export const dynamicPageBySlugQuery = groq`
 export const dynamicPageSlugsQuery = groq`
 *[_type == "dynamicPage" && defined(slug.current)][].slug.current
 `
-export interface GlobalSettingsType {
-  socials: Array<{
-    name: string
-    url: string
-  }>
-}
+
+export const homepageQuery = groq`*[_type == "homepage"][0]`

@@ -6,7 +6,8 @@ import { definePlugin, type DocumentDefinition } from 'sanity'
 import { type StructureResolver } from 'sanity/desk'
 import { iframeOptions } from './previewPane'
 import { Iframe } from 'sanity-plugin-iframe-pane'
-import globalSettings from 'schemas/globalSettings'
+import globalSettings from 'schemas/singletons/globalSettings'
+import homepage from 'schemas/singletons/homepage'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -39,7 +40,7 @@ export const settingsStructure = (
   typeDef: DocumentDefinition,
 ): StructureResolver => {
   return (S) => {
-    const hiddenTypes = ['media.tag', 'globalSettings']
+    const hiddenTypes = ['media.tag', 'globalSettings', 'homepage']
 
     const globalSettingsListItem = S.listItem()
       .title(globalSettings.title)
@@ -55,6 +56,20 @@ export const settingsStructure = (
             S.view.component(Iframe).options(iframeOptions).title('Preview'),
           ]),
       )
+    const homepageListItem = S.listItem()
+      .title(homepage.title)
+      .icon(homepage.icon)
+      .child(
+        S.editor()
+          .title(homepage.title)
+          .id(homepage.name)
+          .schemaType(homepage.name)
+          .documentId(homepage.name)
+          .views([
+            S.view.form(),
+            S.view.component(Iframe).options(iframeOptions).title('Preview'),
+          ]),
+      )
 
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) => !hiddenTypes.includes(listItem.getId()),
@@ -62,6 +77,11 @@ export const settingsStructure = (
 
     return S.list()
       .title('Content')
-      .items([globalSettingsListItem, S.divider(), ...defaultListItems])
+      .items([
+        globalSettingsListItem,
+        S.divider(),
+        homepageListItem,
+        ...defaultListItems,
+      ])
   }
 }

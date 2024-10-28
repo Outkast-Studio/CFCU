@@ -20,8 +20,9 @@ import settingsType from 'schemas/settings'
 import { schema } from 'schemas'
 import { media } from 'sanity-plugin-media'
 import Logo from './components/Sanity/Logo'
+import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 
-const title = 'OVER STIMULATED®'
+const title = 'CFCU'
 
 export default defineConfig({
   basePath: '/studio',
@@ -32,25 +33,22 @@ export default defineConfig({
   plugins: [
     deskTool({
       structure: settingsStructure(settingsType),
-      // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       defaultDocumentNode: previewDocumentNode(),
     }),
-    // presentationTool({
-    //   locate,
-    //   previewUrl: {
-    //     draftMode: {
-    //       enable: DRAFT_MODE_ROUTE,
-    //     },
-    //   },
-    // }),
     media(),
-    // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     settingsPlugin({ type: settingsType.name }),
-    // Add an image asset source for Unsplash
+    simplerColorInput({
+      // Note: These are all optional
+      defaultColorFormat: 'hex',
+      defaultColorList: [
+        { label: 'Orange', value: '#F56600' },
+        { label: 'Green', value: '#008566' },
+        { label: 'Yellow', value: '#FFC600' },
+        { label: 'Purple', value: '#3C1053' },
+      ],
+      enableSearch: true,
+    }),
     unsplashImageAsset(),
-    // Vision lets you query your content with GROQ in the studio
-    // https://www.sanity.io/docs/the-vision-plugin
-    // visionTool({ defaultApiVersion: apiVersion }),
   ],
   icon: Logo,
 })
