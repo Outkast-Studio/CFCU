@@ -9,11 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        lavendar: '#AB40FF',
+        lavendar: '#3C1053',
         purple: '#3C1053',
         orange: '#F56600',
         yellow: '#FFC600',
         green: '#008566',
+        divider: '#F2F2F2',
         neutralBlack: '#575656',
         neutralLightGrey: '#EDEDED',
       },
@@ -26,6 +27,7 @@ module.exports = {
       fontFamily: {
         regular: ['Aeonik-Regular', 'sans-serif'],
         thin: ['Aeonik-Thin', 'sans-serif'],
+        'codec-pro': ['var(--font-codec-pro)', 'sans-serif'],
       },
       spacing: {
         gutter: 'var(--gutter)',

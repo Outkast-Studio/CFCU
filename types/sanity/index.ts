@@ -1,4 +1,5 @@
 import type { PortableTextBlock } from '@portabletext/types'
+import { ImageAsset } from 'sanity'
 
 //Object Types ------------
 export interface CtaInContentType {
@@ -28,31 +29,32 @@ export interface CtaTextType {
   text: string
 }
 
+export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
+
 //Singleton Types ----------------
 export interface GlobalSettingsType {
   navigation: {
     topLevelNavigation: Array<{
-      linkCollection: Array<{
-        icon: string
+      icon: ImageAsset
+      title: string
+      links: Array<{
         title: string
-        links: Array<{
-          title: string
-          url: string
-        }>
+        url: string
       }>
     }>
     bottomLevelNavigation: Array<{
-      linkCollection: Array<{
-        icon: string
+      icon: ImageAsset
+      title: string
+      links: Array<{
+        url: string
         title: string
-        links: Array<{
-          url: string
-          title: string
-        }>
       }>
     }>
     navigationCta: {
-      backgroundColor: string
+      theme: {
+        value: string
+        label: ThemeLabel
+      }
       title: string
       description: string
       cta: {

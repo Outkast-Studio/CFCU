@@ -4,7 +4,7 @@ import { EarthGlobeIcon } from '@sanity/icons'
 export default defineType({
   name: 'globalSettings',
   title: 'Global Settings',
-  icon: EarthGlobeIcon,
+  icon: EarthGlobeIcon as any,
   type: 'document',
   groups: [
     {
@@ -165,6 +165,12 @@ export default defineType({
               title: 'Description',
               type: 'text',
               rows: 3,
+              validation: (Rule: any) => Rule.required(),
+            }),
+            defineField({
+              name: 'theme',
+              title: 'Theme',
+              type: 'simplerColor',
               validation: (Rule: any) => Rule.required(),
             }),
             defineField({

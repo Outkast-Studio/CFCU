@@ -1,5 +1,6 @@
 import { HomepageType, GlobalSettingsType } from 'types/sanity'
 import { clsx } from 'clsx'
+import Hero from '../home/Hero'
 export default function Page({
   globalSettings,
   homepage,
@@ -7,5 +8,9 @@ export default function Page({
   globalSettings: GlobalSettingsType
   homepage: HomepageType
 }) {
-  return <main className={clsx('bg-green h-[100vh]')}></main>
+  return (
+    <main className={clsx('bg-lavendar')}>
+      <Hero />
+    </main>
+  )
 }
