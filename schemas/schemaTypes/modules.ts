@@ -14,5 +14,14 @@ export const modules = defineField({
     {
       type: 'ctaText',
     },
+    {
+      type: 'ctaCardGridHome',
+    },
+    {
+      type: 'ctaCardGrid',
+    },
+    {
+      type: 'ctaTopicRow',
+    },
   ],
 })

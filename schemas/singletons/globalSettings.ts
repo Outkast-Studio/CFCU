@@ -233,6 +233,17 @@ export default defineType({
                   validation: (Rule: any) => Rule.required(),
                 },
               ],
+              preview: {
+                select: {
+                  icon: 'icon',
+                },
+                prepare(selection) {
+                  return {
+                    title: selection.icon.alt,
+                    media: selection.icon,
+                  }
+                },
+              },
             },
           ],
         }),

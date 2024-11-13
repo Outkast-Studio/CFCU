@@ -54,26 +54,83 @@ export interface CtaInContentType {
   }
   backgroundImage: Media
 }
-export interface CtaFullMediaType {
+
+export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
+
+export interface CtaTopicRowType {
   title: string
-  description: string
-  cta: {
+  description: PortableTextBlock
+  links?: Array<{
     title: string
-    url: any
-  }
+    path: string
+  }>
+  image: ImageAsset
+}
+
+export interface CtaCardGridHomeType {
+  subTitle: string
+  title: string
+  cards: Array<{
+    image: ImageAsset
+    title: string
+    description: PortableTextBlock
+    path: string
+  }>
+  linkListTitle: string
+  linkList: Array<{
+    title: string
+    path: string
+  }>
+}
+
+export interface CtaCardGridType {
+  subTitle: string
+  title: string
+  cards: Array<{
+    image: ImageAsset
+    title: string
+    description: PortableTextBlock
+    path: string
+  }>
 }
 
 export interface CtaTextType {
+  theme: {
+    value: string
+    label: string
+  }
   title: string
-  description: string
+  description?: PortableTextBlock
   cta: {
     title: string
-    url: string
+    path: string
   }
-  text: string
 }
 
-export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
+export interface CtaFullMediaType {
+  theme: {
+    value: string
+    label: string
+  }
+  backgroundMedia: Media
+  needsOverlay: boolean
+  topContent: {
+    title: {
+      type: 'text' | 'svg'
+      text?: string
+      svg?: string
+    }
+    subtitle?: string
+  }
+  lowerContent?: {
+    title: string
+    description?: PortableTextBlock
+  }
+  cta: {
+    title: string
+    path: string
+  }
+}
 
 //Singleton Types ----------------
 export interface GlobalSettingsType {
@@ -158,7 +215,14 @@ export interface HomepageType {
       }>
     }>
   }
-  modules: Array<CtaInContentType | CtaFullMediaType | CtaTextType>
+  modules: Array<
+    | CtaInContentType
+    | CtaFullMediaType
+    | CtaTextType
+    | CtaCardGridHomeType
+    | CtaCardGridType
+    | CtaTopicRowType
+  >
   ctaInContent: CtaInContentType
   getInspired: {
     title: string

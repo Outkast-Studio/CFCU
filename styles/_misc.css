@@ -37,3 +37,11 @@
 body {
   font-synthesis-weight: none;
 }
+
+.ctaFullMediaGradient {
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 0) 23.29%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}

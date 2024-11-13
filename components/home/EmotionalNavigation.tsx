@@ -13,7 +13,7 @@ const EmotionalNavigation = ({
   console.log(data)
   return (
     <section className={clsx('pt-[90px] pb-[10px]')}>
-      <div className={clsx('pr-[22px] pl-[27px]')}>
+      <div className={clsx('px-[24px]')}>
         <div dangerouslySetInnerHTML={{ __html: data.icon }} />
         <h2
           className={clsx(

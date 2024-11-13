@@ -18,6 +18,7 @@ export const themeConfig = {
     background: '#008566',
     heading: '#FFFFFF',
     copy: '#FFFFFF',
+    ctaBackground: '#fff',
   },
   Yellow: {
     background: '#FFC600',

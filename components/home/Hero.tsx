@@ -38,8 +38,8 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         >
           {data.description}
         </p>
-        <Link href={data.cta.url} className={clsx('ml-[10px] block')}>
-          <Button label={data.cta.title} theme={'Lavendar'} />
+        <Link href={data.cta.url} className={clsx('ml-[10px] mt-[16px] block')}>
+          <Button label={data.cta.title} />
         </Link>
       </article>
     </section>

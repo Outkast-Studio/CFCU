@@ -8,6 +8,7 @@ import { clsx } from 'clsx'
 export default function MediaComponent({ media }: { media: Media }) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
+  console.log(media)
   if (media.mediaType === 'image') {
     return (
       <Image
@@ -19,15 +20,17 @@ export default function MediaComponent({ media }: { media: Media }) {
     )
   } else if (media.mediaType === 'video') {
     return (
-      <figure>
+      <figure className={clsx('w-full h-full')}>
         <video
-          src={urlForFile(media.video.asset.url)}
-          controls
-          onLoadedData={() => setIsVideoLoaded(true)}
+          muted
+          playsInline
+          autoPlay
+          loop
+          className={clsx('w-full h-full object-cover')}
         >
+          <source src={urlForFile(media.video.asset._ref)} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        {!isVideoLoaded && <div>Loading video...</div>}
         {media.video.caption && <figcaption>{media.video.caption}</figcaption>}
       </figure>
     )

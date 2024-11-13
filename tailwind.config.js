@@ -88,6 +88,11 @@ module.exports = {
     },
     plugin(function ({ addUtilities, theme, e }) {
       const newUtilities = {
+        '.w-paragraph': {
+          'font-family': 'var(--font-codec-news)',
+          'font-size': '16px',
+          'line-height': '24px',
+        },
         '.subtitle': {
           'font-family': 'var(--font-codec-pro-bold)',
           'font-size': '18px',
@@ -96,32 +101,32 @@ module.exports = {
         },
         '.title-s': {
           'font-family': 'var(--font-codec-extra-bold)',
-          'font-size': '21px',
-          'line-height': '30px',
-          'letter-spacing': '-0.32px',
-        },
-        '.title-m': {
-          'font-family': 'var(--font-codec-heavy)',
-          'font-size': '24px',
-          'line-height': '32px',
-          'letter-spacing': '-0.32px',
-        },
-        '.title-l': {
-          'font-family': 'var(--font-codec-ultra)',
           'font-size': '28px',
           'line-height': '34px',
           'letter-spacing': '-0.32px',
         },
+        '.title-m': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '32px',
+          'line-height': '38px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-l': {
+          'font-family': 'var(--font-codec-ultra)',
+          'font-size': '40px',
+          'line-height': '44px',
+          'letter-spacing': '-0.32px',
+        },
         '.title-xl': {
           'font-family': 'var(--font-codec-ultra)',
-          'font-size': '36px',
-          'line-height': '36px',
+          'font-size': '46px',
+          'line-height': '52px',
           'letter-spacing': '-0.32px',
         },
         '.page-title': {
           'font-family': 'var(--font-codec-heavy)',
-          'font-size': '44px',
-          'line-height': '48px',
+          'font-size': '48px',
+          'line-height': '94px',
           'letter-spacing': '-0.32px',
         },
         '.subtitle-s': {
@@ -144,6 +149,11 @@ module.exports = {
           'font-size': '16px',
           'line-height': '16px',
           'letter-spacing': '1.6px',
+        },
+        '.w-paragraph-desktop': {
+          'font-family': 'var(--font-codec-news)',
+          'font-size': '21px',
+          'line-height': '31.5px',
         },
         '.title-s-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',
@@ -179,5 +189,6 @@ module.exports = {
 
       addUtilities(newUtilities, ['responsive', 'hover'])
     }),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }

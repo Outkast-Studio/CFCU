@@ -8,6 +8,9 @@ import getInspired from './homepage/getInspired'
 import ctaFullMedia from './ctaFullMedia'
 import cardGrid from './homepage/cardGrid'
 import ctaText from './ctaText'
+import ctaTopicRow from './ctaTopicRow'
+import ctaCardGridHome from './ctaCardGridHome'
+import ctaCardGrid from './ctaCardGrid'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -20,5 +23,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaFullMedia,
     cardGrid,
     ctaText,
+    ctaTopicRow,
+    ctaCardGridHome,
+    ctaCardGrid,
   ],
 }
