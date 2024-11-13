@@ -23,7 +23,7 @@ const MenuCTA = ({
           color: theme.heading,
         }}
         className={clsx(
-          'font-[900] text-[34px] leading-[32p.64px] text-center uppercase',
+          'font-codec-fat text-[34px] leading-[32p.64px] text-center uppercase',
         )}
       >
         {data.title}
@@ -33,7 +33,7 @@ const MenuCTA = ({
           color: theme.copy,
         }}
         className={clsx(
-          'opacity-75 text-[16px] leading-[24px] text-center font-300 mt-[13px]',
+          'opacity-75 text-[16px] leading-[24px] text-center font-codec-news mt-[13px]',
         )}
       >
         {data.description}
@@ -46,7 +46,9 @@ const MenuCTA = ({
           )}
         >
           <span
-            className={clsx('text-black font-[600] text-[18px] leading-[27px]')}
+            className={clsx(
+              'text-black font-codec-extra-bold text-[18px] leading-[27px]',
+            )}
           >
             {data.cta.title}
           </span>

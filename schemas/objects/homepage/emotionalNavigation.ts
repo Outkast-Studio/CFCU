@@ -7,16 +7,16 @@ export default defineField({
     defineField({
       name: 'icon',
       title: 'Icon',
-      type: 'image',
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-          description:
-            "Describe what's in the image for screen readers and search engines.",
-        },
-      ],
+      type: 'inlineSvg',
+      // fields: [
+      //   {
+      //     name: 'alt',
+      //     type: 'string',
+      //     title: 'Alternative text',
+      //     description:
+      //       "Describe what's in the image for screen readers and search engines.",
+      //   },
+      // ],
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
@@ -43,8 +43,8 @@ export default defineField({
           type: 'object',
           fields: [
             defineField({
-              name: 'backgroundColor',
-              title: 'Background Color',
+              name: 'theme',
+              title: 'Theme',
               type: 'simplerColor',
               validation: (Rule: any) => Rule.required(),
             }),
@@ -84,7 +84,7 @@ export default defineField({
                     defineField({
                       name: 'url',
                       title: 'URL',
-                      type: 'url',
+                      type: 'string',
                       validation: (Rule: any) => Rule.required(),
                     }),
                   ],
@@ -97,11 +97,10 @@ export default defineField({
                   .error('You must add between 1 and 6 items'),
             }),
           ],
-          validation: (Rule: any) =>
-            Rule.required()
-              .min(3)
-              .max(5)
-              .error('You must add between 3 and 5 items'),
+          validation: (Rule: any) => Rule.required(),
+          // .min(3)
+          // .max(5)
+          // .error('You must add between 3 and 5 items'),
         }),
       ],
     }),

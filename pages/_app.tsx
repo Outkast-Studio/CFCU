@@ -6,7 +6,16 @@ import { clsx } from 'clsx'
 import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Header from 'components/global/Header'
-import { CodecPro } from 'font'
+import {
+  CodecPro,
+  CodecProBold,
+  CodecExtraBold,
+  CodecNews,
+  CodecFat,
+  CodecHeavy,
+  CodecRegular,
+  CodecUltra,
+} from 'font'
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -41,7 +50,19 @@ export default function App({
 }: AppProps<SharedPageProps>) {
   const { draftMode, token } = pageProps
   return (
-    <div className={clsx('antialiased font-codec-pro', CodecPro.variable)}>
+    <div
+      className={clsx(
+        'antialiased font-codec-pro',
+        CodecPro.variable,
+        CodecProBold.variable,
+        CodecExtraBold.variable,
+        CodecNews.variable,
+        CodecFat.variable,
+        CodecHeavy.variable,
+        CodecRegular.variable,
+        CodecUltra.variable,
+      )}
+    >
       <Header />
       {draftMode ? (
         <PreviewProvider token={token}>

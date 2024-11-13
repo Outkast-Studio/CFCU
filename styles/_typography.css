@@ -13,3 +13,103 @@
   font-style: 400;
   font-display: swap;
 }
+
+.subtTitle {
+  font-family: (--font-codec-pro-bold);
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.32px;
+}
+.titleS {
+  font-family: (--font-codec-extra-bold);
+  font-size: 21px;
+  line-height: 30px;
+  letter-spacing: -0.32px;
+}
+
+.titleM {
+  font-family: (--font-codec-heavy);
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.32px;
+}
+
+.titleL {
+  font-family: (--font-codec-ultra);
+  font-size: 28px;
+  line-height: 34px;
+  letter-spacing: -0.32px;
+}
+
+.titleXL {
+  font-family: (--font-codec-ultra);
+  font-size: 36px;
+  line-height: 36px;
+  letter-spacing: -0.32px;
+}
+
+.pageTitle {
+  font-family: (--font-codec-heavy);
+  font-size: 44px;
+  line-height: 48px;
+  letter-spacing: -0.32px;
+}
+
+.subtTitleS {
+  font-family: (--font-codec-news);
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 1.6px;
+}
+
+.subtTitleM {
+  font-family: (--font-codec-news);
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 1.6px;
+}
+
+.subtTitleL {
+  font-family: (--font-codec-news);
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 1.6px;
+}
+
+.titleS-dekstop {
+  font-family: (--font-codec-extra-bold);
+  font-size: 50px;
+  line-height: 50px;
+  letter-spacing: -0.32px;
+}
+
+.titleM-desktop {
+  font-family: (--font-codec-heavy);
+  font-size: 62px;
+  line-height: 58px;
+  letter-spacing: -0.32px;
+}
+
+.titleL-dekstop {
+  font-family: (--font-codec-ultra);
+  font-size: 100px;
+  line-height: 100px;
+  letter-spacing: -0.32px;
+}
+
+.titleXL-desktop {
+  font-family: (--font-codec-ultra);
+  font-size: 140px;
+  line-height: 140px;
+  letter-spacing: -0.32px;
+}
+
+.pageTitle-desktop {
+  font-family: (--font-codec-heavy);
+  font-size: 90px;
+  line-height: 92px;
+  letter-spacing: -0.32px;
+}

@@ -7,19 +7,22 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <>
+      <Image
+        src={'/icons/LogoFull.png'}
+        alt={'Community Financial Logo'}
+        width={500}
+        height={108}
+        className={clsx(
+          'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
+          'lg:w-[244.71px] lg:leading-[54px]',
+        )}
+      />
       <header
-        className={clsx('absolute top-[60px] left-[25px]', 'lg:left-[50px]')}
+        className={clsx(
+          'absolute top-[60px] left-[25px] z-[11]',
+          'lg:left-[50px]',
+        )}
       >
-        <Image
-          src={'/icons/LogoFull.png'}
-          alt={'Community Financial Logo'}
-          width={500}
-          height={108}
-          className={clsx(
-            'w-[212px] leading-[47px]',
-            'lg:w-[244.71px] lg:leading-[54px]',
-          )}
-        />
         <div
           className={clsx(
             'fixed top-[60px] right-[25px] z-[10]',

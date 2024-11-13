@@ -9,22 +9,20 @@ export const themeConfig = {
     ctaBackground: '#fff',
   },
   Orange: {
-    background: 'bg-gray-900',
-    heading: 'text-white',
+    background: '#F56600',
+    heading: '#3C1053',
     icon: 'text-blue-400',
-    copy: 'text-gray-300',
+    copy: '#3C1053',
   },
-  nature: {
-    background: 'bg-green-100',
-    heading: 'text-green-800',
-    icon: 'text-green-600',
-    copy: 'text-green-700',
+  Green: {
+    background: '#008566',
+    heading: '#FFFFFF',
+    copy: '#FFFFFF',
   },
-  ocean: {
-    background: 'bg-blue-100',
-    heading: 'text-blue-800',
-    icon: 'text-blue-600',
-    copy: 'text-blue-700',
+  Yellow: {
+    background: '#FFC600',
+    heading: '#3C1053',
+    copy: '#3C1053',
   },
 } as const
 

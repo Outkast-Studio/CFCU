@@ -31,7 +31,7 @@ export default defineField({
         defineField({
           name: 'url',
           title: 'URL',
-          type: 'url',
+          type: 'string',
           validation: (Rule: any) => Rule.required(),
         }),
       ],
@@ -69,4 +69,18 @@ export default defineField({
       validation: (Rule: any) => Rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      description: 'description',
+      cta: 'cta',
+      testimonial: 'testimonial',
+      backgroundMedia: 'backgroundMedia',
+    },
+    prepare(selection) {
+      return {
+        title: 'Homepage Hero',
+      }
+    },
+  },
 })

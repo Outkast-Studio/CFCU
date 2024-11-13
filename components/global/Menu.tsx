@@ -16,12 +16,12 @@ const Menu = () => {
   return (
     <div
       className={clsx(
-        'min-h-screen bg-white fixed top-0 left-0 w-full z-[9] pt-[73px] font-codec-pr overflow-y-auto h-full pb-[20px]',
+        'min-h-screen bg-white fixed top-0 left-0 w-full z-[9] pt-[73px] overflow-y-auto h-full pb-[20px]',
       )}
     >
       <div
         className={clsx(
-          'text-[16px] font-codec-pro font-[600] gap-x-[24px] flex justify-end pr-[99px] mb-[32px]',
+          'text-[16px]  font-codec-bold gap-x-[24px] flex justify-end pr-[99px] mb-[32px]',
         )}
       >
         <a href={'#'}>Become a Member</a>
@@ -54,7 +54,7 @@ const Menu = () => {
                     </div>
                     <h3
                       className={clsx(
-                        'text-[28px] leading-[26.88px] font-[600] font-codec-pro text-lavendar',
+                        'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavendar',
                       )}
                     >
                       {item.title}
@@ -82,7 +82,7 @@ const Menu = () => {
               >
                 <nav
                   className={clsx(
-                    'pl-[53px] flex flex-col text-[16px] leading-[24px] gap-y-[12px] font-codec-pro text-lavendar font-[300] mb-[27px]',
+                    'pl-[53px] flex flex-col text-[16px] leading-[24px] gap-y-[12px] font-codec-news text-lavendar mb-[27px]',
                   )}
                 >
                   {item.links?.map((link, index) => (
@@ -113,7 +113,7 @@ const Menu = () => {
               />
               <h4
                 className={clsx(
-                  'uppercase text-[12px] tracking-[1.6px] font-300 text-black',
+                  'uppercase text-[12px] tracking-[1.6px] font-codec-news text-black',
                 )}
               >
                 {nav.title}
@@ -121,7 +121,7 @@ const Menu = () => {
             </div>
             <div
               className={clsx(
-                'flex flex-col gap-y-[12px] mt-[16px] text-[14px] leading-[21px] font-300 text-lavendar',
+                'flex flex-col gap-y-[12px] mt-[16px] text-[14px] leading-[21px] font-codec-news text-lavendar',
               )}
             >
               {nav.links?.map((link, index) => (

@@ -12,7 +12,7 @@ const SearchBar = () => {
         onChange={(e) => setSearch(e.target.value)}
         placeholder={'Search'}
         className={clsx(
-          'w-[100%] pb-[17px] pt-[21px] bg-[#D9D9D9]/20 rounded-[4px] pl-[17px] text-black placeholder:text-black font-codec-pro font-[500] text-[16px] leading-[14.4px]',
+          'w-[100%] pb-[17px] pt-[21px] bg-[#D9D9D9]/20 rounded-[4px] pl-[17px] text-black placeholder:text-black font-codec-bold text-[16px] leading-[14.4px]',
         )}
       />
       <svg

@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -28,6 +30,13 @@ module.exports = {
         regular: ['Aeonik-Regular', 'sans-serif'],
         thin: ['Aeonik-Thin', 'sans-serif'],
         'codec-pro': ['var(--font-codec-pro)', 'sans-serif'],
+        'codec-bold': ['var(--font-codec-pro-bold)', 'sans-serif'],
+        'codec-extra-bold': ['var(--font-codec-extra-bold)', 'sans-serif'],
+        'codec-news': ['var(--font-codec-news)', 'sans-serif'],
+        'codec-fat': ['var(--font-codec-fat)', 'sans-serif'],
+        'codec-heavy': ['var(--font-codec-heavy)', 'sans-serif'],
+        'codec-regular': ['var(--font-codec-regular)', 'sans-serif'],
+        'codec-ultra': ['var(--font-codec-ultra)', 'sans-serif'],
       },
       spacing: {
         gutter: 'var(--gutter)',
@@ -49,5 +58,126 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase, theme }) {
+      addBase({
+        ':root': {
+          '--font-codec-pro': 'CodecPro, sans-serif',
+        },
+      })
+    },
+
+    function ({ addUtilities, e, theme, variants }) {
+      const weights = {
+        100: 'Thin',
+        200: 'ExtraLight',
+        300: 'Light',
+        400: 'Regular',
+        500: 'Medium',
+        600: 'SemiBold',
+        700: 'Bolded',
+        800: 'ExtraBold',
+        900: 'Black',
+      }
+      const utilities = Object.entries(weights).map(([weight, name]) => ({
+        [`.${e(`font-${name.toLowerCase()}`)}`]: {
+          fontVariationSettings: `"wght" ${weight}`,
+        },
+      }))
+      addUtilities(utilities, variants('fontWeight'))
+    },
+    plugin(function ({ addUtilities, theme, e }) {
+      const newUtilities = {
+        '.subtitle': {
+          'font-family': 'var(--font-codec-pro-bold)',
+          'font-size': '18px',
+          'line-height': '28px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-s': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '21px',
+          'line-height': '30px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-m': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '24px',
+          'line-height': '32px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-l': {
+          'font-family': 'var(--font-codec-ultra)',
+          'font-size': '28px',
+          'line-height': '34px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-xl': {
+          'font-family': 'var(--font-codec-ultra)',
+          'font-size': '36px',
+          'line-height': '36px',
+          'letter-spacing': '-0.32px',
+        },
+        '.page-title': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '44px',
+          'line-height': '48px',
+          'letter-spacing': '-0.32px',
+        },
+        '.subtitle-s': {
+          'font-family': 'var(--font-codec-news)',
+          'text-transform': 'uppercase',
+          'font-size': '12px',
+          'line-height': '12px',
+          'letter-spacing': '1.6px',
+        },
+        '.subtitle-m': {
+          'font-family': 'var(--font-codec-news)',
+          'text-transform': 'uppercase',
+          'font-size': '14px',
+          'line-height': '14px',
+          'letter-spacing': '1.6px',
+        },
+        '.subtitle-l': {
+          'font-family': 'var(--font-codec-news)',
+          'text-transform': 'uppercase',
+          'font-size': '16px',
+          'line-height': '16px',
+          'letter-spacing': '1.6px',
+        },
+        '.title-s-desktop': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '50px',
+          'line-height': '50px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-m-desktop': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '62px',
+          'line-height': '58px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-l-desktop': {
+          'font-family': 'var(--font-codec-ultra)',
+          'font-size': '100px',
+          'line-height': '100px',
+          'letter-spacing': '-0.32px',
+        },
+        '.title-xl-desktop': {
+          'font-family': 'var(--font-codec-ultra)',
+          'font-size': '140px',
+          'line-height': '140px',
+          'letter-spacing': '-0.32px',
+        },
+        '.page-title-desktop': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '90px',
+          'line-height': '92px',
+          'letter-spacing': '-0.32px',
+        },
+      }
+
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }),
+  ],
 }

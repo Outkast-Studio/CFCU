@@ -21,6 +21,7 @@ import { schema } from 'schemas'
 import { media } from 'sanity-plugin-media'
 import Logo from './components/Sanity/Logo'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
+import { inlineSvgInput } from '@focus-reactive/sanity-plugin-inline-svg-input'
 
 const title = 'CFCU'
 
@@ -49,6 +50,7 @@ export default defineConfig({
       ],
       enableSearch: true,
     }),
+    inlineSvgInput(),
     unsplashImageAsset(),
   ],
   icon: Logo,

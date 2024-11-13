@@ -1,14 +1,58 @@
 import type { PortableTextBlock } from '@portabletext/types'
-import { ImageAsset } from 'sanity'
+import { ImageAsset, FileAsset } from 'sanity'
+
+type MediaBase = {
+  _type: 'media'
+  _key: string
+  mediaType: 'image' | 'video'
+}
+
+type ImageMedia = MediaBase & {
+  mediaType: 'image'
+  image: {
+    asset: ImageAsset
+    alt: string
+    hotspot?: {
+      x: number
+      y: number
+      height: number
+      width: number
+    }
+  }
+}
+
+type VideoMedia = MediaBase & {
+  mediaType: 'video'
+  video: {
+    asset: FileAsset
+    caption?: string
+  }
+}
+
+export type Media = ImageMedia | VideoMedia
 
 //Object Types ------------
+
 export interface CtaInContentType {
-  title: string
-  description: string
-  cta: {
-    title: string
-    url: string
+  theme: {
+    value: string
+    label: ThemeLabel
   }
+  ctaCard: {
+    subtitle?: {
+      type?: 'text' | 'svg'
+      text?: string
+      svg?: string
+    }
+    title: string
+    description?: PortableTextBlock
+    cta: {
+      contentPosition: 'left' | 'right'
+      title: string
+      url: string
+    }
+  }
+  backgroundImage: Media
 }
 export interface CtaFullMediaType {
   title: string
@@ -94,13 +138,17 @@ export interface HomepageType {
       author: string
       title: string
     }
+    backgroundMedia: Media
   }
   emotionalNavigation: {
-    icon: string
+    icon: ImageAsset
     subtitle: string
     title: string
     navigationCards: Array<{
-      backgroundColor: string
+      theme: {
+        value: string
+        label: ThemeLabel
+      }
       subtitle: string
       title: string
       description: string
@@ -110,6 +158,7 @@ export interface HomepageType {
       }>
     }>
   }
+  modules: Array<CtaInContentType | CtaFullMediaType | CtaTextType>
   ctaInContent: CtaInContentType
   getInspired: {
     title: string
