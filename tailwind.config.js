@@ -37,6 +37,7 @@ module.exports = {
         'codec-heavy': ['var(--font-codec-heavy)', 'sans-serif'],
         'codec-regular': ['var(--font-codec-regular)', 'sans-serif'],
         'codec-ultra': ['var(--font-codec-ultra)', 'sans-serif'],
+        'codec-light': ['var(--font-codec-light)', 'sans-serif'],
       },
       spacing: {
         gutter: 'var(--gutter)',
@@ -154,6 +155,31 @@ module.exports = {
           'font-family': 'var(--font-codec-news)',
           'font-size': '21px',
           'line-height': '31.5px',
+        },
+        '.w-paragraph-s-desktop': {
+          'font-family': 'var(--font-codec-news)',
+          'font-size': '16px',
+          'line-height': '24px',
+        },
+        '.w-paragraph-l-desktop': {
+          'font-size': '21px',
+          'line-height': '31.5px',
+          'font-family': 'var(--font-codec-news)',
+        },
+        '.w-paragraph-xl-desktop': {
+          'font-size': '24px',
+          'line-height': '36px',
+          'font-family': 'var(--font-codec-news)',
+        },
+        '.w-h4-desktop': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '42px;',
+          'line-height': '50.4px;',
+        },
+        '.w-h6-desktop': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '24px',
+          'line-height': '28px',
         },
         '.title-s-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',

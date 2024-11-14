@@ -166,7 +166,7 @@ export interface GlobalSettingsType {
   }
   footer: {
     socials: Array<{
-      icon: string
+      icon: ImageAsset
       url: string
     }>
     companyLinks: Array<{
@@ -178,6 +178,10 @@ export interface GlobalSettingsType {
       url: string
     }>
     routingNumber: string
+    lowerFooterIcons: Array<{
+      icon: ImageAsset
+    }>
+    lowerFooterMessage: string
   }
 }
 

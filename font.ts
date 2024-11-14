@@ -62,3 +62,11 @@ export const CodecUltra = localFont({
   preload: true,
   fallback: ['system-ui', 'arial'],
 })
+
+export const CodecLight = localFont({
+  src: './public/fonts/Codec-Pro-Light.woff2',
+  variable: '--font-codec-light',
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial'],
+})

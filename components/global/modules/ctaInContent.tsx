@@ -12,14 +12,18 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data.theme.label)
   return (
     <section
-      className={clsx('mt-[65px] title-s pt-[51px] pb-[59px]')}
+      className={clsx(
+        'mt-[65px] title-s pt-[51px] pb-[59px]',
+        'lg:!bg-white lg:pt-[0px] lg:mt-[178px] lg:relative lg:pb-[119px]',
+      )}
       style={{ backgroundColor: theme.background, color: theme.heading }}
     >
-      <div className={clsx('pl-[24px]')}>
+      <div className={clsx('pl-[24px]', 'lg:pl-[164px] lg:pr-[48px]')}>
         {data.ctaCard.subtitle?.type === 'text' && (
           <h2
             className={clsx(
               'w-[140px] text-[21px] tracking-[-0.16px] leading-[20.58px] font-codec-bold',
+              'lg:hidden',
             )}
           >
             {data.ctaCard.subtitle.text}
@@ -27,34 +31,73 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
         )}
         {data.ctaCard.subtitle?.type === 'svg' && (
           <div
-            className={clsx('w-[140px]')}
+            className={clsx('w-[140px]', 'lg:hidden')}
             dangerouslySetInnerHTML={{ __html: data.ctaCard.subtitle.svg }}
           />
         )}
-        <div className={clsx('aspect-w-6 aspect-h-4 relative mt-[26px]')}>
+        <div
+          className={clsx(
+            'aspect-w-6 aspect-h-4 relative mt-[26px]',
+            'lg:aspect-w-7 lg:mt-[0px]',
+          )}
+        >
           <MediaComponent media={data.backgroundImage} />
         </div>
-      </div>{' '}
-      <article className={clsx('mt-[22px] px-[24px] ')}>
-        <h3 className={clsx('text-extra-bold text-[32px] leading-[35.2px]')}>
-          {data.ctaCard.title}
-        </h3>
-
-        {data.ctaCard.description && (
-          <div
+      </div>
+      <article
+        className={clsx(
+          'mt-[22px] px-[24px]',
+          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:left-[0px] lg:top-[-71px]',
+        )}
+        style={{ backgroundColor: theme.background, color: theme.heading }}
+      >
+        <div className={clsx('hidden', 'lg:block')}>
+          {data.ctaCard.subtitle?.type === 'text' && (
+            <h2
+              className={clsx(
+                'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold',
+              )}
+            >
+              {data.ctaCard.subtitle.text}
+            </h2>
+          )}
+          {data.ctaCard.subtitle?.type === 'svg' && (
+            <div
+              className={clsx('w-[140px]')}
+              dangerouslySetInnerHTML={{ __html: data.ctaCard.subtitle.svg }}
+            />
+          )}
+        </div>
+        <div>
+          <h3
             className={clsx(
-              'font-codec-news text-[18px] leading-[27px] mt-[14px]',
+              'text-extra-bold text-[32px] leading-[35.2px]',
+              'lg:title-s-desktop',
             )}
           >
-            <PortableText
-              value={data.ctaCard.description}
-              components={PortableTextComponents}
-            />
-          </div>
-        )}
-        <Link href={data.ctaCard.cta.url} className={clsx('mt-[21px] block')}>
-          <Button label={data.ctaCard.cta.title} />
-        </Link>
+            {data.ctaCard.title}
+          </h3>
+
+          {data.ctaCard.description && (
+            <div
+              className={clsx(
+                'font-codec-news text-[18px] leading-[27px] mt-[14px]',
+                'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
+              )}
+            >
+              <PortableText
+                value={data.ctaCard.description}
+                components={PortableTextComponents}
+              />
+            </div>
+          )}
+          <Link
+            href={data.ctaCard.cta.url}
+            className={clsx('mt-[21px] block', 'lg:mt-[24px]')}
+          >
+            <Button label={data.ctaCard.cta.title} />
+          </Link>
+        </div>
       </article>
     </section>
   )

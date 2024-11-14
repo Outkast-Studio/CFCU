@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import Hero from 'components/home/Hero'
 import EmotionalNavigation from 'components/home/EmotionalNavigation'
 import ModuleFactory from 'components/global/modules/ModuleFactory'
+import Footer from 'components/global/Footer'
 export default function Page({
   globalSettings,
   homepage,
@@ -19,6 +20,7 @@ export default function Page({
       {homepage.modules.map((module, index) => (
         <ModuleFactory module={module} key={index} />
       ))}
+      <Footer data={globalSettings.footer} />
     </main>
   )
 }

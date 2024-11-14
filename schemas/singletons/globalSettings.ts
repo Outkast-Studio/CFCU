@@ -301,6 +301,52 @@ export default defineType({
           type: 'string',
           validation: (Rule: any) => Rule.required(),
         }),
+        defineField({
+          name: 'lowerFooterIcons',
+          title: 'Lower Footer Icons',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                {
+                  name: 'icon',
+                  title: 'Icon',
+                  type: 'image',
+                  fields: [
+                    {
+                      name: 'alt',
+                      type: 'string',
+                      title: 'Alternative text',
+                      description:
+                        "Describe what's in the image for screen readers and search engines.",
+                    },
+                  ],
+                  validation: (Rule: any) => Rule.required(),
+                },
+              ],
+              preview: {
+                select: {
+                  icon: 'icon',
+                },
+                prepare(selection) {
+                  return {
+                    title: selection.icon.alt,
+                    media: selection.icon,
+                  }
+                },
+              },
+            },
+          ],
+          validation: (Rule: any) => Rule.required(),
+        }),
+        defineField({
+          name: 'lowerFooterMessage',
+          title: 'Lower Footer Message',
+          type: 'text',
+          rows: 2,
+          validation: (Rule: any) => Rule.required(),
+        }),
       ],
     }),
   ],

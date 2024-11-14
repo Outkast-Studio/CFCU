@@ -16,6 +16,7 @@ const MenuCTA = ({
       }}
       className={clsx(
         `mt-[75px] pt-[42px] pb-[58px] px-[21px] font-codec-pro mx-[26px] flex flex-col items-center`,
+        'lg:mt-[0px] lg:mx-[0px] lg:px-[51px] lg:py-[74px]',
       )}
     >
       <h3
@@ -24,6 +25,7 @@ const MenuCTA = ({
         }}
         className={clsx(
           'font-codec-fat text-[34px] leading-[32p.64px] text-center uppercase',
+          'lg:text-[54px] lg:leading-[51.84px]',
         )}
       >
         {data.title}
@@ -34,6 +36,7 @@ const MenuCTA = ({
         }}
         className={clsx(
           'opacity-75 text-[16px] leading-[24px] text-center font-codec-news mt-[13px]',
+          'lg:text-[24px] lg:leading-[36px] lg:max-w-[580px]',
         )}
       >
         {data.description}

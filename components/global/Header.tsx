@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import { clsx } from 'clsx'
 import Menu from './Menu'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  useEffect(() => {
+    if (isMenuOpen) document.body.style.overflow = 'hidden'
+    else document.body.style.overflow = 'auto'
+  }, [isMenuOpen])
   return (
     <>
       <Image
@@ -14,19 +18,19 @@ const Header = () => {
         height={108}
         className={clsx(
           'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
-          'lg:w-[244.71px] lg:leading-[54px]',
+          'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
         )}
       />
       <header
         className={clsx(
           'absolute top-[60px] left-[25px] z-[11]',
-          'lg:left-[50px]',
+          'lg:left-[50px] ',
         )}
       >
         <div
           className={clsx(
             'fixed top-[60px] right-[25px] z-[10]',
-            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full',
+            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold',
           )}
         >
           <div>
@@ -56,7 +60,9 @@ const Header = () => {
               'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px]',
             )}
           >
-            <span className={clsx('hidden', 'lg:inline-block')}>Menu</span>
+            <span className={clsx('hidden', 'lg:inline-block')}>
+              {isMenuOpen ? 'Close' : 'Menu'}
+            </span>
             <div className={clsx('w-[18px] flex flex-col gap-y-[5px]')}>
               <span
                 className={clsx('w-full h-[1px] rounded-full bg-purple')}

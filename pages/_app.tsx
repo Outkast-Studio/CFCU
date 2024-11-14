@@ -15,6 +15,7 @@ import {
   CodecHeavy,
   CodecRegular,
   CodecUltra,
+  CodecLight,
 } from 'font'
 export interface SharedPageProps {
   draftMode: boolean
@@ -61,6 +62,7 @@ export default function App({
         CodecHeavy.variable,
         CodecRegular.variable,
         CodecUltra.variable,
+        CodecLight.variable,
       )}
     >
       <Header />

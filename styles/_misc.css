@@ -45,3 +45,10 @@ body {
     rgba(0, 0, 0, 0.6) 100%
   );
 }
+
+@media (min-width: 1024px) {
+  .emotionalNavigationIcon svg {
+    width: 122.44px;
+    height: 92.83px;
+  }
+}
