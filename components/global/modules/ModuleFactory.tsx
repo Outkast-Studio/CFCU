@@ -4,6 +4,7 @@ import CTACardGridHome from './ctaCardGridHome'
 import CTACardGrid from './ctaCardGrid'
 import CTAText from './ctaText'
 import CTAFullMedia from './ctaFullMedia'
+import GetInspired from './getInspired'
 
 const ModuleFactory = ({ module }) => {
   switch (module._type) {
@@ -19,6 +20,8 @@ const ModuleFactory = ({ module }) => {
       return <CTAText data={module} />
     case 'ctaFullMedia':
       return <CTAFullMedia data={module} />
+    case 'getInspired':
+      return <GetInspired data={module} />
     default:
       return null
   }

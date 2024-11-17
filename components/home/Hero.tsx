@@ -50,7 +50,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           <p
             className={clsx(
               'text-[18px] leading-[23.4px] font-codec-regular text-white pl-[14px] pr-[14px] mt-[11px] max-w-[590px]',
-              'lg:font-codec-light lg:text-[26px] lg:leading-[33.8px] lg:mt-[19px]',
+              'lg:font-codec-light lg:text-[26px] lg:leading-[33.8px] lg:mt-[19px] lg:pl-[0px]',
             )}
           >
             {data.description}

@@ -23,5 +23,8 @@ export const modules = defineField({
     {
       type: 'ctaTopicRow',
     },
+    {
+      type: 'getInspired',
+    },
   ],
 })

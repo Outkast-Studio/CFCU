@@ -59,6 +59,11 @@ export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
 
 export interface CtaTopicRowType {
   title: string
+  theme: {
+    value: string
+    label: ThemeLabel
+  }
+  imagePosition: 'left' | 'right'
   description: PortableTextBlock
   links?: Array<{
     title: string
@@ -105,6 +110,17 @@ export interface CtaTextType {
     title: string
     path: string
   }
+}
+
+export interface GetInspiredType {
+  title: string
+  description: PortableTextBlock
+  cta: {
+    title: string
+    path: string
+  }
+  // featuredArticle: StoriesResourcesType
+  // articleGrid: StoriesResourcesType[]
 }
 
 export interface CtaFullMediaType {
@@ -226,6 +242,7 @@ export interface HomepageType {
     | CtaCardGridHomeType
     | CtaCardGridType
     | CtaTopicRowType
+    | GetInspiredType
   >
   ctaInContent: CtaInContentType
   getInspired: {

@@ -4,13 +4,13 @@ import media from './media'
 import blockContent from './blockContent'
 import emotionalNavigation from './homepage/emotionalNavigation'
 import ctaInContent from './ctaInContent'
-import getInspired from './homepage/getInspired'
 import ctaFullMedia from './ctaFullMedia'
-import cardGrid from './homepage/cardGrid'
+
 import ctaText from './ctaText'
 import ctaTopicRow from './ctaTopicRow'
 import ctaCardGridHome from './ctaCardGridHome'
 import ctaCardGrid from './ctaCardGrid'
+import getInspired from './getInspired'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -21,7 +21,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaInContent,
     getInspired,
     ctaFullMedia,
-    cardGrid,
     ctaText,
     ctaTopicRow,
     ctaCardGridHome,
