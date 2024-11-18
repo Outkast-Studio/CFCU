@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Image from 'next/image'
 import { useState } from 'react'
 import type { Media } from 'types/sanity'
@@ -12,7 +14,9 @@ export default function MediaComponent({ media }: { media: Media }) {
   if (stegaClean(media.mediaType) === 'image') {
     return (
       <Image
+        //@ts-ignore
         src={urlForImage(media.image).url()}
+        //@ts-ignore
         alt={media.image.alt}
         fill
         className={clsx('object-cover w-full h-full')}
@@ -31,6 +35,7 @@ export default function MediaComponent({ media }: { media: Media }) {
           <source src={urlForFile(media.video.asset._ref)} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
         {media.video.caption && <figcaption>{media.video.caption}</figcaption>}
       </figure>
     )

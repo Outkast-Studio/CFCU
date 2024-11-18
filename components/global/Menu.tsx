@@ -77,7 +77,7 @@ const Menu = () => {
               className={clsx('w-full mt-[18px]')}
             >
               {topLevelNavigation?.map((item, index) => (
-                <Accordion.Item value={item.title}>
+                <Accordion.Item value={item.title} key={index}>
                   <Accordion.Header className={clsx('text-black')}>
                     <Accordion.Trigger
                       className={clsx(
@@ -154,6 +154,7 @@ const Menu = () => {
           >
             {bottomLevelNavigation?.map((nav, index) => (
               <nav
+                key={index}
                 className={clsx(
                   'lg:border-[1px] lg:border-dividers lg:p-[40px]',
                 )}

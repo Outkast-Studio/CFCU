@@ -33,7 +33,7 @@ export default function Page(props: PageProps) {
   )
   useEffect(() => {
     setGlobalSettings(data)
-  }, [data])
+  }, [data, setGlobalSettings])
 
   console.log(homepage)
   return (

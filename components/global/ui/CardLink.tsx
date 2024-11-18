@@ -25,6 +25,7 @@ const CardLink = ({
           break
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return data?.externalLink ? (
     <a href={data.externalLink} target="_blank" className={clsx(className)}>

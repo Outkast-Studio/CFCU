@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import CtaText from '../components/global/modules/ctaText'
@@ -32,6 +34,7 @@ const meta: Meta<typeof CtaText> = {
         disable: true,
       },
     },
+    //@ts-ignore
     'data.theme.label': {
       control: 'select',
       options: ['Lavender', 'Orange', 'Green', 'Yellow', 'White'],
