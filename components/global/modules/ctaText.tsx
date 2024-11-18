@@ -5,11 +5,11 @@ import { getThemeClasses } from 'lib/themeConfig'
 import { PortableText } from '@portabletext/react'
 import PortableTextComponents from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
-import Link from 'next/link'
+import PageLink from '../ui/PageLink'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data.theme.label as ThemeLabel)
-
+  console.log(data)
   return (
     <div className={clsx('lg:px-[48px] lg:py-[63px]')}>
       <section
@@ -39,12 +39,12 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
             />
           </div>
         )}
-        <Link
-          href={data.cta.path}
+        <PageLink
+          data={data.cta}
           className={clsx('mt-[20px] block', 'lg:mt-[24px]')}
         >
           <Button label={data.cta.title} />
-        </Link>
+        </PageLink>
       </section>
     </div>
   )

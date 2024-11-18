@@ -12,25 +12,29 @@ export const dynamicPageSlugsQuery = groq`
 
 export const homepageQuery = groq`*[_type == "homepage"][0]{
 ...,
-    modules[]{
-    _type == "getInspired" => {
-    _type,
-      title,
-      description,
-      cta {
-        title,
-        path
-      },
-      "featuredArticle": featuredArticle-> {
-...,
-      },
-      "articleGrid": articleGrid[]-> {
+  "modules": modules[]{
     ...,
+    _type == "ctaText" => {
+      ...,
+  cta{
+  ...,
+    link->{
+        _id,
+        _type,
+        title,
+        "slug": slug.current
       }
+  }
+
     },
-        _type != "getInspired" => {
-      // Other module types can be handled here
-      ...
-    }
+    _type == "getInspired" => {
+      ...,
+      "featuredArticle": featuredArticle->{
+    ...,
+      },
+      "articleGrid": articleGrid[]->{
+...,
       }
+    }
+  }
 }`

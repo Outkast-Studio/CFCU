@@ -99,6 +99,18 @@ export interface CtaCardGridType {
   }>
 }
 
+export interface PageLinkType {
+  title: string
+  link?: {
+    _id: string
+    _type: 'post'
+    title: string
+    slug: {
+      current: string
+    }
+  }
+  externalLink?: string
+}
 export interface CtaTextType {
   theme: {
     value: string
@@ -106,10 +118,7 @@ export interface CtaTextType {
   }
   title: string
   description?: PortableTextBlock
-  cta: {
-    title: string
-    path: string
-  }
+  cta: PageLinkType
 }
 
 export interface GetInspiredType {

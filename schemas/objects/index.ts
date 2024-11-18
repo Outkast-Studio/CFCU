@@ -11,6 +11,7 @@ import ctaTopicRow from './ctaTopicRow'
 import ctaCardGridHome from './ctaCardGridHome'
 import ctaCardGrid from './ctaCardGrid'
 import getInspired from './getInspired'
+import pageLink from './pageLink'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -25,5 +26,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaTopicRow,
     ctaCardGridHome,
     ctaCardGrid,
+    pageLink,
   ],
 }
