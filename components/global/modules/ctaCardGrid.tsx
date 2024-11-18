@@ -54,7 +54,12 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
       )}
       <div className={clsx('lg:mt-[56px] lg:px-[48px] ')}>
         {width >= 1024 && (
-          <div className={clsx('gap-x-[24px]  grid grid-cols-4 gap-y-[57px]')}>
+          <div
+            className={clsx(
+              'gap-x-[24px]  grid gap-y-[57px]',
+              data.cards.length < 4 ? 'lg:grid-cols-3' : 'lg:grid-cols-4',
+            )}
+          >
             {data.cards.map((card, index) => (
               <CardGridCard data={card} key={index} />
             ))}

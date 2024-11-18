@@ -83,7 +83,13 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
             </div>
           )}
           <PageLink data={data.cta} className={clsx('mt-[18px] block')}>
-            <Button label={data.cta.title} />
+            <Button
+              label={data.cta.title}
+              className={clsx(
+                stegaClean(data.theme.label) === 'Lavender' &&
+                  '!bg-lavender text-black',
+              )}
+            />
           </PageLink>
         </div>
       </section>

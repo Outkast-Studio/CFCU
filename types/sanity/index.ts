@@ -39,6 +39,7 @@ export interface CtaInContentType {
     label: ThemeLabel
   }
   ctaCard: {
+    contentPosition: 'left' | 'right'
     subtitle?: {
       type?: 'text' | 'svg'
       text?: string

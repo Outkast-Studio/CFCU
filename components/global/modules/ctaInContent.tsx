@@ -7,6 +7,7 @@ import { PortableText } from '@portabletext/react'
 import PortableTextComponents from 'lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
+import { stegaClean } from '@sanity/client/stega'
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data.theme.label)
   return (
@@ -17,7 +18,14 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       )}
       style={{ backgroundColor: theme.background, color: theme.heading }}
     >
-      <div className={clsx('pl-[24px]', 'lg:pl-[164px] lg:pr-[48px]')}>
+      <div
+        className={clsx(
+          'pl-[24px]',
+          stegaClean(data.ctaCard.contentPosition) === 'left'
+            ? 'lg:pl-[164px] lg:pr-[48px]'
+            : 'lg:pr-[164px] lg:pl-[48px]',
+        )}
+      >
         {data.ctaCard.subtitle?.type === 'text' && (
           <h2
             className={clsx(
@@ -46,7 +54,10 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       <article
         className={clsx(
           'mt-[22px] px-[24px]',
-          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:left-[0px] lg:top-[-71px]',
+          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[-71px]',
+          stegaClean(data.ctaCard.contentPosition) === 'left'
+            ? 'lg:left-[0px]'
+            : 'lg:right-[0px]',
         )}
         style={{ backgroundColor: theme.background, color: theme.heading }}
       >
@@ -77,7 +88,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             {data.ctaCard.title}
           </h3>
 
-          {data.ctaCard.description && (
+          {data.ctaCard.description ? (
             <div
               className={clsx(
                 'font-codec-news text-[18px] leading-[27px] mt-[14px]',
@@ -89,6 +100,8 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 components={PortableTextComponents}
               />
             </div>
+          ) : (
+            <div className={clsx('h-[48px', 'lg:h-[64px]')}></div>
           )}
           <PageLink
             data={data.ctaCard.cta}

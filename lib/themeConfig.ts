@@ -36,6 +36,7 @@ export const themeConfig = {
     copy: '#3C1053',
     ctaBackground: '#fff',
     monotoneCopy: '#000',
+    backgroundWhite: '#fff',
   },
 } as const
 

@@ -10,7 +10,6 @@ const Button = ({ label, className }: ButtonProps) => {
     <button
       className={clsx(
         'px-[20px] py-[10.5px] rounded-full flex items-center gap-x-[6px] bg-white text-black',
-
         className,
       )}
     >
