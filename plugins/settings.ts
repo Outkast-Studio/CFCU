@@ -40,7 +40,7 @@ export const settingsStructure = (
   typeDef: DocumentDefinition,
 ): StructureResolver => {
   return (S) => {
-    const hiddenTypes = ['media.tag', 'globalSettings', 'homepage']
+    const hiddenTypes = ['media.tag', 'globalSettings', 'homepage', 'post']
 
     const globalSettingsListItem = S.listItem()
       .title(globalSettings.title)
@@ -71,6 +71,11 @@ export const settingsStructure = (
           ]),
       )
 
+    const postsListItem = S.listItem()
+      .title('Posts')
+      .schemaType('post')
+      .child(S.documentTypeList('post').title('Posts'))
+
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) => !hiddenTypes.includes(listItem.getId()),
     )
@@ -81,6 +86,8 @@ export const settingsStructure = (
         globalSettingsListItem,
         S.divider(),
         homepageListItem,
+        S.divider(),
+        postsListItem,
         ...defaultListItems,
       ])
   }

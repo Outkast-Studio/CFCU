@@ -8,10 +8,8 @@ import Button from '../ui/Button'
 import Link from 'next/link'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
-  console.log(data)
   const theme = getThemeClasses(data.theme.label as ThemeLabel)
 
-  console.log(theme)
   return (
     <div className={clsx('lg:px-[48px] lg:py-[63px]')}>
       <section
@@ -29,8 +27,9 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
         </h2>
         {data.description && (
           <div
+            style={{ color: theme.monotoneCopy }}
             className={clsx(
-              'text-white w-paragraph text-center mt-[20px]',
+              ' w-paragraph text-center mt-[20px]',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >

@@ -10,7 +10,6 @@ const EmotionalNavigation = ({
 }: {
   data: HomepageType['emotionalNavigation']
 }) => {
-  console.log(data)
   return (
     <section
       className={clsx(
@@ -75,7 +74,9 @@ const CardMobile = ({
   data: HomepageType['emotionalNavigation']['navigationCards'][0]
 }) => {
   const colors = getThemeClasses(data.theme.label)
-
+  if (!colors) {
+    return <div></div>
+  }
   return (
     <Accordion.Item
       value={data.title}
@@ -106,11 +107,11 @@ const CardMobile = ({
         >
           <span
             className={clsx(
-              'w-[14px] h-[4px] rotate-[90deg]  absolute bg-lavendar block transition-transform duration-300 ease-in-out',
+              'w-[14px] h-[4px] rotate-[90deg]  absolute bg-lavender block transition-transform duration-300 ease-in-out',
               'group-data-[state=open]:rotate-[0deg]',
             )}
           ></span>
-          <span className={clsx('w-[14px] h-[4px] bg-lavendar block')}></span>
+          <span className={clsx('w-[14px] h-[4px] bg-lavender block')}></span>
         </Accordion.Trigger>
       </Accordion.Header>
       <Accordion.Content className={clsx('AccordionContent overflow-hidden')}>
@@ -151,7 +152,9 @@ const CardDesktop = ({
   data: HomepageType['emotionalNavigation']['navigationCards'][0]
 }) => {
   const colors = getThemeClasses(data.theme.label)
-
+  if (!colors) {
+    return <div></div>
+  }
   return (
     <article
       style={{ backgroundColor: colors.background, color: colors.heading }}

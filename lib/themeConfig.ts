@@ -1,7 +1,7 @@
 import { ThemeLabel } from 'types/sanity'
 
 export const themeConfig = {
-  Lavendar: {
+  Lavender: {
     background: '#3C1053',
     heading: '#F56600',
     icon: '#F56600',
@@ -30,7 +30,7 @@ export const themeConfig = {
     monotoneCopy: '#000',
   },
   White: {
-    background: '#FFFFFF',
+    background: '#F0F0F0',
     heading: '#3C1053',
     copy: '#3C1053',
     ctaBackground: '#fff',
@@ -49,5 +49,14 @@ export interface Theme {
 }
 
 export function getThemeClasses(themeName: ThemeLabel) {
-  return themeConfig[themeName]
+  return (
+    themeConfig[themeName] || {
+      background: '#FFFFFF',
+      heading: '#3C1053',
+      icon: '#F56600',
+      copy: '#3C1053',
+      ctaBackground: '#fff',
+      monotoneCopy: '#000',
+    }
+  )
 }

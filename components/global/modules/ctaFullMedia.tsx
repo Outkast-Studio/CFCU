@@ -8,7 +8,6 @@ import Link from 'next/link'
 import Button from '../ui/Button'
 
 const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
-  console.log(data)
   const theme = getThemeClasses(data.theme.label as ThemeLabel)
 
   return (

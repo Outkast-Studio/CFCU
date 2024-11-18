@@ -37,25 +37,25 @@ export default defineField({
       ],
       validation: (Rule) => Rule.required(),
     }),
-    // defineField({
-    //   name: 'featuredArticle',
-    //   title: 'Featured Article',
-    //   type: 'reference',
-    //   to: [{ type: 'storiesResources' }],
-    //   validation: (Rule) => Rule.required(),
-    // }),
-    // defineField({
-    //   name: 'articleGrid',
-    //   title: 'Article Grid',
-    //   type: 'array',
-    //   of: [
-    //     defineArrayMember({
-    //       type: 'reference',
-    //       to: [{ type: 'storiesResources' }],
-    //     }),
-    //   ],
-    //   validation: (Rule) => Rule.required(),
-    // }),
+    defineField({
+      name: 'featuredArticle',
+      title: 'Featured Article',
+      type: 'reference',
+      to: [{ type: 'post' }],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'articleGrid',
+      title: 'Article Grid',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{ type: 'post' }],
+        }),
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
   ],
   preview: {
     prepare() {

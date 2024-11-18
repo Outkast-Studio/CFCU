@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
-  console.log(data)
   const { width } = useWindowSize()
   return (
     <section
@@ -27,7 +26,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
         </h2>
         <h3
           className={clsx(
-            'title-m text-lavendar mt-[17px]',
+            'title-m text-lavender mt-[17px]',
             'lg:title-m-desktop lg:max-w-[1216px]',
           )}
         >
@@ -63,7 +62,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
         )}
         <article
           className={clsx(
-            'bg-lavendar mx-[24px] px-[38px] pt-[46px] pb-[48px] mt-[37px]',
+            'bg-lavender mx-[24px] px-[38px] pt-[46px] pb-[48px] mt-[37px]',
             'lg:mx-0 lg:mt-0 lg:w-full lg:pt-[42px] ',
           )}
         >

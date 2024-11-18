@@ -45,7 +45,7 @@ export default defineConfig({
         { label: 'Orange', value: '#F56600' },
         { label: 'Green', value: '#008566' },
         { label: 'Yellow', value: '#FFC600' },
-        { label: 'Lavendar', value: '#3C1053' },
+        { label: 'Lavender', value: '#3C1053' },
         { label: 'White', value: '#FFFFFF' },
       ],
       enableSearch: true,

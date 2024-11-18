@@ -35,6 +35,7 @@ export default function Page(props: PageProps) {
     setGlobalSettings(data)
   }, [data])
 
+  console.log(homepage)
   return (
     <Layout>
       <IndexPage globalSettings={data} homepage={homepage} />

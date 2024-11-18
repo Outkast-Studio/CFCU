@@ -89,8 +89,8 @@ export interface CtaCardGridHomeType {
 }
 
 export interface CtaCardGridType {
-  subTitle: string
-  title: string
+  subTitl?: string
+  title?: string
   cards: Array<{
     image: ImageAsset
     title: string
@@ -119,8 +119,8 @@ export interface GetInspiredType {
     title: string
     path: string
   }
-  // featuredArticle: StoriesResourcesType
-  // articleGrid: StoriesResourcesType[]
+  featuredArticle: Post
+  articleGrid: Post[]
 }
 
 export interface CtaFullMediaType {
@@ -282,4 +282,18 @@ export interface HomepageType {
     }>
   }
   ctaText: CtaTextType
+}
+
+// Document types ------------------------------------------------
+
+export interface Post {
+  _type: 'post'
+  title: string
+  type: string
+  slug: {
+    current: string
+  }
+  content: PortableTextBlock
+  excerpt: string
+  thumbnailImage: ImageAsset
 }

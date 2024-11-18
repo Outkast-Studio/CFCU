@@ -13,7 +13,7 @@ export default function Page({
 }) {
   return (
     <main className={clsx('bg-white')}>
-      <div className={clsx('bg-lavendar')}>
+      <div className={clsx('bg-lavender')}>
         <Hero data={homepage.hero} />
         <EmotionalNavigation data={homepage.emotionalNavigation} />
       </div>

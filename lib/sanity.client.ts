@@ -6,7 +6,6 @@ import {
   useCdn,
 } from 'lib/sanity.api'
 import {
-  type GlobalSettingsType,
   globalSettingsQuery,
   dynamicPageSlugsQuery,
   dynamicPageBySlugQuery,

@@ -6,9 +6,8 @@ import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 
 const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
-  console.log(data)
   return (
-    <div className={clsx('bg-lavendar ', 'lg:pt-[36px]')}>
+    <div className={clsx('bg-lavender ', 'lg:pt-[36px]')}>
       <footer
         className={clsx(
           'px-[24px] py-[66px]',

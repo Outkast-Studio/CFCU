@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        lavendar: '#3C1053',
+        lavender: '#3C1053',
         purple: '#3C1053',
         orange: '#F56600',
         yellow: '#FFC600',

@@ -16,7 +16,7 @@ const Menu = () => {
 
   const { width } = useWindowSize()
   return (
-    <div className={clsx('fixed top-0 left-0 w-full z-[9] bg-white ')}>
+    <div className={clsx('fixed top-0 left-0 w-full z-[9] bg-white h-full')}>
       <div
         className={clsx(
           'min-h-screen  pt-[73px] overflow-y-auto h-full pb-[20px]',
@@ -50,14 +50,14 @@ const Menu = () => {
                   </div>
                   <h3
                     className={clsx(
-                      'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavendar mt-[13.63px]',
+                      'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px]',
                     )}
                   >
                     {item.title}
                   </h3>
                   <nav
                     className={clsx(
-                      'flex flex-col text-[18px] leading-[27px] gap-y-[12px] font-codec-news text-lavendar mt-[16px]',
+                      'flex flex-col text-[18px] leading-[27px] gap-y-[12px] font-codec-news text-lavender mt-[16px]',
                     )}
                   >
                     {item.links?.map((link, index) => (
@@ -80,7 +80,7 @@ const Menu = () => {
                   <Accordion.Header className={clsx('text-black')}>
                     <Accordion.Trigger
                       className={clsx(
-                        'flex justify-between w-full items-center py-[24px] border-t-[1px] group border-divider data-[state=open]:!border-lavendar transition-colors duration-200',
+                        'flex justify-between w-full items-center py-[24px] border-t-[1px] group border-divider data-[state=open]:!border-lavender transition-colors duration-200',
                       )}
                     >
                       <div
@@ -97,7 +97,7 @@ const Menu = () => {
                         </div>
                         <h3
                           className={clsx(
-                            'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavendar',
+                            'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender',
                           )}
                         >
                           {item.title}
@@ -125,7 +125,7 @@ const Menu = () => {
                   >
                     <nav
                       className={clsx(
-                        'pl-[53px] flex flex-col text-[16px] leading-[24px] gap-y-[12px] font-codec-news text-lavendar mb-[27px]',
+                        'pl-[53px] flex flex-col text-[16px] leading-[24px] gap-y-[12px] font-codec-news text-lavender mb-[27px]',
                       )}
                     >
                       {item.links?.map((link, index) => (
@@ -153,7 +153,9 @@ const Menu = () => {
           >
             {bottomLevelNavigation?.map((nav, index) => (
               <nav
-                className={clsx('lg:border-[1px] lg:border-dividers p-[40px]')}
+                className={clsx(
+                  'lg:border-[1px] lg:border-dividers lg:p-[40px]',
+                )}
               >
                 <div
                   className={clsx(
@@ -182,7 +184,7 @@ const Menu = () => {
                 </div>
                 <div
                   className={clsx(
-                    'flex flex-col gap-y-[12px] mt-[16px] text-[14px] leading-[21px] font-codec-news text-lavendar',
+                    'flex flex-col gap-y-[12px] mt-[16px] text-[14px] leading-[21px] font-codec-news text-lavender',
                     'lg:text-[16px] lg:leading-[24px]',
                   )}
                 >

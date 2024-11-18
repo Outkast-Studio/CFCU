@@ -24,7 +24,7 @@ export default function CardGridCard({
         </div>
         <h5
           className={clsx(
-            'font-codec-extra-bold text-[18px] leading-[21.6px] text-lavendar mt-[14px] flex gap-x-[6px] items-center',
+            'font-codec-extra-bold text-[18px] leading-[21.6px] text-lavender mt-[14px] flex gap-x-[6px] items-center',
             'lg:w-h6-desktop lg:mt-[19px]',
           )}
         >

@@ -10,7 +10,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   return (
     <section
       className={clsx(
-        'min-h-[100svh] bg-lavendar px-[10px] py-[12px] relative flex flex-col justify-end',
+        'min-h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end',
         'lg:px-[18px] lg:py-[16px]',
       )}
     >

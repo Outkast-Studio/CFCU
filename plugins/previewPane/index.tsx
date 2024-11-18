@@ -22,6 +22,8 @@ export const iframeOptions = {
           return (document as any)?.slug?.current
             ? `/dynamic/${(document as any).slug.current}`
             : new Error('Missing slug')
+        case 'homepage':
+          return '/'
         default:
           return new Error(`Unknown document type: ${document?._type}`)
       }

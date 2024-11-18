@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
   const theme = getThemeClasses(data.theme.label)
-  console.log(theme)
+
   return (
     <section
       className={clsx(
@@ -49,6 +49,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
           {data.title}
         </h2>
         <div
+          style={{ color: theme.monotoneCopy }}
           className={clsx(
             'font-codec-regular w-paragraph-s-desktop text-center',
             'lg:text-left lg:w-paragraph-l-desktop',

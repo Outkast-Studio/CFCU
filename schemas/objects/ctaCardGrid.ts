@@ -9,13 +9,11 @@ export default defineField({
       name: 'subTitle',
       title: 'Subtitle',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'cards',
@@ -29,6 +27,16 @@ export default defineField({
               name: 'image',
               title: 'Image',
               type: 'image',
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alternative text',
+                  description:
+                    "Describe what's in the image for screen readers and search engines.",
+                  validation: (Rule) => Rule.required(),
+                },
+              ],
               validation: (Rule) => Rule.required(),
             }),
             defineField({

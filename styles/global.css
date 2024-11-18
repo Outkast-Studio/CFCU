@@ -2,6 +2,46 @@
 @import './_typography.css';
 @import './_variables.css';
 
+body {
+  font-family: var(--font-codec-regular);
+}
+
+.font-codec-pro {
+  font-family: var(--font-codec-pro);
+}
+
+.font-codec-regular {
+  font-family: var(--font-codec-regular);
+}
+
+.font-codec-pro-bold {
+  font-family: var(--font-codec-pro-bold);
+}
+
+.font-codec-extra-bold {
+  font-family: var(--font-codec-extra-bold);
+}
+
+.font-codec-news {
+  font-family: var(--font-codec-news);
+}
+
+.font-codec-fat {
+  font-family: var(--font-codec-fat);
+}
+
+.font-codec-heavy {
+  font-family: var(--font-codec-heavy);
+}
+
+.font-codec-ultra {
+  font-family: var(--font-codec-ultra);
+}
+
+.font-codec-light {
+  font-family: var(--font-codec-light);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -8,7 +8,6 @@ import PortableTextComponents from 'lib/portabletTextComponents'
 import Link from 'next/link'
 import Button from '../ui/Button'
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
-  console.log(data)
   const theme = getThemeClasses(data.theme.label)
   return (
     <section

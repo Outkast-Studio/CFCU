@@ -8,7 +8,6 @@ import { clsx } from 'clsx'
 export default function MediaComponent({ media }: { media: Media }) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
-  console.log(media)
   if (media.mediaType === 'image') {
     return (
       <Image
