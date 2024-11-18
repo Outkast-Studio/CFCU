@@ -24,7 +24,7 @@ export const CodecProBold = localFont({
 })
 
 export const CodecExtraBold = localFont({
-  src: './public/fonts/Codec-Pro-ExtraBold.woff2',
+  src: './public/fonts/Codec-Pro-Extrabold.woff2',
   variable: '--font-codec-extra-bold',
   display: 'swap',
   preload: true,
