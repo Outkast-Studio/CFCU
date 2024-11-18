@@ -8,15 +8,6 @@ export default defineField({
       name: 'icon',
       title: 'Icon',
       type: 'inlineSvg',
-      // fields: [
-      //   {
-      //     name: 'alt',
-      //     type: 'string',
-      //     title: 'Alternative text',
-      //     description:
-      //       "Describe what's in the image for screen readers and search engines.",
-      //   },
-      // ],
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
@@ -72,22 +63,10 @@ export default defineField({
               type: 'array',
               of: [
                 defineField({
-                  type: 'object',
+                  type: 'pageLink',
+                  title: 'Link',
                   name: 'link',
-                  fields: [
-                    defineField({
-                      name: 'title',
-                      title: 'Title',
-                      type: 'string',
-                      validation: (Rule: any) => Rule.required(),
-                    }),
-                    defineField({
-                      name: 'url',
-                      title: 'URL',
-                      type: 'string',
-                      validation: (Rule: any) => Rule.required(),
-                    }),
-                  ],
+                  validation: (Rule: any) => Rule.required(),
                 }),
               ],
               validation: (Rule: any) =>
@@ -98,9 +77,6 @@ export default defineField({
             }),
           ],
           validation: (Rule: any) => Rule.required(),
-          // .min(3)
-          // .max(5)
-          // .error('You must add between 3 and 5 items'),
         }),
       ],
     }),

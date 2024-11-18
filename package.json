@@ -21,7 +21,7 @@
     "@phosphor-icons/react": "^2.1.7",
     "@portabletext/react": "3.0.11",
     "@radix-ui/react-accordion": "^1.2.1",
-    "@sanity/client": "6.11.3",
+    "@sanity/client": "^6.22.4",
     "@sanity/image-url": "1.0.2",
     "@sanity/overlays": "2.3.7",
     "@sanity/preview-url-secret": "1.5.3",

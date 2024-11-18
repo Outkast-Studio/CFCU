@@ -7,6 +7,7 @@ import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import MenuCTA from './ui/MenuCTA'
 import { useWindowSize } from 'hooks/useWindowSize'
+import PageLink from './ui/PageLink'
 
 const Menu = () => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
@@ -61,9 +62,9 @@ const Menu = () => {
                     )}
                   >
                     {item.links?.map((link, index) => (
-                      <Link href={link.url} key={index}>
+                      <PageLink data={link} key={index}>
                         {link.title}
-                      </Link>
+                      </PageLink>
                     ))}
                   </nav>
                 </article>
@@ -129,9 +130,9 @@ const Menu = () => {
                       )}
                     >
                       {item.links?.map((link, index) => (
-                        <Link href={link.url} key={index}>
+                        <PageLink data={link} key={index}>
                           {link.title}
-                        </Link>
+                        </PageLink>
                       ))}
                     </nav>
                   </Accordion.Content>
@@ -189,9 +190,9 @@ const Menu = () => {
                   )}
                 >
                   {nav.links?.map((link, index) => (
-                    <Link href={link.url} key={index}>
+                    <PageLink data={link} key={index}>
                       {link.title}
-                    </Link>
+                    </PageLink>
                   ))}
                 </div>
               </nav>

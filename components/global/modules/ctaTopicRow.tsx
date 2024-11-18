@@ -5,7 +5,7 @@ import { urlForImage } from 'lib/sanity.image'
 import { getThemeClasses } from 'lib/themeConfig'
 import PortableTextComponents from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
-import Link from 'next/link'
+import PageLink from '../ui/PageLink'
 
 const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
   const theme = getThemeClasses(data.theme.label)
@@ -65,9 +65,9 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
           )}
         >
           {data.links?.map((link, index) => (
-            <Link
+            <PageLink
               key={index}
-              href={link.path}
+              data={link}
               className={clsx(
                 'font-codec-extra-bold text-[18px] leading-[27px]  text- flex gap-x-[6px] items-center',
               )}
@@ -85,7 +85,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                   fill="#F56600"
                 />
               </svg>
-            </Link>
+            </PageLink>
           ))}
         </nav>
       </div>

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { PortableText } from '@portabletext/react'
 import PortableTextComponents from 'lib/portabletTextComponents'
-import Link from 'next/link'
+import CardLink from '../ui/CardLink'
 
 export default function CardGridCard({
   data,
@@ -12,7 +12,7 @@ export default function CardGridCard({
   data: CtaCardGridHomeType['cards'][0]
 }) {
   return (
-    <Link href={data.path}>
+    <CardLink data={data.cardLink}>
       <article className={clsx('w-[239px]', 'lg:w-full')}>
         <div className={clsx('aspect-w-10 aspect-h-11 relative')}>
           <Image
@@ -54,6 +54,6 @@ export default function CardGridCard({
           />
         </div>
       </article>
-    </Link>
+    </CardLink>
   )
 }

@@ -12,7 +12,7 @@ import ctaCardGridHome from './ctaCardGridHome'
 import ctaCardGrid from './ctaCardGrid'
 import getInspired from './getInspired'
 import pageLink from './pageLink'
-
+import cardLink from './cardLink'
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     hero,
@@ -27,5 +27,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaCardGridHome,
     ctaCardGrid,
     pageLink,
+    cardLink,
   ],
 }

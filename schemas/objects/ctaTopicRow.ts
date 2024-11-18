@@ -42,21 +42,7 @@ export default defineField({
       type: 'array',
       of: [
         {
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'path',
-              title: 'Path',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-          ],
+          type: 'pageLink',
         },
       ],
     }),

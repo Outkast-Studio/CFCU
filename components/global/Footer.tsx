@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import LogoFull from '/public/icons/LogoFull.png'
 import { urlForImage } from 'lib/sanity.image'
-import Link from 'next/link'
+import PageLink from './ui/PageLink'
 
 const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
   return (
@@ -58,15 +58,15 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
             </h5>
             <div className={clsx('flex flex-col gap-y-[18px]')}>
               {data.companyLinks.map((link, index) => (
-                <Link
+                <PageLink
                   key={index}
-                  href={link.url}
+                  data={link}
                   className={clsx(
                     'font-codec-bold text-[18px] leading-[16.2px] text-white',
                   )}
                 >
                   <span>{link.title}</span>
-                </Link>
+                </PageLink>
               ))}
             </div>
           </div>
@@ -85,15 +85,15 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
             </h5>
             <div className={clsx('flex flex-col gap-y-[18px]')}>
               {data.resourceLinks.map((link, index) => (
-                <Link
+                <PageLink
                   key={index}
-                  href={link.url}
+                  data={link}
                   className={clsx(
                     'font-codec-bold text-[18px] leading-[16.2px] text-white',
                   )}
                 >
                   <span>{link.title}</span>
-                </Link>
+                </PageLink>
               ))}
             </div>
           </div>

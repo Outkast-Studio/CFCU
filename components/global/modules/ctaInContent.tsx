@@ -5,7 +5,7 @@ import { getThemeClasses } from 'lib/themeConfig'
 import MediaComponent from '../ui/Media'
 import { PortableText } from '@portabletext/react'
 import PortableTextComponents from 'lib/portabletTextComponents'
-import Link from 'next/link'
+import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data.theme.label)
@@ -90,12 +90,12 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               />
             </div>
           )}
-          <Link
-            href={data.ctaCard.cta.url}
+          <PageLink
+            data={data.ctaCard.cta}
             className={clsx('mt-[21px] block', 'lg:mt-[24px]')}
           >
             <Button label={data.ctaCard.cta.title} />
-          </Link>
+          </PageLink>
         </div>
       </article>
     </section>

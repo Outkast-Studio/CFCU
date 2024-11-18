@@ -7,6 +7,7 @@ import { Post } from 'types/sanity'
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
+import PageLink from '../ui/PageLink'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
   console.log(data)
@@ -37,12 +38,12 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             components={PortableTextComponents}
           />
         </div>
-        <Link
-          href={data.cta.path}
+        <PageLink
+          data={data.cta}
           className={clsx('mt-[10.5px] block', 'lg:mt-[7.5px]')}
         >
           <Button label={data.cta.title} />
-        </Link>
+        </PageLink>
       </div>
       <div
         className={clsx(
@@ -74,7 +75,7 @@ const PostCard = ({
   isFeatured: boolean
 }) => {
   return (
-    <Link href={data.slug.current} className={clsx('block')}>
+    <Link href={`/posts/${data.slug.current}`} className={clsx('block')}>
       <article
         className={clsx('h-fit', isFeatured && 'lg:sticky lg:top-[48px]')}
       >

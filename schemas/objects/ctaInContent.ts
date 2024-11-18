@@ -76,21 +76,7 @@ export default defineField({
         defineField({
           name: 'cta',
           title: 'Call to Action',
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'string',
-              validation: (Rule: any) => Rule.required(),
-            }),
-            defineField({
-              name: 'url',
-              title: 'URL',
-              type: 'string',
-              validation: (Rule: any) => Rule.required(),
-            }),
-          ],
+          type: 'pageLink',
           validation: (Rule: any) => Rule.required(),
         }),
       ],

@@ -1,4 +1,5 @@
 import { ThemeLabel } from 'types/sanity'
+import { stegaClean } from '@sanity/client/stega'
 
 export const themeConfig = {
   Lavender: {
@@ -50,7 +51,7 @@ export interface Theme {
 
 export function getThemeClasses(themeName: ThemeLabel) {
   return (
-    themeConfig[themeName] || {
+    themeConfig[stegaClean(themeName)] || {
       background: '#FFFFFF',
       heading: '#3C1053',
       icon: '#F56600',

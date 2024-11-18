@@ -4,11 +4,12 @@ import type { Media } from 'types/sanity'
 import { urlForImage } from 'lib/sanity.image'
 import { urlForFile } from 'lib/sanity.file'
 import { clsx } from 'clsx'
+import { stegaClean } from '@sanity/client/stega'
 
 export default function MediaComponent({ media }: { media: Media }) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
-  if (media.mediaType === 'image') {
+  if (stegaClean(media.mediaType) === 'image') {
     return (
       <Image
         src={urlForImage(media.image).url()}
@@ -17,7 +18,7 @@ export default function MediaComponent({ media }: { media: Media }) {
         className={clsx('object-cover w-full h-full')}
       />
     )
-  } else if (media.mediaType === 'video') {
+  } else if (stegaClean(media.mediaType) === 'video') {
     return (
       <figure className={clsx('w-full h-full')}>
         <video

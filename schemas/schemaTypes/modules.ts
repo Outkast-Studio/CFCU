@@ -4,6 +4,7 @@ export const modules = defineField({
   name: 'modules',
   title: 'Page Modules',
   type: 'array',
+  group: 'modules',
   of: [
     {
       type: 'ctaInContent',

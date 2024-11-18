@@ -79,12 +79,12 @@ export interface CtaCardGridHomeType {
     image: ImageAsset
     title: string
     description: PortableTextBlock
-    path: string
+    cardLink: CardLinkType
   }>
   linkListTitle: string
   linkList: Array<{
     title: string
-    path: string
+    path: PageLinkType
   }>
 }
 
@@ -95,7 +95,7 @@ export interface CtaCardGridType {
     image: ImageAsset
     title: string
     description: PortableTextBlock
-    path: string
+    cardLink: CardLinkType
   }>
 }
 
@@ -103,7 +103,19 @@ export interface PageLinkType {
   title: string
   link?: {
     _id: string
-    _type: 'post'
+    _type: string
+    title: string
+    slug: {
+      current: string
+    }
+  }
+  externalLink?: string
+}
+
+export interface CardLinkType {
+  link?: {
+    _id: string
+    _type: string
     title: string
     slug: {
       current: string
@@ -163,18 +175,12 @@ export interface GlobalSettingsType {
     topLevelNavigation: Array<{
       icon: ImageAsset
       title: string
-      links: Array<{
-        title: string
-        url: string
-      }>
+      links: Array<PageLinkType>
     }>
     bottomLevelNavigation: Array<{
       icon: ImageAsset
       title: string
-      links: Array<{
-        url: string
-        title: string
-      }>
+      links: Array<PageLinkType>
     }>
     navigationCta: {
       theme: {
@@ -194,14 +200,8 @@ export interface GlobalSettingsType {
       icon: ImageAsset
       url: string
     }>
-    companyLinks: Array<{
-      title: string
-      url: string
-    }>
-    resourceLinks: Array<{
-      title: string
-      url: string
-    }>
+    companyLinks: Array<PageLinkType>
+    resourceLinks: Array<PageLinkType>
     routingNumber: string
     lowerFooterIcons: Array<{
       icon: ImageAsset
@@ -238,10 +238,7 @@ export interface HomepageType {
       subtitle: string
       title: string
       description: string
-      links: Array<{
-        title: string
-        url: string
-      }>
+      links: Array<PageLinkType>
     }>
   }
   modules: Array<

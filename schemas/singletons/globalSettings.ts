@@ -59,21 +59,8 @@ export default defineType({
                     defineField({
                       name: 'link',
                       title: 'Link',
-                      type: 'object',
-                      fields: [
-                        defineField({
-                          name: 'title',
-                          title: 'Title',
-                          type: 'string',
-                          validation: (Rule: any) => Rule.required(),
-                        }),
-                        defineField({
-                          name: 'url',
-                          title: 'URL',
-                          type: 'url',
-                          validation: (Rule: any) => Rule.required(),
-                        }),
-                      ],
+                      type: 'pageLink',
+                      validation: (Rule: any) => Rule.required(),
                     }),
                   ],
                   validation: (Rule: any) =>
@@ -123,21 +110,8 @@ export default defineType({
                     defineField({
                       name: 'link',
                       title: 'Link',
-                      type: 'object',
-                      fields: [
-                        defineField({
-                          name: 'title',
-                          title: 'Title',
-                          type: 'string',
-                          validation: (Rule: any) => Rule.required(),
-                        }),
-                        defineField({
-                          name: 'url',
-                          title: 'URL',
-                          type: 'url',
-                          validation: (Rule: any) => Rule.required(),
-                        }),
-                      ],
+                      type: 'pageLink',
+                      validation: (Rule: any) => Rule.required(),
                     }),
                   ],
                   validation: (Rule: any) =>
@@ -176,21 +150,7 @@ export default defineType({
             defineField({
               name: 'cta',
               title: 'Call to Action',
-              type: 'object',
-              fields: [
-                defineField({
-                  name: 'title',
-                  title: 'Title',
-                  type: 'string',
-                  validation: (Rule: any) => Rule.required(),
-                }),
-                defineField({
-                  name: 'url',
-                  title: 'URL',
-                  type: 'url',
-                  validation: (Rule: any) => Rule.required(),
-                }),
-              ],
+              type: 'pageLink',
               validation: (Rule: any) => Rule.required(),
             }),
           ],
@@ -253,21 +213,7 @@ export default defineType({
           type: 'array',
           of: [
             {
-              type: 'object',
-              fields: [
-                {
-                  name: 'title',
-                  title: 'Title',
-                  type: 'string',
-                  validation: (Rule: any) => Rule.required(),
-                },
-                {
-                  name: 'url',
-                  title: 'URL',
-                  type: 'url',
-                  validation: (Rule: any) => Rule.required(),
-                },
-              ],
+              type: 'pageLink',
             },
           ],
         }),
@@ -277,21 +223,7 @@ export default defineType({
           type: 'array',
           of: [
             {
-              type: 'object',
-              fields: [
-                {
-                  name: 'title',
-                  title: 'Title',
-                  type: 'string',
-                  validation: (Rule: any) => Rule.required(),
-                },
-                {
-                  name: 'url',
-                  title: 'URL',
-                  type: 'url',
-                  validation: (Rule: any) => Rule.required(),
-                },
-              ],
+              type: 'pageLink',
             },
           ],
         }),

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { PageLinkType } from 'types/sanity'
+import { CardLinkType, PageLinkType } from 'types/sanity'
 import Link from 'next/link'
 import { clsx } from 'clsx'
-const PageLink = ({
+const CardLink = ({
   data,
   className,
   children,
 }: {
   className?: string
-  data: PageLinkType
+  data: CardLinkType
   children: React.ReactNode
 }) => {
   const [href, setHref] = useState<string>('')
   useEffect(() => {
-    if (!data.externalLink) {
-      switch (data.link?._type) {
+    if (!data?.externalLink) {
+      switch (data?.link?._type) {
         case 'post':
           setHref(`/posts/${data.link.slug}`)
           break
@@ -26,15 +26,15 @@ const PageLink = ({
       }
     }
   }, [])
-  return !data.externalLink ? (
-    <Link href={href} className={clsx(className)}>
-      {children}
-    </Link>
-  ) : (
+  return data?.externalLink ? (
     <a href={data.externalLink} target="_blank" className={clsx(className)}>
       {children}
     </a>
+  ) : (
+    <Link href={href} className={clsx(className)}>
+      {children}
+    </Link>
   )
 }
 
-export default PageLink
+export default CardLink

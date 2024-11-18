@@ -2,11 +2,12 @@ import { HomepageType } from 'types/sanity'
 import { clsx } from 'clsx'
 import MediaComponent from 'components/global/ui/Media'
 import Button from 'components/global/ui/Button'
-import Link from 'next/link'
+import PageLink from 'components/global/ui/PageLink'
 import PortableTextComponents from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
+  console.log
   return (
     <section
       className={clsx(
@@ -55,12 +56,12 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           >
             {data.description}
           </p>
-          <Link
-            href={data.cta.url}
+          <PageLink
+            data={data.cta}
             className={clsx('mt-[16px] block', 'lg:mt-[31px]')}
           >
             <Button label={data.cta.title} />
-          </Link>
+          </PageLink>
         </article>
         <article
           className={clsx(

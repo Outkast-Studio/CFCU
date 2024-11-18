@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react'
 import 'swiper/css'
 import CardGridCard from '../ui/CardGridCard'
-import Link from 'next/link'
+import PageLink from '../ui/PageLink'
 import { useWindowSize } from 'hooks/useWindowSize'
 
 const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
@@ -80,9 +80,9 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
             )}
           >
             {data.linkList.map((link, index) => (
-              <Link
+              <PageLink
                 key={index}
-                href={link.path}
+                data={link}
                 className={clsx(
                   'font-codec-extra-bold text-[18px] leading-[27px]  text-white flex gap-x-[6px] items-center',
                 )}
@@ -100,7 +100,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
                     fill="#F56600"
                   />
                 </svg>
-              </Link>
+              </PageLink>
             ))}
           </nav>
         </article>

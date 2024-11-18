@@ -1,7 +1,8 @@
 import { clsx } from 'clsx'
 import { getThemeClasses, Theme } from 'lib/themeConfig'
 import { GlobalSettingsType } from 'types/sanity'
-import Link from 'next/link'
+import PageLink from './PageLink'
+
 const MenuCTA = ({
   data,
 }: {
@@ -41,7 +42,7 @@ const MenuCTA = ({
       >
         {data.description}
       </p>
-      <Link href={data.cta.url}>
+      <PageLink data={data.cta}>
         <button
           style={{ backgroundColor: theme.ctaBackground }}
           className={clsx(
@@ -68,7 +69,7 @@ const MenuCTA = ({
             />
           </svg>
         </button>
-      </Link>
+      </PageLink>
     </article>
   )
 }

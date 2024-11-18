@@ -1,16 +1,10 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'pageLink',
-  title: 'Page Link',
+  name: 'cardLink',
+  title: 'Card Link',
   type: 'object',
   fields: [
-    defineField({
-      name: 'title',
-      title: 'Link Title',
-      type: 'string',
-      description: 'The text to display for the link',
-    }),
     defineField({
       name: 'link',
       title: 'Link',
@@ -31,13 +25,12 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
       targetTitle: 'link.title',
       externalLink: 'externalLink',
     },
-    prepare({ title, targetTitle, externalLink }) {
+    prepare({ targetTitle, externalLink }) {
       return {
-        title: title || targetTitle || externalLink || 'Untitled Link',
+        title: targetTitle || externalLink || 'Untitled Link',
         subtitle: externalLink ? 'External Link' : 'Internal Link',
       }
     },

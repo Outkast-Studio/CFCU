@@ -10,11 +10,7 @@ export default defineType({
   groups: [
     { name: 'hero', title: 'Hero' },
     { name: 'emotionalNavigation', title: 'Emotional Navigation' },
-    { name: 'ctaInContent', title: 'CTA-In-Content' },
-    { name: 'getInspired', title: 'Get Inspired' },
-    { name: 'ctaFullMedia', title: 'CTA-Full Media' },
-    { name: 'cardGrid', title: 'Card Grid' },
-    { name: 'ctaText', title: 'CTA-Text' },
+    { name: 'modules', title: 'Modules' },
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
@@ -34,4 +30,18 @@ export default defineType({
     }),
     modules,
   ],
+  preview: {
+    select: {
+      title: 'title',
+      description: 'description',
+      cta: 'cta',
+      testimonial: 'testimonial',
+      backgroundMedia: 'backgroundMedia',
+    },
+    prepare(selection) {
+      return {
+        title: 'Home',
+      }
+    },
+  },
 })

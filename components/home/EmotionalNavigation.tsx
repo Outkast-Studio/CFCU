@@ -5,6 +5,9 @@ import { clsx } from 'clsx'
 import * as Accordion from '@radix-ui/react-accordion'
 import { getThemeClasses } from 'lib/themeConfig'
 import Link from 'next/link'
+import PageLink from 'components/global/ui/PageLink'
+import { stegaClean } from '@sanity/client/stega'
+
 const EmotionalNavigation = ({
   data,
 }: {
@@ -118,8 +121,8 @@ const CardMobile = ({
         <p>{data.description}</p>
         <nav className={clsx('flex flex-col gap-y-[12px] mt-[18px] pb-[41px]')}>
           {data.links.map((link, index) => (
-            <Link
-              href={link.url}
+            <PageLink
+              data={link}
               key={index}
               className={clsx('flex flex-row gap-x-[6px] items-center')}
             >
@@ -138,7 +141,7 @@ const CardMobile = ({
                   fill="#FFC600"
                 />
               </svg>
-            </Link>
+            </PageLink>
           ))}
         </nav>
       </Accordion.Content>
@@ -151,7 +154,7 @@ const CardDesktop = ({
 }: {
   data: HomepageType['emotionalNavigation']['navigationCards'][0]
 }) => {
-  const colors = getThemeClasses(data.theme.label)
+  const colors = getThemeClasses(stegaClean(data.theme.label))
   if (!colors) {
     return <div></div>
   }
@@ -175,8 +178,8 @@ const CardDesktop = ({
       </p>
       <nav className={clsx('flex flex-col gap-y-[12px] mt-[20px] pb-[41px]')}>
         {data.links.map((link, index) => (
-          <Link
-            href={link.url}
+          <PageLink
+            data={link}
             key={index}
             className={clsx('flex flex-row gap-x-[6px] items-center')}
           >
@@ -199,7 +202,7 @@ const CardDesktop = ({
                 fill="#FFC600"
               />
             </svg>
-          </Link>
+          </PageLink>
         ))}
       </nav>
     </article>

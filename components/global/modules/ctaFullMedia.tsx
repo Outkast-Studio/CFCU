@@ -4,8 +4,9 @@ import MediaComponent from '../ui/Media'
 import { getThemeClasses } from 'lib/themeConfig'
 import PortableTextComponents from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
-import Link from 'next/link'
+import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
+import { stegaClean } from '@sanity/client/stega'
 
 const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
   const theme = getThemeClasses(data.theme.label as ThemeLabel)
@@ -30,7 +31,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
         </div>
         <div className={clsx('relative z-[2]')}>
           <div className={clsx('mt-[15px]')}>
-            {data.topContent.title.type === 'svg' ? (
+            {stegaClean(data.topContent.title.type) === 'svg' ? (
               <div
                 className={clsx('w-[199px]')}
                 dangerouslySetInnerHTML={{ __html: data.topContent.title.svg }}
@@ -81,9 +82,9 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
               />
             </div>
           )}
-          <Link href={data.cta.path} className={clsx('mt-[18px] block')}>
+          <PageLink data={data.cta} className={clsx('mt-[18px] block')}>
             <Button label={data.cta.title} />
-          </Link>
+          </PageLink>
         </div>
       </section>
     </div>
