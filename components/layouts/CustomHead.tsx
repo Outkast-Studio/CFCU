@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import NextHead from 'next/head'
 import { urlForImage } from 'lib/sanity.image'
-
+import { useState, useEffect } from 'react'
 //SETUP GUIDE:
 //Replace **Business with the correct detials.
 //Ensure NODE_ENV is set to development during the build.
@@ -17,27 +17,27 @@ export function CustomHead({
 }) {
   //Replace with the default OG image
   const defaultOGImage = ''
+
+  const [isProduction, setIsProduction] = useState(false)
+  useEffect(() => {
+    // VERCEL_ENV is 'production' for production deployments
+    // and 'preview' for preview deployments
+    //TODO MUST CHANGE THIS TO COMMMENTED OUT CODE
+    // setIsProduction(process.env.NEXT_PUBLIC_VERCEL_ENV === 'production')
+  }, [])
+
   return (
     <>
       <NextHead>
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
           name="robots"
-          content={
-            process.env.NODE_ENV !== 'development'
-              ? 'index,follow'
-              : 'noindex,nofollow'
-          }
+          content={isProduction ? 'index,follow' : 'noindex,nofollow'}
         />
         <meta
           name="googlebot"
-          content={
-            process.env.NODE_ENV !== 'development'
-              ? 'index,follow'
-              : 'noindex,nofollow'
-          }
+          content={isProduction ? 'index,follow' : 'noindex,nofollow'}
         />
-
         <meta
           name="keywords"
           content={keywords && keywords.length ? keywords.join(',') : keywords}

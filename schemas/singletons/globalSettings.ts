@@ -46,9 +46,11 @@ export default defineType({
                   validation: (Rule: any) => Rule.required(),
                 }),
                 defineField({
-                  name: 'title',
-                  title: 'Title',
-                  type: 'string',
+                  name: 'titleLink',
+                  title: 'Title Link',
+                  description:
+                    'Link and title for the parent page of this link set.',
+                  type: 'pageLink',
                   validation: (Rule: any) => Rule.required(),
                 }),
                 defineField({
@@ -67,6 +69,18 @@ export default defineType({
                     Rule.max(6).error('You can only add up to 6 items'),
                 }),
               ],
+              preview: {
+                select: {
+                  title: 'titleLink',
+                  media: 'icon',
+                },
+                prepare(selection) {
+                  return {
+                    title: selection.title.title,
+                    media: selection.media,
+                  }
+                },
+              },
             }),
           ],
           validation: (Rule) => Rule.max(4).error('You can only add 4 items'),

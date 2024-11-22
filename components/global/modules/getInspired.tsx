@@ -3,14 +3,13 @@ import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import PortableTextComponents from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
-import { Post } from 'types/sanity'
+import { PostPageType } from 'types/sanity'
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import PageLink from '../ui/PageLink'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
-  console.log(data)
   return (
     <section
       className={clsx(
@@ -71,7 +70,7 @@ const PostCard = ({
   data,
   isFeatured,
 }: {
-  data: Post
+  data: PostPageType
   isFeatured: boolean
 }) => {
   return (

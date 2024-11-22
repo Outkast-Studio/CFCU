@@ -8,6 +8,7 @@ import { iframeOptions } from './previewPane'
 import { Iframe } from 'sanity-plugin-iframe-pane'
 import globalSettings from 'schemas/singletons/globalSettings'
 import homepage from 'schemas/singletons/homepage'
+import testModules from 'schemas/singletons/testModules'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -40,7 +41,14 @@ export const settingsStructure = (
   typeDef: DocumentDefinition,
 ): StructureResolver => {
   return (S) => {
-    const hiddenTypes = ['media.tag', 'globalSettings', 'homepage', 'post']
+    const hiddenTypes = [
+      'media.tag',
+      'globalSettings',
+      'homepage',
+      'post',
+      'subPage',
+      'testModules',
+    ]
 
     const globalSettingsListItem = S.listItem()
       .title(globalSettings.title)
@@ -70,11 +78,30 @@ export const settingsStructure = (
             S.view.component(Iframe).options(iframeOptions).title('Preview'),
           ]),
       )
+    const testModulesListItem = S.listItem()
+      .title(testModules.title)
+      .icon(testModules.icon)
+      .child(
+        S.editor()
+          .title(testModules.title)
+          .id(testModules.name)
+          .schemaType(testModules.name)
+          .documentId(testModules.name)
+          .views([
+            S.view.form(),
+            S.view.component(Iframe).options(iframeOptions).title('Preview'),
+          ]),
+      )
 
     const postsListItem = S.listItem()
       .title('Posts')
       .schemaType('post')
       .child(S.documentTypeList('post').title('Posts'))
+
+    const subpagesListItem = S.listItem()
+      .title('Sub Pages')
+      .schemaType('subPage')
+      .child(S.documentTypeList('subPage').title('Sub Pages'))
 
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) => !hiddenTypes.includes(listItem.getId()),
@@ -83,11 +110,16 @@ export const settingsStructure = (
     return S.list()
       .title('Content')
       .items([
+        testModulesListItem,
+        S.divider(),
         globalSettingsListItem,
         S.divider(),
         homepageListItem,
         S.divider(),
         postsListItem,
+        S.divider(),
+        subpagesListItem,
+        S.divider(),
         ...defaultListItems,
       ])
   }

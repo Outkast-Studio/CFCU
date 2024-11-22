@@ -65,13 +65,18 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   
 }`
 
-//TODO: Rename to the title of the page (Example: getCaseStudyPage)
 export const dynamicPageBySlugQuery = groq`
 *[_type == "dynamicPage" && slug.current == $slug][0]`
 
 export const dynamicPageSlugsQuery = groq`
 *[_type == "dynamicPage" && defined(slug.current)][].slug.current
 `
+
+export const subPageBySlugQuery = groq`
+*[_type == "subPage" && slug.current == $slug][0]`
+
+export const postBySlugQuery = groq`
+*[_type == "post" && slug.current == $slug][0]`
 
 export const homepageQuery = groq`*[_type == "homepage"][0]{
 ...,

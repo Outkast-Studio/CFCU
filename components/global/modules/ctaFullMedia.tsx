@@ -7,9 +7,12 @@ import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
+import PlayPause from '../ui/PlayPause'
+import { useState } from 'react'
 
 const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
   const theme = getThemeClasses(data.theme.label as ThemeLabel)
+  const [isPlaying, setIsPlaying] = useState(true)
 
   return (
     <div className={clsx('lg:py-[48px]')}>
@@ -27,7 +30,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
           />
         )}
         <div className={clsx('w-full h-full absolute inset-0 z-[1]')}>
-          <MediaComponent media={data.backgroundMedia} />
+          <MediaComponent media={data.backgroundMedia} isPlaying={isPlaying} />
         </div>
         <div className={clsx('relative z-[2]')}>
           <div className={clsx('mt-[15px]')}>
@@ -59,38 +62,48 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
             )}
           </div>
         </div>
-        <div className={clsx('relative z-[2]')}>
-          <h3
-            style={{ color: theme.background }}
-            className={clsx(
-              'title-s max-w-[330px]',
-              'lg:max-w-[408px] lg:title-s-desktop',
-            )}
-          >
-            {data.lowerContent?.title}
-          </h3>
-          {data.lowerContent?.description && (
-            <div
+        <div className={clsx('flex justify-between items-end')}>
+          <div className={clsx('relative z-[2]')}>
+            <h3
+              style={{ color: theme.background }}
               className={clsx(
-                'w-paragraph mt-[14px] max-w-[330px] text-white',
-                'lg:max-w-[454px] lg:w-paragraph-l-desktop',
+                'title-s max-w-[330px]',
+                'lg:max-w-[408px] lg:title-s-desktop',
               )}
             >
-              <PortableText
-                value={data.lowerContent.description}
-                components={PortableTextComponents}
+              {data.lowerContent?.title}
+            </h3>
+            {data.lowerContent?.description && (
+              <div
+                className={clsx(
+                  'w-paragraph mt-[14px] max-w-[330px] text-white',
+                  'lg:max-w-[454px] lg:w-paragraph-l-desktop',
+                )}
+              >
+                <PortableText
+                  value={data.lowerContent.description}
+                  components={PortableTextComponents}
+                />
+              </div>
+            )}
+            <PageLink data={data.cta} className={clsx('mt-[18px] block')}>
+              <Button
+                label={data.cta.title}
+                className={clsx(
+                  stegaClean(data.theme.label) === 'Lavender' &&
+                    '!bg-lavender text-black',
+                )}
               />
-            </div>
+            </PageLink>
+          </div>
+          {stegaClean(data.backgroundMedia.mediaType) === 'video' && (
+            <button
+              className={clsx('relative z-[2]')}
+              onClick={() => setIsPlaying((prev) => !prev)}
+            >
+              <PlayPause isPlaying={isPlaying} />
+            </button>
           )}
-          <PageLink data={data.cta} className={clsx('mt-[18px] block')}>
-            <Button
-              label={data.cta.title}
-              className={clsx(
-                stegaClean(data.theme.label) === 'Lavender' &&
-                  '!bg-lavender text-black',
-              )}
-            />
-          </PageLink>
         </div>
       </section>
     </div>

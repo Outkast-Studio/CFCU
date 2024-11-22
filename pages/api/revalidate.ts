@@ -45,7 +45,6 @@ export default async function revalidate(
     )
     if (!isValidSignature) {
       const message = 'Invalid signature'
-      console.log(message)
       return res.status(401).send(message)
     }
 
@@ -59,7 +58,6 @@ export default async function revalidate(
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`
-    console.log(updatedRoutes)
     return res.status(200).send(updatedRoutes)
   } catch (err) {
     console.error(err)
@@ -67,7 +65,7 @@ export default async function revalidate(
   }
 }
 
-type StaleRoute = '/' | `/posts/${string}` | `/work/${string}`
+type StaleRoute = '/' | `/${string}` | '/test-modules'
 
 async function queryStaleRoutes(
   body: Pick<
@@ -76,46 +74,49 @@ async function queryStaleRoutes(
   >,
 ): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
-
-  // Handle possible deletions
-  if (body._type === 'post') {
-    const exists = await client.fetch(groq`*[_id == $id][0]`, { id: body._id })
-    if (!exists) {
-      let staleRoutes: StaleRoute[] = ['/']
-      if ((body.slug as any)?.current) {
-        staleRoutes.push(`/posts/${(body.slug as any).current}`)
-      }
-      // Assume that the post document was deleted. Query the datetime used to sort "More stories" to determine if the post was in the list.
-      return staleRoutes
-    }
-  }
-
   switch (body._type) {
     case 'globalSettings':
       return await queryAllRoutes(client)
-    case 'dynamicPage':
-      return await queryStaleDynamicPageRoutes(client, body._id)
+    case 'homepage':
+      return ['/']
+    case 'subPage':
+      return await querySubPageRoutes(client)
+    case 'post':
+      return await queryPostRoutes(client)
     default:
-      throw new TypeError(`Unknown type: ${body._type}`)
+      console.log(body)
   }
 }
 
 async function _queryAllRoutes(client: SanityClient): Promise<string[]> {
-  return await client.fetch(groq`*[_type == "dynamicPage"].slug.current`)
+  return await client.fetch(groq`*[_type == "article"].slug.current`)
 }
 
 async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
-  const slugs = await _queryAllRoutes(client)
-  return ['/', ...slugs.map((slug) => `/posts/${slug}` as StaleRoute)]
+  const postRoutes = await client.fetch(groq`*[_type == "post"].slug.current`)
+
+  const subPageRoutes = await client.fetch(
+    groq`*[_type == "subPage"].slug.current`,
+  )
+
+  return [
+    '/',
+    '/test-modules',
+    ...postRoutes.map((slug) => `/${slug}`),
+    ...subPageRoutes.map((slug) => `/${slug}`),
+  ]
 }
 
-async function queryStaleDynamicPageRoutes(
-  client: SanityClient,
-  id: string,
-): Promise<StaleRoute[]> {
-  let slugs = await client.fetch(
-    groq`*[_type == "dynamicPage" && _id == $id].slug.current`,
-    { id },
+async function querySubPageRoutes(client: SanityClient): Promise<StaleRoute[]> {
+  const postRoutes = await client.fetch(
+    groq`*[_type == "subPage"].slug.current`,
   )
-  return ['/', ...slugs.map((slug) => `/work/${slug}`)]
+  return [...postRoutes.map((slug) => `/${slug}`)]
+}
+
+async function queryPostRoutes(client: SanityClient): Promise<StaleRoute[]> {
+  const postRoutes = await client.fetch(
+    groq`*[_type == "openPosition"].slug.current`,
+  )
+  return [...postRoutes.map((slug) => `/${slug}`)]
 }

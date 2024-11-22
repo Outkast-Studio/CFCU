@@ -7,21 +7,41 @@ import { getThemeClasses } from 'lib/themeConfig'
 import Link from 'next/link'
 import PageLink from 'components/global/ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
+import { motion, useTransform, useScroll } from 'framer-motion'
+import { useRef } from 'react'
 
 const EmotionalNavigation = ({
   data,
 }: {
   data: HomepageType['emotionalNavigation']
 }) => {
+  const targetRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ['0 0', '1 0.8'],
+  })
+
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ['0%', `-${(data.navigationCards.length - 1) * 570}px`],
+  )
+
   return (
     <section
+      ref={targetRef}
+      style={{ height: data.navigationCards.length * 620 }}
       className={clsx(
         'pt-[90px] pb-[10px]',
-        'lg:pt-[149px] lg:flex lg:pb-[150px]',
+        'lg:pt-[149px] lg:flex lg:pb-[150px] lg:relative lg:h-[300vh]',
+        // lg:pl-[calc((100vw-1800px)/2)]
       )}
     >
       <div
-        className={clsx('px-[24px]', 'lg:px-[48px] lg:pt-[36px] lg:shrink-0')}
+        className={clsx(
+          'px-[24px]',
+          'lg:px-[48px] lg:pt-[36px] lg:shrink-0  lg:h-[620px] lg:sticky lg:top-[calc((100vh-620px)/2)]',
+        )}
       >
         <div
           dangerouslySetInnerHTML={{ __html: data.icon }}
@@ -57,13 +77,17 @@ const EmotionalNavigation = ({
       </div>
       <div
         className={clsx(
-          'hidden',
-          'lg:flex lg:gap-x-[24px] lg:overflow-x-hidden',
+          'lg:h-fit lg:sticky lg:top-[calc((100vh-620px)/2)] overflow-x-hidden',
         )}
       >
-        {data.navigationCards.map((card, index) => (
-          <CardDesktop data={card} key={index} />
-        ))}
+        <motion.div
+          style={{ x }}
+          className={clsx('hidden', 'lg:flex lg:gap-x-[24px] ')}
+        >
+          {data.navigationCards.map((card, index) => (
+            <CardDesktop data={card} key={index} />
+          ))}
+        </motion.div>
       </div>
     </section>
   )

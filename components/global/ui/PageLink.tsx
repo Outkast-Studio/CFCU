@@ -28,11 +28,15 @@ const PageLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return !data.externalLink ? (
-    <Link href={href} className={clsx(className)}>
+    <Link href={href} className={clsx(className, 'w-fit')}>
       {children}
     </Link>
   ) : (
-    <a href={data.externalLink} target="_blank" className={clsx(className)}>
+    <a
+      href={data.externalLink}
+      target="_blank"
+      className={clsx(className, 'w-fit')}
+    >
       {children}
     </a>
   )

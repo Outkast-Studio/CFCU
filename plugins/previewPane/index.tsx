@@ -20,7 +20,17 @@ export const iframeOptions = {
           return (document as any)?.slug?.current
             ? `/dynamic/${(document as any).slug.current}`
             : new Error('Missing slug')
+        case 'post':
+          return (document as any)?.slug?.current
+            ? `/posts/${(document as any).slug.current}`
+            : new Error('Missing slug')
+        case 'subPage':
+          return (document as any)?.slug?.current
+            ? `/${(document as any).slug.current}`
+            : new Error('Missing slug')
         case 'homepage':
+          return '/'
+        case 'globalSettings':
           return '/'
         default:
           return new Error(`Unknown document type: ${document?._type}`)
@@ -35,6 +45,26 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
   return (S, { schemaType }) => {
     switch (schemaType) {
       case 'dynamicPage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'homepage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'globalSettings':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'post':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'subPage':
         return S.document().views([
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),

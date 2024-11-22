@@ -7,7 +7,6 @@ import PortableTextComponents from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
-  console.log
   return (
     <section
       className={clsx(
@@ -58,7 +57,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           </p>
           <PageLink
             data={data.cta}
-            className={clsx('mt-[16px] block', 'lg:mt-[31px]')}
+            className={clsx('mt-[16px] block', 'lg:mt-[31px] w-fit')}
           >
             <Button label={data.cta.title} />
           </PageLink>

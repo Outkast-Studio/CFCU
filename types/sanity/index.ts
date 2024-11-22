@@ -175,7 +175,7 @@ export interface GlobalSettingsType {
   navigation: {
     topLevelNavigation: Array<{
       icon: ImageAsset
-      title: string
+      titleLink: PageLinkType
       links: Array<PageLinkType>
     }>
     bottomLevelNavigation: Array<{
@@ -211,6 +211,15 @@ export interface GlobalSettingsType {
   }
 }
 
+export type Modules = Array<
+  | CtaInContentType
+  | CtaFullMediaType
+  | CtaTextType
+  | CtaCardGridHomeType
+  | CtaCardGridType
+  | CtaTopicRowType
+  | GetInspiredType
+>
 export interface HomepageType {
   hero: {
     title: string
@@ -242,15 +251,7 @@ export interface HomepageType {
       links: Array<PageLinkType>
     }>
   }
-  modules: Array<
-    | CtaInContentType
-    | CtaFullMediaType
-    | CtaTextType
-    | CtaCardGridHomeType
-    | CtaCardGridType
-    | CtaTopicRowType
-    | GetInspiredType
-  >
+  modules: Modules
   ctaInContent: CtaInContentType
   getInspired: {
     title: string
@@ -293,7 +294,7 @@ export interface HomepageType {
 
 // Document types ------------------------------------------------
 
-export interface Post {
+export interface PostPageType {
   _type: 'post'
   title: string
   type: string
@@ -303,4 +304,19 @@ export interface Post {
   content: PortableTextBlock
   excerpt: string
   thumbnailImage: ImageAsset
+}
+
+export interface SubPageType {
+  _type: 'subPage'
+  title: string
+  slug: {
+    current: string
+  }
+  modules: Modules
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: {
+    asset: ImageAsset
+    alt: string
+  }
 }

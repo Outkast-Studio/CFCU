@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { clsx } from 'clsx'
 import Menu from './Menu'
 import { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -77,7 +78,9 @@ const Header = () => {
           </button>
         </div>
       </header>
-      {isMenuOpen && <Menu />}
+      <AnimatePresence mode="wait">
+        {isMenuOpen && <Menu key={'Menu'} />}
+      </AnimatePresence>
     </>
   )
 }

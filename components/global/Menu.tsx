@@ -8,16 +8,44 @@ import Link from 'next/link'
 import MenuCTA from './ui/MenuCTA'
 import { useWindowSize } from 'hooks/useWindowSize'
 import PageLink from './ui/PageLink'
+import { animate, motion } from 'framer-motion'
 
 const Menu = () => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const topLevelNavigation = globalSettings?.navigation?.topLevelNavigation
   const bottomLevelNavigation =
     globalSettings?.navigation?.bottomLevelNavigation
-
   const { width } = useWindowSize()
+
+  const parentVariants = {
+    initial: {
+      y: '-100%',
+    },
+    animate: {
+      y: '0%',
+      transition: {
+        ease: [0.215, 0.61, 0.355, 1],
+        duration: 0.5,
+      },
+    },
+    exit: {
+      y: '-100%',
+      transition: {
+        ease: [0.55, 0.055, 0.675, 0.19],
+        duration: 0.5,
+      },
+    },
+  }
+
   return (
-    <div className={clsx('fixed top-0 left-0 w-full z-[9] bg-white h-full')}>
+    <motion.div
+      variants={parentVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      key={'Menu container'}
+      className={clsx('fixed top-0 left-0 w-full z-[9] bg-white h-full')}
+    >
       <div
         className={clsx(
           'min-h-screen  pt-[73px] overflow-y-auto h-full pb-[20px]',
@@ -43,19 +71,20 @@ const Menu = () => {
                   <div className={clsx('w-[35px]')}>
                     <Image
                       src={urlForImage(item.icon).url()}
-                      alt={item.title + ' icon'}
+                      alt={item.titleLink.title + ' icon'}
                       width={48}
                       height={48}
                       className={clsx('h-[26px] w-auto')}
                     />
                   </div>
-                  <h3
+                  <PageLink
+                    data={item.titleLink}
                     className={clsx(
-                      'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px]',
+                      'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
                     )}
                   >
-                    {item.title}
-                  </h3>
+                    {item.titleLink.title}
+                  </PageLink>
                   <nav
                     className={clsx(
                       'flex flex-col text-[18px] leading-[27px] gap-y-[12px] font-codec-news text-lavender mt-[16px]',
@@ -77,7 +106,7 @@ const Menu = () => {
               className={clsx('w-full mt-[18px]')}
             >
               {topLevelNavigation?.map((item, index) => (
-                <Accordion.Item value={item.title} key={index}>
+                <Accordion.Item value={item.titleLink.title} key={index}>
                   <Accordion.Header className={clsx('text-black')}>
                     <Accordion.Trigger
                       className={clsx(
@@ -90,19 +119,20 @@ const Menu = () => {
                         <div className={clsx('w-[35px]')}>
                           <Image
                             src={urlForImage(item.icon).url()}
-                            alt={item.title + ' icon'}
+                            alt={item.titleLink.title + ' icon'}
                             width={48}
                             height={48}
                             className={clsx('h-[26px] w-auto')}
                           />
                         </div>
-                        <h3
+                        <PageLink
+                          data={item.titleLink}
                           className={clsx(
-                            'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender',
+                            'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
                           )}
                         >
-                          {item.title}
-                        </h3>
+                          {item.titleLink.title}
+                        </PageLink>
                       </div>
                       <svg
                         width="13"
@@ -204,7 +234,7 @@ const Menu = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

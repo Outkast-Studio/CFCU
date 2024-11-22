@@ -9,7 +9,6 @@ import PageLink from '../ui/PageLink'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data.theme.label as ThemeLabel)
-  console.log(data)
   return (
     <div className={clsx('lg:px-[48px] lg:py-[63px]')}>
       <section
