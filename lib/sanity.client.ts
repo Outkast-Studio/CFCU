@@ -12,6 +12,7 @@ import {
   homepageQuery,
   subPageBySlugQuery,
   postBySlugQuery,
+  testModulesQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -57,6 +58,10 @@ export async function getAllDynamicPageSlugs() {
 
 export async function getHomepage(client: SanityClient) {
   return (await client.fetch(homepageQuery)) || {}
+}
+
+export async function getTestModules(client: SanityClient) {
+  return (await client.fetch(testModulesQuery)) || {}
 }
 
 export async function getSubPageBySlug(client: SanityClient, slug: string) {

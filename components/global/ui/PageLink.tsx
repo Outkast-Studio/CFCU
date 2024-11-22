@@ -13,10 +13,10 @@ const PageLink = ({
 }) => {
   const [href, setHref] = useState<string>('')
   useEffect(() => {
-    if (!data.externalLink) {
-      switch (data.link?._type) {
+    if (!data?.externalLink) {
+      switch (data?.link?._type) {
         case 'post':
-          setHref(`/posts/${data.link.slug}`)
+          setHref(`/posts/${data?.link?.slug}`)
           break
         case 'homepage':
           setHref('/')
@@ -27,13 +27,13 @@ const PageLink = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  return !data.externalLink ? (
+  return !data?.externalLink ? (
     <Link href={href} className={clsx(className, 'w-fit')}>
       {children}
     </Link>
   ) : (
     <a
-      href={data.externalLink}
+      href={data?.externalLink}
       target="_blank"
       className={clsx(className, 'w-fit')}
     >

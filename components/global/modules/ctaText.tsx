@@ -8,11 +8,11 @@ import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
-  const theme = getThemeClasses(data.theme.label as ThemeLabel)
+  const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
   return (
     <div className={clsx('lg:px-[48px] lg:py-[63px]')}>
       <section
-        style={{ backgroundColor: theme.background }}
+        style={{ backgroundColor: theme?.background }}
         className={clsx(
           'px-[45px] py-[57px] flex flex-col items-center',
           'lg:pt-[122px] lg:pb-[122px]',
@@ -20,29 +20,29 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
       >
         <h2
           className={clsx('title-l text-center', 'lg:title-l-desktop')}
-          style={{ color: theme.heading }}
+          style={{ color: theme?.heading }}
         >
-          {data.title}
+          {data?.title}
         </h2>
         {data.description && (
           <div
-            style={{ color: theme.monotoneCopy }}
+            style={{ color: theme?.monotoneCopy }}
             className={clsx(
               ' w-paragraph text-center mt-[20px]',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
             <PortableText
-              value={data.description}
+              value={data?.description}
               components={PortableTextComponents}
             />
           </div>
         )}
         <PageLink
-          data={data.cta}
+          data={data?.cta}
           className={clsx('mt-[20px] block', 'lg:mt-[24px]')}
         >
-          <Button label={data.cta.title} />
+          <Button label={data?.cta?.title} />
         </PageLink>
       </section>
     </div>

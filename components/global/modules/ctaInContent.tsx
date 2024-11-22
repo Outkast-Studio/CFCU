@@ -9,37 +9,37 @@ import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
-  const theme = getThemeClasses(data.theme.label)
+  const theme = getThemeClasses(data?.theme?.label)
   return (
     <section
       className={clsx(
         'mt-[65px] title-s pt-[51px] pb-[59px]',
         'lg:!bg-white lg:pt-[0px] lg:mt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] lg:mx-auto',
       )}
-      style={{ backgroundColor: theme.background, color: theme.heading }}
+      style={{ backgroundColor: theme?.background, color: theme?.heading }}
     >
       <div
         className={clsx(
           'pl-[24px]',
-          stegaClean(data.ctaCard.contentPosition) === 'left'
+          stegaClean(data?.ctaCard?.contentPosition) === 'left'
             ? 'lg:pl-[164px] lg:pr-[48px]'
             : 'lg:pr-[164px] lg:pl-[48px]',
         )}
       >
-        {data.ctaCard.subtitle?.type === 'text' && (
+        {data?.ctaCard.subtitle?.type === 'text' && (
           <h2
             className={clsx(
               'w-[140px] text-[21px] tracking-[-0.16px] leading-[20.58px] font-codec-bold',
               'lg:hidden',
             )}
           >
-            {data.ctaCard.subtitle.text}
+            {data?.ctaCard?.subtitle?.text}
           </h2>
         )}
-        {data.ctaCard.subtitle?.type === 'svg' && (
+        {data?.ctaCard?.subtitle?.type === 'svg' && (
           <div
             className={clsx('w-[140px]', 'lg:hidden')}
-            dangerouslySetInnerHTML={{ __html: data.ctaCard.subtitle.svg }}
+            dangerouslySetInnerHTML={{ __html: data?.ctaCard?.subtitle?.svg }}
           />
         )}
         <div
@@ -48,33 +48,33 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             'lg:aspect-w-7 lg:mt-[0px]',
           )}
         >
-          <MediaComponent media={data.backgroundImage} />
+          <MediaComponent media={data?.backgroundImage} />
         </div>
       </div>
       <article
         className={clsx(
           'mt-[22px] px-[24px]',
           'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[-71px]',
-          stegaClean(data.ctaCard.contentPosition) === 'left'
+          stegaClean(data?.ctaCard?.contentPosition) === 'left'
             ? 'lg:left-[0px]'
             : 'lg:right-[0px]',
         )}
         style={{ backgroundColor: theme.background, color: theme.heading }}
       >
         <div className={clsx('hidden', 'lg:block')}>
-          {data.ctaCard.subtitle?.type === 'text' && (
+          {data?.ctaCard?.subtitle?.type === 'text' && (
             <h2
               className={clsx(
                 'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold',
               )}
             >
-              {data.ctaCard.subtitle.text}
+              {data?.ctaCard?.subtitle?.text}
             </h2>
           )}
-          {data.ctaCard.subtitle?.type === 'svg' && (
+          {data?.ctaCard?.subtitle?.type === 'svg' && (
             <div
               className={clsx('w-[140px]')}
-              dangerouslySetInnerHTML={{ __html: data.ctaCard.subtitle.svg }}
+              dangerouslySetInnerHTML={{ __html: data?.ctaCard?.subtitle?.svg }}
             />
           )}
         </div>
@@ -85,10 +85,10 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               'lg:title-s-desktop',
             )}
           >
-            {data.ctaCard.title}
+            {data?.ctaCard?.title}
           </h3>
 
-          {data.ctaCard.description ? (
+          {data?.ctaCard?.description ? (
             <div
               className={clsx(
                 'font-codec-news text-[18px] leading-[27px] mt-[14px]',
@@ -96,7 +96,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               )}
             >
               <PortableText
-                value={data.ctaCard.description}
+                value={data?.ctaCard?.description}
                 components={PortableTextComponents}
               />
             </div>
@@ -104,10 +104,10 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             <div className={clsx('h-[48px', 'lg:h-[64px]')}></div>
           )}
           <PageLink
-            data={data.ctaCard.cta}
+            data={data?.ctaCard?.cta}
             className={clsx('mt-[21px] block', 'lg:mt-[24px]')}
           >
-            <Button label={data.ctaCard.cta.title} />
+            <Button label={data?.ctaCard?.cta?.title} />
           </PageLink>
         </div>
       </article>

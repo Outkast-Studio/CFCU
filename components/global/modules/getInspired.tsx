@@ -24,7 +24,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             'lg:title-xl-desktop',
           )}
         >
-          {data.title}
+          {data?.title}
         </h2>
         <div
           className={clsx(
@@ -33,15 +33,15 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           )}
         >
           <PortableText
-            value={data.description}
+            value={data?.description}
             components={PortableTextComponents}
           />
         </div>
         <PageLink
-          data={data.cta}
+          data={data?.cta}
           className={clsx('mt-[10.5px] block', 'lg:mt-[7.5px]')}
         >
-          <Button label={data.cta.title} />
+          <Button label={data?.cta?.title} />
         </PageLink>
       </div>
       <div
@@ -50,13 +50,13 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[67.5px] lg:relative',
         )}
       >
-        <PostCard data={data.featuredArticle} isFeatured={true} />
+        <PostCard data={data?.featuredArticle} isFeatured={true} />
         <div
           className={clsx(
             'grid grid-cols-2 gap-x-[25px] gap-y-[30px] mt-[40px]',
           )}
         >
-          {data.articleGrid.map((article, index) => (
+          {data?.articleGrid?.map((article, index) => (
             <PostCard data={article} key={index} isFeatured={false} />
           ))}
         </div>
@@ -79,8 +79,8 @@ const PostCard = ({
         className={clsx('h-fit', isFeatured && 'lg:sticky lg:top-[48px]')}
       >
         <Image
-          src={urlForImage(data.thumbnailImage).url()}
-          alt={data.thumbnailImage.alt as string}
+          src={urlForImage(data?.thumbnailImage).url()}
+          alt={data?.thumbnailImage?.alt as string}
           width={1920}
           height={1080}
           className={clsx('object-cover w-full h-auto')}
@@ -100,7 +100,7 @@ const PostCard = ({
               'lg:text-[16px] lg:leading-[16px]',
             )}
           >
-            {data.type}
+            {data?.type}
           </h4>
           <h5
             className={clsx(
@@ -110,7 +110,7 @@ const PostCard = ({
               'text-lavender',
             )}
           >
-            {data.title}
+            {data?.title}
           </h5>
           <p
             className={clsx(
@@ -120,7 +120,7 @@ const PostCard = ({
                 : 'text-[14px] leading-[19.6px] lg:text-[18px] lg:leading-[26px]',
             )}
           >
-            {data.excerpt}
+            {data?.excerpt}
           </p>
         </div>
       </article>

@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity'
-
+import { modulesFragment } from 'lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
   navigation{
@@ -111,106 +111,11 @@ emotionalNavigation{
     }
   }
 },
-  "modules": modules[]{
-    ...,
-    _type == "ctaText" => {
-      ...,
-  cta{
+  ${modulesFragment}
+}`
+
+export const testModulesQuery = groq`
+*[_type == "testModules"][0]{
   ...,
-    link->{
-        _id,
-        _type,
-        title,
-        "slug": slug.current
-      }
-  }
-
-    },
-    _type == "getInspired" => {
-      ...,
-      cta{
-        ...,
-        link->{
-            _id,
-            _type,
-            title,
-            "slug": slug.current
-          }
-      },
-      "featuredArticle": featuredArticle->{
-    ...,
-      },
-      "articleGrid": articleGrid[]->{
-...,
-      }
-    },
-    _type == "ctaTopicRow" => {
-      ...,
-      links[]{
-        ...,
-        link->{
-            _id,
-            _type,
-            title,
-            "slug": slug.current
-          }
-      }
-  },
-    _type == "ctaCardGridHome" => {
-      ...,
-      linkList[]{
-        ...,
-        link->{
-            _id,
-            _type,
-            title,
-            "slug": slug.current,
-          }
-      }
-    },
-    _type == "ctaCardGrid" => {
-      ...,
-      cards[]{
-        ...,
-        cardLink{
-        ...,
-          link->{
-            _id,
-            _type,
-            title,
-            "slug": slug.current,
-            externalLink
-          }
-        }
-      }
-    },
-    _type == "ctaFullMedia" => {
-      ...,
-      cta{
-        ...,
-        link->{
-            _id,
-            _type,
-            title,
-            "slug": slug.current
-          }
-      }
-    },
-    _type == "ctaInContent" => {
-      ...,
-      ctaCard{
-        ...,
-        cta{
-          ...,
-          link->{
-            _id,
-            _type,
-            title,
-            "slug": slug.current
-          }
-        }
-
-  }
-    }
-  },
+  ${modulesFragment}
 }`

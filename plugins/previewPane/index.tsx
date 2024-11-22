@@ -32,6 +32,8 @@ export const iframeOptions = {
           return '/'
         case 'globalSettings':
           return '/'
+        case 'testModules':
+          return '/test-modules'
         default:
           return new Error(`Unknown document type: ${document?._type}`)
       }
@@ -65,6 +67,11 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
           S.view.component(Iframe).options(iframeOptions).title('Preview'),
         ])
       case 'subPage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'testModules':
         return S.document().views([
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),

@@ -11,7 +11,7 @@ import PlayPause from '../ui/PlayPause'
 import { useState } from 'react'
 
 const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
-  const theme = getThemeClasses(data.theme.label as ThemeLabel)
+  const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
   const [isPlaying, setIsPlaying] = useState(true)
 
   return (
@@ -22,7 +22,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
           'lg:px-[48px] lg:pt-[58px] lg:gap-y-[272px]',
         )}
       >
-        {data.needsOverlay && (
+        {data?.needsOverlay && (
           <div
             className={clsx(
               'w-full h-full absolute z-[2] ctaFullMediaGradient inset-0',
@@ -34,10 +34,12 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
         </div>
         <div className={clsx('relative z-[2]')}>
           <div className={clsx('mt-[15px]')}>
-            {stegaClean(data.topContent.title.type) === 'svg' ? (
+            {stegaClean(data?.topContent?.title?.type) === 'svg' ? (
               <div
                 className={clsx('w-[199px]')}
-                dangerouslySetInnerHTML={{ __html: data.topContent.title.svg }}
+                dangerouslySetInnerHTML={{
+                  __html: data?.topContent?.title?.svg,
+                }}
               />
             ) : (
               <h2
@@ -47,17 +49,17 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
                 )}
                 style={{ color: theme.background }}
               >
-                {data.topContent.title.text}
+                {data?.topContent?.title?.text}
               </h2>
             )}
-            {data.topContent.subtitle && (
+            {data?.topContent?.subtitle && (
               <p
                 className={clsx(
                   'font-codec-heavy text-[16px] leading-[24px] text-white mt-[13px] max-w-[310px]',
                   'lg:max-w-[389px]',
                 )}
               >
-                {data.topContent.subtitle}
+                {data?.topContent?.subtitle}
               </p>
             )}
           </div>
@@ -86,17 +88,17 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
                 />
               </div>
             )}
-            <PageLink data={data.cta} className={clsx('mt-[18px] block')}>
+            <PageLink data={data?.cta} className={clsx('mt-[18px] block')}>
               <Button
-                label={data.cta.title}
+                label={data?.cta?.title}
                 className={clsx(
-                  stegaClean(data.theme.label) === 'Lavender' &&
+                  stegaClean(data?.theme?.label) === 'Lavender' &&
                     '!bg-lavender text-black',
                 )}
               />
             </PageLink>
           </div>
-          {stegaClean(data.backgroundMedia.mediaType) === 'video' && (
+          {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
             <button
               className={clsx('relative z-[2]')}
               onClick={() => setIsPlaying((prev) => !prev)}

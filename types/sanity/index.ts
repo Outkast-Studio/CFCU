@@ -320,3 +320,7 @@ export interface SubPageType {
     alt: string
   }
 }
+
+export interface TestModulesType {
+  modules: Modules
+}

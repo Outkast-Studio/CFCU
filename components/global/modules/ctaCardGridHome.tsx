@@ -22,7 +22,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
             'lg:subtitle-l',
           )}
         >
-          {data.subTitle}
+          {data?.subTitle}
         </h2>
         <h3
           className={clsx(
@@ -30,7 +30,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
             'lg:title-m-desktop lg:max-w-[1216px]',
           )}
         >
-          {data.title}
+          {data?.title}
         </h3>
       </div>
       {width < 1024 && (
@@ -41,7 +41,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
           slidesPerView={'auto'}
           className={clsx('mt-[39px]')}
         >
-          {data.cards.map((card, index) => (
+          {data?.cards?.map((card, index) => (
             <SwiperSlide key={index} className={clsx('!w-fit')}>
               <CardGridCard data={card} />
             </SwiperSlide>
@@ -55,7 +55,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
       >
         {width >= 1024 && (
           <div className={clsx(' gap-x-[24px] col-span-3 grid grid-cols-3')}>
-            {data.cards.map((card, index) => (
+            {data?.cards.map((card, index) => (
               <CardGridCard data={card} key={index} />
             ))}
           </div>
@@ -71,7 +71,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
               'font-codec-news text-[16px] leading-[16px] tracking-[1.6px] text-white uppercase',
             )}
           >
-            {data.linkListTitle}
+            {data?.linkListTitle}
           </h5>
           <nav
             className={clsx(
@@ -79,7 +79,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
               'lg:mt-[21px]',
             )}
           >
-            {data.linkList.map((link, index) => (
+            {data?.linkList?.map((link, index) => (
               <PageLink
                 key={index}
                 data={link}
@@ -87,7 +87,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
                   'font-codec-extra-bold text-[18px] leading-[27px]  text-white flex gap-x-[6px] items-center',
                 )}
               >
-                <span>{link.title}</span>
+                <span>{link?.title}</span>
                 <svg
                   width="16"
                   height="16"

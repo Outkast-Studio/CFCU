@@ -16,24 +16,24 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
       )}
     >
       <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
-        {data.subTitle && (
+        {data?.subTitle && (
           <h2
             className={clsx(
               'text-[16px] leading-[16px] font-codec-news text-[#606060] tracking-[1.6px]',
               'lg:subtitle-l',
             )}
           >
-            {data.subTitle}
+            {data?.subTitle}
           </h2>
         )}
-        {data.title && (
+        {data?.title && (
           <h3
             className={clsx(
               'title-m text-lavender mt-[17px]',
               'lg:title-m-desktop lg:max-w-[1216px]',
             )}
           >
-            {data.title}
+            {data?.title}
           </h3>
         )}
       </div>
@@ -57,10 +57,10 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
           <div
             className={clsx(
               'gap-x-[24px]  grid gap-y-[57px]',
-              data.cards.length < 4 ? 'lg:grid-cols-3' : 'lg:grid-cols-4',
+              data?.cards?.length < 4 ? 'lg:grid-cols-3' : 'lg:grid-cols-4',
             )}
           >
-            {data.cards.map((card, index) => (
+            {data?.cards?.map((card, index) => (
               <CardGridCard data={card} key={index} />
             ))}
           </div>
