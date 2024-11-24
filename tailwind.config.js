@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        lightGrey: '#f0f0f0',
         lavender: '#3C1053',
         purple: '#3C1053',
         orange: '#F56600',
@@ -98,6 +99,12 @@ module.exports = {
           'font-size': '16px',
           'line-height': '24px',
         },
+        '.w-h6': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '21px',
+          'line-height': '24px',
+          'letter-spacing': '-0.32px',
+        },
         '.subtitle': {
           'font-family': 'var(--font-codec-pro-bold)',
           'font-size': '18px',
@@ -165,6 +172,11 @@ module.exports = {
           'font-size': '16px',
           'line-height': '24px',
         },
+        '.w-paragraph-m-desktop': {
+          'font-family': 'var(--font-codec-news)',
+          'font-size': '18px',
+          'line-height': '24px',
+        },
         '.w-paragraph-l-desktop': {
           'font-size': '21px',
           'line-height': '31.5px',
@@ -179,6 +191,11 @@ module.exports = {
           'font-family': 'var(--font-codec-extra-bold)',
           'font-size': '42px;',
           'line-height': '50.4px;',
+        },
+        '.w-h5-desktop': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '32px',
+          'line-height': '38.4px',
         },
         '.w-h6-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',
