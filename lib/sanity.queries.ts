@@ -73,7 +73,10 @@ export const dynamicPageSlugsQuery = groq`
 `
 
 export const subPageBySlugQuery = groq`
-*[_type == "subPage" && slug.current == $slug][0]`
+*[_type == "subPage" && slug.current == $slug][0]{
+  ...,
+  ${modulesFragment}
+}`
 
 export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0]`

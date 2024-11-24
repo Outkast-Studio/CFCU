@@ -8,13 +8,22 @@ import PortableTextComponents from 'lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
+  const targetRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['0', `50%`])
   return (
     <section
+      ref={targetRef}
       className={clsx(
         'mt-[65px] title-s pt-[51px] pb-[59px]',
-        'lg:!bg-white lg:pt-[0px] lg:mt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] lg:mx-auto',
+        'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] lg:mx-auto',
       )}
       style={{ backgroundColor: theme?.background, color: theme?.heading }}
     >
@@ -51,7 +60,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           <MediaComponent media={data?.backgroundImage} />
         </div>
       </div>
-      <article
+      <motion.article
         className={clsx(
           'mt-[22px] px-[24px]',
           'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[-71px]',
@@ -59,7 +68,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             ? 'lg:left-[0px]'
             : 'lg:right-[0px]',
         )}
-        style={{ backgroundColor: theme.background, color: theme.heading }}
+        style={{ backgroundColor: theme.background, color: theme.heading, y }}
       >
         <div className={clsx('hidden', 'lg:block')}>
           {data?.ctaCard?.subtitle?.type === 'text' && (
@@ -110,7 +119,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             <Button label={data?.ctaCard?.cta?.title} />
           </PageLink>
         </div>
-      </article>
+      </motion.article>
     </section>
   )
 }

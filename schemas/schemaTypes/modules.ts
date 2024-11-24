@@ -27,5 +27,23 @@ export const modules = defineField({
     {
       type: 'getInspired',
     },
+    {
+      type: 'textCardGrid',
+    },
+    {
+      type: 'subPageHero',
+    },
+    {
+      type: 'relatedStories',
+    },
+    {
+      type: 'accordion',
+    },
+    {
+      type: 'globalAlert',
+    },
+    {
+      type: 'tabs',
+    },
   ],
 })

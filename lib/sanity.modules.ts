@@ -99,6 +99,33 @@ export const modulesFragment = groq`
           }
         }
       }
-    }
+    },
+      _type == "textCardGrid" => {
+      ...,
+      cards[]{
+        ...,
+        pageLink->{
+          _id,
+          _type,
+          title,
+          "slug": slug.current
+        }
+      }
+    },
+    _type == 'relatedStories' => {
+      ...,
+      posts[]->{
+        ...,
+      },
+      pageLink{
+        ...,
+        link->{
+          _id,
+          _type,
+          title,
+          "slug": slug.current
+        }
+      }
+    },
   }
 `

@@ -141,8 +141,8 @@ export interface GetInspiredType {
     title: string
     path: string
   }
-  featuredArticle: Post
-  articleGrid: Post[]
+  featuredArticle: PostPageType
+  articleGrid: PostPageType[]
 }
 
 export interface CtaFullMediaType {
@@ -170,7 +170,69 @@ export interface CtaFullMediaType {
   }
 }
 
-//Singleton Types ----------------
+export interface SubPageHeroType {
+  title: string
+  subtitle: string
+  needsBackgroundMedia: boolean
+  backgroundMedia?: Media
+}
+
+export interface TextCardGridCard {
+  title: string
+  description: PortableTextBlock[]
+  pageLink: PageLinkType
+}
+
+export interface TextCardGridType {
+  title: string
+  subtitle: string
+  description: PortableTextBlock[]
+  cards: TextCardGridCard[]
+}
+
+export interface RelatedStoriesType {
+  title: string
+  subTitle?: string
+  description?: PortableTextBlock[]
+  pageLink: PageLinkType
+  posts: PostPageType[]
+}
+
+export interface AccordionItem {
+  title: string
+  content: PortableTextBlock[]
+}
+
+export interface AccordionType {
+  title: string
+  subTitle?: string
+  description?: PortableTextBlock[]
+  accordionItems: AccordionItem[]
+}
+
+interface TabItem {
+  title: string
+  icon?: ImageAsset
+  content: PortableTextBlock[]
+}
+
+export interface TabsType {
+  title: string
+  subtitle?: string
+  description?: PortableTextBlock[]
+  tabs: TabItem[]
+}
+
+export interface GlobalAlertType {
+  tabName: string
+  content: PortableTextBlock[]
+  theme: {
+    value: string
+    label: string
+  }
+}
+
+//Singleton Types --------------------------------------------------------------------------
 export interface GlobalSettingsType {
   navigation: {
     topLevelNavigation: Array<{

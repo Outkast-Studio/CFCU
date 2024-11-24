@@ -13,6 +13,13 @@ import ctaCardGrid from './ctaCardGrid'
 import getInspired from './getInspired'
 import pageLink from './pageLink'
 import cardLink from './cardLink'
+import textCardGrid from './textCardGrid'
+import subPageHero from './subPageHero'
+import relatedStories from './relatedStories'
+import accordion from './accordion'
+import globalAlert from './globalAlert'
+import tabs from './tabs'
+
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     hero,
@@ -28,5 +35,11 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ctaCardGrid,
     pageLink,
     cardLink,
+    textCardGrid,
+    subPageHero,
+    relatedStories,
+    accordion,
+    globalAlert,
+    tabs,
   ],
 }
