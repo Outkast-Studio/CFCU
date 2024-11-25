@@ -30,7 +30,7 @@ const Button = ({ label, className }: ButtonProps) => {
       </svg>
       <span
         className={clsx(
-          'text-black font-codec-extra-bold text-[18px] leading-[27px] inline-block group-hover:translate-x-[25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'font-codec-extra-bold text-[18px] leading-[27px] inline-block group-hover:translate-x-[25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         {label}

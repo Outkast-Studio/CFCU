@@ -5,7 +5,6 @@ import blockContent from './blockContent'
 import emotionalNavigation from './homepage/emotionalNavigation'
 import ctaInContent from './ctaInContent'
 import ctaFullMedia from './ctaFullMedia'
-
 import ctaText from './ctaText'
 import ctaTopicRow from './ctaTopicRow'
 import ctaCardGridHome from './ctaCardGridHome'
@@ -19,6 +18,7 @@ import relatedStories from './relatedStories'
 import accordion from './accordion'
 import globalAlert from './globalAlert'
 import tabs from './tabs'
+import columnSplit from './columnSplit'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -41,5 +41,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     accordion,
     globalAlert,
     tabs,
+    columnSplit,
   ],
 }

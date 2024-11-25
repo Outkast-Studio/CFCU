@@ -13,7 +13,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
     <section
       className={clsx(
         'px-[24px] py-[66px]',
-        'lg:px-[48px] lg:pb-[116px] lg:pt-[95px]',
+        'lg:px-[48px] lg:pb-[116px] lg:pt-[95px] lg:max-w-[1800px] lg:mx-auto',
       )}
     >
       {data?.subtitle && (

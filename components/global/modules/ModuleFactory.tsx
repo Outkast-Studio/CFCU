@@ -11,6 +11,7 @@ import RelatedStories from './RelatedStories'
 import Accordion from './Accordion'
 import GlobalAlert from './globalAlert'
 import Tabs from './Tabs'
+import ColumnSplit from './columnSplit'
 const ModuleFactory = ({ module }) => {
   switch (module._type) {
     case 'ctaInContent':
@@ -39,6 +40,8 @@ const ModuleFactory = ({ module }) => {
       return <GlobalAlert data={module} />
     case 'tabs':
       return <Tabs data={module} />
+    case 'columnSplit':
+      return <ColumnSplit data={module} />
     default:
       return null
   }

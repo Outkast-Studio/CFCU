@@ -223,6 +223,17 @@ export interface TabsType {
   tabs: TabItem[]
 }
 
+interface Column {
+  content: PortableTextBlock[]
+}
+
+export interface ColumnSplitType {
+  title: string
+  subtitle?: string
+  description?: PortableTextBlock[]
+  columns: Column[]
+}
+
 export interface GlobalAlertType {
   tabName: string
   content: PortableTextBlock[]

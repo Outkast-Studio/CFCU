@@ -14,7 +14,10 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
   console.log(data)
   return (
     <section
-      className={clsx('pt-[66px] pb-[136px]', 'lg:pt-[130px] lg:pb-[105px]')}
+      className={clsx(
+        'pt-[66px] pb-[136px]',
+        'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] lg:mx-auto',
+      )}
     >
       <article
         className={clsx('px-[24px] flex items-center flex-col', 'lg:px-[48px]')}

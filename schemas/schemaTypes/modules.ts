@@ -45,5 +45,8 @@ export const modules = defineField({
     {
       type: 'tabs',
     },
+    {
+      type: 'columnSplit',
+    },
   ],
 })

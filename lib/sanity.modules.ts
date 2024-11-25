@@ -104,11 +104,14 @@ export const modulesFragment = groq`
       ...,
       cards[]{
         ...,
-        pageLink->{
-          _id,
-          _type,
-          title,
-          "slug": slug.current
+        pageLink{
+          ...,
+          link->{
+            _id,
+            _type,
+            title,
+            "slug": slug.current
+          }
         }
       }
     },
