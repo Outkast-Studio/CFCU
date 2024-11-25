@@ -84,7 +84,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
               >
                 <PortableText
                   value={data.lowerContent.description}
-                  components={PortableTextComponents}
+                  components={PortableTextComponents as any}
                 />
               </div>
             )}

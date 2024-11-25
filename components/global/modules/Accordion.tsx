@@ -2,6 +2,7 @@ import { AccordionType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
+import PortableTextComponents from 'lib/portabletTextComponents'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (
@@ -32,7 +33,10 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
               'lg:max-w-[400px] lg:w-paragraph-l-desktop lg:mt-[13px]',
             )}
           >
-            <PortableText value={data?.description} />
+            <PortableText
+              value={data?.description}
+              components={PortableTextComponents as any}
+            />
           </div>
         )}
       </article>
@@ -80,14 +84,16 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
               <Accordion.Content
                 className={clsx('AccordionContent overflow-hidden')}
               >
-                {/* TODO update with portable text components  */}
                 <div
                   className={clsx(
                     'w-paragraph-s-desktop pb-[16px] flex flex-col gap-y-[24px]',
                     'lg:w-paragraph-l-desktop lg:pb-[32px]',
                   )}
                 >
-                  <PortableText value={item?.content} />
+                  <PortableText
+                    value={item?.content}
+                    components={PortableTextComponents as any}
+                  />
                 </div>
               </Accordion.Content>
             </Accordion.Item>

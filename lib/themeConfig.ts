@@ -9,6 +9,7 @@ export const themeConfig = {
     copy: '#fff',
     ctaBackground: '#fff',
     monotoneCopy: '#fff',
+    subtitle: '#F56600',
   },
   Orange: {
     background: '#F56600',
@@ -16,6 +17,7 @@ export const themeConfig = {
     icon: 'text-blue-400',
     copy: '#3C1053',
     monotoneCopy: '#000',
+    subtitle: '#3C1053',
   },
   Green: {
     background: '#008566',
@@ -23,12 +25,14 @@ export const themeConfig = {
     copy: '#FFFFFF',
     ctaBackground: '#fff',
     monotoneCopy: '#fff',
+    subtitle: '#fff',
   },
   Yellow: {
     background: '#FFC600',
     heading: '#3C1053',
     copy: '#3C1053',
     monotoneCopy: '#000',
+    subtitle: '#3C1053',
   },
   White: {
     background: '#F0F0F0',
@@ -37,6 +41,7 @@ export const themeConfig = {
     ctaBackground: '#fff',
     monotoneCopy: '#000',
     backgroundWhite: '#fff',
+    subtitle: '#3C1053',
   },
 } as const
 

@@ -1,6 +1,7 @@
 import { ColumnSplitType } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
+import PortableTextComponents from 'lib/portabletTextComponents'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   console.log(data)
@@ -44,10 +45,12 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
           data?.columns?.length == 5 && 'lg:grid-cols-5',
         )}
       >
-        {/* //TODO sort the portable text */}
         {data?.columns?.map((column, index) => (
           <div key={index}>
-            <PortableText value={column?.content} />
+            <PortableText
+              value={column?.content}
+              components={PortableTextComponents as any}
+            />
           </div>
         ))}
       </div>

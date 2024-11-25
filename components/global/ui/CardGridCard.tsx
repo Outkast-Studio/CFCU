@@ -50,7 +50,7 @@ export default function CardGridCard({
         >
           <PortableText
             value={data.description}
-            components={PortableTextComponents}
+            components={PortableTextComponents as any}
           />
         </div>
       </article>

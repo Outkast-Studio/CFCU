@@ -14,10 +14,10 @@ import { useRef } from 'react'
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
   const targetRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  })
-  const y = useTransform(scrollYProgress, [0, 1], ['0', `50%`])
+  // const { scrollYProgress } = useScroll({
+  //   target: targetRef,
+  // })
+  // const y = useTransform(scrollYProgress, [0, 1], ['0', `50%`])
   return (
     <section
       ref={targetRef}
@@ -68,7 +68,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             ? 'lg:left-[0px]'
             : 'lg:right-[0px]',
         )}
-        style={{ backgroundColor: theme.background, color: theme.heading, y }}
+        style={{ backgroundColor: theme.background, color: theme.heading }}
       >
         <div className={clsx('hidden', 'lg:block')}>
           {data?.ctaCard?.subtitle?.type === 'text' && (
@@ -106,7 +106,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             >
               <PortableText
                 value={data?.ctaCard?.description}
-                components={PortableTextComponents}
+                components={PortableTextComponents as any}
               />
             </div>
           ) : (

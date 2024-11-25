@@ -4,6 +4,7 @@ const plugin = require('tailwindcss/plugin')
 module.exports = {
   content: [
     './components/**/*.{js,ts,jsx,tsx}',
+    './lib/**/*.{js,ts,jsx,tsx}',
     './intro-template/**/*.{js,ts,jsx,tsx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './plugins/**/*.{js,ts,jsx,tsx}',
@@ -99,6 +100,36 @@ module.exports = {
           'font-size': '16px',
           'line-height': '24px',
         },
+        '.w-h1': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '42px',
+          'line-height': '42px',
+          'letter-spacing': '-0.32px',
+        },
+        '.w-h2': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '38px',
+          'line-height': '44px',
+          'letter-spacing': '-0.32px',
+        },
+        '.w-h3': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '36px',
+          'line-height': '42px',
+          'letter-spacing': '-0.32px',
+        },
+        '.w-h4': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '30px',
+          'line-height': '36px',
+          'letter-spacing': '-0.32px',
+        },
+        '.w-h5': {
+          'font-family': 'var(--font-codec-extra-bold)',
+          'font-size': '24px',
+          'line-height': '32px',
+          'letter-spacing': '-0.32px',
+        },
         '.w-h6': {
           'font-family': 'var(--font-codec-extra-bold)',
           'font-size': '21px',
@@ -187,20 +218,41 @@ module.exports = {
           'line-height': '36px',
           'font-family': 'var(--font-codec-news)',
         },
+        '.w-h1-desktop': {
+          'font-family': 'var(--font-codec-bold)',
+          'font-size': '90px',
+          'line-height': '94px',
+          'letter-spacing': '-0.32px',
+        },
+        '.w-h2-desktop': {
+          'font-family': 'var(--font-codec-heavy)',
+          'font-size': '62px',
+          'line-height': '68px',
+          'letter-spacing': '-0.32px',
+        },
+        '.w-h3-desktop': {
+          'font-family': 'var(--font-extra-bold)',
+          'font-size': '52px',
+          'line-height': '58px',
+          'letter-spacing': '-0.32px',
+        },
         '.w-h4-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',
-          'font-size': '42px;',
-          'line-height': '50.4px;',
+          'font-size': '42px',
+          'line-height': '50.4px',
+          'letter-spacing': '-0.32px',
         },
         '.w-h5-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',
           'font-size': '32px',
           'line-height': '38.4px',
+          'letter-spacing': '-0.32px',
         },
         '.w-h6-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',
           'font-size': '24px',
           'line-height': '28px',
+          'letter-spacing': '-0.32px',
         },
         '.title-s-desktop': {
           'font-family': 'var(--font-codec-extra-bold)',

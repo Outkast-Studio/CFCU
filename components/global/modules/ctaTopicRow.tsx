@@ -52,14 +52,22 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
             : 'lg:pl-[48px]',
         )}
       >
-        <h2
+        {data?.subtitle && (
+          <h2
+            style={{ color: theme?.subtitle }}
+            className={clsx('subtitle-m  mb-[16px]', 'lg:subtitle-l ')}
+          >
+            {data.subtitle}
+          </h2>
+        )}
+        <h3
           className={clsx(
             'title-m font-codec-heavy text-center',
             'lg:text-left lg:title-m-desktop',
           )}
         >
           {data?.title}
-        </h2>
+        </h3>
         <div
           style={{ color: theme?.monotoneCopy }}
           className={clsx(

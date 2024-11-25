@@ -71,7 +71,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           <div className={clsx('max-w-[300px] text-[18px] leading-[26px] ')}>
             <PortableText
               value={data.testimonial.content}
-              components={PortableTextComponents}
+              components={PortableTextComponents as any}
             />
           </div>
           <h6 className={clsx('font-codec-heavy text-[16px] leading-[24px]')}>

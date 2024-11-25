@@ -18,12 +18,23 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           'lg:pt-[122px] lg:pb-[122px]',
         )}
       >
-        <h2
+        {data?.subtitle && (
+          <h2
+            style={{ color: theme?.subtitle }}
+            className={clsx(
+              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px]',
+              'lg:subtitle-l  lg:mb-[16px]',
+            )}
+          >
+            {data.subtitle}
+          </h2>
+        )}
+        <h3
           className={clsx('title-l text-center', 'lg:title-l-desktop')}
           style={{ color: theme?.heading }}
         >
           {data?.title}
-        </h2>
+        </h3>
         {data.description && (
           <div
             style={{ color: theme?.monotoneCopy }}
@@ -34,7 +45,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           >
             <PortableText
               value={data?.description}
-              components={PortableTextComponents}
+              components={PortableTextComponents as any}
             />
           </div>
         )}

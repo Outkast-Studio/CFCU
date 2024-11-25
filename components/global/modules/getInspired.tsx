@@ -34,7 +34,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
         >
           <PortableText
             value={data?.description}
-            components={PortableTextComponents}
+            components={PortableTextComponents as any}
           />
         </div>
         <PageLink

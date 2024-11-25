@@ -30,6 +30,7 @@ export default defineField({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({ name: 'subtitle', title: 'Subtitle', type: 'string' }),
     defineField({
       name: 'description',
       title: 'Description',

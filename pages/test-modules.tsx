@@ -40,7 +40,7 @@ export default function Page(props: PageProps) {
   )
   useEffect(() => {
     setGlobalSettings(globalSettings)
-  }, [data, setGlobalSettings])
+  }, [data, setGlobalSettings, globalSettings])
 
   return (
     <Layout>

@@ -46,9 +46,8 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
           'lg:col-start-7 lg:col-end-13 lg:grid lg:grid-cols-2 lg:gap-x-[42px]',
         )}
       >
-        {/* TODO: Update when we bring motion in to this component */}
         {data.cards?.map((card, index) => (
-          <article>
+          <article key={index}>
             <h4
               className={clsx('w-h6 text-lavender mb-[4px]', 'lg:w-h6-desktop')}
             >

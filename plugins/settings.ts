@@ -9,6 +9,7 @@ import { Iframe } from 'sanity-plugin-iframe-pane'
 import globalSettings from 'schemas/singletons/globalSettings'
 import homepage from 'schemas/singletons/homepage'
 import testModules from 'schemas/singletons/testModules'
+import { Browser, Folder } from '@phosphor-icons/react/dist/ssr'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -48,6 +49,9 @@ export const settingsStructure = (
       'post',
       'subPage',
       'testModules',
+      'blogHomePage',
+      'locationHomePage',
+      'location',
     ]
 
     const globalSettingsListItem = S.listItem()
@@ -94,12 +98,49 @@ export const settingsStructure = (
       )
 
     const postsListItem = S.listItem()
-      .title('Posts')
-      .schemaType('post')
-      .child(S.documentTypeList('post').title('Posts'))
+      .title('Blog')
+      .child(
+        S.list()
+          .title('Blog')
+          .items([
+            S.listItem()
+              .title('Blog home page')
+              .icon(Browser)
+              .child(
+                S.document()
+                  .schemaType('blogHomePage')
+                  .documentId('blogHomePage'),
+              ),
+            S.listItem()
+              .title('Blog Posts')
+              .schemaType('post')
+              .child(S.documentTypeList('post').title('Blog Posts')),
+          ]),
+      )
 
+    const locationsListItem = S.listItem()
+      .title('Locations')
+      .child(
+        S.list()
+          .title('Locations')
+          .items([
+            S.listItem()
+              .title('Location home page')
+              .icon(Browser)
+              .child(
+                S.document()
+                  .schemaType('locationHomePage')
+                  .documentId('locationHomePage'),
+              ),
+            S.listItem()
+              .title('Locations')
+              .schemaType('location')
+              .child(S.documentTypeList('location').title('Locations')),
+          ]),
+      )
     const subpagesListItem = S.listItem()
       .title('Sub Pages')
+      .icon(Folder)
       .schemaType('subPage')
       .child(S.documentTypeList('subPage').title('Sub Pages'))
 
@@ -119,6 +160,8 @@ export const settingsStructure = (
         postsListItem,
         S.divider(),
         subpagesListItem,
+        S.divider(),
+        locationsListItem,
         S.divider(),
         ...defaultListItems,
       ])

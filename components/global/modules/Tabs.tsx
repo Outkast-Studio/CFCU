@@ -5,7 +5,7 @@ import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { useState } from 'react'
-
+import PortableTextComponents from 'lib/portabletTextComponents'
 const Tabs = ({ data }: { data: TabsType }) => {
   const [activeTab, setActiveTab] = useState(0)
 
@@ -36,7 +36,10 @@ const Tabs = ({ data }: { data: TabsType }) => {
             'lg:w-paragraph-l-desktop lg:mt-[22px]',
           )}
         >
-          <PortableText value={data?.description} />
+          <PortableText
+            value={data?.description}
+            components={PortableTextComponents as any}
+          />
         </div>
       )}
       <div className={clsx('mt-[26px]', 'lg:hidden')}>
@@ -82,7 +85,10 @@ const Tabs = ({ data }: { data: TabsType }) => {
                 className={clsx('AccordionContent overflow-hidden')}
               >
                 <div className={clsx('pb-[28px]')}>
-                  <PortableText value={item?.content} />
+                  <PortableText
+                    value={item?.content}
+                    components={PortableTextComponents as any}
+                  />
                 </div>
               </Accordion.Content>
             </Accordion.Item>
@@ -149,7 +155,10 @@ const Tabs = ({ data }: { data: TabsType }) => {
 
         {/* TODO sort the portable text */}
         <div className={clsx('col-start-7 col-end-13')}>
-          <PortableText value={data?.tabs?.[activeTab]?.content} />
+          <PortableText
+            value={data?.tabs?.[activeTab]?.content}
+            components={PortableTextComponents as any}
+          />
         </div>
       </div>
     </section>

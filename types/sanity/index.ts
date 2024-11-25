@@ -60,6 +60,7 @@ export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
 
 export interface CtaTopicRowType {
   title: string
+  subtitle?: string
   theme: {
     value: string
     label: ThemeLabel
@@ -130,6 +131,7 @@ export interface CtaTextType {
     label: string
   }
   title: string
+  subtitle?: string
   description?: PortableTextBlock
   cta: PageLinkType
 }

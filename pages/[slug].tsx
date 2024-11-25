@@ -34,34 +34,28 @@ export default function DynamicPage(props: PageProps) {
 
   useEffect(() => {
     setGlobalSettings(props.globalSettings)
-  }, [])
+  }, [setGlobalSettings, props.globalSettings])
 
-  let data
-  switch (props.pageType) {
-    case 'post':
-      data = useLiveQuery<PageData>(
-        props.pageData,
-        postBySlugQuery,
-        props.params,
-      )[0]
-      break
-    case 'subPage':
-      data = useLiveQuery<PageData>(
-        props.pageData,
-        subPageBySlugQuery,
-        props.params,
-      )[0]
-      break
-    default:
-      console.log('No data')
-      data = null
-  }
+  const postData = useLiveQuery<PageData>(
+    props.pageType === 'post' ? props.pageData : null,
+    postBySlugQuery,
+    props.params,
+  )[0]
+
+  const subPageData = useLiveQuery<PageData>(
+    props.pageType === 'subPage' ? props.pageData : null,
+    subPageBySlugQuery,
+    props.params,
+  )[0]
+
+  const data = props.pageType === 'post' ? postData : subPageData
+
   // Conditionally render based on page type
   switch (props.pageType) {
     case 'post':
-      return <PostPage data={data} />
+      return <PostPage data={data as PostPageType} />
     case 'subPage':
-      return <SubPage data={data} />
+      return <SubPage data={data as SubPageType} />
     default:
       return <></>
   }
