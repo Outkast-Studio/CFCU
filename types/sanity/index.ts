@@ -58,6 +58,10 @@ export interface CtaInContentType {
 
 export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
 
+export interface QuickExitType {
+  exitUrl: string
+}
+
 export interface CtaTopicRowType {
   title: string
   subtitle?: string
@@ -72,6 +76,24 @@ export interface CtaTopicRowType {
     path: string
   }>
   image: ImageAsset
+}
+
+interface Logo {
+  logo: ImageAsset
+  link?: string
+}
+
+interface LogoGroup {
+  logoGroupTitle?: string
+  logos: Logo[]
+  columns: 2 | 3 | 4
+}
+
+export interface LogoGridType {
+  title: string
+  subtitle?: string
+  description?: PortableTextBlock[]
+  logoGroups: LogoGroup[]
 }
 
 export interface CtaCardGridHomeType {

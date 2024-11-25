@@ -17,9 +17,9 @@ export default function Page({
         <Hero data={homepage.hero} />
         <EmotionalNavigation data={homepage.emotionalNavigation} />
       </div>
-      {homepage.modules.map((module, index) => (
-        <ModuleFactory module={module} key={index} />
-      ))}
+
+      <ModuleFactory modules={homepage?.modules} />
+
       <Footer data={globalSettings.footer} />
     </main>
   )

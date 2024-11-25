@@ -12,7 +12,8 @@ const Header = () => {
   }, [isMenuOpen])
   return (
     <>
-      <Image
+      {/* Todo move this to a hero component: */}
+      {/* <Image
         src={'/icons/LogoFull.png'}
         alt={'Community Financial Logo'}
         width={500}
@@ -21,16 +22,16 @@ const Header = () => {
           'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
           'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
         )}
-      />
+      /> */}
       <header
         className={clsx(
-          'absolute top-[60px] left-[25px] z-[11]',
-          'lg:left-[50px] ',
+          'fixed top-[48px] right-[48px] z-[11]',
+          'lg:right-[48px] ',
         )}
       >
         <div
           className={clsx(
-            'fixed top-[60px] right-[25px] z-[10]',
+            'w-fit',
             'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold',
           )}
         >

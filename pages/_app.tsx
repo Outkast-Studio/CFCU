@@ -53,7 +53,7 @@ export default function App({
   return (
     <div
       className={clsx(
-        'antialiased font-codec-pro',
+        'antialiased font-codec-pro relative',
         CodecPro.variable,
         CodecProBold.variable,
         CodecExtraBold.variable,

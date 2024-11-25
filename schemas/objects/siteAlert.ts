@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'globalAlert',
-  title: 'Global Alert',
+  name: 'siteAlert',
+  title: 'Site Alert',
   type: 'object',
   fields: [
     defineField({
@@ -19,13 +19,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       description: 'The main alert message content',
     }),
-    defineField({
-      name: 'theme',
-      title: 'Theme',
-      type: 'simplerColor',
-      validation: (Rule) => Rule.required(),
-      description: 'Color theme for the alert banner',
-    }),
   ],
   preview: {
     select: {
@@ -34,7 +27,7 @@ export default defineType({
     },
     prepare({ title, content }) {
       return {
-        title: title || 'Global Alert',
+        title: 'Site Alert',
         subtitle: 'Alert Banner',
       }
     },

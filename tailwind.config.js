@@ -21,6 +21,7 @@ module.exports = {
         divider: '#F2F2F2',
         neutralBlack: '#575656',
         neutralLightGrey: '#EDEDED',
+        alertRed: '#B40303',
       },
       spacing: {
         28: '7rem',
@@ -61,6 +62,7 @@ module.exports = {
       },
       screens: {
         lg: '1024px',
+        ml: '1400px',
         xl: '1850px',
       },
     },

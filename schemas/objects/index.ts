@@ -16,9 +16,11 @@ import textCardGrid from './textCardGrid'
 import subPageHero from './subPageHero'
 import relatedStories from './relatedStories'
 import accordion from './accordion'
-import globalAlert from './globalAlert'
+import siteAlert from './siteAlert'
 import tabs from './tabs'
 import columnSplit from './columnSplit'
+import logoGrid from './logoGrid'
+import quickExit from './quickExit'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -39,8 +41,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     subPageHero,
     relatedStories,
     accordion,
-    globalAlert,
+    siteAlert,
     tabs,
     columnSplit,
+    logoGrid,
+    quickExit,
   ],
 }

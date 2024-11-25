@@ -40,13 +40,19 @@ export const modules = defineField({
       type: 'accordion',
     },
     {
-      type: 'globalAlert',
+      type: 'siteAlert',
     },
     {
       type: 'tabs',
     },
     {
       type: 'columnSplit',
+    },
+    {
+      type: 'logoGrid',
+    },
+    {
+      type: 'quickExit',
     },
   ],
 })
