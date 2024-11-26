@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@focus-reactive/sanity-plugin-inline-svg-input": "^1.1.0",
+    "@gsap/shockingly": "^3.12.5",
     "@phosphor-icons/react": "^2.1.7",
     "@portabletext/react": "3.0.11",
     "@radix-ui/react-accordion": "^1.2.1",
@@ -32,7 +33,7 @@
     "clsx": "^2.1.1",
     "date-fns": "2.30.0",
     "framer-motion": "^11.11.15",
-    "gsap": "^3.12.5",
+    "gsap": "npm:@gsap/shockingly",
     "intl-segmenter-polyfill": "0.4.4",
     "just-debounce-it": "^3.2.0",
     "next": "14.1.0",

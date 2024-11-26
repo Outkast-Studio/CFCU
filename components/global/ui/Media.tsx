@@ -35,7 +35,8 @@ export default function MediaComponent({
         src={urlForImage(media?.image).url()}
         //@ts-ignore
         alt={media?.image?.alt}
-        fill
+        width={2440}
+        height={2440}
         className={clsx('object-cover w-full h-full')}
       />
     )

@@ -1899,6 +1899,11 @@
     "@sanity/incompatible-plugin" "^1.0.4"
     dompurify "^3.0.9"
 
+"@gsap/shockingly@^3.12.5":
+  version "3.12.5"
+  resolved "https://npm.greensock.com/@gsap%2fshockingly/-/shockingly-3.12.5.tgz#e1ee9b13c2fd4120d9bdbbe3dac338e5fae75126"
+  integrity sha512-JoZp6iYvOC+wkwl8zfXSqSrYCcuzTntaULCL08YMa1vonrYcr9D0K3EUe9PNpw7FYK1chjSwjjgcw3zS/O2SWg==
+
 "@hookform/resolvers@^3.1.1":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.9.0.tgz#cf540ac21c6c0cd24a40cf53d8e6d64391fb753d"
@@ -7522,10 +7527,10 @@ groq@^3.19:
   resolved "https://registry.yarnpkg.com/groq/-/groq-3.27.0.tgz#c3f34a88d662e3a36738e1a2ba1b68a0f305428a"
   integrity sha512-5VoCrkmR+xDXt0zY1HfHjFQDgXui8BJsO2vpcJhIU2h/aqXxzHWYxU7Ye2J7k8d+oeak1S7i+94VZ8Lc41mtxQ==
 
-gsap@^3.12.5:
+"gsap@npm:@gsap/shockingly":
   version "3.12.5"
-  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.12.5.tgz#136c02dad4c673b441bdb1ca00104bfcb4eae7f4"
-  integrity sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==
+  resolved "https://npm.greensock.com/@gsap%2fshockingly/-/shockingly-3.12.5.tgz#e1ee9b13c2fd4120d9bdbbe3dac338e5fae75126"
+  integrity sha512-JoZp6iYvOC+wkwl8zfXSqSrYCcuzTntaULCL08YMa1vonrYcr9D0K3EUe9PNpw7FYK1chjSwjjgcw3zS/O2SWg==
 
 gunzip-maybe@^1.4.1:
   version "1.4.2"

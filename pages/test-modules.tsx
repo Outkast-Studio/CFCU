@@ -44,9 +44,7 @@ export default function Page(props: PageProps) {
 
   return (
     <Layout>
-      {data?.modules?.map((module, index) => (
-        <ModuleFactory module={module} key={index} />
-      ))}
+      <ModuleFactory modules={data.modules} />
     </Layout>
   )
 }

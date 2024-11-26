@@ -16,24 +16,24 @@ const EmotionalNavigation = ({
   data: HomepageType['emotionalNavigation']
 }) => {
   const targetRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ['0 0', '1 0.8'],
-  })
+  // const { scrollYProgress } = useScroll({
+  //   target: targetRef,
+  //   offset: ['0 0', '1 0.8'],
+  // })
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['0%', `-${(data.navigationCards.length - 1) * 570}px`],
-  )
+  // const x = useTransform(
+  //   scrollYProgress,
+  //   [0, 1],
+  //   ['0%', `-${(data.navigationCards.length - 1) * 570}px`],
+  // )
 
   return (
     <section
       ref={targetRef}
-      style={{ height: data.navigationCards.length * 620 }}
+      // style={{ height: data.navigationCards.length * 620 }}
       className={clsx(
         'pt-[90px] pb-[10px]',
-        'lg:pt-[149px] lg:flex lg:pb-[150px] lg:relative lg:h-[300vh]',
+        'lg:pt-[149px] lg:flex lg:pb-[150px] lg:relative ',
         // lg:pl-[calc((100vw-1800px)/2)]
       )}
     >
@@ -81,7 +81,7 @@ const EmotionalNavigation = ({
         )}
       >
         <motion.div
-          style={{ x }}
+          // style={{ x }}
           className={clsx('hidden', 'lg:flex lg:gap-x-[24px] ')}
         >
           {data.navigationCards.map((card, index) => (

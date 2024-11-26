@@ -6,6 +6,10 @@ import { clsx } from 'clsx'
 import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Header from 'components/global/Header'
+import { SplitText } from 'gsap/dist/SplitText'
+import { gsap } from 'gsap'
+
+gsap.registerPlugin(SplitText)
 import {
   CodecPro,
   CodecProBold,
