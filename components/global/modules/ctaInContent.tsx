@@ -8,19 +8,56 @@ import PortableTextComponents from 'lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
-import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
+import { useInView } from 'react-intersection-observer'
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
-  const targetRef = useRef(null)
-  // const { scrollYProgress } = useScroll({
-  //   target: targetRef,
-  // })
-  // const y = useTransform(scrollYProgress, [0, 1], ['0', `50%`])
+
+  const articleRef = useRef(null)
+
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  })
+
+  useIsomorphicLayoutEffect(() => {
+    if (!inView) return
+    const ctx = gsap.context(() => {
+      const q = gsap.utils.selector(articleRef.current)
+      gsap
+        .timeline({})
+        .fromTo(
+          articleRef.current,
+          {
+            clipPath: 'inset(0% 0% 100% 0%)',
+          },
+          {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            ease: 'power4.inOut',
+            duration: 0.7,
+          },
+        )
+        .fromTo(
+          q('.animateArticle'),
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'power4.out',
+            stagger: 0.1,
+          },
+          '<+=0.5',
+        )
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [inView])
   return (
     <section
-      ref={targetRef}
+      ref={ref}
       className={clsx(
         'mt-[65px] title-s pt-[51px] pb-[59px]',
         'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] lg:mx-auto',
@@ -60,10 +97,11 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           <MediaComponent media={data?.backgroundImage} />
         </div>
       </div>
-      <motion.article
+      <article
+        ref={articleRef}
         className={clsx(
           'mt-[22px] px-[24px]',
-          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px]',
+          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px] [clip-path:inset(0%_0%_100%_0%)]',
           stegaClean(data?.ctaCard?.contentPosition) === 'left'
             ? 'lg:left-[0px]'
             : 'lg:right-[0px]',
@@ -74,7 +112,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           {data?.ctaCard?.subtitle?.type === 'text' && (
             <h2
               className={clsx(
-                'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold',
+                'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold animateArticle',
               )}
             >
               {data?.ctaCard?.subtitle?.text}
@@ -82,7 +120,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           )}
           {data?.ctaCard?.subtitle?.type === 'svg' && (
             <div
-              className={clsx('w-[140px]')}
+              className={clsx('w-[140px] animateArticle')}
               dangerouslySetInnerHTML={{ __html: data?.ctaCard?.subtitle?.svg }}
             />
           )}
@@ -90,7 +128,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
         <div>
           <h3
             className={clsx(
-              'text-extra-bold text-[32px] leading-[35.2px]',
+              'text-extra-bold text-[32px] leading-[35.2px] animateArticle',
               'lg:title-s-desktop',
             )}
           >
@@ -100,7 +138,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           {data?.ctaCard?.description ? (
             <div
               className={clsx(
-                'font-codec-news text-[18px] leading-[27px] mt-[14px]',
+                'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle',
                 'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
               )}
             >
@@ -114,12 +152,12 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           )}
           <PageLink
             data={data?.ctaCard?.cta}
-            className={clsx('mt-[21px] block', 'lg:mt-[24px]')}
+            className={clsx('mt-[21px] block', 'lg:mt-[24px] animateArticle')}
           >
             <Button label={data?.ctaCard?.cta?.title} />
           </PageLink>
         </div>
-      </motion.article>
+      </article>
     </section>
   )
 }
