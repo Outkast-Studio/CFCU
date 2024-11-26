@@ -25,16 +25,33 @@ const EmotionalNavigation = ({
   useIsomorphicLayoutEffect(() => {
     const section = sectionRef.current
     const container = containerRef.current
+    const q = gsap.utils.selector(section)
 
     if (!section || !container) return
 
     // Calculate the width of the scrolling content
     const totalWidth = container.offsetWidth - window.innerWidth
 
+    const contentTimeline = gsap
+      .timeline({ paused: true })
+      .to(q('.emotionalAnimateOut'), {
+        y: -30,
+        opacity: 0,
+        ease: 'power4.in',
+        duration: 0.5,
+        stagger: 0.1,
+      })
+
     const tl = gsap.to(container, {
       xPercent: -80,
       ease: 'none',
       scrollTrigger: {
+        onEnter: () => {
+          contentTimeline.play()
+        },
+        onLeaveBack: () => {
+          contentTimeline.reverse()
+        },
         trigger: section,
         start: 'top top',
         end: `+=${container.offsetWidth * 0.8}px`,
@@ -67,23 +84,23 @@ const EmotionalNavigation = ({
       >
         <div
           dangerouslySetInnerHTML={{ __html: data.icon }}
-          className={clsx('emotionalNavigationIcon')}
+          className={clsx('emotionalNavigationIcon emotionalAnimateOut')}
         />
         <h2
           className={clsx(
-            'text-[14px] leading-[14px] tracking-[1.6px] font-codec-news uppercase text-orange mt-[19px]',
+            'text-[14px] leading-[14px] tracking-[1.6px] font-codec-news uppercase text-orange mt-[19px] emotionalAnimateOut',
             'lg:subtitle-l lg:mt-[32px]',
           )}
         >
-          {data.subtitle}
+          {data?.subtitle}
         </h2>
         <h3
           className={clsx(
-            'font-codec-bold text-white text-[26px] leading-[28.6px] mt-[10px] max-w-[451px]',
+            'font-codec-bold text-white text-[26px] leading-[28.6px] mt-[10px] max-w-[451px] emotionalAnimateOut',
             'lg:mt-[16px] lg:w-h4-desktop ',
           )}
         >
-          {data.title}
+          {data?.title}
         </h3>
       </div>
       <div className={clsx('px-[9px]', 'lg:hidden')}>
@@ -92,20 +109,20 @@ const EmotionalNavigation = ({
           collapsible
           className={clsx('w-full mt-[40px] flex flex-col gap-y-[16px]')}
         >
-          {data.navigationCards.map((card, index) => (
+          {data?.navigationCards.map((card, index) => (
             <CardMobile data={card} key={index} />
           ))}
         </Accordion.Root>
       </div>
       <div className={clsx('lg:h-fit')}>
-        <motion.div
+        <div
           ref={containerRef}
           className={clsx('hidden', 'lg:flex lg:gap-x-[24px] ')}
         >
           {data.navigationCards.map((card, index) => (
             <CardDesktop data={card} key={index} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
