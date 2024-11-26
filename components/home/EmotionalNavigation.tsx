@@ -11,14 +11,14 @@ import { motion, useTransform, useScroll } from 'framer-motion'
 import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
+import { useWindowSize } from 'hooks/useWindowSize'
 
 const EmotionalNavigation = ({
   data,
 }: {
   data: HomepageType['emotionalNavigation']
 }) => {
-  const targetRef = useRef(null)
-
+  const { width } = useWindowSize()
   const sectionRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -47,9 +47,11 @@ const EmotionalNavigation = ({
       ease: 'none',
       scrollTrigger: {
         onEnter: () => {
+          if (width < 1024) return
           contentTimeline.play()
         },
         onLeaveBack: () => {
+          if (width < 1024) return
           contentTimeline.reverse()
         },
         trigger: section,

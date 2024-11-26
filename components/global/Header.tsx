@@ -26,8 +26,8 @@ const Header = () => {
       /> */}
       <header
         className={clsx(
-          'fixed top-[48px] right-[48px] z-[11]',
-          'lg:right-[48px] ',
+          'fixed top-[60px] right-[24px] z-[11]',
+          'lg:right-[48px] lg:top-[48px] ',
         )}
       >
         <div
@@ -61,7 +61,7 @@ const Header = () => {
             className={clsx(
               'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-colors duration-300 ease-linear',
               'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px]',
-              isMenuOpen ? 'bg-white' : 'bg-orange',
+              isMenuOpen ? 'bg-orange lg:bg-white' : 'bg-orange',
             )}
           >
             <div className={clsx('hidden', 'lg:block h-[23px]')}>

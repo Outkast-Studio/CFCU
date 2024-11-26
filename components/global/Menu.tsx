@@ -100,7 +100,7 @@ const Menu = ({
     >
       <div
         className={clsx(
-          'min-h-screen  pt-[73px] overflow-y-auto h-full pb-[20px]',
+          'min-h-screen  pt-[68px] overflow-y-auto h-full pb-[20px]',
           'lg:pt-[48px] lg:max-w-[1800px] lg:mx-auto',
         )}
       >

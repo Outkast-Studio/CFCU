@@ -55,6 +55,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       ctx.revert()
     }
   }, [inView])
+
   return (
     <section
       ref={ref}
