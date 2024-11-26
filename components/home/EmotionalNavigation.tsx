@@ -9,6 +9,8 @@ import PageLink from 'components/global/ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
 import { motion, useTransform, useScroll } from 'framer-motion'
 import { useRef } from 'react'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
 
 const EmotionalNavigation = ({
   data,
@@ -16,25 +18,45 @@ const EmotionalNavigation = ({
   data: HomepageType['emotionalNavigation']
 }) => {
   const targetRef = useRef(null)
-  // const { scrollYProgress } = useScroll({
-  //   target: targetRef,
-  //   offset: ['0 0', '1 0.8'],
-  // })
 
-  // const x = useTransform(
-  //   scrollYProgress,
-  //   [0, 1],
-  //   ['0%', `-${(data.navigationCards.length - 1) * 570}px`],
-  // )
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useIsomorphicLayoutEffect(() => {
+    const section = sectionRef.current
+    const container = containerRef.current
+
+    if (!section || !container) return
+
+    // Calculate the width of the scrolling content
+    const totalWidth = container.offsetWidth - window.innerWidth
+
+    const tl = gsap.to(container, {
+      xPercent: -80,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: `+=${container.offsetWidth * 0.8}px`,
+        scrub: true,
+        invalidateOnRefresh: true,
+        pin: true,
+        pinSpacing: true,
+      },
+    })
+
+    return () => {
+      // Cleanup
+      tl.kill()
+    }
+  }, [])
 
   return (
     <section
-      ref={targetRef}
-      // style={{ height: data.navigationCards.length * 620 }}
+      ref={sectionRef}
       className={clsx(
         'pt-[90px] pb-[10px]',
-        'lg:pt-[149px] lg:flex lg:pb-[150px] lg:relative ',
-        // lg:pl-[calc((100vw-1800px)/2)]
+        'lg:pt-[149px] lg:flex lg:pb-[150px] lg:relative lg:overflow-x-hidden',
       )}
     >
       <div
@@ -75,13 +97,9 @@ const EmotionalNavigation = ({
           ))}
         </Accordion.Root>
       </div>
-      <div
-        className={clsx(
-          'lg:h-fit lg:sticky lg:top-[calc((100vh-620px)/2)] overflow-x-hidden',
-        )}
-      >
+      <div className={clsx('lg:h-fit')}>
         <motion.div
-          // style={{ x }}
+          ref={containerRef}
           className={clsx('hidden', 'lg:flex lg:gap-x-[24px] ')}
         >
           {data.navigationCards.map((card, index) => (

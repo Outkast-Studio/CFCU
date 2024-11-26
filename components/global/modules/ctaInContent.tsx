@@ -63,7 +63,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       <motion.article
         className={clsx(
           'mt-[22px] px-[24px]',
-          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[-71px]',
+          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px]',
           stegaClean(data?.ctaCard?.contentPosition) === 'left'
             ? 'lg:left-[0px]'
             : 'lg:right-[0px]',

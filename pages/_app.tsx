@@ -7,9 +7,10 @@ import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Header from 'components/global/Header'
 import { SplitText } from 'gsap/dist/SplitText'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { gsap } from 'gsap'
 
-gsap.registerPlugin(SplitText)
+gsap.registerPlugin(SplitText, ScrollTrigger)
 import {
   CodecPro,
   CodecProBold,

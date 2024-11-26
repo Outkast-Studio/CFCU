@@ -36,7 +36,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           },
           '<',
         )
-        .to(q('.tertItem'), { opacity: 1, duration: 0.5 }, '<+=0.3')
+        .to(q('.tertItem'), { opacity: 1, duration: 0.5 }, '<+=0.2')
     })
     return () => {
       ctx.revert()
