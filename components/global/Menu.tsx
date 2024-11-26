@@ -9,47 +9,99 @@ import MenuCTA from './ui/MenuCTA'
 import { useWindowSize } from 'hooks/useWindowSize'
 import PageLink from './ui/PageLink'
 import { animate, motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
 
-const Menu = () => {
+const Menu = ({
+  menuOpen,
+  setMenuOpen,
+}: {
+  menuOpen: boolean
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const topLevelNavigation = globalSettings?.navigation?.topLevelNavigation
   const bottomLevelNavigation =
     globalSettings?.navigation?.bottomLevelNavigation
   const { width } = useWindowSize()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
 
-  const parentVariants = {
-    initial: {
-      y: '-100%',
-    },
-    animate: {
-      y: '0%',
-      transition: {
-        ease: [0.215, 0.61, 0.355, 1],
-        duration: 0.5,
-      },
-    },
-    exit: {
-      y: '-100%',
-      transition: {
-        ease: [0.55, 0.055, 0.675, 0.19],
-        duration: 0.5,
-      },
-    },
-  }
+  useIsomorphicLayoutEffect(() => {
+    if (!mounted) return
+    const ctx = gsap.context(() => {
+      if (menuOpen) {
+        const tl = gsap
+          .timeline()
+          .fromTo(
+            containerRef.current,
+            { clipPath: 'inset(0px 0px 100% 0px)' },
+            {
+              clipPath: 'inset(0px 0px 0px 0px)',
+              ease: 'power4.inOut',
+              duration: 0.7,
+            },
+          )
+          .fromTo(
+            '.linkColumn',
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              ease: 'power4.out',
+              duration: 0.5,
+              stagger: 0.1,
+            },
+            '<+=0.35',
+          )
+          .fromTo(
+            '.secondaryAnimation',
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              ease: 'power4.out',
+              duration: 0.5,
+              stagger: 0.1,
+            },
+            '<+=0.1',
+          )
+      } else {
+        const tl = gsap.timeline().fromTo(
+          containerRef.current,
+          {
+            clipPath: 'inset(0px 0px 0px 0px)',
+          },
+          {
+            clipPath: 'inset(0px 0px 100% 0px)',
+            ease: 'power4.inOut',
+            duration: 0.7,
+          },
+        )
+      }
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
-    <motion.div
-      variants={parentVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
+    <div
+      ref={containerRef}
       key={'Menu container'}
-      className={clsx('fixed top-0 left-0 w-full z-[9] bg-white h-full')}
+      className={clsx(
+        'fixed top-0 left-0 w-full z-[9] bg-white h-full [clip-path:inset(0px_0px_100%_0px)]',
+      )}
     >
       <div
         className={clsx(
           'min-h-screen  pt-[73px] overflow-y-auto h-full pb-[20px]',
-          'lg:pt-[26px] lg:max-w-[1800px] lg:mx-auto',
+          'lg:pt-[48px] lg:max-w-[1800px] lg:mx-auto',
         )}
       >
         <div
@@ -67,7 +119,7 @@ const Menu = () => {
           {width > 1024 ? (
             <div className={clsx('grid grid-cols-12 gap-x-[24px] mt-[60px]')}>
               {topLevelNavigation?.map((item, index) => (
-                <article key={index} className={clsx('col-span-3')}>
+                <article key={index} className={clsx('col-span-3 linkColumn')}>
                   <div className={clsx('w-[35px]')}>
                     <Image
                       src={urlForImage(item.icon).url()}
@@ -186,7 +238,7 @@ const Menu = () => {
               <nav
                 key={index}
                 className={clsx(
-                  'lg:border-[1px] lg:border-dividers lg:p-[40px]',
+                  'lg:border-[1px] lg:border-dividers lg:p-[40px] secondaryAnimation',
                 )}
               >
                 <div
@@ -230,11 +282,15 @@ const Menu = () => {
             ))}
           </div>
           {globalSettings?.navigation?.navigationCta && (
-            <MenuCTA data={globalSettings?.navigation?.navigationCta} />
+            <MenuCTA
+              data={globalSettings?.navigation?.navigationCta}
+              menuOpen={menuOpen}
+              setMenuOpen={setMenuOpen}
+            />
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
 

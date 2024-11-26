@@ -2,51 +2,106 @@ import { clsx } from 'clsx'
 import { getThemeClasses, Theme } from 'lib/themeConfig'
 import { GlobalSettingsType } from 'types/sanity'
 import PageLink from './PageLink'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
+import { useEffect, useState } from 'react'
 
+import { useRef } from 'react'
 const MenuCTA = ({
   data,
+  menuOpen,
+  setMenuOpen,
 }: {
   data: GlobalSettingsType['navigation']['navigationCta']
+  menuOpen: boolean
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
+  const [mounted, setMounted] = useState(false)
   const theme: Theme = getThemeClasses(data.theme.label)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const descriptionRef = useRef<HTMLDivElement>(null)
+  const ctaRef = useRef<HTMLButtonElement>(null)
 
+  useIsomorphicLayoutEffect(() => {
+    if (!mounted) return
+    if (!menuOpen) return
+    const ctx = gsap.context(() => {
+      const tl = gsap
+        .timeline({ delay: 0.2 })
+        .fromTo(
+          containerRef.current,
+          { clipPath: 'inset(100% 0% 0% 0%)' },
+          {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            ease: 'power4.inOut',
+            duration: 0.8,
+          },
+        )
+        .fromTo(
+          '.elementAnimation',
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'power4.out',
+            duration: 0.5,
+            stagger: 0.1,
+          },
+          '<+=0.6',
+        )
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   return (
     <article
+      ref={containerRef}
       style={{
         backgroundColor: theme.background,
       }}
       className={clsx(
-        `mt-[75px] pt-[42px] pb-[58px] px-[21px] font-codec-pro mx-[26px] flex flex-col items-center`,
+        `mt-[75px] pt-[42px] pb-[58px] px-[21px] font-codec-pro mx-[26px] flex flex-col items-center `,
         'lg:mt-[0px] lg:mx-[0px] lg:px-[51px] lg:py-[74px]',
       )}
     >
       <h3
+        ref={titleRef}
         style={{
           color: theme.heading,
         }}
         className={clsx(
-          'font-codec-fat text-[34px] leading-[32p.64px] text-center uppercase',
+          'font-codec-fat text-[34px] leading-[32p.64px] text-center uppercase elementAnimation',
           'lg:text-[54px] lg:leading-[51.84px]',
         )}
       >
         {data.title}
       </h3>
-      <p
-        style={{
-          color: theme.copy,
-        }}
-        className={clsx(
-          'opacity-75 text-[16px] leading-[24px] text-center font-codec-news mt-[13px]',
-          'lg:text-[24px] lg:leading-[36px] lg:max-w-[580px]',
-        )}
-      >
-        {data.description}
-      </p>
+      <div className={clsx('opacity-75')}>
+        <p
+          ref={descriptionRef}
+          style={{
+            color: theme.copy,
+          }}
+          className={clsx(
+            'text-[16px] leading-[24px] text-center font-codec-news mt-[13px] elementAnimation',
+            'lg:text-[24px] lg:leading-[36px] lg:max-w-[580px]',
+          )}
+        >
+          {data.description}
+        </p>
+      </div>
       <PageLink data={data.cta}>
         <button
+          ref={ctaRef}
           style={{ backgroundColor: theme.ctaBackground }}
           className={clsx(
-            'mt-[21px] px-[20px] py-[10.5px] rounded-full flex items-center gap-x-[6px]',
+            'mt-[21px] px-[20px] py-[10.5px] rounded-full flex items-center gap-x-[6px] elementAnimation',
           )}
         >
           <span

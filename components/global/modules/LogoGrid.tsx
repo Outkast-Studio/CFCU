@@ -39,6 +39,7 @@ const LogoGrid = ({ data }: { data: LogoGridType }) => {
       <div>
         {data?.logoGroups?.map((group, index) => (
           <div
+            key={index}
             className={clsx(group?.logoGroupTitle ? 'mt-[0px]' : 'mt-[24px]')}
           >
             {group?.logoGroupTitle && (

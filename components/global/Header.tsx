@@ -10,6 +10,7 @@ const Header = () => {
     if (isMenuOpen) document.body.style.overflow = 'hidden'
     else document.body.style.overflow = 'auto'
   }, [isMenuOpen])
+
   return (
     <>
       {/* Todo move this to a hero component: */}
@@ -58,30 +59,66 @@ const Header = () => {
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
             className={clsx(
-              'bg-orange w-[48px] h-[48px] flex items-center justify-center rounded-full',
+              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-colors duration-300 ease-linear',
               'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px]',
+              isMenuOpen ? 'bg-white' : 'bg-orange',
             )}
           >
-            <span className={clsx('hidden', 'lg:inline-block')}>
-              {isMenuOpen ? 'Close' : 'Menu'}
-            </span>
-            <div className={clsx('w-[18px] flex flex-col gap-y-[5px]')}>
+            <div className={clsx('hidden', 'lg:block h-[23px]')}>
               <span
-                className={clsx('w-full h-[1px] rounded-full bg-purple')}
+                className={clsx(
+                  'flex flex-col transition-transform duration-[0.4s] ease-in-out text-lavender',
+                  isMenuOpen ? 'translate-y-[-24px]' : 'translate-y-[0px]',
+                )}
+              >
+                <span
+                  className={clsx(
+                    isMenuOpen ? 'opacity-0' : 'opacity-100',
+                    'transition-opacity linear duration-200',
+                  )}
+                >
+                  Menu
+                </span>
+                <span
+                  className={clsx(
+                    !isMenuOpen ? 'opacity-0' : 'opacity-100',
+                    'transition-opacity linear duration-200',
+                  )}
+                >
+                  Close
+                </span>
+              </span>
+            </div>
+            <div
+              className={clsx('w-[18px] flex flex-col gap-y-[5px] relative')}
+            >
+              <span
+                className={clsx(
+                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out',
+                  isMenuOpen
+                    ? 'rotate-45 translate-y-[0px]'
+                    : 'rotate-0 translate-y-[5px]',
+                )}
               ></span>
               <span
-                className={clsx('w-full h-[1px] rounded-full  bg-purple')}
+                className={clsx(
+                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 linear',
+                  isMenuOpen ? 'opacity-0' : 'opacity-100',
+                )}
               ></span>
               <span
-                className={clsx('w-full h-[1px] rounded-full  bg-purple')}
+                className={clsx(
+                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out',
+                  isMenuOpen
+                    ? '-rotate-45 translate-y-[0px]'
+                    : 'rotate-0 translate-y-[-5px]',
+                )}
               ></span>
             </div>
           </button>
         </div>
       </header>
-      <AnimatePresence mode="wait">
-        {isMenuOpen && <Menu key={'Menu'} />}
-      </AnimatePresence>
+      <Menu key={'Menu'} menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
     </>
   )
 }
