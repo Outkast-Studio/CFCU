@@ -15,16 +15,14 @@ import Tabs from './Tabs'
 import ColumnSplit from './columnSplit'
 import LogoGrid from './LogoGrid'
 import QuickExit from './QuickExit'
-import SubpageLinkList from '../ui/SubpageLinkList'
+import RateTable from './RateTable'
 
 const ModuleFactory = ({ modules }) => {
-  if (modules.length === 0) return null
-
-  const siteAlerts = modules.filter((module) => module?._type === 'siteAlert')
-  const otherModules = modules.filter((module) => module?._type !== 'siteAlert')
+  const siteAlerts = modules.filter((module) => module._type === 'siteAlert')
+  const otherModules = modules.filter((module) => module._type !== 'siteAlert')
 
   const renderModule = (module) => {
-    switch (module?._type) {
+    switch (module._type) {
       case 'ctaInContent':
         return <CTAInContent data={module} />
       case 'ctaTopicRow':
@@ -41,6 +39,8 @@ const ModuleFactory = ({ modules }) => {
         return <GetInspired data={module} />
       case 'textCardGrid':
         return <TextCardGrid data={module} />
+      case 'subPageHero':
+        return <SubPageHero data={module} />
       case 'relatedStories':
         return <RelatedStories data={module} />
       case 'accordion':
@@ -55,6 +55,8 @@ const ModuleFactory = ({ modules }) => {
         return <LogoGrid data={module} />
       case 'quickExit':
         return <QuickExit data={module} />
+      case 'rateTable':
+        return <RateTable data={module} />
       default:
         return null
     }

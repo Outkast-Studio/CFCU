@@ -1,0 +1,79 @@
+import { readToken } from 'lib/sanity.api'
+import {
+  getGlobalSettings,
+  getClient,
+  getRatePageBySlug,
+  getAllRatePageSlugs,
+} from 'lib/sanity.client'
+import { GetStaticProps } from 'next'
+import type { SharedPageProps, Seo } from 'pages/_app'
+import { QueryParams } from 'next-sanity'
+import { useLiveQuery } from 'next-sanity/preview'
+import { Layout } from 'components/layouts/Layout'
+import { RatePageType } from 'types/sanity'
+import { ratePageBySlugQuery } from 'lib/sanity.queries'
+import RatePageComponent from 'components/pages/RatePage'
+interface PageProps extends SharedPageProps {
+  ratePage: RatePageType
+  globalSettings: GlobalSettings
+  params: QueryParams
+  seo: Seo
+}
+
+interface Query {
+  [key: string]: string
+}
+
+export default function ProjectSlugRoute(props: PageProps) {
+  const [data] = useLiveQuery<RatePageType>(
+    props.ratePage,
+    ratePageBySlugQuery,
+    props.params,
+  )
+  return (
+    <Layout seo={props.seo}>
+      <RatePageComponent data={data} />
+    </Layout>
+  )
+}
+
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { draftMode = false, params = {} } = ctx
+  const client = getClient(draftMode ? { token: readToken } : undefined)
+
+  const [globalSettings, ratePage] = await Promise.all([
+    getGlobalSettings(client),
+    getRatePageBySlug(client, params.slug),
+  ])
+
+  if (!ratePage) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const seo = {
+    title: ratePage?.title || '',
+    description: ratePage?.metaDescription || '',
+    image: ratePage?.mainImage || '',
+    keywords: ratePage?.keywords || '',
+  }
+  return {
+    props: {
+      ratePage,
+      params,
+      globalSettings,
+      draftMode,
+      seo,
+      token: draftMode ? readToken : '',
+    },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const slugs = await getAllRatePageSlugs()
+  return {
+    paths: slugs?.map(({ slug }) => `/rates/${slug}`) || [],
+    fallback: 'blocking',
+  }
+}

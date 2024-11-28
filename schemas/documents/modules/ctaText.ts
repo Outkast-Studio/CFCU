@@ -3,7 +3,7 @@ import { defineField } from 'sanity'
 export default defineField({
   name: 'ctaText',
   title: 'CTA Text',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'theme',
@@ -34,9 +34,14 @@ export default defineField({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: 'title',
+      subtitle: 'subtitle',
+    },
+    prepare({ title }) {
       return {
         title: 'CTA Text',
+        subtitle: title,
       }
     },
   },

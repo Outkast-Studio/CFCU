@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 export default defineType({
   name: 'relatedStories',
   title: 'Related Stories',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'title',
@@ -47,6 +47,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title: 'Related Stories',
+        subtitle: title,
       }
     },
   },

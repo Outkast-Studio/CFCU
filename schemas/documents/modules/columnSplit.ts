@@ -1,48 +1,37 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'tabs',
-  title: 'Tabs',
-  type: 'object',
+  name: 'columnSplit',
+  title: 'Column Split',
+  type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
-      description: 'Main heading for the tabs section',
+      description: 'Main heading for the column split section',
     }),
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      description: 'Optional subtitle text',
+      description: 'Optional subtitle for the column split section',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
-      description: 'Main description text below the title',
+      description: 'Optional description text for the column split section',
     }),
     defineField({
-      name: 'tabs',
-      title: 'Tabs',
+      name: 'columns',
+      title: 'Columns',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'icon',
-              title: 'Icon',
-              type: 'image',
-            }),
             defineField({
               name: 'content',
               title: 'Content',
@@ -50,19 +39,30 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {},
+            prepare(selection) {
+              return {
+                title: 'Content column',
+              }
+            },
+          },
         },
       ],
-      validation: (Rule) => Rule.required().max(5),
-      description: 'Add up to 5 tab items',
+
+      validation: (Rule) => Rule.required().min(2).max(5),
+      description: 'Add between 2 and 5 columns',
     }),
   ],
   preview: {
     select: {
       title: 'title',
+      subtitle: 'subtitle',
     },
-    prepare({ title }) {
+    prepare({ title, subtitle }) {
       return {
-        title: 'Tabs Section',
+        title: 'Column Split',
+        subtitle: title,
       }
     },
   },

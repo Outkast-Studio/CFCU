@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity'
 
 export const modulesFragment = groq`
-  "modules": modules[]{
+  "modules": modules[]->{
     ...,
     _type == "ctaText" => {
       ...,
@@ -130,5 +130,11 @@ export const modulesFragment = groq`
         }
       }
     },
+  }
+`
+
+export const ratesModulesFragment = groq`
+  "modules": modules[]->{
+    ...,
   }
 `

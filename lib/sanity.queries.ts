@@ -1,5 +1,5 @@
 import { groq } from 'next-sanity'
-import { modulesFragment } from 'lib/sanity.modules'
+import { modulesFragment, ratesModulesFragment } from 'lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
   navigation{
@@ -75,6 +75,9 @@ export const dynamicPageSlugsQuery = groq`
 export const subPageBySlugQuery = groq`
 *[_type == "subPage" && slug.current == $slug][0]{
   ...,
+  childrenPages[]->{
+    ...,
+  },
   ${modulesFragment}
 }`
 
@@ -122,3 +125,14 @@ export const testModulesQuery = groq`
   ...,
   ${modulesFragment}
 }`
+
+export const ratePageBySlugQuery = groq`
+*[_type == "rates" && slug.current == $slug][0]{
+  ...,
+  ${ratesModulesFragment}
+}
+`
+
+export const ratePageSlugsQuery = groq`
+*[_type == "rates" && defined(slug.current)][].slug.current
+`

@@ -13,6 +13,8 @@ import {
   subPageBySlugQuery,
   postBySlugQuery,
   testModulesQuery,
+  ratePageBySlugQuery,
+  ratePageSlugsQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -70,4 +72,14 @@ export async function getSubPageBySlug(client: SanityClient, slug: string) {
 
 export async function getPostBySlug(client: SanityClient, slug: string) {
   return (await client.fetch(postBySlugQuery, { slug })) || ({} as any)
+}
+
+export async function getRatePageBySlug(client: SanityClient, slug: string) {
+  return (await client.fetch(ratePageBySlugQuery, { slug })) || ({} as any)
+}
+
+export async function getAllRatePageSlugs() {
+  const client = getClient()
+  const slugs = (await client.fetch<string[]>(ratePageSlugsQuery)) || []
+  return slugs.map((slug) => ({ slug }))
 }

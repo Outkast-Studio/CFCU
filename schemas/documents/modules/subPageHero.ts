@@ -50,8 +50,8 @@ export default defineType({
     },
     prepare({ title, subtitle, media }) {
       return {
-        title: title || 'Untitled Sub Page Hero',
-        subtitle: subtitle,
+        title: 'Sub Page Hero',
+        subtitle: title,
         media: media,
       }
     },

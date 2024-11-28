@@ -25,6 +25,7 @@ interface PageProps extends SharedPageProps {
   pageType: 'subPage' | 'post'
   params: QueryParams
   seo: Seo
+  childrenPages?: SubPageType[]
 }
 
 export default function DynamicPage(props: PageProps) {
@@ -55,34 +56,49 @@ export default function DynamicPage(props: PageProps) {
     case 'post':
       return <PostPage data={data as PostPageType} />
     case 'subPage':
-      return <SubPage data={data as SubPageType} />
+      return (
+        <SubPage
+          data={data as SubPageType}
+          childrenPages={props.childrenPages}
+        />
+      )
     default:
       return <></>
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = params?.slug as string
+  const slug = params?.slug as string[]
   const client = getClient()
   const globalSettings = await getGlobalSettings(client)
+  console.log(params)
   // First, fetch the page type based on the slug
   const pageType = await client.fetch(
     `
       *[slug.current == $slug][0]._type
     `,
-    { slug },
+    { slug: slug.join('/') },
   )
   if (!pageType) {
     return { notFound: true }
   }
+  //
+
+  let childrenPages = []
 
   let pageData
   switch (pageType) {
     case 'subPage':
-      pageData = await getSubPageBySlug(client, slug)
+      pageData = await getSubPageBySlug(client, slug.join('/'))
+      childrenPages = await client.fetch(
+        `
+        *[_type == "subPage" && parent->slug.current == $slug]
+      `,
+        { slug: slug.join('/') },
+      )
       break
     case 'post':
-      pageData = await getPostBySlug(client, slug)
+      pageData = await getPostBySlug(client, slug.join('/'))
       break
     // Add more cases for other page types
     default:
@@ -97,7 +113,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       pageData,
       pageType,
-      globalSettings, // Include the page type in the props
+      globalSettings,
+      childrenPages, // Include the page type in the props
     },
   }
 }
@@ -109,8 +126,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     *[_type in ["subPage", "post"]].slug.current
   `)
 
+  console.log(paths)
   return {
-    paths: paths.map((slug: string) => ({ params: { slug } })),
+    paths: paths.map((slug: string) => ({
+      params: { slug: slug.split('/') },
+    })),
     fallback: 'blocking', // or false if you want to show a 404 for non-existent slugs
   }
 }

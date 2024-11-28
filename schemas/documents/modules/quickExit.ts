@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 export default defineType({
   name: 'quickExit',
   title: 'Quick Exit',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'exitUrl',

@@ -3,7 +3,7 @@ import { defineField, defineArrayMember } from 'sanity'
 export default defineField({
   name: 'getInspired',
   title: 'Get Inspired',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'title',
@@ -44,9 +44,13 @@ export default defineField({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: 'title',
+    },
+    prepare({ title }) {
       return {
         title: 'Get Inspired',
+        subtitle: title,
       }
     },
   },

@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 export default defineType({
   name: 'accordion',
   title: 'Accordion',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'title',
@@ -59,6 +59,7 @@ export default defineType({
     prepare({ title }) {
       return {
         title: 'Accordion',
+        subtitle: title,
       }
     },
   },

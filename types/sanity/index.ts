@@ -194,6 +194,15 @@ export interface CtaFullMediaType {
   }
 }
 
+export interface RateTableType {
+  title: string
+  columns: Array<{
+    columnTitle: string
+    columnValues: string[]
+  }>
+  _updatedAt: string
+  tableNotes?: PortableTextBlock[]
+}
 export interface SubPageHeroType {
   title: string
   subtitle: string
@@ -409,6 +418,8 @@ export interface SubPageType {
   slug: {
     current: string
   }
+  pageHero: SubPageHeroType
+  parent?: SubPageType
   modules: Modules
   metaTitle?: string
   metaDescription?: string
@@ -419,5 +430,9 @@ export interface SubPageType {
 }
 
 export interface TestModulesType {
+  modules: Modules
+}
+
+export interface RatePageType {
   modules: Modules
 }

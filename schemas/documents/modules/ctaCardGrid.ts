@@ -3,7 +3,7 @@ import { defineField, defineArrayMember } from 'sanity'
 export default defineField({
   name: 'ctaCardGrid',
   title: 'CTA Card Grid',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'subTitle',
@@ -64,9 +64,13 @@ export default defineField({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: 'title',
+    },
+    prepare({ title }) {
       return {
         title: 'CTA Card Grid',
+        subtitle: title,
       }
     },
   },

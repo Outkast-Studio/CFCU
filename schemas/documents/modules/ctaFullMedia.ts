@@ -3,7 +3,7 @@ import { defineField, defineArrayMember } from 'sanity'
 export default defineField({
   name: 'ctaFullMedia',
   title: 'CTA Full Media',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'theme',
@@ -96,9 +96,13 @@ export default defineField({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: 'lowerContent.title',
+    },
+    prepare({ title }) {
       return {
         title: 'CTA Full Media',
+        subtitle: title,
       }
     },
   },

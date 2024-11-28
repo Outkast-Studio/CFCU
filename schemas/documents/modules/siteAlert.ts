@@ -3,7 +3,7 @@ import { defineField, defineType } from 'sanity'
 export default defineType({
   name: 'siteAlert',
   title: 'Site Alert',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'tabName',
@@ -28,7 +28,7 @@ export default defineType({
     prepare({ title, content }) {
       return {
         title: 'Site Alert',
-        subtitle: 'Alert Banner',
+        subtitle: title,
       }
     },
   },

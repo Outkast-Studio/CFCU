@@ -1,68 +1,67 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'columnSplit',
-  title: 'Column Split',
-  type: 'object',
+  name: 'textCardGrid',
+  title: 'Text Card Grid',
+  type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
-      description: 'Main heading for the column split section',
     }),
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      description: 'Optional subtitle for the column split section',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
-      description: 'Optional description text for the column split section',
     }),
     defineField({
-      name: 'columns',
-      title: 'Columns',
+      name: 'cards',
+      title: 'Cards',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
             defineField({
-              name: 'content',
-              title: 'Content',
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
               type: 'blockContent',
               validation: (Rule) => Rule.required(),
             }),
+            defineField({
+              name: 'pageLink',
+              title: 'Page Link',
+              type: 'pageLink',
+              validation: (Rule) => Rule.required(),
+            }),
           ],
-          preview: {
-            select: {},
-            prepare(selection) {
-              return {
-                title: 'Content column',
-              }
-            },
-          },
         },
       ],
-
-      validation: (Rule) => Rule.required().min(2).max(5),
-      description: 'Add between 2 and 5 columns',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'subtitle',
     },
-    prepare({ title, subtitle }) {
+    prepare(selection) {
       return {
-        title: 'Column Split',
-        subtitle: subtitle,
+        title: 'Text Card Grid',
+        subtitle: selection.title,
       }
     },
   },

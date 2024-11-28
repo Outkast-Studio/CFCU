@@ -1,30 +1,32 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'textCardGrid',
-  title: 'Text Card Grid',
-  type: 'object',
+  name: 'tabs',
+  title: 'Tabs',
+  type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      description: 'Main heading for the tabs section',
     }),
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description: 'Optional subtitle text',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
+      description: 'Main description text below the title',
     }),
     defineField({
-      name: 'cards',
-      title: 'Cards',
+      name: 'tabs',
+      title: 'Tabs',
       type: 'array',
       of: [
         {
@@ -37,30 +39,31 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
-              name: 'description',
-              title: 'Description',
-              type: 'blockContent',
-              validation: (Rule) => Rule.required(),
+              name: 'icon',
+              title: 'Icon',
+              type: 'image',
             }),
             defineField({
-              name: 'pageLink',
-              title: 'Page Link',
-              type: 'pageLink',
+              name: 'content',
+              title: 'Content',
+              type: 'blockContent',
               validation: (Rule) => Rule.required(),
             }),
           ],
         },
       ],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => Rule.required().max(5),
+      description: 'Add up to 5 tab items',
     }),
   ],
   preview: {
     select: {
       title: 'title',
     },
-    prepare(selection) {
+    prepare({ title }) {
       return {
-        title: 'Text Card Grid',
+        title: 'Tabs Section',
+        subtitle: title,
       }
     },
   },

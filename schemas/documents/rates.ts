@@ -1,6 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { Table } from '@phosphor-icons/react'
-import { modules } from 'schemas/schemaTypes/modules'
+import { modules } from 'schemas/schemaTypes/ratesModules'
 
 export default defineType({
   name: 'rates',
@@ -25,6 +25,8 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description:
+        'The slug stucture for this rate table will be /rates/[slug]',
       options: {
         source: 'title',
         maxLength: 96,

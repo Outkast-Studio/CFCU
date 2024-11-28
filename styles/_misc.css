@@ -53,3 +53,7 @@ body {
     height: 92.83px;
   }
 }
+
+.rateTableBlock a {
+  text-decoration: underline;
+}

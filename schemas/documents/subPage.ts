@@ -8,6 +8,7 @@ export default defineType({
   icon: Browser as any,
   type: 'document',
   groups: [
+    { name: 'hero', title: 'Hero' },
     { name: 'modules', title: 'Modules' },
     {
       name: 'seo',
@@ -30,6 +31,19 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'parent',
+      title: 'Parent Sub Page',
+      type: 'reference',
+      to: [{ type: 'subPage' }],
+    }),
+    defineField({
+      name: 'pageHero',
+      title: 'Page Hero',
+      type: 'subPageHero',
+      group: 'hero',
       validation: (Rule) => Rule.required(),
     }),
     modules,

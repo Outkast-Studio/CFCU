@@ -2,7 +2,7 @@ import { defineField } from 'sanity'
 export default defineField({
   name: 'ctaInContent',
   title: 'CTA-In Content',
-  type: 'object',
+  type: 'document',
   fields: [
     defineField({
       name: 'theme',
@@ -89,9 +89,13 @@ export default defineField({
     }),
   ],
   preview: {
+    select: {
+      title: 'ctaCard.title',
+    },
     prepare(selection) {
       return {
         title: 'CTA-In-Content',
+        subtitle: selection.title,
       }
     },
   },
