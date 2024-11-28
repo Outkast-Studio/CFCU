@@ -1,7 +1,7 @@
 import { ColumnSplitType } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import PortableTextComponents from 'lib/portabletTextComponents'
+import { PortableTextComponents } from 'lib/portabletTextComponents'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   console.log(data)

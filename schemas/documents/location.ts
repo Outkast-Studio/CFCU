@@ -1,13 +1,118 @@
 import { defineField, defineType, validation } from 'sanity'
 import { GlobeHemisphereWest } from '@phosphor-icons/react'
+import { modules } from 'schemas/schemaTypes/modules'
 
 export default defineType({
   name: 'location',
   title: 'Location',
   icon: GlobeHemisphereWest as any,
   type: 'document',
-  groups: [{ name: 'seo', title: 'SEO' }],
+  groups: [
+    { name: 'locationSettings', title: 'Location Settings' },
+    { name: 'modules', title: 'Modules' },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'The title of the location',
+      group: 'locationSettings',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'coordinates',
+      title: 'Coordinates',
+      type: 'object',
+      group: 'locationSettings',
+      description: 'The coordinates of the location for the interactive map.',
+      fields: [
+        defineField({
+          name: 'latitude',
+          title: 'Latitude',
+          type: 'number',
+          validation: (Rule: any) => Rule.required(),
+        }),
+        defineField({
+          name: 'longitude',
+          title: 'Longitude',
+          type: 'number',
+          validation: (Rule: any) => Rule.required(),
+        }),
+      ],
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'thumbnailImage',
+      title: 'Thumbnail Image',
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description:
+            "Describe what's in the image for screen readers and search engines.",
+          validation: (Rule: any) => Rule.required(),
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+      group: 'locationSettings',
+    }),
+
+    defineField({
+      name: 'address',
+      title: 'Address',
+      type: 'string',
+      group: 'locationSettings',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'phoneNumber',
+      title: 'Phone Number',
+      type: 'string',
+      group: 'locationSettings',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'faxNumber',
+      title: 'Fax Number',
+      type: 'string',
+      group: 'locationSettings',
+    }),
+    defineField({
+      name: 'mailingAddress',
+      title: 'Mailing Address',
+      type: 'string',
+      group: 'locationSettings',
+    }),
+    defineField({
+      name: 'services',
+      title: 'Services',
+      type: 'array',
+      of: [{ type: 'string' }],
+      group: 'locationSettings',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'appointmentLink',
+      title: 'Appointment Link',
+      type: 'pageLink',
+      group: 'locationSettings',
+    }),
+    modules,
     defineField({
       name: 'metaTitle',
       title: 'Meta Title',

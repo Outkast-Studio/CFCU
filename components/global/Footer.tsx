@@ -4,8 +4,10 @@ import Image from 'next/image'
 import LogoFull from '/public/icons/LogoFull.png'
 import { urlForImage } from 'lib/sanity.image'
 import PageLink from './ui/PageLink'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 
-const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
+const Footer = () => {
+  const data = useGlobalSettingsStore((state) => state.globalSettings.footer)
   return (
     <div className={clsx('bg-lavender ', 'lg:pt-[36px]')}>
       <footer
@@ -29,7 +31,7 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
                 'lg:mt-[46px] lg:gap-x-[17px]',
               )}
             >
-              {data.socials.map((social, index) => (
+              {data?.socials.map((social, index) => (
                 <a key={index} href={social.url} className={clsx()}>
                   <Image
                     src={urlForImage(social.icon).quality(100).url()}
@@ -57,7 +59,7 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
               Company
             </h5>
             <div className={clsx('flex flex-col gap-y-[18px]')}>
-              {data.companyLinks.map((link, index) => (
+              {data?.companyLinks.map((link, index) => (
                 <PageLink
                   key={index}
                   data={link}
@@ -84,7 +86,7 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
               Resources
             </h5>
             <div className={clsx('flex flex-col gap-y-[18px]')}>
-              {data.resourceLinks.map((link, index) => (
+              {data?.resourceLinks.map((link, index) => (
                 <PageLink
                   key={index}
                   data={link}
@@ -117,7 +119,7 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
                   'font-codec-bold text-[18px] leading-[16.2px] text-white',
                 )}
               >
-                {data.routingNumber}
+                {data?.routingNumber}
               </span>
               <svg
                 width="24"
@@ -145,7 +147,7 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
               'lg:border-t-[0px] lg:gap-x-[36px] lg:w-fit lg:pt-[0px] lg:mt-[0px]',
             )}
           >
-            {data.lowerFooterIcons.map((icon, index) => (
+            {data?.lowerFooterIcons.map((icon, index) => (
               <Image
                 key={index}
                 src={urlForImage(icon.icon).quality(100).url()}
@@ -163,7 +165,7 @@ const Footer = ({ data }: { data: GlobalSettingsType['footer'] }) => {
               'lg:mt-[0px]',
             )}
           >
-            {data.lowerFooterMessage}
+            {data?.lowerFooterMessage}
           </p>
         </div>
       </footer>

@@ -1,7 +1,7 @@
 import { GetInspiredType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import PortableTextComponents from 'lib/portabletTextComponents'
+import { PortableTextComponents } from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
 import { PostPageType } from 'types/sanity'
 import Link from 'next/link'

@@ -5,7 +5,7 @@ import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { useState } from 'react'
-import PortableTextComponents from 'lib/portabletTextComponents'
+import { PortableTextComponents } from 'lib/portabletTextComponents'
 const Tabs = ({ data }: { data: TabsType }) => {
   const [activeTab, setActiveTab] = useState(0)
 

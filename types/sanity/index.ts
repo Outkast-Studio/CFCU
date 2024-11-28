@@ -278,6 +278,38 @@ export interface GlobalAlertType {
   }
 }
 
+export interface WysiwygType {
+  content: PortableTextBlock[]
+}
+
+import { defineField, defineType } from 'sanity'
+
+export default defineType({
+  name: 'wysiwyg',
+  title: 'WYSIWYG',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'content',
+      title: 'Content',
+      type: 'blockContent',
+      validation: (Rule) => Rule.required(),
+      description: 'Rich text content for this section',
+    }),
+  ],
+  preview: {
+    select: {
+      content: 'content',
+    },
+    prepare({ content }) {
+      return {
+        title: 'WYSIWYG Content',
+        subtitle: 'Rich Text Section',
+      }
+    },
+  },
+})
+
 //Singleton Types --------------------------------------------------------------------------
 export interface GlobalSettingsType {
   navigation: {
@@ -400,6 +432,12 @@ export interface HomepageType {
   ctaText: CtaTextType
 }
 
+export interface LocationHomepageType {
+  title: string
+  subtitle: string
+  modules: Modules
+}
+
 // Document types ------------------------------------------------
 
 export interface PostPageType {
@@ -436,5 +474,30 @@ export interface TestModulesType {
 }
 
 export interface RatePageType {
+  modules: Modules
+}
+
+export interface LocationPage {
+  title: string
+  slug: {
+    current: string
+  }
+  coordinates: {
+    latitude: number
+    longitude: number
+  }
+  thumbnailImage: ImageAsset
+  address: string
+  phoneNumber: string
+  faxNumber?: string
+  mailingAddress?: string
+  services: string[]
+  appointmentLink: PageLinkType
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: {
+    asset: ImageAsset
+    alt: string
+  }
   modules: Modules
 }

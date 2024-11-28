@@ -1,5 +1,6 @@
 import { CustomHead } from './CustomHead'
 import { clsx } from 'clsx'
+import Footer from 'components/global/Footer'
 export function Layout({
   children,
   seo = {
@@ -13,6 +14,7 @@ export function Layout({
     <div className={clsx('')}>
       <CustomHead {...seo} />
       {children}
+      <Footer />
     </div>
   )
 }

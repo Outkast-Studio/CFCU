@@ -71,6 +71,7 @@ export const settingsStructure = (
       'quickExit',
       'post',
       'rateTable',
+      'wysiwyg',
     ]
 
     const globalSettingsListItem = S.listItem()

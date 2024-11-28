@@ -15,7 +15,7 @@ import Tabs from './Tabs'
 import ColumnSplit from './columnSplit'
 import ImageGrid from './ImageGrid'
 import QuickExit from './QuickExit'
-import SubpageLinkList from '../ui/SubpageLinkList'
+import Wysiwyg from './wysiwyg'
 
 const ModuleFactory = ({ modules }) => {
   if (modules.length === 0) return null
@@ -55,6 +55,8 @@ const ModuleFactory = ({ modules }) => {
         return <ImageGrid data={module} />
       case 'quickExit':
         return <QuickExit data={module} />
+      case 'wysiwyg':
+        return <Wysiwyg data={module} />
       default:
         return null
     }

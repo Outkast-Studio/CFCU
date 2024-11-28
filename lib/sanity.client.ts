@@ -15,6 +15,10 @@ import {
   testModulesQuery,
   ratePageBySlugQuery,
   ratePageSlugsQuery,
+  locationBySlugQuery,
+  locationSlugsQuery,
+  locationsQuery,
+  locationHomepageQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -82,4 +86,22 @@ export async function getAllRatePageSlugs() {
   const client = getClient()
   const slugs = (await client.fetch<string[]>(ratePageSlugsQuery)) || []
   return slugs.map((slug) => ({ slug }))
+}
+
+export async function getLocationBySlug(client: SanityClient, slug: string) {
+  return (await client.fetch(locationBySlugQuery, { slug })) || ({} as any)
+}
+
+export async function getAllLocationSlugs() {
+  const client = getClient()
+  const slugs = (await client.fetch<string[]>(locationSlugsQuery)) || []
+  return slugs.map((slug) => ({ slug }))
+}
+
+export async function getAllLocations(client: SanityClient) {
+  return (await client.fetch(locationsQuery)) || []
+}
+
+export async function getLocationHomepage(client: SanityClient) {
+  return (await client.fetch(locationHomepageQuery)) || {}
 }

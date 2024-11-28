@@ -4,18 +4,20 @@ import {
   getClient,
   getRatePageBySlug,
   getAllRatePageSlugs,
+  getAllLocationSlugs,
+  getLocationBySlug,
 } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
 import type { SharedPageProps, Seo } from 'pages/_app'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
 import { Layout } from 'components/layouts/Layout'
-import { RatePageType, GlobalSettingsType } from 'types/sanity'
-import { ratePageBySlugQuery } from 'lib/sanity.queries'
-import RatePageComponent from 'components/pages/RatePage'
+import { LocationPage, GlobalSettingsType } from 'types/sanity'
+import { locationBySlugQuery } from 'lib/sanity.queries'
 
+import LocationPageComponent from 'components/pages/LocationPage'
 interface PageProps extends SharedPageProps {
-  ratePage: RatePageType
+  locationPage: LocationPage
   globalSettings: GlobalSettingsType
   params: QueryParams
   seo: Seo
@@ -26,14 +28,14 @@ interface Query {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  const [data] = useLiveQuery<RatePageType>(
-    props.ratePage,
-    ratePageBySlugQuery,
+  const [data] = useLiveQuery<LocationPage>(
+    props.locationPage,
+    locationBySlugQuery,
     props.params,
   )
   return (
     <Layout seo={props.seo}>
-      <RatePageComponent data={data} />
+      <LocationPageComponent data={data} />
     </Layout>
   )
 }
@@ -42,26 +44,26 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const [globalSettings, ratePage] = await Promise.all([
+  const [globalSettings, locationPage] = await Promise.all([
     getGlobalSettings(client),
-    getRatePageBySlug(client, params.slug),
+    getLocationBySlug(client, params.slug),
   ])
 
-  if (!ratePage) {
+  if (!locationPage) {
     return {
       notFound: true,
     }
   }
 
   const seo = {
-    title: ratePage?.title || '',
-    description: ratePage?.metaDescription || '',
-    image: ratePage?.mainImage || '',
-    keywords: ratePage?.keywords || '',
+    title: locationPage?.title || '',
+    description: locationPage?.metaDescription || '',
+    image: locationPage?.mainImage || '',
+    keywords: locationPage?.keywords || '',
   }
   return {
     props: {
-      ratePage,
+      locationPage,
       params,
       globalSettings,
       draftMode,
@@ -72,9 +74,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
-  const slugs = await getAllRatePageSlugs()
+  const slugs = await getAllLocationSlugs()
   return {
-    paths: slugs?.map(({ slug }) => `/rates/${slug}`) || [],
+    paths: slugs?.map(({ slug }) => `/locations/${slug}`) || [],
     fallback: 'blocking',
   }
 }

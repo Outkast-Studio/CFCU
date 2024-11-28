@@ -22,6 +22,7 @@ import columnSplit from '../documents/modules/columnSplit'
 import imageGrid from '../documents/modules/imageGrid'
 import quickExit from '../documents/modules/quickExit'
 import rateTable from '../documents/modules/rateTable'
+import wysiwyg from '../documents/modules/wysiwyg'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -48,5 +49,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     imageGrid,
     quickExit,
     rateTable,
+    wysiwyg,
   ],
 }

@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { PortableText } from '@portabletext/react'
-import PortableTextComponents from 'lib/portabletTextComponents'
+import { PortableTextComponents } from 'lib/portabletTextComponents'
 import CardLink from '../ui/CardLink'
 
 export default function CardGridCard({

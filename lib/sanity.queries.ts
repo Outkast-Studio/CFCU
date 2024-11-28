@@ -136,3 +136,24 @@ export const ratePageBySlugQuery = groq`
 export const ratePageSlugsQuery = groq`
 *[_type == "rates" && defined(slug.current)][].slug.current
 `
+
+export const locationBySlugQuery = groq`
+*[_type == "location" && slug.current == $slug][0]{
+  ...,
+  ${modulesFragment}
+}`
+
+export const locationSlugsQuery = groq`
+*[_type == "location" && defined(slug.current)][].slug.current
+`
+
+export const locationsQuery = groq`
+*[_type == "location"]{
+  ...,
+  ${modulesFragment}
+}`
+
+export const locationHomepageQuery = groq`*[_type == "locationHomePage"][0]{
+  ...,
+  ${modulesFragment}
+}`

@@ -1,0 +1,23 @@
+import { WysiwygType } from 'types/sanity'
+import { clsx } from 'clsx'
+import { PortableText } from '@portabletext/react'
+import { WysiwygComponents } from 'lib/portabletTextComponents'
+
+const Wysiwyg = ({ data }: { data: WysiwygType }) => {
+  console.log(data)
+  return (
+    <section
+      className={clsx(
+        'px-[24px] py-[44px] flex flex-col gap-y-[24px]',
+        'lg:pb-[41px] lg:pt-[105px]',
+      )}
+    >
+      <PortableText
+        value={data?.content}
+        components={WysiwygComponents as any}
+      />
+    </section>
+  )
+}
+
+export default Wysiwyg

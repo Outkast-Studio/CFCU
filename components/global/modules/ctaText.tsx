@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { getThemeClasses } from 'lib/themeConfig'
 
 import { PortableText } from '@portabletext/react'
-import PortableTextComponents from 'lib/portabletTextComponents'
+import { PortableTextComponents } from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
 

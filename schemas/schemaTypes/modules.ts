@@ -96,5 +96,11 @@ export const modules = defineField({
       title: 'Quick Exit',
       to: [{ type: 'quickExit', title: 'Quick Exit' }],
     },
+    {
+      type: 'reference',
+      name: 'wysiwyg',
+      title: 'WYSIWYG',
+      to: [{ type: 'wysiwyg', title: 'WYSIWYG' }],
+    },
   ],
 })

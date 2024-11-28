@@ -90,6 +90,12 @@ export default defineType({
           description: 'Important for SEO and accessiblity.',
           validation: (Rule) => Rule.required(),
         },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Optional caption for the image',
+        },
       ],
     },
   ],

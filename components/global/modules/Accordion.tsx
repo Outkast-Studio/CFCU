@@ -2,7 +2,7 @@ import { AccordionType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
-import PortableTextComponents from 'lib/portabletTextComponents'
+import { PortableTextComponents } from 'lib/portabletTextComponents'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (

@@ -15,6 +15,21 @@ export default defineType({
     },
   ],
   fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'The title in the hero section of the location home page.',
+      validation: (Rule: any) => Rule.required(),
+    }),
+    defineField({
+      name: 'subtitle',
+      title: 'subTitle',
+      type: 'string',
+      description:
+        'The subtitle in the hero section of the location home page.',
+      validation: (Rule: any) => Rule.required(),
+    }),
     modules,
     defineField({
       name: 'metaTitle',

@@ -20,7 +20,7 @@ export default function Page({
 
       <ModuleFactory modules={homepage?.modules} />
 
-      <Footer data={globalSettings.footer} />
+      {/* <Footer /> */}
     </main>
   )
 }
