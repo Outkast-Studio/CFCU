@@ -8,10 +8,16 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
   console.log(data)
   return (
     <section
-      className={clsx('h-[650px] relative', 'lg:min-h-[832px] lg:h-[80vh]')}
+      className={clsx(
+        'h-[650px] relative',
+
+        data?.needsBackgroundMedia
+          ? 'lg:min-h-[832px] lg:h-[80vh]'
+          : 'lg:min-h-[650px] lg:h-[70vh]',
+      )}
     >
       <div className={clsx('absolute h-full w-full')}>
-        {data?.backgroundMedia ? (
+        {data?.needsBackgroundMedia ? (
           <div
             className={clsx(
               'px-[10px] py-[12px] bg-lavender h-full',
@@ -62,7 +68,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
             'lg:gap-y-[19px] lg:pb-[71px]',
           )}
         >
-          <h1 className={clsx('w-h1 text-white', 'page-title-desktop')}>
+          <h1 className={clsx('w-h1 text-white', 'lg:page-title-desktop')}>
             {data?.title}
           </h1>
           <p

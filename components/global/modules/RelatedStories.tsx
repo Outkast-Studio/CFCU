@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PostPageType } from 'types/sanity'
 import { urlForImage } from 'lib/sanity.image'
+import { stegaClean } from '@sanity/client/stega'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
   console.log(data)
@@ -32,7 +33,14 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             {data.subTitle}
           </h2>
         )}
-        <h3 className={clsx('title-xl text-lavender ', 'lg:title-xl-desktop')}>
+        <h3
+          className={clsx(
+            'title-xl text-lavender ',
+            stegaClean(data?.headingVariant) === 'large'
+              ? 'lg:title-xl-desktop'
+              : 'lg:title-m-desktop lg:py-[20px]',
+          )}
+        >
           {data?.title}
         </h3>
         {data.description && (

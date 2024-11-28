@@ -86,9 +86,9 @@ export const modules = defineField({
     },
     {
       type: 'reference',
-      name: 'logoGrid',
-      title: 'Logo Grid',
-      to: [{ type: 'logoGrid', title: 'Logo Grid' }],
+      name: 'imageGrid',
+      title: 'Image Grid',
+      to: [{ type: 'imageGrid', title: 'Image Grid' }],
     },
     {
       type: 'reference',

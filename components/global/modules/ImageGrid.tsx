@@ -4,13 +4,15 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 
-const LogoGrid = ({ data }: { data: LogoGridType }) => {
+const ImageGrid = ({ data }: { data: LogoGridType }) => {
   console.log(data)
   return (
     <section
       className={clsx(
         'px-[24px] py-[66px]',
         'lg:px-[48px] lg:pt-[80px] lg:pb-[130px] lg:max-w-[1800px] lg:mx-auto',
+        data?.backgroundColor === 'lightGray' && 'bg-lightGrey',
+        data?.backgroundColor === 'white' && 'bg-white',
       )}
     >
       {data?.subtitle && (
@@ -94,4 +96,4 @@ const LogoGrid = ({ data }: { data: LogoGridType }) => {
   )
 }
 
-export default LogoGrid
+export default ImageGrid

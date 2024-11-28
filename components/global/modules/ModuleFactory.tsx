@@ -13,7 +13,7 @@ import Accordion from './Accordion'
 import SiteAlert from './siteAlert'
 import Tabs from './Tabs'
 import ColumnSplit from './columnSplit'
-import LogoGrid from './LogoGrid'
+import ImageGrid from './ImageGrid'
 import QuickExit from './QuickExit'
 import SubpageLinkList from '../ui/SubpageLinkList'
 
@@ -51,8 +51,8 @@ const ModuleFactory = ({ modules }) => {
         return <Tabs data={module} />
       case 'columnSplit':
         return <ColumnSplit data={module} />
-      case 'logoGrid':
-        return <LogoGrid data={module} />
+      case 'imageGrid':
+        return <ImageGrid data={module} />
       case 'quickExit':
         return <QuickExit data={module} />
       default:

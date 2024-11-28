@@ -67,7 +67,7 @@ export const settingsStructure = (
       'siteAlert',
       'tabs',
       'columnSplit',
-      'logoGrid',
+      'imageGrid',
       'quickExit',
       'post',
       'rateTable',

@@ -13,6 +13,22 @@ export default defineType({
       description: 'The main heading for the related stories section',
     }),
     defineField({
+      name: 'headingVariant',
+      title: 'Heading Variant',
+      type: 'string',
+      description: 'The variant of the heading',
+      initialValue: 'large',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Normal', value: 'normal' },
+          { title: 'Large', value: 'large' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+    }),
+    defineField({
       name: 'subTitle',
       title: 'Sub Title',
       type: 'string',

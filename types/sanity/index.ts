@@ -94,6 +94,7 @@ export interface LogoGridType {
   subtitle?: string
   description?: PortableTextBlock[]
   logoGroups: LogoGroup[]
+  backgroundColor: 'lightGray' | 'white'
 }
 
 export interface CtaCardGridHomeType {
@@ -229,6 +230,7 @@ export interface RelatedStoriesType {
   description?: PortableTextBlock[]
   pageLink: PageLinkType
   posts: PostPageType[]
+  headingVariant: 'normal' | 'large'
 }
 
 export interface AccordionItem {

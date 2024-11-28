@@ -19,7 +19,7 @@ import accordion from '../documents/modules/accordion'
 import siteAlert from '../documents/modules/siteAlert'
 import tabs from '../documents/modules/tabs'
 import columnSplit from '../documents/modules/columnSplit'
-import logoGrid from '../documents/modules/logoGrid'
+import imageGrid from '../documents/modules/imageGrid'
 import quickExit from '../documents/modules/quickExit'
 import rateTable from '../documents/modules/rateTable'
 
@@ -45,7 +45,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     siteAlert,
     tabs,
     columnSplit,
-    logoGrid,
+    imageGrid,
     quickExit,
     rateTable,
   ],

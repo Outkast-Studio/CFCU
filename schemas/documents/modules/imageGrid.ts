@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'logoGrid',
-  title: 'Logo Grid',
+  name: 'imageGrid',
+  title: 'Image Grid',
   type: 'document',
   fields: [
     defineField({
@@ -23,6 +23,22 @@ export default defineType({
       title: 'Description',
       type: 'blockContent',
       description: 'Optional description text for the logo grid section',
+    }),
+    defineField({
+      name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'string',
+      description: 'The background color of the section.',
+      initialValue: 'lightGray',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Light Gray', value: 'lightGray' },
+          { title: 'White', value: 'white' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
     }),
     defineField({
       name: 'logoGroups',
@@ -114,7 +130,7 @@ export default defineType({
     },
     prepare({ title, subtitle }) {
       return {
-        title: 'Logo Grid',
+        title: 'Image Grid',
         subtitle: subtitle,
       }
     },

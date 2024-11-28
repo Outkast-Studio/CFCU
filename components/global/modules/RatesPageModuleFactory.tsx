@@ -13,7 +13,7 @@ import Accordion from './Accordion'
 import SiteAlert from './siteAlert'
 import Tabs from './Tabs'
 import ColumnSplit from './columnSplit'
-import LogoGrid from './LogoGrid'
+import LogoGrid from './ImageGrid'
 import QuickExit from './QuickExit'
 import RateTable from './RateTable'
 
