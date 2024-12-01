@@ -5,6 +5,7 @@ import {
   studioUrl,
   useCdn,
 } from 'lib/sanity.api'
+import { ATMLocation } from 'types/sanity'
 import {
   globalSettingsQuery,
   dynamicPageSlugsQuery,
@@ -19,9 +20,14 @@ import {
   locationSlugsQuery,
   locationsQuery,
   locationHomepageQuery,
+  allPostsQuery,
+  blogHomepageQuery,
+  individualPostBySlugQuery,
+  individualPostSlugsQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
+import Papa from 'papaparse'
 export function getClient(preview?: { token: string }): SanityClient {
   const client = createClient({
     projectId,
@@ -104,4 +110,64 @@ export async function getAllLocations(client: SanityClient) {
 
 export async function getLocationHomepage(client: SanityClient) {
   return (await client.fetch(locationHomepageQuery)) || {}
+}
+
+export async function getATMLocations(
+  client: SanityClient,
+): Promise<ATMLocation[]> {
+  // First, fetch the file asset reference from your document
+  const query = `*[_type == "locationHomePage"][0].atmCSV.asset->url`
+  const fileUrl = await client.fetch(query)
+
+  if (!fileUrl) {
+    return []
+  }
+
+  // Fetch the CSV content
+  const response = await fetch(fileUrl)
+  const csvText = await response.text()
+
+  // Parse CSV
+  return new Promise((resolve, reject) => {
+    Papa.parse(csvText, {
+      header: false, // Set to true if your CSV has headers
+      complete: (results) => {
+        const locations = results.data
+          .filter((row: any) => row.length === 4) // Ensure row has all fields
+          .map((row: any) => ({
+            name: row[0],
+            address: row[1],
+            longitude: parseFloat(row[2]),
+            latitude: parseFloat(row[3]),
+          }))
+        resolve(locations)
+      },
+      error: (error) => {
+        reject(error)
+      },
+    })
+  })
+}
+
+export async function getAllPosts(client: SanityClient) {
+  return (await client.fetch(allPostsQuery)) || []
+}
+
+export async function getBlogHomepage(client: SanityClient) {
+  return (await client.fetch(blogHomepageQuery)) || {}
+}
+
+export async function getIndividualPostBySlug(
+  client: SanityClient,
+  slug: string,
+) {
+  return (
+    (await client.fetch(individualPostBySlugQuery, { slug })) || ({} as any)
+  )
+}
+
+export async function getAllIndividualPostSlugs() {
+  const client = getClient()
+  const slugs = (await client.fetch<string[]>(individualPostSlugsQuery)) || []
+  return slugs.map((slug) => ({ slug }))
 }

@@ -72,6 +72,7 @@ export const settingsStructure = (
       'post',
       'rateTable',
       'wysiwyg',
+      'author',
     ]
 
     const globalSettingsListItem = S.listItem()

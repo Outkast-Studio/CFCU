@@ -1,6 +1,10 @@
 import type { PortableTextBlock } from '@portabletext/types'
 import { ImageAsset, FileAsset } from 'sanity'
 
+export type AuthorType = {
+  _type: 'author'
+  name: string
+}
 type MediaBase = {
   _type: 'media'
   _key: string
@@ -32,6 +36,24 @@ type VideoMedia = MediaBase & {
 export type Media = ImageMedia | VideoMedia
 
 //Object Types ------------
+
+export interface SearchResult {
+  _id: string
+  _type: string
+  title: string
+  description?: string
+  slug: {
+    current: string
+  }
+  // Add more fields as needed
+}
+
+export interface ATMLocation {
+  name: string
+  address: string
+  longitude: number
+  latitude: number
+}
 
 export interface CtaInContentType {
   theme: {
@@ -438,6 +460,12 @@ export interface LocationHomepageType {
   modules: Modules
 }
 
+export interface BlogHomepageType {
+  title: string
+  description: PortableTextBlock[]
+  modules: Modules
+}
+
 // Document types ------------------------------------------------
 
 export interface PostPageType {
@@ -447,9 +475,11 @@ export interface PostPageType {
   slug: {
     current: string
   }
+  author: AuthorType
   content: PortableTextBlock
   excerpt: string
   thumbnailImage: ImageAsset
+  date: string
 }
 
 export interface SubPageType {
@@ -486,6 +516,12 @@ export interface LocationPage {
     latitude: number
     longitude: number
   }
+  hours: {
+    day: string
+    openTime: string
+    closeTime: string
+    isClosed: boolean
+  }[]
   thumbnailImage: ImageAsset
   address: string
   phoneNumber: string

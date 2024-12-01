@@ -87,7 +87,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
 
 export default RelatedStories
 
-const PostCard = ({ data }: { data: PostPageType }) => {
+export const PostCard = ({ data }: { data: PostPageType }) => {
   return (
     <Link href={`${data.slug.current}`} className={clsx('block')}>
       <article className={clsx('h-fit max-w-[240px]', 'lg:max-w-[unset]')}>

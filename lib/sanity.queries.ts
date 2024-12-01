@@ -157,3 +157,28 @@ export const locationHomepageQuery = groq`*[_type == "locationHomePage"][0]{
   ...,
   ${modulesFragment}
 }`
+
+export const allPostsQuery = groq`
+*[_type == "post"]{
+  ...,
+  ${modulesFragment}
+}`
+
+export const blogHomepageQuery = groq`*[_type == "blogHomePage"][0]{
+  ...,
+  ${modulesFragment}
+}`
+
+export const individualPostBySlugQuery = groq`
+*[_type == "post" && slug.current == $slug][0]{
+  ...,
+  author->{
+    ...,
+    name
+  },
+  ${modulesFragment}
+}`
+
+export const individualPostSlugsQuery = groq`
+*[_type == "post" && defined(slug.current)][].slug.current
+`

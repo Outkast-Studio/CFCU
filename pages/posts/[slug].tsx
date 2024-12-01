@@ -4,22 +4,22 @@ import {
   getClient,
   getRatePageBySlug,
   getAllRatePageSlugs,
-  getAllLocationSlugs,
-  getLocationBySlug,
+  getAllIndividualPostSlugs,
+  getIndividualPostBySlug,
 } from 'lib/sanity.client'
 import { GetStaticProps } from 'next'
 import type { SharedPageProps, Seo } from 'pages/_app'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
 import { Layout } from 'components/layouts/Layout'
-import { LocationPage, GlobalSettingsType } from 'types/sanity'
-import { locationBySlugQuery } from 'lib/sanity.queries'
+import { RatePageType, GlobalSettingsType, PostPageType } from 'types/sanity'
+import { individualPostBySlugQuery } from 'lib/sanity.queries'
+import PostPage from 'components/pages/PostPage'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 
-import LocationPageComponent from 'components/pages/LocationPage'
 interface PageProps extends SharedPageProps {
-  locationPage: LocationPage
+  postPage: PostPageType
   globalSettings: GlobalSettingsType
   params: QueryParams
   seo: Seo
@@ -29,10 +29,10 @@ interface Query {
   [key: string]: string
 }
 
-export default function ProjectSlugRoute(props: PageProps) {
-  const [data] = useLiveQuery<LocationPage>(
-    props.locationPage,
-    locationBySlugQuery,
+export default function PostSlugRoute(props: PageProps) {
+  const [data] = useLiveQuery<PostPageType>(
+    props.postPage,
+    individualPostBySlugQuery,
     props.params,
   )
 
@@ -46,7 +46,7 @@ export default function ProjectSlugRoute(props: PageProps) {
 
   return (
     <Layout seo={props.seo}>
-      <LocationPageComponent data={data} />
+      <PostPage data={data} />
     </Layout>
   )
 }
@@ -55,26 +55,26 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
 
-  const [globalSettings, locationPage] = await Promise.all([
+  const [globalSettings, postPage] = await Promise.all([
     getGlobalSettings(client),
-    getLocationBySlug(client, params.slug),
+    getIndividualPostBySlug(client, params.slug),
   ])
 
-  if (!locationPage) {
+  if (!postPage) {
     return {
       notFound: true,
     }
   }
 
   const seo = {
-    title: locationPage?.title || '',
-    description: locationPage?.metaDescription || '',
-    image: locationPage?.mainImage || '',
-    keywords: locationPage?.keywords || '',
+    title: postPage?.title || '',
+    description: postPage?.metaDescription || '',
+    image: postPage?.mainImage || '',
+    keywords: postPage?.keywords || '',
   }
   return {
     props: {
-      locationPage,
+      postPage,
       params,
       globalSettings,
       draftMode,
@@ -85,9 +85,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
-  const slugs = await getAllLocationSlugs()
+  const slugs = await getAllIndividualPostSlugs()
   return {
-    paths: slugs?.map(({ slug }) => `/locations/${slug}`) || [],
+    paths: slugs?.map(({ slug }) => `/posts/${slug}`) || [],
     fallback: 'blocking',
   }
 }

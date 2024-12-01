@@ -112,6 +112,55 @@ export default defineType({
       type: 'pageLink',
       group: 'locationSettings',
     }),
+
+    defineField({
+      name: 'hours',
+      title: 'Hours',
+      type: 'array',
+      validation: (Rule: any) => Rule.required(),
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'day',
+              title: 'Day',
+              type: 'string',
+              options: {
+                list: [
+                  'Monday',
+                  'Tuesday',
+                  'Wednesday',
+                  'Thursday',
+                  'Friday',
+                  'Saturday',
+                  'Sunday',
+                ],
+              },
+            },
+            {
+              name: 'openTime',
+              title: 'Opening Time',
+              type: 'string',
+              description: 'Format: 9:00am',
+            },
+            {
+              name: 'closeTime',
+              title: 'Closing Time',
+              type: 'string',
+              description: 'Format: 5:00pm',
+            },
+            {
+              name: 'isClosed',
+              title: 'Closed',
+              type: 'boolean',
+              initialValue: false,
+            },
+          ],
+        },
+      ],
+    }),
+
     modules,
     defineField({
       name: 'metaTitle',

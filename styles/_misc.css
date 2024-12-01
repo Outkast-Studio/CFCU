@@ -57,3 +57,7 @@ body {
 .rateTableBlock a {
   text-decoration: underline;
 }
+
+.mapCardShadow {
+  box-shadow: 0px 0px 64px 0px #00000040;
+}

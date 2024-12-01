@@ -30,8 +30,6 @@ module.exports = {
         tighter: '-.04em',
       },
       fontFamily: {
-        regular: ['Aeonik-Regular', 'sans-serif'],
-        thin: ['Aeonik-Thin', 'sans-serif'],
         'codec-pro': ['var(--font-codec-pro)', 'sans-serif'],
         'codec-bold': ['var(--font-codec-pro-bold)', 'sans-serif'],
         'codec-extra-bold': ['var(--font-codec-extra-bold)', 'sans-serif'],

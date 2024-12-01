@@ -114,7 +114,7 @@ const Menu = ({
           <a href={'#'}>Log In</a>
         </div>
         <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
-          <SearchBar />
+          <SearchBar setMenuOpen={setMenuOpen} />
 
           {width > 1024 ? (
             <div className={clsx('grid grid-cols-12 gap-x-[24px] mt-[60px]')}>

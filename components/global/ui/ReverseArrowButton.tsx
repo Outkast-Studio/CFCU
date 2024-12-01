@@ -4,15 +4,11 @@ interface ButtonProps {
   label: string
   className?: string
   arrowPosition?: string
-  cb?: () => void
 }
 
-const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
+const ReversedButton = ({ label, className, arrowPosition }: ButtonProps) => {
   return (
     <button
-      onClick={() => {
-        cb && cb()
-      }}
       className={clsx(
         'px-[20px] py-[10.5px] rounded-full flex items-center gap-x-[6px] bg-white text-black group relative overflow-hidden w-fit',
         className,
@@ -25,7 +21,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'absolute group-hover:translate-x-[-0px] translate-x-[-35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'group-hover:translate-x-[-35px] translate-x-[0px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200 rotate-180',
         )}
       >
         <path
@@ -35,7 +31,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
       </svg>
       <span
         className={clsx(
-          'font-codec-extra-bold text-[18px] leading-[27px] inline-block group-hover:translate-x-[25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'font-codec-extra-bold text-[18px] leading-[27px] inline-block group-hover:translate-x-[-25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         {label}
@@ -47,7 +43,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'group-hover:translate-x-[35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'absolute right-[0px] group-hover:translate-x-[-15px] translate-x-[35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200 rotate-[180deg]',
         )}
       >
         <path
@@ -59,4 +55,4 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
   )
 }
 
-export default Button
+export default ReversedButton

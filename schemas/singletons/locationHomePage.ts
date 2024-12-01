@@ -30,6 +30,14 @@ export default defineType({
         'The subtitle in the hero section of the location home page.',
       validation: (Rule: any) => Rule.required(),
     }),
+    defineField({
+      name: 'atmCSV',
+      title: 'ATM CSV',
+      type: 'file',
+      description:
+        'The CSV file containing the locations of the ATMs in the location.',
+      // validation: (Rule: any) => Rule.required(),
+    }),
     modules,
     defineField({
       name: 'metaTitle',

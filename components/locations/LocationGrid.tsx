@@ -9,7 +9,8 @@ const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
     <section
       className={clsx(
-        'grid grid-cols-3 gap-x-[30px] gap-y-[77px] px-[48px] w-full',
+        'grid grid-cols-3 gap-x-[30px] gap-y-[77px] px-[48px] w-full mt-[125px] mb-[136px]',
+        'lg:max-w-[1800px] lg:mx-auto',
       )}
     >
       {data?.map((location, index) => (
@@ -78,7 +79,10 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
 
         <h5>{data?.phoneNumber}</h5>
       </div>
-      <Link href={data?.slug.current} className={clsx('block mt-[25px]')}>
+      <Link
+        href={`locations/${data?.slug.current}`}
+        className={clsx('block mt-[25px]')}
+      >
         <Button
           label={'More Info'}
           className={clsx('!bg-lavender !text-white')}
