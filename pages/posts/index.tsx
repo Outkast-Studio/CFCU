@@ -24,12 +24,14 @@ import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useEffect } from 'react'
 import LocationHomePage from 'components/pages/LocationHomePage'
 import PostHomePage from 'components/pages/PostHomePage'
+import { Seo } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
   globalSettings: GlobalSettingsType
   allPosts: PostPageType[]
   blogHomepage: BlogHomepageType
+  seo: Seo
 }
 
 interface Query {
@@ -55,7 +57,7 @@ export default function Page(props: PageProps) {
   }, [data, setGlobalSettings])
 
   return (
-    <Layout>
+    <Layout seo={props.seo}>
       <PostHomePage allPosts={allPosts} data={blogHomepage} />
     </Layout>
   )
@@ -68,6 +70,13 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const blogHomepage = await getBlogHomepage(client)
   const allPosts = await getAllPosts(client)
 
+  const seo = {
+    title: blogHomepage?.metaTitle || 'Get Inspired | CFCU',
+    description: blogHomepage?.metaDescription || '',
+    image: blogHomepage?.ogImage || '',
+    keywords: blogHomepage?.keywords || '',
+  }
+
   return {
     props: {
       globalSettings,
@@ -76,6 +85,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       draftMode,
       blogHomepage,
       token: draftMode ? readToken : '',
+      seo,
     },
   }
 }

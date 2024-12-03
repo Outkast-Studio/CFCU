@@ -9,7 +9,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
     <section
       className={clsx(
         'px-[24px]  py-[66px]',
-        'lg:px-[48px] lg:pt-[95px] lg:pb-[117px] lg:max-w-[1800px] lg:mx-auto',
+        'lg:px-[48px] lg:pt-[95px] lg:pb-[117px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
     >
       {data?.subtitle && (
@@ -37,7 +37,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
       )}
       <div
         className={clsx(
-          'mt-[41px]',
+          'mt-[41px] flex flex-col gap-y-[24px]',
           'lg:grid lg:mt-[57px] lg:gap-x-[24px]',
           data?.columns?.length == 2 && 'lg:grid-cols-2',
           data?.columns?.length == 3 && 'lg:grid-cols-3',
@@ -46,7 +46,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
         )}
       >
         {data?.columns?.map((column, index) => (
-          <div key={index}>
+          <div key={index} className={clsx('flex flex-col gap-y-[8px]')}>
             <PortableText
               value={column?.content}
               components={PortableTextComponents as any}

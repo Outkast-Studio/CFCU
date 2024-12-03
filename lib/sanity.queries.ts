@@ -176,6 +176,10 @@ export const individualPostBySlugQuery = groq`
     ...,
     name
   },
+  tags[]->{
+    ...,
+    name
+  },
   ${modulesFragment}
 }`
 

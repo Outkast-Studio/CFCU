@@ -14,6 +14,8 @@ import { useLiveQuery } from 'next-sanity/preview'
 import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { Seo } from 'pages/_app'
+import { Layout } from 'components/layouts/Layout'
 
 // Define the props type
 
@@ -54,13 +56,19 @@ export default function DynamicPage(props: PageProps) {
   // Conditionally render based on page type
   switch (props.pageType) {
     case 'post':
-      return <PostPage data={data as PostPageType} />
+      return (
+        <Layout seo={props.seo}>
+          <PostPage data={data as PostPageType} />
+        </Layout>
+      )
     case 'subPage':
       return (
-        <SubPage
-          data={data as SubPageType}
-          childrenPages={props.childrenPages}
-        />
+        <Layout seo={props.seo}>
+          <SubPage
+            data={data as SubPageType}
+            childrenPages={props.childrenPages}
+          />
+        </Layout>
       )
     default:
       return <></>
@@ -108,12 +116,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!pageData) {
     return { notFound: true }
   }
+  const seo = {
+    title: pageData?.metaTitle || pageData?.title + ' | CFCU',
+    description: pageData?.metaDescription || '',
+    image: pageData?.ogImage || '',
+    keywords: pageData?.keywords || '',
+  }
 
   return {
     props: {
       pageData,
       pageType,
       globalSettings,
+      seo,
       childrenPages, // Include the page type in the props
     },
   }

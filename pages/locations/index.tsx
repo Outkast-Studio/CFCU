@@ -28,6 +28,7 @@ import { Layout } from 'components/layouts/Layout'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useEffect } from 'react'
 import LocationHomePage from 'components/pages/LocationHomePage'
+import { Seo } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
@@ -35,6 +36,7 @@ interface PageProps extends SharedPageProps {
   locationHomepage: LocationHomepageType
   allLocations: LocationPage[]
   atmLocations: ATMLocation[]
+  seo: Seo
 }
 
 interface Query {
@@ -63,7 +65,7 @@ export default function Page(props: PageProps) {
   }, [data, setGlobalSettings])
 
   return (
-    <Layout>
+    <Layout seo={props.seo}>
       <LocationHomePage
         globalSettings={data}
         data={locationHomepage}
@@ -82,6 +84,13 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const allLocations = await getAllLocations(client)
   const atmLocations = await getATMLocations(client)
 
+  const seo = {
+    title: locationHomepage?.metaTitle || 'Locations | CFCU',
+    description: locationHomepage?.metaDescription || '',
+    image: locationHomepage?.ogImage || '',
+    keywords: locationHomepage?.keywords || '',
+  }
+
   return {
     props: {
       globalSettings,
@@ -90,7 +99,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       params,
       draftMode,
       atmLocations,
-
+      seo,
       token: draftMode ? readToken : '',
     },
   }

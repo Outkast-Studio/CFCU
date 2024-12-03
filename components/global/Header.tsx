@@ -26,7 +26,7 @@ const Header = () => {
       /> */}
       <header
         className={clsx(
-          'fixed top-[60px] right-[24px] z-[11]',
+          'fixed top-[60px] right-[24px] z-[13]',
           'lg:right-[48px] lg:top-[48px] ',
         )}
       >

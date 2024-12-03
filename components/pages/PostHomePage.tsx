@@ -4,6 +4,7 @@ import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import { PostCard } from 'components/global/modules/RelatedStories'
 import Pagination from 'components/search/pagination'
+import Link from 'next/link'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType
@@ -13,27 +14,32 @@ const PostHomePage = ({ allPosts, data }: Props) => {
   console.log(allPosts)
   return (
     <main
-      className={clsx('px-[24px]', 'lg:px-[48px] lg:max-w-[1800px] lg:mx-auto')}
+      className={clsx(
+        'px-[24px]',
+        'lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+      )}
     >
-      <section className={clsx('lg:pt-[48px]')}>
-        <Image
-          src={'/icons/logoPurple.png'}
-          alt={'Community Financial Logo'}
-          width={500}
-          height={108}
-          className={clsx('w-[212px]', 'lg:w-[244.71px]')}
-        />
+      <section className={clsx('pt-[79px]', 'lg:pt-[48px]')}>
+        <Link href={'/'} className={clsx('block')}>
+          <Image
+            src={'/icons/logoPurple.png'}
+            alt={'Community Financial Logo'}
+            width={500}
+            height={108}
+            className={clsx('w-[212px]', 'lg:w-[244.71px]')}
+          />
+        </Link>
         <h1
           className={clsx(
-            'text-center uppercase text-lavender',
-            'lg:font-codec-fat lg:text-[172px] lg:leading-[154.8px] lg:tracking-[-0.16px] lg:mt-[143px]',
+            'text-center uppercase text-lavender mt-[119px] font-codec-fat text-[44px] leading-[39.6px] tracking-[-0.16px]',
+            'lg:text-[172px] lg:leading-[154.8px] lg:tracking-[-0.16px] lg:mt-[143px]',
           )}
         >
           {data?.title}
         </h1>
         <div
           className={clsx(
-            'text-black/75 text-center',
+            'text-black/75 text-center mt-[20px] w-paragraph-m-desktop',
             'lg:max-w-[922px] lg:mx-auto lg:font-codec-news lg:mt-[2px] lg:text-[24px] lg:leading-[36px]',
           )}
         >
@@ -42,6 +48,7 @@ const PostHomePage = ({ allPosts, data }: Props) => {
       </section>
       <section
         className={clsx(
+          'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] mt-[49px]',
           'lg:mt-[111px] lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px]',
         )}
       >

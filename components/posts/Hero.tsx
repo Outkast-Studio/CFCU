@@ -7,22 +7,32 @@ import Link from 'next/link'
 import { formatDate } from 'utils'
 
 const Hero = ({ post }: { post: PostPageType }) => {
-  //TODO update this page button when we know the behaviour here.
+  //TODO update this page button when we know the behaviour here. Also update the tags.
   return (
-    <section className={clsx('pt-[48px]')}>
-      <Image
-        src={'/icons/logoPurple.png'}
-        alt={'Community Financial Logo'}
-        width={500}
-        height={108}
-        className={clsx('w-[212px]', 'lg:w-[244.71px]')}
-        priority
-      />
+    <section
+      className={clsx(
+        'px-[24px] pt-[60px] pb-[16px]',
+        'lg:px-[48px] lg:pt-[48px] lg:pb-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+      )}
+    >
+      <Link href={'/'} className={clsx('block')}>
+        <Image
+          src={'/icons/logoPurple.png'}
+          alt={'Community Financial Logo'}
+          width={500}
+          height={108}
+          className={clsx('w-[212px]', 'lg:w-[244.71px]')}
+          priority
+        />
+      </Link>
       <div
-        className={clsx('mt-[99px] grid grid-cols-2 gap-x-[24px] items-center')}
+        className={clsx(
+          'mt-[47px] flex flex-col-reverse gap-y-[35px]',
+          'lg:mt-[99px] lg:grid lg:grid-cols-2 gap-x-[24px] items-center',
+        )}
       >
         <article>
-          <Link href={'/locations'} className={clsx('block')}>
+          <Link href={'/posts'} className={clsx('block')}>
             <button
               className={clsx(
                 'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-lightGrey',
@@ -51,7 +61,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
           </Link>
           <h1
             className={clsx(
-              'text-lavender',
+              'text-lavender title-m mt-[11px]',
               'lg:text-[80px] lg:leading-[75.2px] lg:tracking-[-0.32px] lg:font-codec-extra-bold lg:mt-[29px]',
             )}
           >
@@ -59,19 +69,23 @@ const Hero = ({ post }: { post: PostPageType }) => {
           </h1>
           <p
             className={clsx(
-              'font-codec-light text-black/75',
+              'font-codec-news text-black/75 mt-[8px] w-paragraph-m-desktop',
               'lg:text-[26px] lg:leading-[39px] lg:max-w-[542px] l:mt-[17px]',
             )}
           >
             {post?.excerpt}
           </p>
           <div
-            className={clsx('grid grid-cols-2 gap-x-[24px] mt-[36px] w-[75%]')}
+            className={clsx(
+              'grid grid-cols-2 gap-x-[24px gap-y-[29px] mt-[22px]',
+              'lg:mt-[36px] lg:w-[75%]',
+            )}
           >
             <div className={clsx('flex flex-col gap-y-[8px]')}>
               <h4
                 className={clsx(
-                  'text-[14px] leading-[14px] tracking-[1.6px] text-black/75 font-codec-news uppercase',
+                  'subtitle-s text-black/75 font-codec-news uppercase',
+                  'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
                 )}
               >
                 Author
@@ -87,7 +101,8 @@ const Hero = ({ post }: { post: PostPageType }) => {
             <div className={clsx('flex flex-col gap-y-[8px]')}>
               <h4
                 className={clsx(
-                  'text-[14px] leading-[14px] tracking-[1.6px] text-black/75 font-codec-news uppercase',
+                  'subtitle-s text-black/75 font-codec-news uppercase',
+                  'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
                 )}
               >
                 Date
@@ -100,6 +115,55 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 {formatDate(post?.date)}
               </h5>
             </div>
+            <div className={clsx('flex flex-col gap-y-[8px]')}>
+              <h4
+                className={clsx(
+                  'subtitle-s text-black/75 font-codec-news uppercase',
+                  'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
+                )}
+              >
+                Tags
+              </h4>
+              <div
+                className={clsx(
+                  'font-codec-pro text-lavender underline text-[16px] leading-[20.8px] flex flex-col gap-y-[8px] ',
+                )}
+              >
+                {post?.tags?.map((tag, index) => (
+                  <Link key={index} href={'#'}>
+                    {tag.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            {post?.shareLinks && (
+              <div className={clsx('flex flex-col gap-y-[8px]')}>
+                <h4
+                  className={clsx(
+                    'subtitle-s text-black/75 font-codec-news uppercase',
+                    'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
+                  )}
+                >
+                  Share
+                </h4>
+                <div
+                  className={clsx(
+                    'font-codec-pro text-lavender underline text-[16px] leading-[20.8px] flex gap-x-[14px] ',
+                  )}
+                >
+                  {post?.shareLinks?.map((link, index) => (
+                    <a key={index} href={link.link} target="_blank">
+                      <Image
+                        src={urlForImage(link.icon).url()}
+                        alt={link.icon.alt as string}
+                        width={26}
+                        height={26}
+                      />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </article>
         <div className={clsx('aspect-w-8 aspect-h-7 w-full')}>

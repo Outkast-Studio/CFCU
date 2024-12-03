@@ -12,7 +12,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
     <section
       className={clsx(
         'bg-white pt-[33px] pb-[98px]',
-        'lg:pt-[64px] lg:max-w-[1800px] lg:mx-auto lg:pb-[108px]',
+        'lg:pt-[64px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[108px]',
       )}
     >
       <div className={clsx('px-[24px]', 'lg:px-[48px]')}>

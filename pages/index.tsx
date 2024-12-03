@@ -11,11 +11,13 @@ import IndexPage from 'components/pages/IndexPage'
 import { Layout } from 'components/layouts/Layout'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useEffect } from 'react'
+import { Seo } from 'pages/_app'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
   globalSettings: GlobalSettingsType
   homepage: HomepageType
+  seo: Seo
 }
 
 interface Query {
@@ -36,7 +38,7 @@ export default function Page(props: PageProps) {
   }, [data, setGlobalSettings])
 
   return (
-    <Layout>
+    <Layout seo={props.seo}>
       <IndexPage globalSettings={data} homepage={homepage} />
     </Layout>
   )
@@ -48,8 +50,16 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const globalSettings = await getGlobalSettings(client)
   const homepage = await getHomepage(client)
 
+  const seo = {
+    title: homepage?.metaTitle || 'CFCU',
+    description: homepage?.metaDescription || '',
+    image: homepage?.ogImage || '',
+    keywords: homepage?.keywords || '',
+  }
+
   return {
     props: {
+      seo,
       globalSettings,
       homepage,
       params,

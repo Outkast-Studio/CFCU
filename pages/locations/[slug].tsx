@@ -67,11 +67,12 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   }
 
   const seo = {
-    title: locationPage?.title || '',
+    title: locationPage?.metaTitle || locationPage?.title + ' | CFCU',
     description: locationPage?.metaDescription || '',
-    image: locationPage?.mainImage || '',
+    image: locationPage?.ogImage || '',
     keywords: locationPage?.keywords || '',
   }
+
   return {
     props: {
       locationPage,

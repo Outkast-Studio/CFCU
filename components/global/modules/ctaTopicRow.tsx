@@ -15,7 +15,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
     <section
       className={clsx(
         'px-[24px] pt-[26px] pb-[147px]',
-        'lg:pt-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] lg:mx-auto',
+        'lg:pt-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
         stegaClean(data?.imagePosition) === 'left'
           ? 'lg:flex-row'
           : 'lg:flex-row-reverse',

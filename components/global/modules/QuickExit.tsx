@@ -10,7 +10,8 @@ export default function FastExitButton({ data }: { data: QuickExitType }) {
     <button
       onClick={handleFastExit}
       className={clsx(
-        'font-codec-extra-bold text-white bg-alertRed flex gap-x-[6px] rounded-full py-[10.5px] px-[20px] fixed bottom-[31px] right-[36px] items-center',
+        'font-codec-extra-bold text-white bg-alertRed flex gap-x-[6px] rounded-full py-[10.5px] px-[20px] fixed  items-center z-[5] bottom-[24px] right-[24px]',
+        'lg:bottom-[31px] lg:right-[36px]',
       )}
     >
       <span>Fast Exit</span>

@@ -12,12 +12,11 @@ import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
-  console.log(data)
   return (
     <section
       className={clsx(
         'pt-[66px] pb-[136px]',
-        'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] lg:mx-auto',
+        'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
     >
       <article
@@ -89,7 +88,7 @@ export default RelatedStories
 
 export const PostCard = ({ data }: { data: PostPageType }) => {
   return (
-    <Link href={`${data.slug.current}`} className={clsx('block')}>
+    <Link href={`/posts/${data.slug.current}`} className={clsx('block')}>
       <article className={clsx('h-fit max-w-[240px]', 'lg:max-w-[unset]')}>
         <Image
           src={urlForImage(data?.thumbnailImage).url()}

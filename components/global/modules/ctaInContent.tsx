@@ -61,7 +61,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
       ref={ref}
       className={clsx(
         'mt-[65px] title-s pt-[51px] pb-[59px]',
-        'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] lg:mx-auto',
+        'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
       style={{ backgroundColor: theme?.background, color: theme?.heading }}
     >

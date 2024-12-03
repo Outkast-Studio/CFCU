@@ -10,7 +10,10 @@ const RateTable = ({ data }: { data: RateTableType }) => {
   )
   return (
     <section
-      className={clsx('py-[89px]', 'lg:py-[74px] lg:max-w-[1800px] lg:mx-auto')}
+      className={clsx(
+        'py-[89px]',
+        'lg:py-[74px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+      )}
     >
       <div
         className={clsx(

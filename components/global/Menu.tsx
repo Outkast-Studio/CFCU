@@ -45,13 +45,13 @@ const Menu = ({
           )
           .fromTo(
             '.linkColumn',
-            { opacity: 0, y: 30 },
+            { opacity: 0, y: width > 1024 ? 30 : 20 },
             {
               opacity: 1,
               y: 0,
               ease: 'power4.out',
               duration: 0.5,
-              stagger: 0.1,
+              stagger: width > 1024 ? 0.1 : 0.05,
             },
             '<+=0.35',
           )
@@ -65,7 +65,7 @@ const Menu = ({
               duration: 0.5,
               stagger: 0.1,
             },
-            '<+=0.1',
+            width > 1024 ? '<+=0.1' : '<+=0.25',
           )
       } else {
         const tl = gsap.timeline().fromTo(
@@ -95,13 +95,13 @@ const Menu = ({
       ref={containerRef}
       key={'Menu container'}
       className={clsx(
-        'fixed top-0 left-0 w-full z-[9] bg-white h-full [clip-path:inset(0px_0px_100%_0px)]',
+        'fixed top-0 left-0 w-full z-[12] bg-white h-full [clip-path:inset(0px_0px_100%_0px)]',
       )}
     >
       <div
         className={clsx(
           'min-h-screen  pt-[68px] overflow-y-auto h-full pb-[20px]',
-          'lg:pt-[48px] lg:max-w-[1800px] lg:mx-auto',
+          'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
         )}
       >
         <div
@@ -158,7 +158,11 @@ const Menu = ({
               className={clsx('w-full mt-[18px]')}
             >
               {topLevelNavigation?.map((item, index) => (
-                <Accordion.Item value={item.titleLink.title} key={index}>
+                <Accordion.Item
+                  value={item.titleLink.title}
+                  key={index}
+                  className="linkColumn"
+                >
                   <Accordion.Header className={clsx('text-black')}>
                     <Accordion.Trigger
                       className={clsx(

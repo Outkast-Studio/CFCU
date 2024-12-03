@@ -16,6 +16,12 @@ export default defineField({
       type: 'string',
     }),
     defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'blockContent',
+    }),
+
+    defineField({
       name: 'cards',
       title: 'Cards',
       type: 'array',

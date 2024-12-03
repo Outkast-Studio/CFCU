@@ -10,6 +10,7 @@ import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useRef } from 'react'
+import Link from 'next/link'
 
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -50,16 +51,18 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         'lg:px-[18px] lg:py-[16px]',
       )}
     >
-      <Image
-        src={'/icons/LogoFull.png'}
-        alt={'Community Financial Logo'}
-        width={500}
-        height={108}
-        className={clsx(
-          'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
-          'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
-        )}
-      />
+      <Link href={'/'} className={clsx('block')}>
+        <Image
+          src={'/icons/LogoFull.png'}
+          alt={'Community Financial Logo'}
+          width={500}
+          height={108}
+          className={clsx(
+            'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
+            'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
+          )}
+        />
+      </Link>
       <div
         className={clsx(
           'heroGradient absolute inset-x-[10px] inset-y-[12px] z-[2] rounded-[10px]',

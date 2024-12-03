@@ -80,9 +80,15 @@ export default function SearchResults({
   const generateButtonUrl = (page: number) => {
     return `/search?q=${searchQuery}&page=${page}`
   }
+  const seo = {
+    title: 'Search | CFCU',
+    description: '',
+    image: '',
+    keywords: '',
+  }
 
   return (
-    <Layout>
+    <Layout seo={seo}>
       <SearchResultsPage results={results} initialQuery={initialQuery} />
       <Pagination
         totalPages={totalPages}

@@ -15,6 +15,7 @@ export default defineField({
       name: 'imagePosition',
       title: 'Image Position',
       type: 'string',
+      initialValue: 'left',
       options: {
         list: [
           { title: 'Left', value: 'left' },

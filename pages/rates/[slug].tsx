@@ -54,11 +54,12 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   }
 
   const seo = {
-    title: ratePage?.title || '',
+    title: ratePage?.metaTitle || ratePage?.title + ' | CFCU',
     description: ratePage?.metaDescription || '',
-    image: ratePage?.mainImage || '',
+    image: ratePage?.ogImage || '',
     keywords: ratePage?.keywords || '',
   }
+
   return {
     props: {
       ratePage,

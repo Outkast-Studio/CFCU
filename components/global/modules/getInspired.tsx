@@ -14,7 +14,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
     <section
       className={clsx(
         'pt-[112px] px-[24px] pb-[86px]',
-        'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] lg:mx-auto lg:pb-[69px]',
+        'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[69px]',
       )}
     >
       <div className={clsx('flex flex-col items-center')}>

@@ -23,10 +23,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
         isClosed && '!max-h-[0px]',
       )}
     >
-      <div
-        ref={contentRef}
-        className={clsx('flex gap-x-[20px]', ' lg:py-[24px]')}
-      >
+      <div ref={contentRef} className={clsx('flex gap-x-[20px] py-[24px]')}>
         <h6
           className={clsx(
             'text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit',
@@ -40,7 +37,13 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
           <PortableText value={data?.content} />
         </div>
       </div>
-      <button onClick={() => setIsClosed(true)}>
+      <button
+        onClick={() => setIsClosed(true)}
+        className={clsx(
+          'transition-opacity duration-150',
+          isClosed && 'opacity-0',
+        )}
+      >
         <svg
           width="24"
           height="24"

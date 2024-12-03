@@ -50,11 +50,19 @@ const SearchResultsPage = ({
     let excerpt = ''
   }
   return (
-    <div className="cls">
-      <section className={clsx('h-[650px] relative')}>
+    <div>
+      <section
+        className={clsx(
+          'relative px-[24px] pt-[60px] pb-[45px]',
+          'lg:h-[650px]',
+        )}
+      >
         <Link
           href={'/'}
-          className={clsx('block absolute top-[48px] left-[48px] z-[3]')}
+          className={clsx(
+            'block relative z-[3]',
+            'lg:absolute lg:top-[48px] lg:left-[48px]',
+          )}
         >
           <Image
             src={'/icons/LogoFull.png'}
@@ -71,11 +79,15 @@ const SearchResultsPage = ({
           className={clsx('object-cover w-full h-full absolute top-0 left-0 ')}
         />
         <div
-          className={clsx('relative z-[2] pt-[275px] max-w-[888px] mx-auto')}
+          className={clsx(
+            'relative z-[2] max-w-[888px] mx-auto pt-[111px]',
+            'lg:pt-[275px]',
+          )}
         >
           <h1
             className={clsx(
-              'text-white text-[90px] leading-[99px] font-codec-heavy text-center mb-[33px]',
+              'w-h1 text-white mb-[27px]',
+              'lg:text-[90px] lg:leading-[99px] font-codec-heavy lg:text-center lg:mb-[33px]',
             )}
           >
             Search CFCU
@@ -83,7 +95,8 @@ const SearchResultsPage = ({
           <form
             onSubmit={handleSearch}
             className={clsx(
-              'relative pl-[25px] pr-[5px] pt-[5px] pb-[5px] rounded-[8px] bg-white flex',
+              'pl-[20px]',
+              'relative lg:pl-[25px] pr-[5px] pt-[5px] pb-[5px] rounded-[8px] bg-white flex',
             )}
           >
             <input
@@ -98,7 +111,7 @@ const SearchResultsPage = ({
             <button
               type="submit"
               className={clsx(
-                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px]',
+                'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] flex-shrink-0',
               )}
             >
               <svg
@@ -117,7 +130,12 @@ const SearchResultsPage = ({
           </form>
         </div>
       </section>
-      <section className={clsx('max-w-[888px] mx-auto mt-[61px] mb-[83px]')}>
+      <section
+        className={clsx(
+          'max-w-[888px] mt-[40px] mb-[68px] mx-auto px-[24px]',
+          'lg:mt-[61px] lg:mb-[83px]',
+        )}
+      >
         <p
           className={clsx(
             'text-black text-[16px] leading-[14.4px] font-codec-bold',
@@ -133,7 +151,7 @@ const SearchResultsPage = ({
           </span>
         </p>
         {results.length > 0 ? (
-          <ul className={clsx('mt-[40px]')}>
+          <ul className={clsx('mt-[68px]', 'lg:mt-[40px]')}>
             {results.map((result) => (
               <li
                 key={result._id}
@@ -142,7 +160,8 @@ const SearchResultsPage = ({
                 <Link href={createSlug(result._type, result.slug.current)}>
                   <h3
                     className={clsx(
-                      'text-lavender text-[38px] leading-[41.8px] font-codec-extra-bold',
+                      'w-h6',
+                      'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold',
                     )}
                   >
                     {result.title}
@@ -153,7 +172,8 @@ const SearchResultsPage = ({
                 </Link>
                 <p
                   className={clsx(
-                    'mt-[16px] w-paragraph-l-desktop text-black/75',
+                    'w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]',
+                    'lg:w-paragraph-l-desktop lg:mb-[0px]',
                   )}
                 >
                   Opening an account with us is simple, secure, and designed to

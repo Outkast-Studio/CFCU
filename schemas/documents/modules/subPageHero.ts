@@ -27,6 +27,15 @@ export default defineType({
       description: 'Toggle to enable or disable background media for this hero',
     }),
     defineField({
+      name: 'needsGradient',
+      title: 'Needs Gradient',
+      type: 'boolean',
+      initialValue: true,
+      validation: (Rule) => Rule.required(),
+      hidden: ({ parent }) => !parent?.needsBackgroundMedia,
+      description: 'Toggle to enable or disable gradient for this hero',
+    }),
+    defineField({
       name: 'backgroundMedia',
       title: 'Background Media',
       type: 'media',

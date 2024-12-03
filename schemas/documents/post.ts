@@ -72,6 +72,60 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'postTag' }] }],
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: 'shareLinks',
+      title: 'Share Links',
+      type: 'array',
+      description: 'Links to share the post on social media.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'icon',
+              title: 'Icon',
+              type: 'image',
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alternative text',
+                  description:
+                    "Describe what's in the image for screen readers and search engines.",
+                  validation: (Rule) => Rule.required(),
+                },
+              ],
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'link',
+              title: 'Link',
+              type: 'url',
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              icon: 'icon',
+            },
+            prepare(selection) {
+              return {
+                title: 'Share Link',
+                media: selection.icon,
+              }
+            },
+          },
+        },
+      ],
+    }),
     modules,
     defineField({
       name: 'metaTitle',

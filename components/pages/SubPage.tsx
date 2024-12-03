@@ -7,6 +7,8 @@ import ModuleFactory from 'components/global/modules/ModuleFactory'
 import SubpageLinkList from 'components/global/ui/SubpageLinkList'
 import SubPageHero from 'components/global/modules/subPageHero'
 
+import { renderModule } from 'components/global/modules/ModuleFactory'
+
 const SubPage = ({
   data,
   childrenPages,
@@ -15,8 +17,17 @@ const SubPage = ({
   childrenPages?: SubPageType[]
 }) => {
   console.log(data, childrenPages)
+
+  const siteAlerts = data?.modules.filter(
+    (module) => module?._type === 'siteAlert',
+  )
   return (
     <main className={clsx('pb-[100vh]')}>
+      {siteAlerts.map((module, index) => (
+        <React.Fragment key={`site-alert-${index}`}>
+          {renderModule(module)}
+        </React.Fragment>
+      ))}
       <SubPageHero data={data?.pageHero} />
       <div className="flex flex-col">
         {childrenPages.length > 0 && <SubpageLinkList data={childrenPages} />}

@@ -67,9 +67,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   }
 
   const seo = {
-    title: postPage?.title || '',
+    title: postPage?.metaTitle || postPage?.title + ' | CFCU',
     description: postPage?.metaDescription || '',
-    image: postPage?.mainImage || '',
+    image: postPage?.ogImage || '',
     keywords: postPage?.keywords || '',
   }
   return {

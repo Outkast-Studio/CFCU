@@ -29,6 +29,43 @@ export default defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     modules,
+    defineField({
+      name: 'metaTitle',
+      title: 'Meta Title',
+      type: 'string',
+      group: 'seo',
+      description:
+        'Title for search engines. If left blank, the title for this page will be set to the default title.',
+    }),
+    defineField({
+      name: 'metaDescription',
+      title: 'Meta Description',
+      type: 'text',
+      group: 'seo',
+      description:
+        'Description for search engines. If left blank, the description for this page will be set to the default description.',
+    }),
+    defineField({
+      name: 'ogImage',
+      title: 'OG image',
+      type: 'image',
+      group: 'seo',
+      description:
+        'Image for social sharing. If left blank, the default OG image will be used.',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+          description:
+            "Describe what's in the image for screen readers and search engines.",
+          validation: (Rule: any) => Rule.required(),
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

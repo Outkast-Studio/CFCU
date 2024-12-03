@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import MediaComponent from 'components/global/ui/Media'
 import Image from 'next/image'
 import defualtSubPageHero from 'public/images/defaultSubPage.png'
+import Link from 'next/link'
 
 const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
   console.log(data)
@@ -16,8 +17,8 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
           : 'lg:min-h-[650px] lg:h-[70vh]',
       )}
     >
-      <div className={clsx('absolute h-full w-full')}>
-        {data?.needsBackgroundMedia ? (
+      <div className={clsx('absolute h-full w-full bg-lavender')}>
+        {data?.needsBackgroundMedia && (
           <div
             className={clsx(
               'px-[10px] py-[12px] bg-lavender h-full',
@@ -30,23 +31,18 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
                 'lg:rounded-[20px]',
               )}
             >
-              <div
-                className={clsx(
-                  'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
-                  'lg:rounded-[20px]',
-                )}
-              />
+              {data?.needsGradient && (
+                <div
+                  className={clsx(
+                    'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
+                    'lg:rounded-[20px]',
+                  )}
+                />
+              )}
+
               <MediaComponent media={data?.backgroundMedia} />
             </div>
           </div>
-        ) : (
-          <Image
-            src={defualtSubPageHero}
-            alt={data?.title}
-            width={1920}
-            height={1080}
-            className={clsx('object-cover w-full h-full')}
-          />
         )}
       </div>
       <div
@@ -55,13 +51,15 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Image
-          src={'/icons/LogoFull.png'}
-          alt={'Community Financial Logo'}
-          width={500}
-          height={108}
-          className={clsx('w-[212px]', 'lg:w-[244.71px]')}
-        />
+        <Link href={'/'} className={clsx('block')}>
+          <Image
+            src={'/icons/LogoFull.png'}
+            alt={'Community Financial Logo'}
+            width={500}
+            height={108}
+            className={clsx('w-[212px]', 'lg:w-[244.71px]')}
+          />
+        </Link>
         <article
           className={clsx(
             'flex flex-col gap-y-[11px] pb-[24px] max-w-[841px]',

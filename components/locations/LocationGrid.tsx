@@ -9,8 +9,8 @@ const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
     <section
       className={clsx(
-        'grid grid-cols-3 gap-x-[30px] gap-y-[77px] px-[48px] w-full mt-[125px] mb-[136px]',
-        'lg:max-w-[1800px] lg:mx-auto',
+        'flex flex-col w-full px-[24px] mt-[48px] gap-y-[48px] pb-[75px]',
+        'lg:grid lg:grid-cols-3 lg:max-w-[1800px] xl:px-[0px] lg:gap-x-[30px] lg:mx-auto lg:gap-y-[77px]  lg:mt-[125px] lg:mb-[136px] lg:px-[48px]',
       )}
     >
       {data?.map((location, index) => (
@@ -35,14 +35,16 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
       </div>
       <h4
         className={clsx(
-          'mt-[25px] text-[32px] font-codec-extra-bold text-lavender ',
+          'w-h4 mt-[25px]',
+          'lg:text-[32px] lg:font-codec-extra-bold text-lavender ',
         )}
       >
         {data?.title}
       </h4>
       <div
         className={clsx(
-          'flex gap-x-[6px] items-start font-codec-news text-[18px] leading-[27px] text-black/75 mt-[12px]',
+          'w-paragraph-s-desktop flex gap-x-[6px] items-start font-codec-news text-black/75 mt-[12px]',
+          'lg:text-[18px] lg:leading-[27px]',
         )}
       >
         <svg
@@ -61,7 +63,8 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
       </div>
       <div
         className={clsx(
-          'flex gap-x-[6px] items-start font-codec-news text-[18px] leading-[27px] text-black/75 mt-[8px]',
+          'w-paragraph-s-desktop flex gap-x-[6px] items-start font-codec-news text-black/75 mt-[12px]',
+          'lg:text-[18px] lg:leading-[27px]',
         )}
       >
         <svg

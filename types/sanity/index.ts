@@ -5,6 +5,11 @@ export type AuthorType = {
   _type: 'author'
   name: string
 }
+
+export type PostTagType = {
+  _type: 'postTag'
+  name: string
+}
 type MediaBase = {
   _type: 'media'
   _key: string
@@ -122,6 +127,7 @@ export interface LogoGridType {
 export interface CtaCardGridHomeType {
   subTitle: string
   title: string
+  description?: PortableTextBlock[]
   cards: Array<{
     image: ImageAsset
     title: string
@@ -231,6 +237,7 @@ export interface SubPageHeroType {
   subtitle: string
   needsBackgroundMedia: boolean
   backgroundMedia?: Media
+  needsGradient?: boolean
 }
 
 export interface TextCardGridCard {
@@ -381,6 +388,7 @@ export type Modules = Array<
   | CtaCardGridType
   | CtaTopicRowType
   | GetInspiredType
+  | WysiwygType
 >
 export interface HomepageType {
   hero: {
@@ -479,7 +487,13 @@ export interface PostPageType {
   content: PortableTextBlock
   excerpt: string
   thumbnailImage: ImageAsset
+  tags: PostTagType[]
+  shareLinks?: {
+    icon: ImageAsset
+    link: string
+  }[]
   date: string
+  modules: Modules[]
 }
 
 export interface SubPageType {

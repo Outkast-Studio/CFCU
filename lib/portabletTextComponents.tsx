@@ -96,7 +96,7 @@ export const WysiwygComponents = {
         )}
       >
         <Image
-          src={urlForImage(value).quality(80).width(2440).url()}
+          src={urlForImage(value).width(2440).url()}
           alt={String(value.alt)}
           width={2440}
           height={2440}
@@ -180,7 +180,7 @@ export const WysiwygComponents = {
     blockquote: ({ children }) => (
       <blockquote
         className={clsx(
-          'max-w-[888px] mx-auto w-full text-lavender border-t-orange',
+          'max-w-[888px] mx-auto w-full text-lavender border-t-orange border-t-[2px] pt-[16px]',
           'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px] lg:pt-[24px] lg:mb-[74px] ',
         )}
       >
