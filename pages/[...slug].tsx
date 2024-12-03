@@ -14,7 +14,6 @@ import { useLiveQuery } from 'next-sanity/preview'
 import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { Seo } from 'pages/_app'
 import { Layout } from 'components/layouts/Layout'
 
 // Define the props type
@@ -79,7 +78,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug as string[]
   const client = getClient()
   const globalSettings = await getGlobalSettings(client)
-  console.log(params)
   // First, fetch the page type based on the slug
   const pageType = await client.fetch(
     `
@@ -141,7 +139,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     *[_type in ["subPage", "post"]].slug.current
   `)
 
-  console.log(paths)
   return {
     paths: paths.map((slug: string) => ({
       params: { slug: slug.split('/') },

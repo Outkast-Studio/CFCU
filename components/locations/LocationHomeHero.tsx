@@ -2,25 +2,44 @@ import { SubPageHeroType } from 'types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
 import defualtSubPageHero from 'public/images/defaultSubPage.png'
+import MediaComponent from 'components/global/ui/Media'
+import { LocationHomepageType } from 'types/sanity'
 import Link from 'next/link'
 
 const LocationHomeHero = ({
-  title,
-  subTitle,
+  data,
 }: {
-  title: string
-  subTitle: string
+  data: LocationHomepageType['pageHero']
 }) => {
   return (
     <section className={clsx('relative', 'lg:min-h-[650px] lg:h-[70vh]')}>
-      <div className={clsx('absolute h-full w-full')}>
-        <Image
-          src={defualtSubPageHero}
-          alt={'Origami background'}
-          width={1920}
-          height={1080}
-          className={clsx('object-cover w-full h-full')}
-        />
+      <div className={clsx('absolute h-full w-full bg-lavender')}>
+        {data?.needsBackgroundMedia && (
+          <div
+            className={clsx(
+              'px-[10px] py-[12px] bg-lavender h-full',
+              'lg:p-[18px]',
+            )}
+          >
+            <div
+              className={clsx(
+                'rounded-[10px] overflow-hidden relative h-full',
+                'lg:rounded-[20px]',
+              )}
+            >
+              {data?.needsGradient && (
+                <div
+                  className={clsx(
+                    'heroGradient absolute inset-[0px] z-[2] rounded-[10px]',
+                    'lg:rounded-[20px]',
+                  )}
+                />
+              )}
+
+              <MediaComponent media={data?.backgroundMedia} />
+            </div>
+          </div>
+        )}
       </div>
       <div
         className={clsx(
@@ -28,7 +47,7 @@ const LocationHomeHero = ({
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('block')}>
+        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}
@@ -44,7 +63,7 @@ const LocationHomeHero = ({
           )}
         >
           <h1 className={clsx('w-h1 text-white', 'lg:page-title-desktop')}>
-            {title}
+            {data?.title}
           </h1>
           <p
             className={clsx(
@@ -52,7 +71,7 @@ const LocationHomeHero = ({
               'lg:text-[26px] lg:leading-[33.8px]',
             )}
           >
-            {subTitle}
+            {data?.subtitle}
           </p>
         </article>
       </div>

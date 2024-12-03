@@ -147,7 +147,7 @@ const SearchResultsPage = ({
           </span>{' '}
           results for{' '}
           <span className={clsx('text-lavender font-codec-heavy')}>
-            '{initialQuery}'
+            &apos;{initialQuery}&apos;
           </span>
         </p>
         {results.length > 0 ? (

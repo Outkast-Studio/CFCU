@@ -11,7 +11,6 @@ export const AutoPreviewPane = () => {
   } = usePaneRouter()
 
   useEffect(() => {
-    console.log(routerPanesState)
     // Check if "preview" is active
     const isPreviewActive = routerPanesState.some((group) =>
       group.some((pane) => pane.params?.view === 'preview'),

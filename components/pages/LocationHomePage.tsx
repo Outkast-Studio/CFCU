@@ -21,10 +21,9 @@ const LocationHomePage = ({
   globalSettings: GlobalSettingsType
   atmLocations: ATMLocation[]
 }) => {
-  console.log(data, allLocations)
   return (
     <main className={clsx('overflow-hidden')}>
-      <LocationHomeHero title={data?.title} subTitle={data?.subtitle} />
+      <LocationHomeHero data={data?.pageHero} />
       <LocationMap locations={allLocations} atmLocations={atmLocations} />
       <LocationGrid data={allLocations} />
     </main>

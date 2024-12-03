@@ -6,8 +6,18 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
     ...,
     topLevelNavigation[]{
       ...,
+      titleLink{
+        ...,
+        link->{
+          _id,
+          _type,
+          title,
+          "slug": slug.current
+        }
+      },
       links[]{
         ...,
+ 
         link->{
           _id,
           _type,

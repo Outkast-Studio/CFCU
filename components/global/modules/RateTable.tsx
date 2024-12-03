@@ -36,7 +36,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         )}
       >
         {data?.columns?.map((column, index) => (
-          <div className={clsx('min-w-[300px] flex-shrink-0')}>
+          <div className={clsx('min-w-[300px] flex-shrink-0')} key={index}>
             <h5
               className={clsx(
                 'bg-lavender pl-[20px] w-h6 text-white py-[14px]',

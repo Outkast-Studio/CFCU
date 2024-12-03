@@ -36,8 +36,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   `),
   ])
 
-  console.log(results, totalResults)
-
   const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE)
 
   return {

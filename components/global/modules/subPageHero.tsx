@@ -6,7 +6,6 @@ import defualtSubPageHero from 'public/images/defaultSubPage.png'
 import Link from 'next/link'
 
 const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
-  console.log(data)
   return (
     <section
       className={clsx(
@@ -51,7 +50,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
-        <Link href={'/'} className={clsx('block')}>
+        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
           <Image
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}

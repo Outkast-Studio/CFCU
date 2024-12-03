@@ -16,18 +16,49 @@ export default defineType({
   ],
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'The title in the hero section of the location home page.',
-      validation: (Rule: any) => Rule.required(),
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'subTitle',
-      type: 'string',
-      description:
-        'The subtitle in the hero section of the location home page.',
+      name: 'pageHero',
+      title: 'Page Hero',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          description:
+            'The title in the hero section of the location home page.',
+          validation: (Rule: any) => Rule.required(),
+        }),
+        defineField({
+          name: 'subtitle',
+          title: 'Sub Title',
+          type: 'string',
+          description:
+            'The subtitle in the hero section of the location home page.',
+          validation: (Rule: any) => Rule.required(),
+        }),
+        defineField({
+          name: 'needsBackgroundMedia',
+          title: 'Needs Background Media',
+          type: 'boolean',
+          description:
+            'Toggle to enable or disable background media for this hero',
+        }),
+        defineField({
+          name: 'needsGradient',
+          title: 'Needs Gradient',
+          type: 'boolean',
+          description: 'Toggle to enable or disable gradient for this hero',
+          hidden: ({ parent }) => !parent?.needsBackgroundMedia,
+        }),
+        defineField({
+          name: 'backgroundMedia',
+          title: 'Background Media',
+          type: 'media',
+          hidden: ({ parent }) => !parent?.needsBackgroundMedia,
+          description:
+            'Upload an image or video to use as the background for the hero section',
+        }),
+      ],
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({

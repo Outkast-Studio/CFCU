@@ -20,7 +20,10 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
       )}
     >
       <article
-        className={clsx('px-[24px] flex items-center flex-col', 'lg:px-[48px]')}
+        className={clsx(
+          'px-[24px] flex items-center flex-col',
+          'lg:px-[48px] xl:px-[0px]',
+        )}
       >
         {data?.subTitle && (
           <h2
@@ -73,7 +76,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
       <div
         className={clsx(
           'hidden',
-          'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px]',
+          'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-[0px]',
         )}
       >
         {data?.posts?.map((post, index) => (

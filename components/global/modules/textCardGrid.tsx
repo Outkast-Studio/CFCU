@@ -5,7 +5,6 @@ import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 
 const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
-  console.log(data)
   return (
     <section
       className={clsx(

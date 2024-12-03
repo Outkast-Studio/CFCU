@@ -11,7 +11,6 @@ type Props = {
 }
 
 const PostHomePage = ({ allPosts, data }: Props) => {
-  console.log(allPosts)
   return (
     <main
       className={clsx(
@@ -20,7 +19,7 @@ const PostHomePage = ({ allPosts, data }: Props) => {
       )}
     >
       <section className={clsx('pt-[79px]', 'lg:pt-[48px]')}>
-        <Link href={'/'} className={clsx('block')}>
+        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
           <Image
             src={'/icons/logoPurple.png'}
             alt={'Community Financial Logo'}

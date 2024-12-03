@@ -463,8 +463,13 @@ export interface HomepageType {
 }
 
 export interface LocationHomepageType {
-  title: string
-  subtitle: string
+  pageHero: {
+    title: string
+    subtitle: string
+    needsBackgroundMedia?: boolean
+    backgroundMedia?: Media
+    needsGradient?: boolean
+  }
   modules: Modules
 }
 

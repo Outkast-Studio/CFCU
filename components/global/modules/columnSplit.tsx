@@ -4,7 +4,6 @@ import { clsx } from 'clsx'
 import { PortableTextComponents } from 'lib/portabletTextComponents'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
-  console.log(data)
   return (
     <section
       className={clsx(

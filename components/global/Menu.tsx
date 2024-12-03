@@ -27,7 +27,7 @@ const Menu = ({
   const { width } = useWindowSize()
   const containerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
-
+  console.log(topLevelNavigation)
   useIsomorphicLayoutEffect(() => {
     if (!mounted) return
     const ctx = gsap.context(() => {
@@ -130,6 +130,7 @@ const Menu = ({
                     />
                   </div>
                   <PageLink
+                    onClick={() => setMenuOpen(false)}
                     data={item.titleLink}
                     className={clsx(
                       'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
@@ -143,7 +144,11 @@ const Menu = ({
                     )}
                   >
                     {item.links?.map((link, index) => (
-                      <PageLink data={link} key={index}>
+                      <PageLink
+                        data={link}
+                        key={index}
+                        onClick={() => setMenuOpen(false)}
+                      >
                         {link.title}
                       </PageLink>
                     ))}
@@ -182,6 +187,7 @@ const Menu = ({
                           />
                         </div>
                         <PageLink
+                          onClick={() => setMenuOpen(false)}
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
@@ -216,7 +222,11 @@ const Menu = ({
                       )}
                     >
                       {item.links?.map((link, index) => (
-                        <PageLink data={link} key={index}>
+                        <PageLink
+                          data={link}
+                          key={index}
+                          onClick={() => setMenuOpen(false)}
+                        >
                           {link.title}
                         </PageLink>
                       ))}
@@ -277,7 +287,11 @@ const Menu = ({
                   )}
                 >
                   {nav.links?.map((link, index) => (
-                    <PageLink data={link} key={index}>
+                    <PageLink
+                      data={link}
+                      key={index}
+                      onClick={() => setMenuOpen(false)}
+                    >
                       {link.title}
                     </PageLink>
                   ))}

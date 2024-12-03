@@ -16,14 +16,13 @@ const SubPage = ({
   data: SubPageType
   childrenPages?: SubPageType[]
 }) => {
-  console.log(data, childrenPages)
-
-  const siteAlerts = data?.modules.filter(
+  const siteAlerts = data?.modules?.filter(
+    //@ts-ignore
     (module) => module?._type === 'siteAlert',
   )
   return (
     <main className={clsx('pb-[100vh]')}>
-      {siteAlerts.map((module, index) => (
+      {siteAlerts?.map((module, index) => (
         <React.Fragment key={`site-alert-${index}`}>
           {renderModule(module)}
         </React.Fragment>

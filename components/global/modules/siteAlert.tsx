@@ -4,7 +4,6 @@ import { PortableText } from '@portabletext/react'
 import { useState, useRef, useEffect } from 'react'
 
 const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
-  console.log(data)
   const [isClosed, setIsClosed] = useState(false)
   const [alertHeight, setAlertHeight] = useState(0)
   const contentRef = useRef<HTMLDivElement>(null)

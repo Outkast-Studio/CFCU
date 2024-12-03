@@ -36,7 +36,7 @@ const Pagination = ({
       </Link>
       <div className={clsx('flex items-center gap-x-[16px]')}>
         {Array.from({ length: totalPages }, (_, index) => (
-          <Link href={generateButtonUrl(index + 1)}>
+          <Link href={generateButtonUrl(index + 1)} key={index}>
             <button
               className={clsx(
                 'w-[67px] h-[67px] bg-lightGrey font-codec-extra-bold text-lavender rounded-full',

@@ -85,7 +85,7 @@ const EmotionalNavigation = ({
         )}
       >
         <div
-          dangerouslySetInnerHTML={{ __html: data.icon }}
+          dangerouslySetInnerHTML={{ __html: data.icon as any }}
           className={clsx('emotionalNavigationIcon emotionalAnimateOut')}
         />
         <h2

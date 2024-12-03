@@ -51,7 +51,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         'lg:px-[18px] lg:py-[16px]',
       )}
     >
-      <Link href={'/'} className={clsx('block')}>
+      <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
         <Image
           src={'/icons/LogoFull.png'}
           alt={'Community Financial Logo'}

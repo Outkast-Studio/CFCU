@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
-  console.log(data)
   return (
     <section
       className={clsx(

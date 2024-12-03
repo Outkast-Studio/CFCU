@@ -15,7 +15,10 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
         )}
       >
         {data?.map((page) => (
-          <Link href={page.slug.current}> {page.title}</Link>
+          <Link href={page?.slug?.current} key={page?.slug?.current}>
+            {' '}
+            {page?.title}
+          </Link>
         ))}
       </nav>
       <Accordion.Root

@@ -100,7 +100,7 @@ export const WysiwygComponents = {
           alt={String(value.alt)}
           width={2440}
           height={2440}
-          className={clsx('')}
+          className={clsx('w-full object-cover')}
         />
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
           {value.caption}
