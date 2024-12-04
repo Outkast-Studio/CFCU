@@ -30,6 +30,7 @@ interface Query {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
+  console.log(props.params, 'params')
   const [data] = useLiveQuery<LocationPage>(
     props.locationPage,
     locationBySlugQuery,
@@ -57,7 +58,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 
   const [globalSettings, locationPage] = await Promise.all([
     getGlobalSettings(client),
-    getLocationBySlug(client, params.slug),
+    getLocationBySlug(client, 'locations/' + params.slug),
   ])
 
   if (!locationPage) {
@@ -86,9 +87,20 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 }
 
 export const getStaticPaths = async () => {
-  const slugs = await getAllLocationSlugs()
+  const slugs = (await getAllLocationSlugs()).map((slug) =>
+    removeLocationPrefix(slug.slug),
+  )
   return {
     paths: slugs?.map(({ slug }) => `/locations/${slug}`) || [],
     fallback: 'blocking',
   }
+}
+
+function removeLocationPrefix(slug) {
+  // Check if the slug starts with 'post/'
+  if (slug.startsWith('locations/')) {
+    // If it does, remove 'post/' and return the rest
+    return slug.slice(10)
+  } // If it doesn't start with 'post/', return the original slug
+  return slug
 }

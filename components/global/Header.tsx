@@ -3,6 +3,9 @@ import { clsx } from 'clsx'
 import Menu from './Menu'
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useScrollPastPoint } from 'hooks/useScrollPastPoint'
+import { useWindowSize } from 'hooks/useWindowSize'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,23 +14,23 @@ const Header = () => {
     else document.body.style.overflow = 'auto'
   }, [isMenuOpen])
 
+  const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen)
+  const alertHeight = useGlobalSettingsStore((state) => state.alertHeight)
+  const isPastPoint = useScrollPastPoint(alertHeight)
+  const { width } = useWindowSize()
+
   return (
     <>
-      {/* Todo move this to a hero component: */}
-      {/* <Image
-        src={'/icons/LogoFull.png'}
-        alt={'Community Financial Logo'}
-        width={500}
-        height={108}
-        className={clsx(
-          'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
-          'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
-        )}
-      /> */}
       <header
+        style={{
+          transform: `translateY(${alertIsOpen ? alertHeight + (width < 1024 ? 60 : 48) : width > 1024 ? 48 : 60}px)`,
+        }}
         className={clsx(
-          'fixed top-[60px] right-[24px] z-[13]',
-          'lg:right-[48px] lg:top-[48px] ',
+          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 delay-300',
+          'lg:right-[48px] lg:top-[0] ',
+          alertIsOpen && 'lg:top-[0px]  ease-in-out',
+          (isMenuOpen || isPastPoint) &&
+            '!translate-y-[60px] lg:!translate-y-[48px]',
         )}
       >
         <div

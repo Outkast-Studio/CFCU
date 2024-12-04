@@ -27,7 +27,7 @@ const Menu = ({
   const { width } = useWindowSize()
   const containerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
-  console.log(topLevelNavigation)
+
   useIsomorphicLayoutEffect(() => {
     if (!mounted) return
     const ctx = gsap.context(() => {
@@ -122,8 +122,8 @@ const Menu = ({
                 <article key={index} className={clsx('col-span-3 linkColumn')}>
                   <div className={clsx('w-[35px]')}>
                     <Image
-                      src={urlForImage(item.icon).url()}
-                      alt={item.titleLink.title + ' icon'}
+                      src={item?.icon ? urlForImage(item?.icon).url() : ' '}
+                      alt={item?.titleLink?.title + ' icon'}
                       width={48}
                       height={48}
                       className={clsx('h-[26px] w-auto')}
@@ -179,7 +179,7 @@ const Menu = ({
                       >
                         <div className={clsx('w-[35px]')}>
                           <Image
-                            src={urlForImage(item.icon).url()}
+                            src={urlForImage(item?.icon).url()}
                             alt={item.titleLink.title + ' icon'}
                             width={48}
                             height={48}

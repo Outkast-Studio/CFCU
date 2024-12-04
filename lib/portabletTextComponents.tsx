@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { urlForImage } from '../lib/sanity.image'
 import clsx from 'clsx'
+import WTable from '@/components/global/ui/wTable'
 
 export const PortableTextComponents = {
   types: {
@@ -91,9 +92,7 @@ export const WysiwygComponents = {
   types: {
     image: ({ value }) => (
       <figure
-        className={clsx(
-          'lg:py-[107px] lg:flex lg:flex-col lg:gap-y-[9px] lg:items-end',
-        )}
+        className={clsx(' gap-y-[9px]', 'lg:flex lg:flex-col lg:items-end')}
       >
         <Image
           src={urlForImage(value).width(2440).url()}
@@ -107,6 +106,7 @@ export const WysiwygComponents = {
         </figcaption>
       </figure>
     ),
+    table: ({ value }) => <WTable data={value} />,
   },
   marks: {
     strong: ({ children }) => (
@@ -175,13 +175,19 @@ export const WysiwygComponents = {
       </h6>
     ),
     normal: ({ children }) => (
-      <p className={clsx('max-w-[888px] mx-auto w-full')}>{children}</p>
+      <p
+        className={clsx(
+          'max-w-[888px] mx-auto w-full lg:w-paragraph-l-desktop',
+        )}
+      >
+        {children}
+      </p>
     ),
     blockquote: ({ children }) => (
       <blockquote
         className={clsx(
           'max-w-[888px] mx-auto w-full text-lavender border-t-orange border-t-[2px] pt-[16px]',
-          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px] lg:pt-[24px] lg:mb-[74px] ',
+          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px] lg:pt-[24px]',
         )}
       >
         {children}
@@ -192,7 +198,7 @@ export const WysiwygComponents = {
     bullet: ({ children }) => (
       <ul
         className={clsx(
-          'list-disc list-outside flex flex-col gap-y-[21px] ml-[17px] max-w-[888px] mx-auto w-full',
+          'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop',
         )}
       >
         {children}
@@ -201,23 +207,36 @@ export const WysiwygComponents = {
     number: ({ children }) => (
       <ol
         className={clsx(
-          'list-decimal list-outside max-w-[888px] mx-auto w-full',
+          'list-none list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop',
         )}
       >
         {children}
       </ol>
     ),
   },
+
   listItem: {
     bullet: ({ children }) => (
-      <li
-        className={clsx(
-          'text-[21px] font-codec-news leading-[31.5px] pl-[4px]',
-        )}
-      >
-        {children}
+      <li className={clsx('flex gap-x-[16px] items-center')}>
+        <span
+          className={clsx(
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender',
+          )}
+        ></span>
+        <span className={clsx('inline-block ')}>{children}</span>
       </li>
     ),
-    number: ({ children }) => <li className={clsx('mb-1')}>{children}</li>,
+    number: ({ children, index }) => (
+      <li className={clsx('flex gap-x-[12px] items-center')}>
+        <span
+          className={clsx(
+            'inline-block w-[19px] font-codec-heavy text-lavender',
+          )}
+        >
+          {index + 1}.
+        </span>
+        <span className={clsx('inline-block ')}>{children}</span>
+      </li>
+    ),
   },
 }

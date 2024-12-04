@@ -28,6 +28,10 @@ export const iframeOptions = {
           return (document as any)?.slug?.current
             ? `/${(document as any).slug.current}`
             : new Error('Missing slug')
+        case 'location':
+          return (document as any)?.slug?.current
+            ? `/locations/${(document as any).slug.current}`
+            : new Error('Missing slug')
         case 'homepage':
           return '/'
         case 'globalSettings':
@@ -67,6 +71,11 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
           S.view.component(Iframe).options(iframeOptions).title('Preview'),
         ])
       case 'subPage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'location':
         return S.document().views([
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),

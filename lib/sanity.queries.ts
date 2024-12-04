@@ -186,7 +186,7 @@ export const individualPostBySlugQuery = groq`
     ...,
     name
   },
-  tags[]->{
+  topics[]->{
     ...,
     name
   },
@@ -196,3 +196,23 @@ export const individualPostBySlugQuery = groq`
 export const individualPostSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
 `
+
+export const topicBySlugQuery = groq`
+*[_type == "topic" && slug.current == $slug][0]{
+  ...,
+ "relatedPosts": *[_type == "post" && references(^._id)]{
+...,
+  }
+}`
+
+export const topicSlugsQuery = groq`
+*[_type == "topic" && defined(slug.current)][].slug.current
+`
+
+export const allTopicsQuery = groq`
+*[_type == "topic"]{
+  ...,
+  "relatedPosts": *[_type == "post" && references(^._id)]{
+...,
+  }
+}`

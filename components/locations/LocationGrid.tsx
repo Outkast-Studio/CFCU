@@ -82,10 +82,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
 
         <h5>{data?.phoneNumber}</h5>
       </div>
-      <Link
-        href={`locations/${data?.slug.current}`}
-        className={clsx('block mt-[25px]')}
-      >
+      <Link href={data?.slug.current} className={clsx('block mt-[25px]')}>
         <Button
           label={'More Info'}
           className={clsx('!bg-lavender !text-white')}

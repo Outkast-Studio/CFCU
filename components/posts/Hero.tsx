@@ -55,7 +55,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                   'font-codec-pro text-lavender text-[12px] leading-[18px]',
                 )}
               >
-                Resource
+                Resources
               </span>
             </button>
           </Link>
@@ -122,16 +122,16 @@ const Hero = ({ post }: { post: PostPageType }) => {
                   'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
                 )}
               >
-                Tags
+                Topics
               </h4>
               <div
                 className={clsx(
                   'font-codec-pro text-lavender underline text-[16px] leading-[20.8px] flex flex-col gap-y-[8px] ',
                 )}
               >
-                {post?.tags?.map((tag, index) => (
-                  <Link key={index} href={'#'}>
-                    {tag.name}
+                {post?.topics?.map((topic, index) => (
+                  <Link key={index} href={'/posts/' + topic.slug.current}>
+                    {topic.name}
                   </Link>
                 ))}
               </div>

@@ -29,8 +29,25 @@ export default defineType({
         source: 'title',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
+        slugify: (input, type) => {
+          // Custom slugify function to ensure uniqueness
+          return `locations/${input
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .slice(0, 200)}`
+        },
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug, context) => {
+          if (typeof slug === 'undefined') {
+            return true // Allow undefined values
+          }
+          if (slug.current && !slug.current.startsWith('locations/')) {
+            return 'Slug must start with "locations/"'
+          }
+          return true
+        }),
     }),
     defineField({
       name: 'coordinates',

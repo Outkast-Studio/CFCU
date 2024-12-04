@@ -4,8 +4,8 @@ import subPage from './subPage'
 import location from './location'
 import rates from './rates'
 import author from './author'
-import postTag from './postTag'
+import topic from './topic'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [post, subPage, location, rates, author, postTag],
+  types: [post, subPage, location, rates, author, topic],
 }

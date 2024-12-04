@@ -7,6 +7,7 @@ import { urlForImage } from 'lib/sanity.image'
 import { urlForFile } from 'lib/sanity.file'
 import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
+import { SanityImage } from 'sanity-image'
 
 interface MediaComponentProps {
   media: Media
@@ -28,16 +29,23 @@ export default function MediaComponent({
     }
   }, [isPlaying])
 
+  console.log(media?.image?.hotspot)
   if (stegaClean(media?.mediaType) === 'image' && media?.image) {
     return (
-      <Image
-        //@ts-ignore
-        src={urlForImage(media?.image).url()}
-        //@ts-ignore
+      // <Image
+      //   //@ts-ignore
+      //   src={urlForImage(media?.image?.asset).url()}
+      //   //@ts-ignore
+      //   alt={media?.image?.alt}
+      //   fill
+      //   className={clsx('object-cover w-full h-full')}
+      // />
+      <SanityImage
+        id={media?.image?.asset?._ref}
         alt={media?.image?.alt}
-        width={2440}
-        height={2440}
-        className={clsx('object-cover w-full h-full')}
+        baseUrl="https://cdn.sanity.io/images/uq2qrg8z/production/"
+        hotspot={media?.image?.hotspot}
+        className="object-cover w-full h-full"
       />
     )
   } else if (stegaClean(media?.mediaType) === 'video' && media?.video) {
@@ -64,6 +72,5 @@ export default function MediaComponent({
       </figure>
     )
   }
-
   return <div></div>
 }

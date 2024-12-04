@@ -22,7 +22,7 @@ const Pagination = ({
   return (
     <div
       className={clsx(
-        'flex justify-between items-center gap-x-[32px] max-w-[1800px] mx-auto mb-[84px] hidden',
+        'flex justify-between items-center gap-x-[32px] max-w-[1800px] mx-auto mb-[84px]',
       )}
     >
       <Link

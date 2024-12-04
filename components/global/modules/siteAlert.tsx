@@ -2,14 +2,25 @@ import { GlobalAlertType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import { useState, useRef, useEffect } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 
 const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)
   const [alertHeight, setAlertHeight] = useState(0)
   const contentRef = useRef<HTMLDivElement>(null)
+  const setAlertIsOpen = useGlobalSettingsStore((state) => state.setAlertIsOpen)
+  const setAlertHeightGlobal = useGlobalSettingsStore(
+    (state) => state.setAlertHeight,
+  )
   useEffect(() => {
     if (contentRef.current) {
       setAlertHeight(contentRef.current.scrollHeight)
+      setAlertIsOpen(true)
+      setAlertHeightGlobal(contentRef.current.scrollHeight)
+    }
+    return () => {
+      setAlertIsOpen(false)
+      setAlertHeightGlobal(0)
     }
   }, [])
 
@@ -37,7 +48,10 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
         </div>
       </div>
       <button
-        onClick={() => setIsClosed(true)}
+        onClick={() => {
+          setIsClosed(true)
+          setAlertIsOpen(false)
+        }}
         className={clsx(
           'transition-opacity duration-150',
           isClosed && 'opacity-0',

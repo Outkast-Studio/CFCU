@@ -1,4 +1,4 @@
-import { defineArrayMember, defineType } from 'sanity'
+import { defineArrayMember, defineType, defineField } from 'sanity'
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -80,6 +80,64 @@ export default defineType({
         ],
       },
     }),
+    {
+      name: 'table',
+      title: 'Table',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+        }),
+        defineField({
+          name: 'columns',
+          title: 'Columns',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'columnTitle',
+                  title: 'ColumnTitle',
+                  description: 'The title of the column',
+                  type: 'string',
+                  validation: (Rule) => Rule.required(),
+                }),
+                defineField({
+                  name: 'columnValues',
+                  title: 'Column Values',
+                  description: 'The values for the column',
+                  type: 'array',
+                  of: [
+                    defineField({
+                      name: 'value',
+                      title: 'Value',
+                      description: 'The value for the column',
+                      type: 'string',
+                      validation: (Rule) => Rule.required(),
+                    }),
+                  ],
+                }),
+              ],
+            },
+          ],
+          validation: (Rule) => Rule.required(),
+          description: 'Add columns for the table',
+        }),
+      ],
+      preview: {
+        select: {
+          title: 'title',
+        },
+        prepare({ title }) {
+          return {
+            title: title || 'Table',
+          }
+        },
+      },
+    },
     {
       type: 'image',
       fields: [

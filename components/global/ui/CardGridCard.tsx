@@ -12,12 +12,12 @@ export default function CardGridCard({
   data: CtaCardGridHomeType['cards'][0]
 }) {
   return (
-    <CardLink data={data.cardLink}>
+    <CardLink data={data?.cardLink}>
       <article className={clsx('w-[239px]', 'lg:w-full')}>
         <div className={clsx('aspect-w-10 aspect-h-11 relative')}>
           <Image
-            src={urlForImage(data.image).url()}
-            alt={data.image.alt as string}
+            src={data?.image ? urlForImage(data?.image).url() : ''}
+            alt={data?.image?.alt as string}
             fill
             className={clsx('object-cover w-full h-full')}
           />
@@ -49,7 +49,7 @@ export default function CardGridCard({
           )}
         >
           <PortableText
-            value={data.description}
+            value={data?.description}
             components={PortableTextComponents as any}
           />
         </div>

@@ -1,16 +1,24 @@
-import { BlogHomepageType, PostPageType } from 'types/sanity'
+import {
+  BlogHomepageType,
+  PostPageType,
+  TopicPageType,
+  TopicWithRelatedPosts,
+} from 'types/sanity'
 import Image from 'next/image'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import { PostCard } from 'components/global/modules/RelatedStories'
 import Pagination from 'components/search/pagination'
 import Link from 'next/link'
+import FilterButton from '../global/ui/FilterButton'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType
+  allTopics?: TopicWithRelatedPosts[]
+  isBlogHome?: boolean
 }
 
-const PostHomePage = ({ allPosts, data }: Props) => {
+const PostHomePage = ({ allPosts, data, allTopics, isBlogHome }: Props) => {
   return (
     <main
       className={clsx(
@@ -18,7 +26,7 @@ const PostHomePage = ({ allPosts, data }: Props) => {
         'lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
     >
-      <section className={clsx('pt-[79px]', 'lg:pt-[48px]')}>
+      <section className={clsx('pt-[60px]', 'lg:pt-[48px]')}>
         <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
           <Image
             src={'/icons/logoPurple.png'}
@@ -44,6 +52,13 @@ const PostHomePage = ({ allPosts, data }: Props) => {
         >
           <PortableText value={data?.description} />
         </div>
+        {isBlogHome && (
+          <FilterButton
+            title="Filter by Topic"
+            items={allTopics}
+            className={clsx('mt-[29px]', 'lg:mt-[42px]')}
+          />
+        )}
       </section>
       <section
         className={clsx(

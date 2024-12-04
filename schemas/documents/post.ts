@@ -27,8 +27,25 @@ export default defineType({
         source: 'title',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
+        slugify: (input, type) => {
+          // Custom slugify function to ensure uniqueness
+          return `posts/${input
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .slice(0, 200)}`
+        },
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug, context) => {
+          if (typeof slug === 'undefined') {
+            return true // Allow undefined values
+          }
+          if (slug.current && !slug.current.startsWith('posts/')) {
+            return 'Slug must start with "posts/"'
+          }
+          return true
+        }),
     }),
     defineField({
       name: 'type',
@@ -36,6 +53,7 @@ export default defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'author',
       title: 'Author',
@@ -73,10 +91,10 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
+      name: 'topics',
+      title: 'Topics',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'postTag' }] }],
+      of: [{ type: 'reference', to: [{ type: 'topic' }] }],
       validation: (Rule) => Rule.required(),
     }),
 

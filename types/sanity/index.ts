@@ -50,6 +50,8 @@ export interface SearchResult {
   slug: {
     current: string
   }
+  metaTitle: string
+  metaDescription?: string
   // Add more fields as needed
 }
 
@@ -492,7 +494,7 @@ export interface PostPageType {
   content: PortableTextBlock
   excerpt: string
   thumbnailImage: ImageAsset
-  tags: PostTagType[]
+  topics: TopicPageType[]
   shareLinks?: {
     icon: ImageAsset
     link: string
@@ -555,4 +557,24 @@ export interface LocationPage {
     alt: string
   }
   modules: Modules
+}
+
+export interface TopicPageType {
+  name: string
+  slug: {
+    current: string
+  }
+  title: string
+  description: PortableTextBlock[]
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: {
+    asset: ImageAsset
+    alt: string
+  }
+  modules: Modules
+}
+
+export interface TopicWithRelatedPosts extends TopicPageType {
+  relatedPosts: PostPageType[]
 }

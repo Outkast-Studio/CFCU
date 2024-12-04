@@ -24,6 +24,9 @@ import {
   blogHomepageQuery,
   individualPostBySlugQuery,
   individualPostSlugsQuery,
+  topicBySlugQuery,
+  topicSlugsQuery,
+  allTopicsQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -170,4 +173,18 @@ export async function getAllIndividualPostSlugs() {
   const client = getClient()
   const slugs = (await client.fetch<string[]>(individualPostSlugsQuery)) || []
   return slugs.map((slug) => ({ slug }))
+}
+
+export async function getAllTopicSlugs() {
+  const client = getClient()
+  const slugs = (await client.fetch<string[]>(topicSlugsQuery)) || []
+  return slugs.map((slug) => ({ slug }))
+}
+
+export async function getTopicBySlug(client: SanityClient, slug: string) {
+  return (await client.fetch(topicBySlugQuery, { slug })) || ({} as any)
+}
+
+export async function getAllTopics(client: SanityClient) {
+  return (await client.fetch(allTopicsQuery)) || []
 }

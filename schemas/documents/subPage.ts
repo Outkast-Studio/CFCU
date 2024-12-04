@@ -30,9 +30,41 @@ export default defineType({
         source: 'title',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
+        slugify: (input, type) => {
+          // Custom slugify function to ensure uniqueness
+          return `${input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)}`
+        },
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug, context) => {
+          if (typeof slug === 'undefined') {
+            return true // Allow undefined values
+          }
+          if (
+            slug.current &&
+            (slug.current.startsWith('posts/') ||
+              slug.current.startsWith('locations/') ||
+              slug.current.startsWith('rates/'))
+          ) {
+            return 'Slug must not start with "posts/", "locations/", or "rates/"'
+          }
+          return true
+        }),
     }),
+    // defineField({
+    //   name: 'path',
+    //   title: 'Path',
+    //   type: 'string',
+    //   readOnly: true,
+    //   validation: (Rule) => Rule.required(),
+    //   options: {
+    //     source: 'slug',
+    //     slugify: (input, type) => {
+    //       // Custom slugify function to ensure uniqueness
+    //       return `/${input.toLowerCase().replace(/\s+/g, '-').slice(0, 200)}`
+    //     },
+    //   },
+    // }),
     defineField({
       name: 'parent',
       title: 'Parent Sub Page',

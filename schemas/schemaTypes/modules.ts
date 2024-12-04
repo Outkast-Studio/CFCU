@@ -103,4 +103,15 @@ export const modules = defineField({
       to: [{ type: 'wysiwyg', title: 'WYSIWYG' }],
     },
   ],
+  validation: (Rule) =>
+    Rule.custom((modules) => {
+      if (!modules) return true
+      const siteAlerts = modules.filter(
+        (module) => module._type === 'siteAlert',
+      )
+      if (siteAlerts.length > 1) {
+        return 'Only one Site Alert is allowed per page'
+      }
+      return true
+    }),
 })

@@ -7,7 +7,7 @@ import PageLink from './ui/PageLink'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 
 const Footer = () => {
-  const data = useGlobalSettingsStore((state) => state.globalSettings.footer)
+  const data = useGlobalSettingsStore((state) => state.globalSettings?.footer)
   return (
     <div className={clsx('bg-lavender ', 'lg:pt-[36px]')}>
       <footer
@@ -34,8 +34,12 @@ const Footer = () => {
               {data?.socials.map((social, index) => (
                 <a key={index} href={social.url} className={clsx()}>
                   <Image
-                    src={urlForImage(social.icon).quality(100).url()}
-                    alt={social.icon.alt as string}
+                    src={
+                      social.icon
+                        ? urlForImage(social.icon).quality(100).url()
+                        : ''
+                    }
+                    alt={social?.icon?.alt as string}
                     quality={100}
                     width={50}
                     height={50}
@@ -150,7 +154,9 @@ const Footer = () => {
             {data?.lowerFooterIcons.map((icon, index) => (
               <Image
                 key={index}
-                src={urlForImage(icon.icon).quality(100).url()}
+                src={
+                  icon?.icon ? urlForImage(icon?.icon).quality(100).url() : ''
+                }
                 alt={icon.icon.alt as string}
                 quality={100}
                 width={200}

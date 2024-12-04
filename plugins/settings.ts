@@ -73,7 +73,7 @@ export const settingsStructure = (
       'rateTable',
       'wysiwyg',
       'author',
-      'postTag',
+      'topic',
     ]
 
     const globalSettingsListItem = S.listItem()
@@ -133,6 +133,10 @@ export const settingsStructure = (
                   .schemaType('blogHomePage')
                   .documentId('blogHomePage'),
               ),
+            S.listItem()
+              .title('Topics')
+              .schemaType('topic')
+              .child(S.documentTypeList('topic').title('Topics')),
             S.listItem()
               .title('Blog Posts')
               .schemaType('post')

@@ -31,7 +31,13 @@ export default defineType({
       title: 'Needs Gradient',
       type: 'boolean',
       initialValue: true,
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((field, context) => {
+          if (context.document?.needsBackgroundMedia && !field) {
+            return 'Background media is required when "Needs Background Media" is enabled'
+          }
+          return true
+        }),
       hidden: ({ parent }) => !parent?.needsBackgroundMedia,
       description: 'Toggle to enable or disable gradient for this hero',
     }),

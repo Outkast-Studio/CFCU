@@ -4,6 +4,7 @@ import {
   getClient,
   getAllPosts,
   getBlogHomepage,
+  getAllTopics,
 } from 'lib/sanity.client'
 import {
   allPostsQuery,
@@ -14,6 +15,7 @@ import {
   GlobalSettingsType,
   BlogHomepageType,
   PostPageType,
+  TopicWithRelatedPosts,
 } from 'types/sanity'
 import { GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
@@ -31,6 +33,7 @@ interface PageProps extends SharedPageProps {
   globalSettings: GlobalSettingsType
   allPosts: PostPageType[]
   blogHomepage: BlogHomepageType
+  allTopics?: TopicWithRelatedPosts[]
   seo: Seo
 }
 
@@ -49,6 +52,11 @@ export default function Page(props: PageProps) {
     blogHomepageQuery,
   )
 
+  const [allTopics] = useLiveQuery<TopicWithRelatedPosts[]>(
+    props.allTopics,
+    allPostsQuery,
+  )
+
   const setGlobalSettings = useGlobalSettingsStore(
     (state) => state.setGlobalSettings,
   )
@@ -58,7 +66,12 @@ export default function Page(props: PageProps) {
 
   return (
     <Layout seo={props.seo}>
-      <PostHomePage allPosts={allPosts} data={blogHomepage} />
+      <PostHomePage
+        allPosts={allPosts}
+        data={blogHomepage}
+        allTopics={allTopics}
+        isBlogHome={true}
+      />
     </Layout>
   )
 }
@@ -69,6 +82,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const globalSettings = await getGlobalSettings(client)
   const blogHomepage = await getBlogHomepage(client)
   const allPosts = await getAllPosts(client)
+  const allTopics = await getAllTopics(client)
 
   const seo = {
     title: blogHomepage?.metaTitle || 'Get Inspired | CFCU',
@@ -82,6 +96,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       globalSettings,
       allPosts,
       params,
+      allTopics,
       draftMode,
       blogHomepage,
       token: draftMode ? readToken : '',

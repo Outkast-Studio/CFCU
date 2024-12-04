@@ -22,12 +22,17 @@ export default defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
+      options: {
+        hotspot: true, // This enables the hotspot/crop functionality
+      },
       hidden: ({ parent }) => parent?.mediaType !== 'image',
       fields: [
         defineField({
           name: 'alt',
           title: 'Alternative Text',
           type: 'string',
+          description:
+            "Describe what's in the image for screen readers and search engines.",
           validation: (Rule) => Rule.required(),
         }),
       ],

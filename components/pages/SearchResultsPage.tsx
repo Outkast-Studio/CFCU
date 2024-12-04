@@ -1,17 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { SearchResult } from 'types/sanity'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { clsx } from 'clsx'
 import Image from 'next/image'
 import defualtSubPageHero from 'public/images/defaultSubPage.png'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { GlobalSettingsType } from 'types/sanity'
 
 const SearchResultsPage = ({
   initialQuery,
   results,
+  globalSettings,
+  totalResults,
+  currentPage,
+  totalPages,
 }: {
   initialQuery: string
   results: SearchResult[]
+  globalSettings: GlobalSettingsType
+  totalResults: number
+  currentPage: number
+  totalPages: number
 }) => {
   const [searchQuery, setSearchQuery] = useState(initialQuery)
   const router = useRouter()
@@ -19,8 +29,15 @@ const SearchResultsPage = ({
     e.preventDefault()
     router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
   }
+  const setGlobalSettings = useGlobalSettingsStore(
+    (state) => state.setGlobalSettings,
+  )
 
-  function createSlug(_type: string, slug: string) {
+  useEffect(() => {
+    setGlobalSettings(globalSettings)
+  }, [setGlobalSettings, globalSettings])
+
+  function createSlug(_type: string, slug?: string) {
     let generatedSlug = ''
 
     switch (_type) {
@@ -28,16 +45,16 @@ const SearchResultsPage = ({
         generatedSlug = `/${slug}`
         break
       case 'rates':
-        generatedSlug = `/rates/${slug}`
+        generatedSlug = `/${slug}`
         break
       case 'location':
-        generatedSlug = `/locations/${slug}`
+        generatedSlug = `/${slug}`
         break
       case 'homepage':
         generatedSlug = `/`
         break
       case 'post':
-        generatedSlug = `/posts/${slug}`
+        generatedSlug = `/${slug}`
         break
       default:
         generatedSlug = `/`
@@ -133,7 +150,7 @@ const SearchResultsPage = ({
       <section
         className={clsx(
           'max-w-[888px] mt-[40px] mb-[68px] mx-auto px-[24px]',
-          'lg:mt-[61px] lg:mb-[83px]',
+          'lg:mt-[61px] lg:mb-[83px] lg:px-[0px]',
         )}
       >
         <p
@@ -157,30 +174,26 @@ const SearchResultsPage = ({
                 key={result._id}
                 className={clsx('py-[28px] border-t-[1px] border-t-black/10')}
               >
-                <Link href={createSlug(result._type, result.slug.current)}>
+                <Link href={createSlug(result._type, result?.slug?.current)}>
                   <h3
                     className={clsx(
                       'w-h6',
                       'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold',
                     )}
                   >
-                    {result.title}
+                    {result.metaTitle}
                   </h3>
-                  {result.description && (
-                    <p className="text-gray-600 mt-1">{result.description}</p>
+                  {result.metaDescription && (
+                    <p
+                      className={clsx(
+                        'w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]',
+                        'lg:w-paragraph-l-desktop lg:mb-[0px]',
+                      )}
+                    >
+                      {result.metaDescription}
+                    </p>
                   )}
                 </Link>
-                <p
-                  className={clsx(
-                    'w-paragraph-s-desktop mt-[16px] text-black/75 mb-[28px]',
-                    'lg:w-paragraph-l-desktop lg:mb-[0px]',
-                  )}
-                >
-                  Opening an account with us is simple, secure, and designed to
-                  make managing your money easier than ever. Get started today
-                  and experience banking that fits seamlessly into your everyday
-                  life!
-                </p>
               </li>
             ))}
           </ul>

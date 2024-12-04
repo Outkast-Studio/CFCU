@@ -16,7 +16,6 @@ const PageLink = ({
   const [href, setHref] = useState<string>('')
   useEffect(() => {
     if (!data?.externalLink) {
-      console.log(data?.link?._type)
       switch (data?.link?._type) {
         case 'post':
           setHref(`/posts/${data?.link?.slug}`)
@@ -33,9 +32,11 @@ const PageLink = ({
         case 'locationHomePage':
           setHref(`/locations`)
           break
+        case 'topic':
+          setHref(`/blog/${data?.link?.slug}`)
+          break
         default:
           setHref('/')
-          console.log('no link')
           break
       }
     }

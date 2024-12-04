@@ -2,7 +2,8 @@ const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
+    darkMode: ['class'],
+    content: [
     './components/**/*.{js,ts,jsx,tsx}',
     './lib/**/*.{js,ts,jsx,tsx}',
     './intro-template/**/*.{js,ts,jsx,tsx}',
@@ -10,60 +11,101 @@ module.exports = {
     './plugins/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {
-      colors: {
-        lightGrey: '#f0f0f0',
-        lavender: '#3C1053',
-        purple: '#3C1053',
-        orange: '#F56600',
-        yellow: '#FFC600',
-        green: '#008566',
-        divider: '#F2F2F2',
-        neutralBlack: '#575656',
-        neutralLightGrey: '#EDEDED',
-        alertRed: '#B40303',
-      },
-      spacing: {
-        28: '7rem',
-      },
-      letterSpacing: {
-        tighter: '-.04em',
-      },
-      fontFamily: {
-        'codec-pro': ['var(--font-codec-pro)', 'sans-serif'],
-        'codec-bold': ['var(--font-codec-pro-bold)', 'sans-serif'],
-        'codec-extra-bold': ['var(--font-codec-extra-bold)', 'sans-serif'],
-        'codec-news': ['var(--font-codec-news)', 'sans-serif'],
-        'codec-fat': ['var(--font-codec-fat)', 'sans-serif'],
-        'codec-heavy': ['var(--font-codec-heavy)', 'sans-serif'],
-        'codec-regular': ['var(--font-codec-regular)', 'sans-serif'],
-        'codec-ultra': ['var(--font-codec-ultra)', 'sans-serif'],
-        'codec-light': ['var(--font-codec-light)', 'sans-serif'],
-      },
-      spacing: {
-        gutter: 'var(--gutter)',
-        columnGap: 'var(--columnGap)',
-      },
-      lineHeight: {
-        tight: 1.2,
-      },
-
-      fontSize: {
-        '5xl': '2.5rem',
-        '6xl': '2.75rem',
-        '7xl': '4.5rem',
-        '8xl': '6.25rem',
-      },
-      boxShadow: {
-        small: '0 5px 10px rgba(0, 0, 0, 0.12)',
-        medium: '0 8px 30px rgba(0, 0, 0, 0.12)',
-      },
-      screens: {
-        lg: '1024px',
-        ml: '1400px',
-        xl: '1900px',
-      },
-    },
+  	extend: {
+  		colors: {
+  			lightGrey: '#f0f0f0',
+  			lavender: '#3C1053',
+  			purple: '#3C1053',
+  			orange: '#F56600',
+  			yellow: '#FFC600',
+  			green: '#008566',
+  			divider: '#F2F2F2',
+  			neutralBlack: '#575656',
+  			neutralLightGrey: '#EDEDED',
+  			alertRed: '#B40303',
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		spacing: {
+  			gutter: 'var(--gutter)',
+  			columnGap: 'var(--columnGap)'
+  		},
+  		letterSpacing: {
+  			tighter: '-.04em'
+  		},
+  		fontFamily: {
+  			'codec-pro': ['var(--font-codec-pro)', 'sans-serif'],
+  			'codec-bold': ['var(--font-codec-pro-bold)', 'sans-serif'],
+  			'codec-extra-bold': ['var(--font-codec-extra-bold)', 'sans-serif'],
+  			'codec-news': ['var(--font-codec-news)', 'sans-serif'],
+  			'codec-fat': ['var(--font-codec-fat)', 'sans-serif'],
+  			'codec-heavy': ['var(--font-codec-heavy)', 'sans-serif'],
+  			'codec-regular': ['var(--font-codec-regular)', 'sans-serif'],
+  			'codec-ultra': ['var(--font-codec-ultra)', 'sans-serif'],
+  			'codec-light': ['var(--font-codec-light)', 'sans-serif']
+  		},
+  		lineHeight: {
+  			tight: '1.2'
+  		},
+  		fontSize: {
+  			'5xl': '2.5rem',
+  			'6xl': '2.75rem',
+  			'7xl': '4.5rem',
+  			'8xl': '6.25rem'
+  		},
+  		boxShadow: {
+  			small: '0 5px 10px rgba(0, 0, 0, 0.12)',
+  			medium: '0 8px 30px rgba(0, 0, 0, 0.12)'
+  		},
+  		screens: {
+  			lg: '1024px',
+  			ml: '1400px',
+  			xl: '1900px'
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
   plugins: [
     function ({ addBase, theme }) {
@@ -289,5 +331,6 @@ module.exports = {
       addUtilities(newUtilities, ['responsive', 'hover'])
     }),
     require('@tailwindcss/aspect-ratio'),
-  ],
+      require("tailwindcss-animate")
+],
 }

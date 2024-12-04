@@ -1,23 +1,17 @@
 import { defineField, defineType, validation } from 'sanity'
-import { Table } from '@phosphor-icons/react'
-import { modules } from 'schemas/schemaTypes/ratesModules'
+import { TagSimple } from '@phosphor-icons/react'
 
+//TODO: change description on this compoonent when it comes time.
 export default defineType({
-  name: 'rates',
-  title: 'Rates',
-  icon: Table as any,
+  name: 'topic',
+  title: 'Topic',
+  icon: TagSimple as any,
   type: 'document',
-  groups: [
-    { name: 'modules', title: 'Modules' },
-    {
-      name: 'seo',
-      title: 'SEO',
-    },
-  ],
+  groups: [{ name: 'seo', title: 'SEO' }],
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'name',
+      title: 'Name',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -25,33 +19,28 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description:
-        'The slug stucture for this rate table will be /rates/[slug]',
       options: {
-        source: 'title',
+        source: 'name',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
-        slugify: (input, type) => {
-          // Custom slugify function to ensure uniqueness
-          return `rates/${input
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-            .slice(0, 200)}`
-        },
       },
-      validation: (Rule) =>
-        Rule.required().custom((slug, context) => {
-          if (typeof slug === 'undefined') {
-            return true // Allow undefined values
-          }
-          if (slug.current && !slug.current.startsWith('rates/')) {
-            return 'Slug must start with "rates/"'
-          }
-          return true
-        }),
+      validation: (Rule) => Rule.required(),
+      description: 'The slug stucture for this topic will be /blog/[slug]',
     }),
-    modules,
+
+    defineField({
+      name: 'title',
+      title: 'Page Title',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'blockContent',
+      validation: (Rule) => Rule.required(),
+    }),
+
     defineField({
       name: 'metaTitle',
       title: 'Meta Title',
@@ -90,4 +79,14 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      name: 'name',
+    },
+    prepare({ name }) {
+      return {
+        title: name,
+      }
+    },
+  },
 })

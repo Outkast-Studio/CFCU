@@ -5,6 +5,7 @@ import {
   getPostBySlug,
   getGlobalSettings,
 } from 'lib/sanity.client'
+import { readToken } from 'lib/sanity.api'
 import PostPage from '../components/pages/PostPage'
 import SubPage from '../components/pages/SubPage'
 import { SubPageType, PostPageType, GlobalSettingsType } from 'types/sanity'
@@ -15,10 +16,14 @@ import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { Layout } from 'components/layouts/Layout'
+import { stegaClean } from '@sanity/client/stega'
 
-// Define the props type
-
+//TODO; Fix the type isues in this file.
 type PageData = SubPageType | PostPageType
+
+interface Query {
+  [key: string]: string
+}
 
 interface PageProps extends SharedPageProps {
   globalSettings: GlobalSettingsType
@@ -38,52 +43,60 @@ export default function DynamicPage(props: PageProps) {
     setGlobalSettings(props.globalSettings)
   }, [setGlobalSettings, props.globalSettings])
 
-  const postData = useLiveQuery<PageData>(
-    props.pageType === 'post' ? props.pageData : null,
-    postBySlugQuery,
-    props.params,
-  )[0]
+  // const postData = useLiveQuery<PageData>(
+  //   stegaClean(props.pageType) === 'post' ? props.pageData : null,
+  //   postBySlugQuery,
+  //   props.params,
+  // )[0]
 
-  const subPageData = useLiveQuery<PageData>(
-    props.pageType === 'subPage' ? props.pageData : null,
+  console.log(props.params, 'params')
+  const [subPageData] = useLiveQuery<PageData>(
+    props.pageData,
     subPageBySlugQuery,
     props.params,
-  )[0]
+  )
+  console.log(subPageData)
 
-  const data = props.pageType === 'post' ? postData : subPageData
+  const data = subPageData
 
+  return (
+    <Layout seo={props.seo}>
+      <SubPage data={data as SubPageType} childrenPages={props.childrenPages} />
+    </Layout>
+  )
   // Conditionally render based on page type
-  switch (props.pageType) {
-    case 'post':
-      return (
-        <Layout seo={props.seo}>
-          <PostPage data={data as PostPageType} />
-        </Layout>
-      )
-    case 'subPage':
-      return (
-        <Layout seo={props.seo}>
-          <SubPage
-            data={data as SubPageType}
-            childrenPages={props.childrenPages}
-          />
-        </Layout>
-      )
-    default:
-      return <></>
-  }
+  // switch (stegaClean(props.pageType)) {
+  //   case 'post':
+  //     return (
+  //       <Layout seo={props.seo}>
+  //         <PostPage data={data as PostPageType} />
+  //       </Layout>
+  //     )
+  //   case 'subPage':
+  //     return (
+  //       <Layout seo={props.seo}>
+  //         <SubPage
+  //           data={data as SubPageType}
+  //           childrenPages={props.childrenPages}
+  //         />
+  //       </Layout>
+  //     )
+  //   default:
+  //     return <></>
+  // }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = params?.slug as string[]
-  const client = getClient()
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
+  const { draftMode = false, params = {} } = ctx
+  const client = getClient(draftMode ? { token: readToken } : undefined)
   const globalSettings = await getGlobalSettings(client)
   // First, fetch the page type based on the slug
   const pageType = await client.fetch(
     `
       *[slug.current == $slug][0]._type
     `,
-    { slug: slug.join('/') },
+    //@ts-ignore
+    { slug: params.slug.join('/') },
   )
   if (!pageType) {
     return { notFound: true }
@@ -93,23 +106,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   let childrenPages = []
 
   let pageData
-  switch (pageType) {
-    case 'subPage':
-      pageData = await getSubPageBySlug(client, slug.join('/'))
-      childrenPages = await client.fetch(
-        `
-        *[_type == "subPage" && parent->slug.current == $slug]
-      `,
-        { slug: slug.join('/') },
-      )
-      break
-    case 'post':
-      pageData = await getPostBySlug(client, slug.join('/'))
-      break
-    // Add more cases for other page types
-    default:
-      return { notFound: true }
-  }
+  //@ts-ignore
+  pageData = await getSubPageBySlug(client, params.slug.join('/'))
+  childrenPages = await client.fetch(
+    `
+    *[_type == "subPage" && parent->slug.current == $slug]
+  `, //@ts-ignore
+    { slug: params.slug.join('/') },
+  )
 
   if (!pageData) {
     return { notFound: true }
@@ -126,6 +130,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       pageData,
       pageType,
       globalSettings,
+      params: {
+        ...params,
+        //@ts-ignore
+        slug: params.slug.join('/'),
+      },
+      draftMode,
+      token: draftMode ? readToken : '',
       seo,
       childrenPages, // Include the page type in the props
     },
