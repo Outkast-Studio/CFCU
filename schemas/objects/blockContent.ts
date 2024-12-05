@@ -156,5 +156,25 @@ export default defineType({
         },
       ],
     },
+    {
+      name: 'fullBleedImage',
+      title: 'Full Bleed Image',
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Optional caption for the image',
+        },
+      ],
+    },
   ],
 })

@@ -20,6 +20,8 @@ const SubPage = ({
     //@ts-ignore
     (module) => module?._type === 'siteAlert',
   )
+
+  console.log(data)
   return (
     <main className={clsx('pb-[100vh]')}>
       {siteAlerts?.map((module, index) => (

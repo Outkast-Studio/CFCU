@@ -7,7 +7,7 @@ const Wysiwyg = ({ data }: { data: WysiwygType }) => {
   return (
     <section
       className={clsx(
-        'px-[24px] py-[44px] flex flex-col gap-y-[24px]',
+        'px-[0px] py-[44px] flex flex-col gap-y-[24px]',
         'lg:pb-[41px] lg:pt-[105px] lg:px-[48px] lg:gap-y-[16px]',
       )}
     >
