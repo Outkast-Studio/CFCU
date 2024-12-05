@@ -36,7 +36,7 @@
 :root,
 body {
   font-synthesis-weight: none;
-  scrollbar-gutter: stable;
+  /* scrollbar-gutter: stable; */
 }
 
 .ctaFullMediaGradient {

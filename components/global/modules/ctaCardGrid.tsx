@@ -15,7 +15,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
         'lg:pt-[64px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[108px]',
       )}
     >
-      <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
+      <div className={clsx('px-[24px]', 'lg:px-[48px]', 'xl:px-[0px]')}>
         {data?.subTitle && (
           <h2
             className={clsx(
@@ -52,7 +52,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
           ))}
         </Swiper>
       )}
-      <div className={clsx('lg:mt-[56px] lg:px-[48px] ')}>
+      <div className={clsx('lg:mt-[56px] lg:px-[48px', 'xl:px-[0px]')}>
         {width >= 1024 && (
           <div
             className={clsx(

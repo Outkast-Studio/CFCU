@@ -36,7 +36,6 @@ export default function ProjectSlugRoute(props: PageProps) {
     props.params,
   )
 
-  console.log(props.locationPage)
   const setGlobalSettings = useGlobalSettingsStore(
     (state) => state.setGlobalSettings,
   )
@@ -61,7 +60,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     getLocationBySlug(client, slug),
   ])
 
-  console.log(locationPage)
   if (!locationPage) {
     return {
       notFound: true,

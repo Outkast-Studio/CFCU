@@ -187,7 +187,6 @@ export default function MapView({
           .addTo(map.current!)
 
         newMarker.getElement().addEventListener('click', () => {
-          console.log(atm)
           setSelectedATM(atm)
           setSelectedLocation(null)
           const point = map.current!.project([atm.longitude, atm.latitude])

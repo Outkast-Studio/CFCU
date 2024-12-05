@@ -22,6 +22,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       setAlertIsOpen(false)
       setAlertHeightGlobal(0)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

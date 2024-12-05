@@ -65,7 +65,7 @@ export default function TopicSlugRoute({
   )
   useEffect(() => {
     setGlobalSettings(globalSettings)
-  }, [globalSettings])
+  }, [globalSettings, setGlobalSettings])
 
   return (
     <Layout seo={seo}>
@@ -132,7 +132,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = slugs.flatMap(({ slug }) => [
     `/posts/topic/${removePostPrefix(slug)}`,
-    `/posts/topic/${removePostPrefix(slug)}/1`,
   ])
 
   return {
@@ -142,5 +141,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 function removePostPrefix(slug: string) {
-  return slug.startsWith('posts/') ? slug.slice(6) : slug
+  return slug.startsWith('posts/topic/') ? slug.slice(12) : slug
 }

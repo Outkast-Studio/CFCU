@@ -118,10 +118,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
                   'lg:max-w-[454px] lg:w-paragraph-l-desktop',
                 )}
               >
-                <PortableText
-                  value={data.lowerContent.description}
-                  components={WysiwygComponentsWithoutPadding as any}
-                />
+                <PortableText value={data.lowerContent.description} />
               </div>
             )}
             <PageLink

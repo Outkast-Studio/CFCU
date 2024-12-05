@@ -40,7 +40,7 @@ export default function PostSlugRoute({
   )
   useEffect(() => {
     setGlobalSettings(globalSettings)
-  }, [globalSettings])
+  }, [globalSettings, setGlobalSettings])
 
   return (
     <Layout seo={seo}>

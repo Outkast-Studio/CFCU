@@ -38,7 +38,6 @@ export default function DynamicPage(props: PageProps) {
   const setGlobalSettings = useGlobalSettingsStore(
     (state) => state.setGlobalSettings,
   )
-  console.log(props.pageData)
   useEffect(() => {
     setGlobalSettings(props.globalSettings)
   }, [setGlobalSettings, props.globalSettings])
@@ -145,7 +144,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // Fetch all slugs from Sanity
   const client = getClient()
   const paths = await client.fetch(`
-    *[_type in ["subPage", "post"]].slug.current
+    *[_type in ["subPage"]].slug.current
   `)
 
   return {

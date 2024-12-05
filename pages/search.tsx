@@ -71,7 +71,6 @@ export default function SearchResults({
   currentPage: number
   totalResults: number
 }) {
-  console.log(globalSettings)
   const router = useRouter()
   const [searchQuery, setSearchQuery] = useState(initialQuery)
   const setGlobalSettings = useGlobalSettingsStore(

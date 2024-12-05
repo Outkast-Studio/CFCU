@@ -17,7 +17,7 @@ const MenuCTA = ({
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const [mounted, setMounted] = useState(false)
-  const theme: Theme = getThemeClasses(data.theme.label)
+  const theme = getThemeClasses(data.theme.label) as any
   const containerRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descriptionRef = useRef<HTMLDivElement>(null)

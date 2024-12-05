@@ -103,7 +103,7 @@ export default function Page(props: PageProps) {
 export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
   const { draftMode = false, params = {} } = context
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const page = params.page ? parseInt(params.page as string) : 1
+  const page = params.page ? Number(params.page as string) : 1
   const itemsPerPage = 10 // Adjust as needed
 
   const globalSettings = await getGlobalSettings(client)
@@ -150,7 +150,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const { totalPages } = await getAllPosts(client, 1, 10) // Use the same itemsPerPage as in getStaticProps
 
   const paths = Array.from({ length: totalPages }, (_, i) => ({
-    params: { page: `page-${i + 1}` },
+    params: { page: `${i + 1}` },
   }))
 
   return {

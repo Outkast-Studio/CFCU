@@ -119,6 +119,7 @@ export const modules = defineField({
     Rule.custom((modules) => {
       if (!modules) return true
       const siteAlerts = modules.filter(
+        //@ts-ignore
         (module) => module._type === 'siteAlert',
       )
       if (siteAlerts.length > 1) {

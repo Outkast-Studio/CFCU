@@ -32,7 +32,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
           stegaClean(data?.imagePosition) === 'left'
             ? 'lg:flex-row'
             : 'lg:flex-row-reverse',
-          'xl:pl-[48px]',
+          'xl:pl-[0px]',
         )}
       >
         <div
@@ -56,6 +56,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
             stegaClean(data?.imagePosition) === 'left'
               ? 'lg:pr-[48px]'
               : 'lg:pl-[48px]',
+            'xl:pr-[0px] xl:pl-[0px]',
           )}
         >
           {data?.subtitle && (

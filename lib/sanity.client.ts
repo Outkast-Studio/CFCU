@@ -161,7 +161,7 @@ export async function getAllPosts(
   page = 1,
   itemsPerPage = 10,
 ) {
-  const start = (page - 1) * itemsPerPage
+  const start = page == 1 ? 0 : (page - 1) * itemsPerPage
   const end = start + itemsPerPage
 
   const [posts, totalCount] = await Promise.all([
@@ -217,7 +217,6 @@ export async function getTopicBySlug(
 }> {
   const start = (page - 1) * postsPerPage
   const end = start + postsPerPage
-  console.log(slug)
   const [topicData, relatedPosts, totalPosts] = await Promise.all([
     client.fetch<TopicPageType>(topicBySlugQuery, { slug }),
     client.fetch<PostPageType[]>(

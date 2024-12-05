@@ -27,7 +27,7 @@ const LocationHomePage = ({
       <LocationHomeHero data={data?.pageHero} />
       <LocationMap locations={allLocations} atmLocations={atmLocations} />
       <LocationGrid data={allLocations} />
-      <ModuleFactory modules={data?.modules} />
+      {data?.modules?.length > 0 && <ModuleFactory modules={data?.modules} />}
     </main>
   )
 }

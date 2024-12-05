@@ -21,9 +21,8 @@ const SubPage = ({
     (module) => module?._type === 'siteAlert',
   )
 
-  console.log(data)
   return (
-    <main className={clsx('pb-[100vh]')}>
+    <main>
       {siteAlerts?.map((module, index) => (
         <React.Fragment key={`site-alert-${index}`}>
           {renderModule(module)}
