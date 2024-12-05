@@ -98,6 +98,12 @@ export const modules = defineField({
     },
     {
       type: 'reference',
+      name: 'teamGrid',
+      title: 'Team Grid',
+      to: [{ type: 'teamGrid', title: 'Team Grid' }],
+    },
+    {
+      type: 'reference',
       name: 'wysiwyg',
       title: 'WYSIWYG',
       to: [{ type: 'wysiwyg', title: 'WYSIWYG' }],

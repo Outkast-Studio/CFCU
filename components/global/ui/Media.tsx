@@ -29,7 +29,6 @@ export default function MediaComponent({
     }
   }, [isPlaying])
 
-  console.log(media?.image?.hotspot)
   if (stegaClean(media?.mediaType) === 'image' && media?.image) {
     return (
       // <Image

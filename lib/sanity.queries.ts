@@ -168,12 +168,18 @@ export const locationHomepageQuery = groq`*[_type == "locationHomePage"][0]{
   ${modulesFragment}
 }`
 
+// export const allPostsQuery = groq`
+// *[_type == "post"]{
+//   ...,
+//   ${modulesFragment}
+// }`
+
 export const allPostsQuery = groq`
-*[_type == "post"]{
+*[_type == "post"] | order(publishedAt desc) {
   ...,
   ${modulesFragment}
-}`
-
+}[$start...$end]
+`
 export const blogHomepageQuery = groq`*[_type == "blogHomePage"][0]{
   ...,
   ${modulesFragment}
@@ -184,11 +190,9 @@ export const individualPostBySlugQuery = groq`
   ...,
   author->{
     ...,
-    name
   },
   topics[]->{
     ...,
-    name
   },
   ${modulesFragment}
 }`
@@ -197,13 +201,13 @@ export const individualPostSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
 `
 
-export const topicBySlugQuery = groq`
-*[_type == "topic" && slug.current == $slug][0]{
-  ...,
- "relatedPosts": *[_type == "post" && references(^._id)]{
-...,
-  }
-}`
+// export const topicBySlugQuery = groq`
+// *[_type == "topic" && slug.current == $slug][0]{
+//   ...,
+//  "relatedPosts": *[_type == "post" && references(^._id)]{
+// ...,
+//   }
+// }`
 
 export const topicSlugsQuery = groq`
 *[_type == "topic" && defined(slug.current)][].slug.current
@@ -215,4 +219,15 @@ export const allTopicsQuery = groq`
   "relatedPosts": *[_type == "post" && references(^._id)]{
 ...,
   }
+}`
+
+export const topicBySlugQuery = groq`
+*[_type == "topic" && slug.current == $slug][0]{
+  ...,
+}`
+
+export const relatedPostsQuery = groq`
+*[_type == "post" && references($topicId)] | order(publishedAt desc) [$start...$end] {
+  ...,
+ 
 }`

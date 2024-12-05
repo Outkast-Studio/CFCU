@@ -10,10 +10,17 @@ import Image from 'next/image'
 import { PostPageType } from 'types/sanity'
 import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
+import PostCard from '../ui/PostCard'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
   return (
     <section
+      style={{
+        backgroundColor:
+          stegaClean(data?.backgroundColor) === 'lightGrey'
+            ? '#F0F0F0'
+            : 'white',
+      }}
       className={clsx(
         'pt-[66px] pb-[136px]',
         'lg:pt-[130px] lg:pb-[105px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
@@ -56,7 +63,12 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
           </div>
         )}
         <PageLink data={data?.pageLink} className={clsx('mt-[16px] block')}>
-          <Button label={data?.pageLink?.title} className={clsx('!p-[0px]')} />
+          <Button
+            label={data?.pageLink?.title}
+            className={clsx(
+              stegaClean(data?.backgroundColor) === 'white' && '!p-[0px]',
+            )}
+          />
         </PageLink>
       </article>
       <div className={clsx('mt-[47px]', 'lg:hidden')}>
@@ -88,45 +100,3 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
 }
 
 export default RelatedStories
-
-export const PostCard = ({ data }: { data: PostPageType }) => {
-  return (
-    <Link href={`/posts/${data.slug.current}`} className={clsx('block')}>
-      <article className={clsx('h-fit max-w-[240px]', 'lg:max-w-[unset]')}>
-        <Image
-          src={urlForImage(data?.thumbnailImage).url()}
-          alt={data?.thumbnailImage?.alt as string}
-          width={1920}
-          height={1080}
-          className={clsx('object-cover w-full h-auto')}
-        />
-        <div className={clsx('flex flex-col mt-[13px]', 'lg:mt-[25px]')}>
-          <h4
-            className={clsx(
-              'font-codec-news text-[14px] leading-[14px] tracking-[1.6px] uppercase text-black/75',
-              'lg:subtitle-m',
-            )}
-          >
-            {data?.type}
-          </h4>
-          <h5
-            className={clsx(
-              'font-codec-extra-bold text-[18px] leading-[23.4px] lg:text-[24px] lg:leading-[28px]  mt-[10px] text-lavender',
-              'lg:w-h5-desktop lg:mt-[12px]',
-            )}
-          >
-            {data?.title}
-          </h5>
-          <p
-            className={clsx(
-              'font-codec-news mt-[4px] max-w-[152px] text-[14px] leading-[19.6px]',
-              'lg:w-paragraph-m-desktop lg:max-w-[390px]',
-            )}
-          >
-            {data?.excerpt}
-          </p>
-        </div>
-      </article>
-    </Link>
-  )
-}

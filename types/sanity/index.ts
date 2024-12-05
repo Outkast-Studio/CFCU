@@ -85,7 +85,7 @@ export interface CtaInContentType {
   backgroundImage: Media
 }
 
-export type ThemeLabel = 'Lavendar' | 'Orange' | 'Green' | 'Yellow' | 'White'
+export type ThemeLabel = 'Lavender' | 'Orange' | 'Green' | 'Yellow' | 'White'
 
 export interface QuickExitType {
   exitUrl: string
@@ -225,6 +225,26 @@ export interface CtaFullMediaType {
   }
 }
 
+export interface GroupMember {
+  image: ImageAsset
+  name: string
+  title: string
+  phoneNumber?: string
+  email?: string
+}
+
+interface TeamRow {
+  groupTitle: string
+  groupMembers: GroupMember[]
+}
+
+export interface TeamGridType {
+  subtitle?: string
+  title: string
+  description?: PortableTextBlock[]
+  teamRows: TeamRow[]
+}
+
 export interface RateTableType {
   title: string
   columns: Array<{
@@ -262,6 +282,7 @@ export interface RelatedStoriesType {
   pageLink: PageLinkType
   posts: PostPageType[]
   headingVariant: 'normal' | 'large'
+  backgroundColor: 'lightGrey' | 'white'
 }
 
 export interface AccordionItem {

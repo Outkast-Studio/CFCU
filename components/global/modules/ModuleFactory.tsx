@@ -16,6 +16,7 @@ import ColumnSplit from './columnSplit'
 import ImageGrid from './ImageGrid'
 import QuickExit from './QuickExit'
 import Wysiwyg from './wysiwyg'
+import TeamGrid from './TeamGrid'
 
 const ModuleFactory = ({ modules }) => {
   if (modules.length === 0) return null
@@ -75,6 +76,8 @@ export const renderModule = (module) => {
       return <QuickExit data={module} />
     case 'wysiwyg':
       return <Wysiwyg data={module} />
+    case 'teamGrid':
+      return <TeamGrid data={module} />
     default:
       return null
   }

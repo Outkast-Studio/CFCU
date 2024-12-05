@@ -9,14 +9,18 @@ import PageLink from '../ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
 
 const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
-  const theme = getThemeClasses(data?.theme?.label)
+  const theme = getThemeClasses(stegaClean(data?.theme?.label))
+
+  const needsMonoTone =
+    stegaClean(data?.theme?.label) === 'Green' ||
+    stegaClean(data?.theme?.label) === 'Lavender'
 
   return (
     <section
       style={{
         backgroundColor:
           stegaClean(data?.theme?.label) === 'White'
-            ? theme?.backgroundWhite
+            ? '#fff'
             : theme?.background,
         color: theme?.heading,
       }}
@@ -57,7 +61,10 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
           {data?.subtitle && (
             <h2
               style={{ color: theme?.subtitle }}
-              className={clsx('subtitle-m  mb-[16px]', 'lg:subtitle-l ')}
+              className={clsx(
+                'subtitle-m  text-center ',
+                'lg:subtitle-l lg:text-left',
+              )}
             >
               {data.subtitle}
             </h2>
@@ -94,7 +101,13 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                   'font-codec-extra-bold text-[18px] leading-[27px]  text- flex gap-x-[6px] items-center',
                 )}
               >
-                <span>{link?.title}</span>
+                <span
+                  style={{
+                    color: needsMonoTone ? theme?.monotoneCopy : theme?.heading,
+                  }}
+                >
+                  {link?.title}
+                </span>
                 <svg
                   width="16"
                   height="16"

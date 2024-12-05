@@ -6,6 +6,20 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'backgroundColor',
+      title: 'Background Color',
+      type: 'string',
+      initialValue: 'white',
+      options: {
+        list: [
+          { title: 'Light Grey', value: 'lightGrey' },
+          { title: 'White', value: 'white' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',

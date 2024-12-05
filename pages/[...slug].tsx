@@ -49,13 +49,11 @@ export default function DynamicPage(props: PageProps) {
   //   props.params,
   // )[0]
 
-  console.log(props.params, 'params')
   const [subPageData] = useLiveQuery<PageData>(
     props.pageData,
     subPageBySlugQuery,
     props.params,
   )
-  console.log(subPageData)
 
   const data = subPageData
 

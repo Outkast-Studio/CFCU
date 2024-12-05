@@ -22,7 +22,7 @@ export const iframeOptions = {
             : new Error('Missing slug')
         case 'post':
           return (document as any)?.slug?.current
-            ? `/posts/${(document as any).slug.current}`
+            ? `/${(document as any).slug.current}`
             : new Error('Missing slug')
         case 'subPage':
           return (document as any)?.slug?.current
@@ -32,6 +32,12 @@ export const iframeOptions = {
           return (document as any)?.slug?.current
             ? `/locations/${(document as any).slug.current}`
             : new Error('Missing slug')
+        case 'topic':
+          return (document as any)?.slug?.current
+            ? `/${(document as any).slug.current}/1`
+            : new Error('Missing slug')
+        case 'blogHomePage':
+          return '/posts/page/1'
         case 'homepage':
           return '/'
         case 'globalSettings':
@@ -80,7 +86,17 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),
         ])
+      case 'blogHomePage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
       case 'testModules':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'topic':
         return S.document().views([
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),

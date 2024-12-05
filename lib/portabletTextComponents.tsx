@@ -92,7 +92,10 @@ export const WysiwygComponents = {
   types: {
     image: ({ value }) => (
       <figure
-        className={clsx(' gap-y-[9px]', 'lg:flex lg:flex-col lg:items-end')}
+        className={clsx(
+          'flex flex-col gap-y-[17px]',
+          'lg:items-end lg:gap-y-[9px]',
+        )}
       >
         <Image
           src={urlForImage(value).width(2440).url()}
@@ -186,7 +189,7 @@ export const WysiwygComponents = {
     blockquote: ({ children }) => (
       <blockquote
         className={clsx(
-          'max-w-[888px] mx-auto w-full text-lavender border-t-orange border-t-[2px] pt-[16px]',
+          'max-w-[888px] mx-auto w-full text-lavender border-t-orange border-t-[2px] pt-[16px] text-[24px] leading-[30px]',
           'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px] lg:pt-[24px]',
         )}
       >

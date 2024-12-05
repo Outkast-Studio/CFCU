@@ -7,7 +7,7 @@ import {
 import Image from 'next/image'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import { PostCard } from 'components/global/modules/RelatedStories'
+import PostCard from '../global/ui/PostCard'
 import Pagination from 'components/search/pagination'
 import Link from 'next/link'
 import FilterButton from '../global/ui/FilterButton'
@@ -16,9 +16,23 @@ type Props = {
   data: BlogHomepageType
   allTopics?: TopicWithRelatedPosts[]
   isBlogHome?: boolean
+  pagination: {
+    currentPage: number
+    totalPages: number
+    totalCount?: number
+    prevUrl?: string
+    nextUrl?: string
+    generateButtonUrl?: (page: number) => string
+  }
 }
 
-const PostHomePage = ({ allPosts, data, allTopics, isBlogHome }: Props) => {
+const PostHomePage = ({
+  allPosts,
+  data,
+  allTopics,
+  isBlogHome,
+  pagination,
+}: Props) => {
   return (
     <main
       className={clsx(
@@ -67,17 +81,15 @@ const PostHomePage = ({ allPosts, data, allTopics, isBlogHome }: Props) => {
         )}
       >
         {allPosts.map((post, index) => (
-          <PostCard data={post} key={index} />
+          <PostCard data={post} key={index} isBlogListing />
         ))}
       </section>
       <Pagination
-        totalPages={allPosts.length}
-        currentPage={1}
-        prevUrl={'#'}
-        nextUrl={'#'}
-        generateButtonUrl={(page: number) => {
-          return `#`
-        }}
+        totalPages={pagination.totalPages}
+        currentPage={pagination.currentPage}
+        prevUrl={pagination.prevUrl}
+        nextUrl={pagination.nextUrl}
+        generateButtonUrl={pagination.generateButtonUrl}
       />
     </main>
   )

@@ -213,8 +213,8 @@ export default function MapView({
       {mapLoaded && (
         <div
           className={clsx(
-            'absolute top-[0px] right-left z-[10]',
-            'lg:w-[450px] lg:p-4',
+            'absolute top-[8px] left-[8px] z-[10]',
+            'lg:w-[450px]',
           )}
         >
           <DynamicSearchBox
@@ -241,7 +241,7 @@ export default function MapView({
       <button
         onClick={() => setShowATMs((prev) => !prev)}
         className={clsx(
-          'absolute bottom-[24px] right-[24px] z-[10] bg-orange rounded-[6px] px-[16px] py-[8px]',
+          'absolute bottom-[64px] right-[8px] z-[10] bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px]',
         )}
       >
         Toggle ATM&apos;s

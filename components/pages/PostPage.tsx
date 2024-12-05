@@ -5,7 +5,6 @@ import { clsx } from 'clsx'
 import ModuleFactory from 'components/global/modules/ModuleFactory'
 
 const PostPage = ({ data }: { data: PostPageType }) => {
-  console.log(data)
   return (
     <main>
       <Hero post={data} />

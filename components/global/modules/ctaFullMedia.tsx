@@ -54,7 +54,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
       <section
         ref={contentRef}
         className={clsx(
-          'px-[24px] relative pt-[36px] flex flex-col gap-y-[314px] justify-between pb-[61px]',
+          'px-[24px] relative pt-[36px] flex flex-col gap-y-[314px] justify-between pb-[113px]',
           'lg:px-[48px] lg:pt-[58px] lg:gap-y-[272px]',
         )}
       >

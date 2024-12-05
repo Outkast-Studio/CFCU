@@ -12,9 +12,9 @@ interface Props {
 const FilterButton = ({ title, items, className }: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const filteredTopics = items.filter((item) => item.relatedPosts.length > 0)
-  console.log(items)
+
   return (
-    <div className={clsx('relative mx-auto w-fit')}>
+    <div className={clsx('relative mx-auto w-full', 'lg:w-fit')}>
       <button
         onClick={() => setDropdownOpen((prev) => !prev)}
         className={clsx(
@@ -45,7 +45,7 @@ const FilterButton = ({ title, items, className }: Props) => {
         >
           {filteredTopics.map((item, index) => (
             <Link
-              href={'posts/' + item.slug.current}
+              href={'/' + item.slug.current}
               key={index}
               className={clsx('block')}
             >

@@ -130,8 +130,8 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 )}
               >
                 {post?.topics?.map((topic, index) => (
-                  <Link key={index} href={'/posts/' + topic.slug.current}>
-                    {topic.name}
+                  <Link key={index} href={'/posts/' + topic?.slug?.current}>
+                    {topic?.name}
                   </Link>
                 ))}
               </div>

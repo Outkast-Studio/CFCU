@@ -47,12 +47,14 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
           {data?.logoGroups?.map((group, index) => (
             <div
               key={index}
-              className={clsx(group?.logoGroupTitle ? 'mt-[0px]' : 'mt-[24px]')}
+              className={clsx(
+                group?.logoGroupTitle ? 'mt-[16px]' : 'mt-[24px]',
+              )}
             >
               {group?.logoGroupTitle && (
                 <h5
                   className={clsx(
-                    'w-h5 text-lavender',
+                    'w-h5 text-lavender mb-[16px]',
                     'lg:w-h5-desktop lg:mt-[84px] lg:mb-[23px]',
                   )}
                 >
@@ -61,6 +63,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
               )}
               <div
                 className={clsx(
+                  'flex flex-col gap-y-[16px]',
                   'lg:grid lg:gap-[24px]',
                   group.columns === 2 && 'grid-cols-2',
                   group.columns === 3 && 'grid-cols-3',

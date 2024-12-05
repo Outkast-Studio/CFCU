@@ -23,9 +23,27 @@ export default defineType({
         source: 'name',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
+        slugify: (input, type) => {
+          // Custom slugify function to ensure uniqueness
+          return `posts/topic/${input
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+            .slice(0, 200)}`
+        },
       },
-      validation: (Rule) => Rule.required(),
-      description: 'The slug stucture for this topic will be /blog/[slug]',
+      validation: (Rule) =>
+        Rule.required().custom((slug, context) => {
+          if (typeof slug === 'undefined') {
+            return true // Allow undefined values
+          }
+          if (slug.current && !slug.current.startsWith('posts/topic/')) {
+            return 'Slug must start with "posts/topic/"'
+          }
+          return true
+        }),
+      description:
+        'The slug stucture for this topic will be /posts/topic/[slug]',
     }),
 
     defineField({

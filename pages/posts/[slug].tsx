@@ -1,167 +1,96 @@
-import { readToken } from 'lib/sanity.api'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import { Layout } from 'components/layouts/Layout'
+import PostPage from 'components/pages/PostPage'
 import {
-  getGlobalSettings,
   getClient,
   getAllIndividualPostSlugs,
   getIndividualPostBySlug,
-  getTopicBySlug,
-  getAllTopicSlugs,
+  getGlobalSettings,
 } from 'lib/sanity.client'
-import { GetStaticProps } from 'next'
-import type { SharedPageProps, Seo } from 'pages/_app'
-import { QueryParams } from 'next-sanity'
+import { PostPageType, GlobalSettingsType } from 'types/sanity'
+import { readToken } from 'lib/sanity.api'
 import { useLiveQuery } from 'next-sanity/preview'
-import { Layout } from 'components/layouts/Layout'
-import {
-  RatePageType,
-  GlobalSettingsType,
-  PostPageType,
-  TopicPageType,
-} from 'types/sanity'
-import { individualPostBySlugQuery, topicBySlugQuery } from 'lib/sanity.queries'
-import PostPage from 'components/pages/PostPage'
+import { postBySlugQuery } from '@/lib/sanity.queries'
+import { QueryParams } from 'next-sanity'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { stegaClean } from '@sanity/client/stega'
-import PostHomePage from 'components/pages/PostHomePage'
 
-type TopicPageData = {
-  data: TopicPageType
-  relatedPosts: PostPageType[]
-}
-
-type PageData = PostPageType | TopicPageData
-
-interface PageProps extends SharedPageProps {
-  pageData: PageData
+interface PageProps {
+  postData: PostPageType
   globalSettings: GlobalSettingsType
+  seo: {
+    title: string
+    description: string
+    image: string
+    keywords: string
+  }
   params: QueryParams
-  pageType: 'post' | 'topic'
-  seo: Seo
 }
 
-interface Query {
-  [key: string]: string
-}
-
-export default function PostSlugRoute(props: PageProps) {
-  const postData = useLiveQuery<PageData>(
-    stegaClean(props.pageType) === 'post' ? props.pageData : null,
-    individualPostBySlugQuery,
-    props.params,
-  )[0]
-
-  const topicPageData = useLiveQuery<PageData>(
-    stegaClean(props.pageType) === 'topic' ? props.pageData : null,
-    topicBySlugQuery,
-    props.params,
-  )[0]
+export default function PostSlugRoute({
+  postData,
+  globalSettings,
+  seo,
+  params,
+}: PageProps) {
+  const [data] = useLiveQuery<PostPageType>(postData, postBySlugQuery, params)
 
   const setGlobalSettings = useGlobalSettingsStore(
     (state) => state.setGlobalSettings,
   )
-
   useEffect(() => {
-    setGlobalSettings(props.globalSettings)
-  }, [setGlobalSettings, props.globalSettings])
+    setGlobalSettings(globalSettings)
+  }, [globalSettings])
 
-  const data = stegaClean(props.pageType) === 'post' ? postData : topicPageData
-
-  switch (stegaClean(props.pageType)) {
-    case 'post':
-      return (
-        <Layout seo={props.seo}>
-          <PostPage data={data as PostPageType} />
-        </Layout>
-      )
-    case 'topic':
-      return (
-        <Layout seo={props.seo}>
-          <PostHomePage
-            data={data as unknown as TopicPageData['data']}
-            // TODO: Fix this type
-            //@ts-ignore
-            allPosts={data.relatedPosts as PostPageType[]}
-          />
-        </Layout>
-      )
-    default:
-      return <></>
-  }
+  return (
+    <Layout seo={seo}>
+      <PostPage data={data} />
+    </Layout>
+  )
 }
 
-export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
-  const { draftMode = false, params = {} } = ctx
+export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
+  const { params, draftMode = false } = context
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const postSlug = 'posts/' + params.slug
-  const pageType = await client.fetch(
-    `
-      *[slug.current == $slug][0]._type
-    `,
-    { slug: postSlug },
-  )
+  const slug = `posts/${params?.slug}`
+  const postData = await getIndividualPostBySlug(client, slug)
 
-  console.log(params.slug)
-  if (!pageType) {
-    return { notFound: true }
-  }
-
-  let pageData
-  switch (pageType) {
-    case 'post':
-      pageData = await getIndividualPostBySlug(client, postSlug)
-      break
-    case 'topic':
-      pageData = await getTopicBySlug(client, postSlug)
-      break
-    // Add more cases for other page types
-    default:
-      return { notFound: true }
-  }
-
-  if (!pageData) {
+  if (!postData) {
     return { notFound: true }
   }
 
   const globalSettings = await getGlobalSettings(client)
 
   const seo = {
-    title: pageData?.metaTitle || pageData?.title + ' | CFCU',
-    description: pageData?.metaDescription || '',
-    image: pageData?.ogImage || '',
-    keywords: pageData?.keywords || '',
+    title: postData.metaTitle || `${postData.title} | CFCU`,
+    description: postData.metaDescription || '',
+    image: postData.ogImage || '',
+    keywords: postData.keywords || '',
   }
+
   return {
     props: {
-      pageData,
-      pageType,
-      params,
+      postData,
       globalSettings,
-      draftMode,
       seo,
+      params: {
+        ...params,
+      },
+      draftMode,
       token: draftMode ? readToken : '',
     },
   }
 }
 
-export const getStaticPaths = async () => {
-  const slugs = (await getAllIndividualPostSlugs()).map((slug) =>
-    removePostPrefix(slug.slug),
-  )
-  const topicSlugs = await (
-    await getAllTopicSlugs()
-  ).map((slug) => removePostPrefix(slug.slug))
+export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = await getAllIndividualPostSlugs()
 
   return {
-    paths: [...slugs, ...topicSlugs]?.map(({ slug }) => `/posts/${slug}`) || [],
+    paths: slugs.map(({ slug }) => `/posts/${removePostPrefix(slug)}`),
     fallback: 'blocking',
   }
 }
-function removePostPrefix(slug) {
-  // Check if the slug starts with 'post/'
-  if (slug.startsWith('posts/')) {
-    // If it does, remove 'post/' and return the rest
-    return slug.slice(6)
-  } // If it doesn't start with 'post/', return the original slug
-  return slug
+
+function removePostPrefix(slug: string) {
+  return slug.startsWith('posts/') ? slug.slice(6) : slug
 }

@@ -30,7 +30,6 @@ interface Query {
 }
 
 export default function ProjectSlugRoute(props: PageProps) {
-  console.log(props.params, 'params')
   const [data] = useLiveQuery<LocationPage>(
     props.locationPage,
     locationBySlugQuery,
@@ -58,7 +57,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 
   const [globalSettings, locationPage] = await Promise.all([
     getGlobalSettings(client),
-    getLocationBySlug(client, 'locations/' + params.slug),
+    getLocationBySlug(client, params.slug),
   ])
 
   if (!locationPage) {

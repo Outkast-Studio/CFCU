@@ -5,7 +5,7 @@ import {
   studioUrl,
   useCdn,
 } from 'lib/sanity.api'
-import { ATMLocation } from 'types/sanity'
+import { ATMLocation, TopicPageType, PostPageType } from 'types/sanity'
 import {
   globalSettingsQuery,
   dynamicPageSlugsQuery,
@@ -152,8 +152,28 @@ export async function getATMLocations(
   })
 }
 
-export async function getAllPosts(client: SanityClient) {
-  return (await client.fetch(allPostsQuery)) || []
+// export async function getAllPosts(client: SanityClient) {
+//   return (await client.fetch(allPostsQuery)) || []
+// }
+
+export async function getAllPosts(
+  client: SanityClient,
+  page = 1,
+  itemsPerPage = 10,
+) {
+  const start = (page - 1) * itemsPerPage
+  const end = start + itemsPerPage
+
+  const [posts, totalCount] = await Promise.all([
+    client.fetch(allPostsQuery, { start, end }),
+    client.fetch(`count(*[_type == "post"])`),
+  ])
+
+  return {
+    posts,
+    totalCount,
+    totalPages: Math.ceil(totalCount / itemsPerPage),
+  }
 }
 
 export async function getBlogHomepage(client: SanityClient) {
@@ -181,8 +201,43 @@ export async function getAllTopicSlugs() {
   return slugs.map((slug) => ({ slug }))
 }
 
-export async function getTopicBySlug(client: SanityClient, slug: string) {
-  return (await client.fetch(topicBySlugQuery, { slug })) || ({} as any)
+// export async function getTopicBySlug(client: SanityClient, slug: string) {
+//   return (await client.fetch(topicBySlugQuery, { slug })) || ({} as any)
+// }
+
+export async function getTopicBySlug(
+  client: SanityClient,
+  slug: string,
+  page: number = 1,
+  postsPerPage: number = 10,
+): Promise<{
+  topicData: TopicPageType
+  relatedPosts: PostPageType[]
+  totalPosts: number
+}> {
+  const start = (page - 1) * postsPerPage
+  const end = start + postsPerPage
+  console.log(slug)
+  const [topicData, relatedPosts, totalPosts] = await Promise.all([
+    client.fetch<TopicPageType>(topicBySlugQuery, { slug }),
+    client.fetch<PostPageType[]>(
+      `
+      *[_type == "post" && $slug in topics[]->slug.current] | order(publishedAt desc) [$start...$end] {
+      ...,
+      }
+    `,
+      { slug, start, end },
+    ),
+    client.fetch<number>(
+      `count(*[_type == "post" && $slug in topics[]->slug.current])`,
+      { slug },
+    ),
+  ])
+
+  if (!topicData) {
+    throw new Error(`No topic found for slug: ${slug}`)
+  }
+  return { topicData, relatedPosts, totalPosts }
 }
 
 export async function getAllTopics(client: SanityClient) {

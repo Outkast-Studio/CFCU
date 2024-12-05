@@ -1,0 +1,146 @@
+import { GetStaticProps, GetStaticPaths } from 'next'
+import { Layout } from 'components/layouts/Layout'
+import PostHomePage from 'components/pages/PostHomePage'
+import {
+  getClient,
+  getAllTopicSlugs,
+  getTopicBySlug,
+  getGlobalSettings,
+} from 'lib/sanity.client'
+import { TopicPageType, PostPageType, GlobalSettingsType } from 'types/sanity'
+import { QueryParams } from 'next-sanity'
+import { readToken } from 'lib/sanity.api'
+import { Seo, SharedPageProps } from '@/pages/_app'
+import { useEffect } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useLiveQuery } from 'next-sanity/preview'
+import { topicBySlugQuery } from '@/lib/sanity.queries'
+
+interface PageProps extends SharedPageProps {
+  topicData: TopicPageType
+  relatedPosts: PostPageType[]
+  globalSettings: GlobalSettingsType
+  params: QueryParams
+  pagination: {
+    currentPage: number
+    totalPages: number
+  }
+  seo: Seo
+}
+
+const POSTS_PER_PAGE = 1
+
+interface Query {
+  [key: string]: string
+}
+
+export default function TopicSlugRoute({
+  topicData,
+  relatedPosts,
+  globalSettings,
+  pagination,
+  seo,
+  params,
+}: PageProps) {
+  const prevUrl = `/${topicData.slug.current}/${Math.max(1, pagination.currentPage - 1)}`
+  const nextUrl = `/${topicData.slug.current}/${Math.min(pagination.totalPages, pagination.currentPage + 1)}`
+
+  const generateButtonUrl = (page: number) => {
+    return `/${topicData.slug.current}/${page}`
+  }
+  const [data] = useLiveQuery<TopicPageType>(
+    topicData,
+    topicBySlugQuery,
+    params,
+  )
+
+  const extendedPagination = {
+    ...pagination,
+    prevUrl,
+    nextUrl,
+    generateButtonUrl,
+  }
+  const setGlobalSettings = useGlobalSettingsStore(
+    (state) => state.setGlobalSettings,
+  )
+  useEffect(() => {
+    setGlobalSettings(globalSettings)
+  }, [globalSettings])
+
+  return (
+    <Layout seo={seo}>
+      <PostHomePage
+        data={data}
+        allPosts={relatedPosts}
+        pagination={extendedPagination}
+      />
+    </Layout>
+  )
+}
+
+export const getStaticProps: GetStaticProps<PageProps, Query> = async (
+  context,
+) => {
+  const { params, draftMode = false } = context
+  const client = getClient(draftMode ? { token: readToken } : undefined)
+  const slug = `posts/topic/${params?.slug}`
+  const page = params?.page ? parseInt(params.page[0], 10) : 1
+  const { topicData, relatedPosts, totalPosts } = await getTopicBySlug(
+    client,
+    slug,
+    page,
+    POSTS_PER_PAGE,
+  )
+
+  if (!topicData) {
+    return { notFound: true }
+  }
+
+  const globalSettings = await getGlobalSettings(client)
+
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
+
+  const seo = {
+    title: topicData?.metaTitle || `${topicData.title}`,
+    description: topicData?.metaDescription || '',
+    image: typeof topicData?.ogImage === 'string' ? topicData.ogImage : '',
+    keywords: '',
+  }
+
+  return {
+    props: {
+      topicData,
+      relatedPosts,
+      globalSettings,
+      params: {
+        ...params,
+        slug,
+      },
+      token: draftMode ? readToken : '',
+      draftMode,
+      pagination: {
+        currentPage: page,
+        totalPages,
+      },
+      seo,
+    },
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = await getAllTopicSlugs()
+
+  const paths = slugs.flatMap(({ slug }) => [
+    `/posts/topic/${removePostPrefix(slug)}`,
+    `/posts/topic/${removePostPrefix(slug)}/1`,
+  ])
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+function removePostPrefix(slug: string) {
+  return slug.startsWith('posts/') ? slug.slice(6) : slug
+}
