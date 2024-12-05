@@ -9,6 +9,7 @@ import {
 } from 'types/sanity'
 import LocationMap from 'components/locations/LocationMap'
 import { clsx } from 'clsx'
+import ModuleFactory from '../global/modules/ModuleFactory'
 
 const LocationHomePage = ({
   data,
@@ -26,6 +27,7 @@ const LocationHomePage = ({
       <LocationHomeHero data={data?.pageHero} />
       <LocationMap locations={allLocations} atmLocations={atmLocations} />
       <LocationGrid data={allLocations} />
+      <ModuleFactory modules={data?.modules} />
     </main>
   )
 }

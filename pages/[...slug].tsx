@@ -38,7 +38,7 @@ export default function DynamicPage(props: PageProps) {
   const setGlobalSettings = useGlobalSettingsStore(
     (state) => state.setGlobalSettings,
   )
-
+  console.log(props.pageData)
   useEffect(() => {
     setGlobalSettings(props.globalSettings)
   }, [setGlobalSettings, props.globalSettings])

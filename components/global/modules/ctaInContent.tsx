@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 import { getThemeClasses } from 'lib/themeConfig'
 import MediaComponent from '../ui/Media'
 import { PortableText } from '@portabletext/react'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
@@ -145,7 +145,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             >
               <PortableText
                 value={data?.ctaCard?.description}
-                components={PortableTextComponents as any}
+                components={WysiwygComponentsWithoutPadding as any}
               />
             </div>
           ) : (

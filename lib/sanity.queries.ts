@@ -92,7 +92,16 @@ export const subPageBySlugQuery = groq`
 }`
 
 export const postBySlugQuery = groq`
-*[_type == "post" && slug.current == $slug][0]`
+*[_type == "post" && slug.current == $slug][0]{
+  ...,
+  author->{
+    ...,
+  },
+  topics[]->{
+    ...,
+  },
+  ${modulesFragment}
+}`
 
 export const homepageQuery = groq`*[_type == "homepage"][0]{
 ...,

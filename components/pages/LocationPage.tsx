@@ -6,6 +6,7 @@ import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import defaultSubPage from 'public/images/defaultSubPage.png'
 import LocationHours from 'components/locations/LocationHours'
+import PageLink from 'components/global/ui/PageLink'
 
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   return (
@@ -111,12 +112,12 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               </div>
             </div>
             {data?.appointmentLink && (
-              <a
-                href={data?.appointmentLink?.link?.slug.current}
+              <PageLink
+                data={data?.appointmentLink}
                 className={clsx('mt-[57px] block')}
               >
                 <Button label={data?.appointmentLink?.title} />
-              </a>
+              </PageLink>
             )}
           </article>
           <div className={clsx('aspect-w-8 aspect-h-7 w-full')}>

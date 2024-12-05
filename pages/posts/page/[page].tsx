@@ -13,6 +13,7 @@ import {
   allPostsQuery,
   globalSettingsQuery,
   blogHomepageQuery,
+  allTopicsQuery,
 } from 'lib/sanity.queries'
 import {
   GlobalSettingsType,
@@ -48,14 +49,22 @@ export default function Page(props: PageProps) {
     props.globalSettings,
     globalSettingsQuery,
   )
-  const [allPosts] = useLiveQuery<PostPageType[]>(props.allPosts, allPostsQuery)
+
+  const start = 0
+  const end = 10
+
+  const [allPosts] = useLiveQuery<PostPageType[]>(
+    props.allPosts,
+    allPostsQuery,
+    { start, end },
+  )
   const [blogHomepage] = useLiveQuery<BlogHomepageType>(
     props.blogHomepage,
     blogHomepageQuery,
   )
   const [allTopics] = useLiveQuery<TopicWithRelatedPosts[]>(
     props.allTopics,
-    allPostsQuery,
+    allTopicsQuery,
   )
 
   const setGlobalSettings = useGlobalSettingsStore(

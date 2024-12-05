@@ -2,7 +2,7 @@ import { CtaFullMediaType, ThemeLabel } from 'types/sanity'
 import { clsx } from 'clsx'
 import MediaComponent from '../ui/Media'
 import { getThemeClasses } from 'lib/themeConfig'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
@@ -120,7 +120,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
               >
                 <PortableText
                   value={data.lowerContent.description}
-                  components={PortableTextComponents as any}
+                  components={WysiwygComponentsWithoutPadding as any}
                 />
               </div>
             )}

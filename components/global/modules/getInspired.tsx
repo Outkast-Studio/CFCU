@@ -1,7 +1,7 @@
 import { GetInspiredType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
 import { PostPageType } from 'types/sanity'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
         >
           <PortableText
             value={data?.description}
-            components={PortableTextComponents as any}
+            components={WysiwygComponentsWithoutPadding as any}
           />
         </div>
         <PageLink

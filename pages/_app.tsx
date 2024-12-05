@@ -22,6 +22,7 @@ import {
   CodecUltra,
   CodecLight,
 } from 'font'
+import GlobalErrorBoundary from '@/components/global/GlobalErrorBoundary'
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -34,7 +35,7 @@ export interface Seo {
   keywords: string
 }
 
-export const myPortableTextComponents = {
+export const myWysiwygComponentsWithoutPadding = {
   types: {
     image: ({ value }) => (
       <Image
@@ -56,28 +57,30 @@ export default function App({
 }: AppProps<SharedPageProps>) {
   const { draftMode, token } = pageProps
   return (
-    <div
-      className={clsx(
-        'antialiased font-codec-pro relative',
-        CodecPro.variable,
-        CodecProBold.variable,
-        CodecExtraBold.variable,
-        CodecNews.variable,
-        CodecFat.variable,
-        CodecHeavy.variable,
-        CodecRegular.variable,
-        CodecUltra.variable,
-        CodecLight.variable,
-      )}
-    >
-      <Header />
-      {draftMode ? (
-        <PreviewProvider token={token}>
+    <GlobalErrorBoundary>
+      <div
+        className={clsx(
+          'antialiased font-codec-pro relative',
+          CodecPro.variable,
+          CodecProBold.variable,
+          CodecExtraBold.variable,
+          CodecNews.variable,
+          CodecFat.variable,
+          CodecHeavy.variable,
+          CodecRegular.variable,
+          CodecUltra.variable,
+          CodecLight.variable,
+        )}
+      >
+        <Header />
+        {draftMode ? (
+          <PreviewProvider token={token}>
+            <Component {...pageProps} />
+          </PreviewProvider>
+        ) : (
           <Component {...pageProps} />
-        </PreviewProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
-    </div>
+        )}
+      </div>
+    </GlobalErrorBoundary>
   )
 }

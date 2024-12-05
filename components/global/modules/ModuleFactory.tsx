@@ -17,6 +17,8 @@ import ImageGrid from './ImageGrid'
 import QuickExit from './QuickExit'
 import Wysiwyg from './wysiwyg'
 import TeamGrid from './TeamGrid'
+import SanitizedEmbed from './Embed'
+import ErrorBoundary from './ErrorBoundary'
 
 const ModuleFactory = ({ modules }) => {
   if (modules.length === 0) return null
@@ -25,7 +27,7 @@ const ModuleFactory = ({ modules }) => {
   const otherModules = modules.filter((module) => module?._type !== 'siteAlert')
 
   return (
-    <>
+    <ErrorBoundary fallback={<div>Error loading module</div>}>
       {/* {siteAlerts.map((module, index) => (
         <React.Fragment key={`site-alert-${index}`}>
           {renderModule(module)}
@@ -36,7 +38,7 @@ const ModuleFactory = ({ modules }) => {
           {renderModule(module)}
         </React.Fragment>
       ))}
-    </>
+    </ErrorBoundary>
   )
 }
 
@@ -78,6 +80,8 @@ export const renderModule = (module) => {
       return <Wysiwyg data={module} />
     case 'teamGrid':
       return <TeamGrid data={module} />
+    case 'embed':
+      return <SanitizedEmbed embed={module} />
     default:
       return null
   }

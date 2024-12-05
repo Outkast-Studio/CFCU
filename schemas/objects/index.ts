@@ -24,6 +24,7 @@ import quickExit from '../documents/modules/quickExit'
 import rateTable from '../documents/modules/rateTable'
 import wysiwyg from '../documents/modules/wysiwyg'
 import teamGrid from '../documents/modules/teamGrid'
+import embed from '../documents/modules/embed'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -52,5 +53,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     rateTable,
     wysiwyg,
     teamGrid,
+    embed,
   ],
 }

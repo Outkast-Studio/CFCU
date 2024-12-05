@@ -5,7 +5,7 @@ import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { useState } from 'react'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 const Tabs = ({ data }: { data: TabsType }) => {
   const [activeTab, setActiveTab] = useState(0)
 
@@ -38,7 +38,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
         >
           <PortableText
             value={data?.description}
-            components={PortableTextComponents as any}
+            components={WysiwygComponentsWithoutPadding as any}
           />
         </div>
       )}
@@ -87,7 +87,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
                 <div className={clsx('pb-[28px]')}>
                   <PortableText
                     value={item?.content}
-                    components={PortableTextComponents as any}
+                    components={WysiwygComponentsWithoutPadding as any}
                   />
                 </div>
               </Accordion.Content>
@@ -157,7 +157,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
         <div className={clsx('col-start-7 col-end-13')}>
           <PortableText
             value={data?.tabs?.[activeTab]?.content}
-            components={PortableTextComponents as any}
+            components={WysiwygComponentsWithoutPadding as any}
           />
         </div>
       </div>

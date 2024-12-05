@@ -30,7 +30,7 @@ export const iframeOptions = {
             : new Error('Missing slug')
         case 'location':
           return (document as any)?.slug?.current
-            ? `/locations/${(document as any).slug.current}`
+            ? `/${(document as any).slug.current}`
             : new Error('Missing slug')
         case 'topic':
           return (document as any)?.slug?.current
@@ -44,6 +44,12 @@ export const iframeOptions = {
           return '/'
         case 'testModules':
           return '/test-modules'
+        case 'locationHomePage':
+          return '/locations'
+        case 'rates':
+          return (document as any)?.slug?.current
+            ? `/${(document as any).slug.current}`
+            : new Error('Missing slug')
         default:
           return new Error(`Unknown document type: ${document?._type}`)
       }
@@ -57,6 +63,11 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
   return (S, { schemaType }) => {
     switch (schemaType) {
       case 'dynamicPage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case 'rates':
         return S.document().views([
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),
@@ -76,6 +87,7 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),
         ])
+
       case 'subPage':
         return S.document().views([
           S.view.form(),

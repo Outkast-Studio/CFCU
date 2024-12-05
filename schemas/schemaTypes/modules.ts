@@ -108,6 +108,12 @@ export const modules = defineField({
       title: 'WYSIWYG',
       to: [{ type: 'wysiwyg', title: 'WYSIWYG' }],
     },
+    {
+      type: 'reference',
+      name: 'embed',
+      title: 'Embed',
+      to: [{ type: 'embed', title: 'Embed' }],
+    },
   ],
   validation: (Rule) =>
     Rule.custom((modules) => {

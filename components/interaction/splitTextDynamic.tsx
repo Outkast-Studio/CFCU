@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 import { SplitText } from 'gsap/dist/SplitText'
 import { gsap } from 'gsap'
 import { PortableText } from '@portabletext/react'
-import { myPortableTextComponents } from 'pages/_app'
+import { myWysiwygComponentsWithoutPadding } from 'pages/_app'
 import { clsx } from 'clsx'
 import { useWindowSize } from 'hooks/useWindowSize'
 

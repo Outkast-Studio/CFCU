@@ -75,6 +75,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
       seo,
       params: {
         ...params,
+        slug,
       },
       draftMode,
       token: draftMode ? readToken : '',

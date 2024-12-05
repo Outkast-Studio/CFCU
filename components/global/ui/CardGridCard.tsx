@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { PortableText } from '@portabletext/react'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import CardLink from '../ui/CardLink'
 
 export default function CardGridCard({
@@ -48,10 +48,7 @@ export default function CardGridCard({
             'lg:w-paragraph-s-desktop',
           )}
         >
-          <PortableText
-            value={data?.description}
-            components={PortableTextComponents as any}
-          />
+          <PortableText value={data?.description} />
         </div>
       </article>
     </CardLink>

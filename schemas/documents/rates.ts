@@ -16,9 +16,9 @@ export default defineType({
   ],
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
+      name: 'hero',
+      title: 'Hero',
+      type: 'subPageHero',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -90,4 +90,14 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'hero.title',
+    },
+    prepare({ title }) {
+      return {
+        title: title,
+      }
+    },
+  },
 })

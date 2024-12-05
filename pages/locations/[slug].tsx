@@ -36,6 +36,7 @@ export default function ProjectSlugRoute(props: PageProps) {
     props.params,
   )
 
+  console.log(props.locationPage)
   const setGlobalSettings = useGlobalSettingsStore(
     (state) => state.setGlobalSettings,
   )
@@ -54,12 +55,13 @@ export default function ProjectSlugRoute(props: PageProps) {
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
-
+  const slug = `locations/${params?.slug}`
   const [globalSettings, locationPage] = await Promise.all([
     getGlobalSettings(client),
-    getLocationBySlug(client, params.slug),
+    getLocationBySlug(client, slug),
   ])
 
+  console.log(locationPage)
   if (!locationPage) {
     return {
       notFound: true,
@@ -76,7 +78,10 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   return {
     props: {
       locationPage,
-      params,
+      params: {
+        ...params,
+        slug,
+      },
       globalSettings,
       draftMode,
       seo,

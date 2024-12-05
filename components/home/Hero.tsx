@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import MediaComponent from 'components/global/ui/Media'
 import Button from 'components/global/ui/Button'
 import PageLink from 'components/global/ui/PageLink'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
@@ -126,10 +126,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           )}
         >
           <div className={clsx('max-w-[300px] text-[18px] leading-[26px] ')}>
-            <PortableText
-              value={data.testimonial.content}
-              components={PortableTextComponents as any}
-            />
+            <PortableText value={data.testimonial.content} />
           </div>
           <h6 className={clsx('font-codec-heavy text-[16px] leading-[24px]')}>
             – {data.testimonial.author}, {data.testimonial.title}

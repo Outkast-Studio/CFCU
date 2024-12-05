@@ -50,7 +50,7 @@ export default function ProjectSlugRoute(props: PageProps) {
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
-
+  const slug = `rates/${params?.slug}`
   const [globalSettings, ratePage] = await Promise.all([
     getGlobalSettings(client),
     getRatePageBySlug(client, 'rates/' + params.slug),
@@ -72,7 +72,10 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   return {
     props: {
       ratePage,
-      params,
+      params: {
+        ...params,
+        slug,
+      },
       globalSettings,
       draftMode,
       seo,

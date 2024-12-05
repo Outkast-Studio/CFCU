@@ -29,7 +29,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       description: 'A brief description to accompany the main title',
     }),
-    modules,
     defineField({
       name: 'metaTitle',
       title: 'Meta Title',

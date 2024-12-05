@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { getThemeClasses } from 'lib/themeConfig'
 
 import { PortableText } from '@portabletext/react'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
 
@@ -43,10 +43,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
-            <PortableText
-              value={data?.description}
-              components={PortableTextComponents as any}
-            />
+            <PortableText value={data?.description} />
           </div>
         )}
         <PageLink

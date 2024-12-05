@@ -2,7 +2,7 @@ import { AccordionType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
-import { WysiwygComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (
@@ -35,7 +35,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
           >
             <PortableText
               value={data?.description}
-              components={WysiwygComponents as any}
+              components={WysiwygComponentsWithoutPadding as any}
             />
           </div>
         )}
@@ -98,7 +98,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
                 >
                   <PortableText
                     value={item?.content}
-                    components={WysiwygComponents as any}
+                    components={WysiwygComponentsWithoutPadding as any}
                   />
                 </div>
               </Accordion.Content>

@@ -330,6 +330,12 @@ export interface GlobalAlertType {
   }
 }
 
+export interface EmbedType {
+  scriptsForHead?: string[]
+  scriptsForBeforeBody?: string[]
+  scriptsForBody?: string[]
+}
+
 export interface WysiwygType {
   content: PortableTextBlock[]
 }
@@ -546,7 +552,14 @@ export interface TestModulesType {
 }
 
 export interface RatePageType {
+  hero: SubPageHeroType
   modules: Modules
+  metaTitle?: string
+  metaDescription?: string
+  ogImage?: {
+    asset: ImageAsset
+    alt: string
+  }
 }
 
 export interface LocationPage {

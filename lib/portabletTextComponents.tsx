@@ -3,58 +3,126 @@ import { urlForImage } from '../lib/sanity.image'
 import clsx from 'clsx'
 import WTable from '@/components/global/ui/wTable'
 
-export const PortableTextComponents = {
+export const WysiwygComponentsWithoutPadding = {
   types: {
     image: ({ value }) => (
-      <Image
-        src={urlForImage(value).quality(80).width(2440).url()}
-        alt={String(value.alt)}
-        width={2440}
-        height={2440}
-        className={clsx('my-[22px]')}
-      />
+      <figure
+        className={clsx(
+          'flex flex-col gap-y-[17px]  w-full',
+          'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
+        )}
+      >
+        <Image
+          src={urlForImage(value).width(2440).url()}
+          alt={String(value.alt)}
+          width={2440}
+          height={2440}
+          className={clsx('w-full object-cover')}
+        />
+        <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
+          {value.caption}
+        </figcaption>
+      </figure>
     ),
+    fullBleedImage: ({ value }) => (
+      <figure
+        className={clsx(
+          'flex flex-col gap-y-[17px] w-full',
+          'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
+        )}
+      >
+        <Image
+          src={urlForImage(value).width(2440).url()}
+          alt={String(value.alt)}
+          width={2440}
+          height={2440}
+          className={clsx('w-full object-cover')}
+        />
+        <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
+          {value.caption}
+        </figcaption>
+      </figure>
+    ),
+    table: ({ value }) => <WTable data={value} noPadding />,
   },
+
   marks: {
     strong: ({ children }) => (
       <strong className={clsx('font-codec-heavy')}>{children}</strong>
     ),
+    link: ({ children, href }) => (
+      <a
+        href={href}
+        className={clsx('underline font-codec-heavy text-lavender')}
+      >
+        {children}
+      </a>
+    ),
   },
+
   block: {
     h1: ({ children }) => (
-      <h1 className={clsx('w-h1 text-lavender', 'lg:w-h1-desktop')}>
+      <h1
+        className={clsx(
+          'w-h1 text-lavender w-full',
+          'lg:w-h1-desktop lg:px-[0px]',
+        )}
+      >
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className={clsx('w-h2 text-lavender', 'lg:w-h2-desktop')}>
+      <h2
+        className={clsx(
+          'w-h2 text-lavender w-full ',
+          'lg:w-h2-desktop lg:px-[0px]',
+        )}
+      >
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className={clsx(' w-h3 text-lavender', 'lg:w-h3-desktop')}>
+      <h3
+        className={clsx(' w-h3 text-lavender', 'lg:w-h3-desktop lg:px-[0px]')}
+      >
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className={clsx('w-h4 text-lavender', 'lg:w-h4-desktop')}>
+      <h4
+        className={clsx('w-h4 text-lavender ', 'lg:w-h4-desktop lg:px-[0px]')}
+      >
         {children}
       </h4>
     ),
     h5: ({ children }) => (
-      <h5 className={clsx(' w-h5 text-lavender', 'lg:w-h5-desktop')}>
+      <h5 className={clsx(' w-h5 text-lavender ', 'lg:w-h5-desktop')}>
         {children}
       </h5>
     ),
     h6: ({ children }) => (
-      <h6 className={clsx('w-h6 text-lavender', 'lg:w-h6-desktop')}>
+      <h6
+        className={clsx('w-h6 text-lavender ', 'lg:w-h6-desktop lg:px-[0px]')}
+      >
         {children}
       </h6>
     ),
-    normal: ({ children }) => <p className={clsx('')}>{children}</p>,
+    normal: ({ children }) => (
+      <p
+        className={clsx(
+          'w-full w-paragraph-s-desktop  text-black/75 ',
+          'lg:px-[0px] lg:w-paragraph-l-desktop',
+        )}
+      >
+        {children}
+      </p>
+    ),
     blockquote: ({ children }) => (
       <blockquote
-        className={clsx('border-l-4 border-gray-300 pl-4 italic my-6')}
+        className={clsx(
+          '  text-lavender border-t-orange border-t-[4px] pt-[24px] text-[24px] leading-[30px]',
+          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px]  lg:mx-auto',
+        )}
       >
         {children}
       </blockquote>
@@ -64,27 +132,62 @@ export const PortableTextComponents = {
     bullet: ({ children }) => (
       <ul
         className={clsx(
-          'list-disc list-outside flex flex-col gap-y-[21px] ml-[17px]',
+          'list-disc list-inside w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop ',
+          'lg:px-[0px] lg:w-paragraph-l-desktop',
         )}
       >
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className={clsx('list-decimal list-outside')}>{children}</ol>
-    ),
-  },
-  listItem: {
-    bullet: ({ children }) => (
-      <li
+      <ol
         className={clsx(
-          'text-[21px] font-codec-news leading-[31.5px] pl-[4px]',
+          'list-none list-inside  w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop ',
+          'lg:px-[0px]',
         )}
       >
         {children}
+      </ol>
+    ),
+  },
+
+  listItem: {
+    bullet: ({ children }) => (
+      <li className={clsx('flex gap-x-[16px] items-start')}>
+        <span
+          className={clsx(
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender',
+          )}
+        ></span>
+        <span
+          className={clsx(
+            'inline-block w-paragraph-s-desktop',
+            'lg:text-[21px] lg:leading-[31.5px]',
+          )}
+        >
+          {children}
+        </span>
       </li>
     ),
-    number: ({ children }) => <li className={clsx('mb-1')}>{children}</li>,
+    number: ({ children, index }) => (
+      <li className={clsx('flex gap-x-[12px] items-start')}>
+        <span
+          className={clsx(
+            'inline-block w-[19px] h-[32px] text-[21px] leading-[31.5px] font-codec-heavy text-lavender',
+          )}
+        >
+          {index + 1}.
+        </span>
+        <span
+          className={clsx(
+            'inline-block w-paragraph-s-desktop',
+            'lg:text-[21px] lg:leading-[31.5px]',
+          )}
+        >
+          {children}
+        </span>
+      </li>
+    ),
   },
 }
 

@@ -74,6 +74,8 @@ export const settingsStructure = (
       'wysiwyg',
       'author',
       'topic',
+      'teamGrid',
+      'embed',
     ]
 
     const globalSettingsListItem = S.listItem()
@@ -131,7 +133,14 @@ export const settingsStructure = (
               .child(
                 S.document()
                   .schemaType('blogHomePage')
-                  .documentId('blogHomePage'),
+                  .documentId('blogHomePage')
+                  .views([
+                    S.view.form(),
+                    S.view
+                      .component(Iframe)
+                      .options(iframeOptions)
+                      .title('Preview'),
+                  ]),
               ),
             S.listItem()
               .title('Topics')
@@ -156,7 +165,14 @@ export const settingsStructure = (
               .child(
                 S.document()
                   .schemaType('locationHomePage')
-                  .documentId('locationHomePage'),
+                  .documentId('locationHomePage')
+                  .views([
+                    S.view.form(),
+                    S.view
+                      .component(Iframe)
+                      .options(iframeOptions)
+                      .title('Preview'),
+                  ]),
               ),
             S.listItem()
               .title('Locations')

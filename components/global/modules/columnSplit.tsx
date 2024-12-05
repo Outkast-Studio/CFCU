@@ -1,7 +1,7 @@
 import { ColumnSplitType } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import { PortableTextComponents } from 'lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   return (
@@ -48,7 +48,7 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
           <div key={index} className={clsx('flex flex-col gap-y-[8px]')}>
             <PortableText
               value={column?.content}
-              components={PortableTextComponents as any}
+              components={WysiwygComponentsWithoutPadding as any}
             />
           </div>
         ))}
