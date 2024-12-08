@@ -90,7 +90,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           },
         })
         .to(articleRef.current, {
-          yPercent: 30,
+          yPercent: 20,
         })
     })
     return () => {

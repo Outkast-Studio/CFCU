@@ -25,7 +25,6 @@ const MenuCTA = ({
   const ctaRef = useRef<HTMLButtonElement>(null)
 
   useIsomorphicLayoutEffect(() => {
-    if (!mounted) return
     if (!menuOpen) return
     const ctx = gsap.context(() => {
       const tl = gsap
@@ -55,11 +54,8 @@ const MenuCTA = ({
     return () => {
       ctx.revert()
     }
-  }, [menuOpen])
-
-  useEffect(() => {
-    setMounted(true)
   }, [])
+
   return (
     <article
       ref={containerRef}
@@ -97,7 +93,7 @@ const MenuCTA = ({
           {data.description}
         </p>
       </div>
-      <PageLink data={data.cta}>
+      <PageLink data={data.cta} className={clsx('overflow-hidden')}>
         {/* <button
           ref={ctaRef}
           style={{ backgroundColor: theme.ctaBackground }}
@@ -127,7 +123,7 @@ const MenuCTA = ({
         </button> */}
         <Button
           label={data.cta.title}
-          className={clsx('elementAnimation mt-[21px]')}
+          className={clsx('elementAnimation mt-[21px] overflow-hidden')}
         />
       </PageLink>
     </article>

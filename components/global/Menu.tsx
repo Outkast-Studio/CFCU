@@ -16,9 +16,13 @@ import { gsap } from 'gsap'
 const Menu = ({
   menuOpen,
   setMenuOpen,
+  setCloseInitiated,
+  closeInitiated,
 }: {
   menuOpen: boolean
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setCloseInitiated?: React.Dispatch<React.SetStateAction<boolean>>
+  closeInitiated?: boolean
 }) => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const topLevelNavigation = globalSettings?.navigation?.topLevelNavigation
@@ -29,7 +33,6 @@ const Menu = ({
   const [mounted, setMounted] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
-    if (!mounted) return
     const ctx = gsap.context(() => {
       if (menuOpen) {
         const tl = gsap
@@ -67,8 +70,24 @@ const Menu = ({
             },
             width > 1024 ? '<+=0.1' : '<+=0.25',
           )
-      } else {
-        const tl = gsap.timeline().fromTo(
+      }
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [])
+
+  useIsomorphicLayoutEffect(() => {
+    if (!closeInitiated) return
+    const ctx = gsap.context(() => {
+      const tl = gsap
+        .timeline({
+          onComplete: () => {
+            setMenuOpen(false)
+            setCloseInitiated(false)
+          },
+        })
+        .fromTo(
           containerRef.current,
           {
             clipPath: 'inset(0px 0px 0px 0px)',
@@ -79,16 +98,11 @@ const Menu = ({
             duration: 0.7,
           },
         )
-      }
     })
     return () => {
       ctx.revert()
     }
-  }, [menuOpen])
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  }, [closeInitiated])
 
   return (
     <div
@@ -100,8 +114,8 @@ const Menu = ({
     >
       <div
         className={clsx(
-          'min-h-screen  pt-[68px] overflow-y-auto h-full pb-[20px]',
-          'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'min-h-[100lvh]  pt-[68px] overflow-y-auto h-full pb-[102px]',
+          'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[20px]',
         )}
       >
         <div
@@ -130,7 +144,7 @@ const Menu = ({
                     />
                   </div>
                   <PageLink
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => setCloseInitiated(false)}
                     data={item.titleLink}
                     className={clsx(
                       'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
@@ -148,7 +162,7 @@ const Menu = ({
                       <PageLink
                         data={link}
                         key={index}
-                        onClick={() => setMenuOpen(false)}
+                        onClick={() => setCloseInitiated(false)}
                         className={clsx(
                           'lg:hover:opacity-60 transition-opacity duration-150',
                         )}
@@ -191,7 +205,7 @@ const Menu = ({
                           />
                         </div>
                         <PageLink
-                          onClick={() => setMenuOpen(false)}
+                          onClick={() => setCloseInitiated(false)}
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
@@ -230,7 +244,7 @@ const Menu = ({
                         <PageLink
                           data={link}
                           key={index}
-                          onClick={() => setMenuOpen(false)}
+                          onClick={() => setCloseInitiated(false)}
                           className={clsx(
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
@@ -298,7 +312,7 @@ const Menu = ({
                     <PageLink
                       data={link}
                       key={index}
-                      onClick={() => setMenuOpen(false)}
+                      onClick={() => setCloseInitiated(false)}
                       className={clsx(
                         'lg:hover:opacity-60 transition-opacity duration-150',
                       )}

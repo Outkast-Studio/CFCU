@@ -9,6 +9,8 @@ import { useWindowSize } from 'hooks/useWindowSize'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [closeInitiated, setCloseInitiated] = useState(false)
+  const [menuButtonOpen, setMenuButtonOpen] = useState(false)
   useEffect(() => {
     if (isMenuOpen) document.body.style.overflow = 'hidden'
     else document.body.style.overflow = 'auto'
@@ -62,23 +64,32 @@ const Header = () => {
             </a>
           </div>
           <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
+            disabled={closeInitiated}
+            onClick={() => {
+              if (!isMenuOpen) {
+                setIsMenuOpen(true)
+                setMenuButtonOpen(true)
+              } else {
+                setCloseInitiated(true)
+                setMenuButtonOpen(false)
+              }
+            }}
             className={clsx(
               'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-colors duration-300 ease-linear',
               'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px]',
-              isMenuOpen ? 'bg-orange lg:bg-white' : 'bg-orange',
+              menuButtonOpen ? 'bg-orange lg:bg-white' : 'bg-orange',
             )}
           >
             <div className={clsx('hidden', 'lg:block h-[23px]')}>
               <span
                 className={clsx(
                   'flex flex-col [transitiontransform duration-300 ease-in-out-cubic text-lavender',
-                  isMenuOpen ? 'translate-y-[-24px]' : 'translate-y-[0px]',
+                  menuButtonOpen ? 'translate-y-[-24px]' : 'translate-y-[0px]',
                 )}
               >
                 <span
                   className={clsx(
-                    isMenuOpen ? 'opacity-0' : 'opacity-100',
+                    menuButtonOpen ? 'opacity-0' : 'opacity-100',
                     'transition-opacity linear duration-200',
                   )}
                 >
@@ -86,7 +97,7 @@ const Header = () => {
                 </span>
                 <span
                   className={clsx(
-                    !isMenuOpen ? 'opacity-0' : 'opacity-100',
+                    !menuButtonOpen ? 'opacity-0' : 'opacity-100',
                     'transition-opacity linear duration-200',
                   )}
                 >
@@ -100,7 +111,7 @@ const Header = () => {
               <span
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
-                  isMenuOpen
+                  menuButtonOpen
                     ? 'rotate-45 translate-y-[0px]'
                     : 'rotate-0 translate-y-[5px]',
                 )}
@@ -108,13 +119,13 @@ const Header = () => {
               <span
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 linear',
-                  isMenuOpen ? 'opacity-0' : 'opacity-100',
+                  menuButtonOpen ? 'opacity-0' : 'opacity-100',
                 )}
               ></span>
               <span
                 className={clsx(
                   'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
-                  isMenuOpen
+                  menuButtonOpen
                     ? '-rotate-45 translate-y-[0px]'
                     : 'rotate-0 translate-y-[-5px]',
                 )}
@@ -123,7 +134,15 @@ const Header = () => {
           </button>
         </div>
       </header>
-      <Menu key={'Menu'} menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
+      {isMenuOpen && (
+        <Menu
+          key={'Menu'}
+          menuOpen={isMenuOpen}
+          setMenuOpen={setIsMenuOpen}
+          closeInitiated={closeInitiated}
+          setCloseInitiated={setCloseInitiated}
+        />
+      )}
     </>
   )
 }
