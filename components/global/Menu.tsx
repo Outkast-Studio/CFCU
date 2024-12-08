@@ -134,6 +134,7 @@ const Menu = ({
                     data={item.titleLink}
                     className={clsx(
                       'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
+                      'lg:hover:opacity-60 transition-opacity duration-150',
                     )}
                   >
                     {item.titleLink.title}
@@ -148,6 +149,9 @@ const Menu = ({
                         data={link}
                         key={index}
                         onClick={() => setMenuOpen(false)}
+                        className={clsx(
+                          'lg:hover:opacity-60 transition-opacity duration-150',
+                        )}
                       >
                         {link.title}
                       </PageLink>
@@ -191,6 +195,7 @@ const Menu = ({
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
+                            'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
                         >
                           {item.titleLink.title}
@@ -203,7 +208,7 @@ const Menu = ({
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         className={clsx(
-                          'group-data-[state=open]:rotate-[45deg] transition-transform duration-300 ease-in-out',
+                          'group-data-[state=open]:rotate-[45deg] transition-transform duration-300 ease-in-out-cubic',
                         )}
                       >
                         <path
@@ -226,6 +231,9 @@ const Menu = ({
                           data={link}
                           key={index}
                           onClick={() => setMenuOpen(false)}
+                          className={clsx(
+                            'lg:hover:opacity-60 transition-opacity duration-150',
+                          )}
                         >
                           {link.title}
                         </PageLink>
@@ -291,6 +299,9 @@ const Menu = ({
                       data={link}
                       key={index}
                       onClick={() => setMenuOpen(false)}
+                      className={clsx(
+                        'lg:hover:opacity-60 transition-opacity duration-150',
+                      )}
                     >
                       {link.title}
                     </PageLink>

@@ -28,7 +28,7 @@ const Header = () => {
         className={clsx(
           'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 delay-300',
           'lg:right-[48px] lg:top-[0] ',
-          alertIsOpen && 'lg:top-[0px]  ease-in-out',
+          alertIsOpen && 'lg:top-[0px]  ease-in-out-cubic',
           (isMenuOpen || isPastPoint) &&
             '!translate-y-[60px] lg:!translate-y-[48px]',
         )}
@@ -45,6 +45,7 @@ const Header = () => {
               className={clsx(
                 'hidden px-[12px] py-[9.5px] text-white',
                 'lg:inline-block',
+                'lg:hover:opacity-60 transition-opacity duration-150',
               )}
             >
               Become a Member
@@ -54,6 +55,7 @@ const Header = () => {
               className={clsx(
                 'hidden px-[12px] py-[9.5px] text-white',
                 'lg:inline-block',
+                'lg:hover:opacity-60 transition-opacity duration-150',
               )}
             >
               Log In
@@ -70,7 +72,7 @@ const Header = () => {
             <div className={clsx('hidden', 'lg:block h-[23px]')}>
               <span
                 className={clsx(
-                  'flex flex-col transition-transform duration-[0.4s] ease-in-out text-lavender',
+                  'flex flex-col [transitiontransform duration-300 ease-in-out-cubic text-lavender',
                   isMenuOpen ? 'translate-y-[-24px]' : 'translate-y-[0px]',
                 )}
               >
@@ -97,7 +99,7 @@ const Header = () => {
             >
               <span
                 className={clsx(
-                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out',
+                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
                   isMenuOpen
                     ? 'rotate-45 translate-y-[0px]'
                     : 'rotate-0 translate-y-[5px]',
@@ -111,7 +113,7 @@ const Header = () => {
               ></span>
               <span
                 className={clsx(
-                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out',
+                  'w-full h-[1.5px] rounded-full bg-purple absolute transition-all duration-300 ease-in-out-cubic',
                   isMenuOpen
                     ? '-rotate-45 translate-y-[0px]'
                     : 'rotate-0 translate-y-[-5px]',

@@ -6,12 +6,47 @@ import { PortableText } from '@portabletext/react'
 import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
+import { useRef } from 'react'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useInView } from 'react-intersection-observer'
+import { gsap } from 'gsap'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
+
+  const contentRef = useRef(null)
+
+  const { ref, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: true,
+  })
+
+  useIsomorphicLayoutEffect(() => {
+    const q = gsap.utils.selector(contentRef.current)
+    gsap.set(q('.animateContent'), { y: 30, opacity: 0 })
+    if (!inView) return
+    const ctx = gsap.context(() => {
+      gsap.timeline({}).fromTo(
+        q('.animateContent'),
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power4.out',
+          stagger: 0.1,
+        },
+        '<+=0.5',
+      )
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [inView])
+
   return (
-    <div className={clsx('lg:px-[48px] lg:py-[63px]')}>
+    <div ref={ref} className={clsx('lg:px-[48px] lg:py-[63px]')}>
       <section
+        ref={contentRef}
         style={{ backgroundColor: theme?.background }}
         className={clsx(
           'px-[45px] py-[57px] flex flex-col items-center',
@@ -22,7 +57,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           <h2
             style={{ color: theme?.subtitle }}
             className={clsx(
-              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px]',
+              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px] animateContent',
               'lg:subtitle-l  lg:mb-[16px]',
             )}
           >
@@ -30,7 +65,10 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           </h2>
         )}
         <h3
-          className={clsx('title-l text-center', 'lg:title-l-desktop')}
+          className={clsx(
+            'title-l text-center',
+            'lg:title-l-desktop animateContent',
+          )}
           style={{ color: theme?.heading }}
         >
           {data?.title}
@@ -39,7 +77,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           <div
             style={{ color: theme?.monotoneCopy }}
             className={clsx(
-              ' w-paragraph text-center mt-[20px]',
+              ' w-paragraph text-center mt-[20px] animateContent',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
@@ -48,7 +86,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
         )}
         <PageLink
           data={data?.cta}
-          className={clsx('mt-[20px] block', 'lg:mt-[24px]')}
+          className={clsx('mt-[20px] block animateContent', 'lg:mt-[24px]')}
         >
           <Button label={data?.cta?.title} />
         </PageLink>

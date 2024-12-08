@@ -65,6 +65,10 @@ body {
 iframe {
   width: 100% !important;
 }
+
+.ctaCardGridClip {
+  clip-path: inset(100% 0% 0% 0%);
+}
 /* input:focus,
 a:focus,
 button:focus {

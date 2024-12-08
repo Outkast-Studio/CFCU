@@ -15,6 +15,7 @@ import Link from 'next/link'
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
+  const gradientRef = useRef<HTMLDivElement>(null)
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,6 +36,19 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         )
         .to(q('.tertItem'), { opacity: 1, duration: 0.5 }, '<+=0.2')
     })
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: backgroundRef.current,
+          start: 'top-=16px top',
+          end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      })
+      .to(gradientRef.current, { scale: 1.05 })
+      .to(backgroundRef.current, { scale: 1.05 }, '<+=0')
+
     return () => {
       ctx.revert()
     }
@@ -43,7 +57,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
     <section
       ref={heroRef}
       className={clsx(
-        'min-h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end',
+        'min-h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end overflow-hidden',
         'lg:px-[18px] lg:py-[16px]',
       )}
     >
@@ -60,12 +74,14 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         />
       </Link>
       <div
+        ref={gradientRef}
         className={clsx(
           'heroGradient absolute inset-x-[10px] inset-y-[12px] z-[2] rounded-[10px]',
           'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',
         )}
       />
       <div
+        ref={backgroundRef}
         className={clsx(
           'absolute inset-x-[10px] inset-y-[12px] rounded-[10px] overflow-hidden',
           'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',

@@ -77,7 +77,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className={clsx(
-                      'group-data-[state=open]:rotate-[180deg] transition-transform duration-300 ease-in-out',
+                      'group-data-[state=open]:rotate-[180deg] transition-transform duration-300 ease-in-out-cubic',
                     )}
                   >
                     <path

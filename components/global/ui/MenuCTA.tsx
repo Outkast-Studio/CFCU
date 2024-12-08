@@ -7,6 +7,7 @@ import { gsap } from 'gsap'
 import { useEffect, useState } from 'react'
 
 import { useRef } from 'react'
+import Button from './Button'
 const MenuCTA = ({
   data,
   menuOpen,
@@ -97,7 +98,7 @@ const MenuCTA = ({
         </p>
       </div>
       <PageLink data={data.cta}>
-        <button
+        {/* <button
           ref={ctaRef}
           style={{ backgroundColor: theme.ctaBackground }}
           className={clsx(
@@ -123,7 +124,11 @@ const MenuCTA = ({
               fill={theme.icon}
             />
           </svg>
-        </button>
+        </button> */}
+        <Button
+          label={data.cta.title}
+          className={clsx('elementAnimation mt-[21px]')}
+        />
       </PageLink>
     </article>
   )

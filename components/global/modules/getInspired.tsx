@@ -8,10 +8,64 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import PageLink from '../ui/PageLink'
+import { useRef } from 'react'
+import { gsap } from 'gsap'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useInView } from 'react-intersection-observer'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
+  const leftGridItems = data?.articleGrid?.filter(
+    (article, index) => index % 2 === 0,
+  )
+  const rightGridItems = data?.articleGrid?.filter(
+    (article, index) => index % 2 === 1,
+  )
+
+  const gridRef = useRef<HTMLDivElement>(null)
+  const leftGridItemsRef = useRef<HTMLDivElement>(null)
+  const rightGridItemsRef = useRef<HTMLDivElement>(null)
+  const { width } = useWindowSize()
+
+  const { ref, inView } = useInView({
+    threshold: 0.01,
+    triggerOnce: true,
+  })
+
+  useIsomorphicLayoutEffect(() => {
+    if (
+      !leftGridItemsRef.current ||
+      !rightGridItemsRef.current ||
+      !gridRef.current ||
+      !inView ||
+      width < 1024
+    )
+      return
+
+    const ctx = gsap.context(() => {
+      gsap.set(leftGridItemsRef.current, { yPercent: 5 })
+      gsap.set(rightGridItemsRef.current, { yPercent: -4 })
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top-=400px top',
+            end: `+=${gridRef.current.offsetHeight * 0.8}px`,
+            scrub: true,
+          },
+        })
+        .to(leftGridItemsRef.current, { yPercent: -10 })
+        .to(rightGridItemsRef.current, { yPercent: 8 }, '<+=0')
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [inView, width])
+
   return (
     <section
+      ref={ref}
       className={clsx(
         'pt-[112px] px-[24px] pb-[86px]',
         'lg:pt-[95px] lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[69px]',
@@ -47,18 +101,32 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
       <div
         className={clsx(
           'mt-[28.5px]',
-          'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[67.5px] lg:relative',
+          'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative',
         )}
       >
         <PostCard data={data?.featuredArticle} isFeatured={true} />
         <div
+          ref={gridRef}
           className={clsx(
-            'grid grid-cols-2 gap-x-[25px] gap-y-[30px] mt-[40px]',
+            'grid grid-cols-2 gap-x-[25px] gap-y-[30px]  relative mt-[50px]',
           )}
         >
-          {data?.articleGrid?.map((article, index) => (
-            <PostCard data={article} key={index} isFeatured={false} />
-          ))}
+          <div
+            className={clsx('flex flex-col gap-y-[30px]')}
+            ref={leftGridItemsRef}
+          >
+            {leftGridItems?.map((article, index) => (
+              <PostCard data={article} key={index} isFeatured={false} />
+            ))}
+          </div>
+          <div
+            className={clsx('flex flex-col gap-y-[30px]')}
+            ref={rightGridItemsRef}
+          >
+            {rightGridItems?.map((article, index) => (
+              <PostCard data={article} key={index} isFeatured={false} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -74,17 +142,21 @@ const PostCard = ({
   isFeatured: boolean
 }) => {
   return (
-    <Link href={`/posts/${data.slug.current}`} className={clsx('block')}>
+    <Link href={`/posts/${data.slug.current}`} className={clsx('block group')}>
       <article
         className={clsx('h-fit', isFeatured && 'lg:sticky lg:top-[48px]')}
       >
-        <Image
-          src={urlForImage(data?.thumbnailImage).url()}
-          alt={data?.thumbnailImage?.alt as string}
-          width={1920}
-          height={1080}
-          className={clsx('object-cover w-full h-auto')}
-        />
+        <div className={clsx('overflow-hidden w-full ')}>
+          <Image
+            src={urlForImage(data?.thumbnailImage).url()}
+            alt={data?.thumbnailImage?.alt as string}
+            width={888}
+            height={888}
+            className={clsx(
+              'object-cover w-full h-auto lg:group-hover:scale-[1.03]  tranisiton-transform duration-300 ease-in-out-cubic',
+            )}
+          />
+        </div>
         <div
           className={clsx(
             'flex flex-col  ',

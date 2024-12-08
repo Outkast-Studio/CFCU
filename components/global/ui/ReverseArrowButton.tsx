@@ -21,7 +21,7 @@ const ReversedButton = ({ label, className, arrowPosition }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'group-hover:translate-x-[-35px] translate-x-[0px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200 rotate-180',
+          'lg:group-hover:translate-x-[-35px] translate-x-[0px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200 rotate-180',
         )}
       >
         <path
@@ -31,7 +31,7 @@ const ReversedButton = ({ label, className, arrowPosition }: ButtonProps) => {
       </svg>
       <span
         className={clsx(
-          'font-codec-extra-bold text-[18px] leading-[27px] inline-block group-hover:translate-x-[-25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'font-codec-extra-bold text-[18px] leading-[27px] inline-block lg:group-hover:translate-x-[-25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         {label}
@@ -43,7 +43,7 @@ const ReversedButton = ({ label, className, arrowPosition }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'absolute right-[0px] group-hover:translate-x-[-15px] translate-x-[35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200 rotate-[180deg]',
+          'absolute right-[0px] lg:group-hover:translate-x-[-15px] translate-x-[35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200 rotate-[180deg]',
         )}
       >
         <path

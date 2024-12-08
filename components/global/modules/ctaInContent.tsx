@@ -8,38 +8,57 @@ import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
+import { useWindowSize } from '@/hooks/useWindowSize'
+
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
-
+  const innerContentRef = useRef(null)
   const articleRef = useRef(null)
+  const [introComplete, setIntroComplete] = useState(false)
 
   const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: true,
   })
 
+  const { width } = useWindowSize()
+
   useIsomorphicLayoutEffect(() => {
     if (!inView) return
     const ctx = gsap.context(() => {
-      const q = gsap.utils.selector(articleRef.current)
-      gsap
-        .timeline({})
-        .fromTo(
-          articleRef.current,
-          {
-            clipPath: 'inset(0% 0% 100% 0%)',
-          },
-          {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            ease: 'power4.inOut',
-            duration: 0.7,
-          },
-        )
-        .fromTo(
+      const q = gsap.utils.selector(innerContentRef.current)
+
+      if (width > 1024) {
+        gsap
+          .timeline({ onComplete: () => setIntroComplete(true) })
+          .fromTo(
+            articleRef.current,
+            {
+              clipPath: 'inset(0% 0% 100% 0%)',
+            },
+            {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              ease: 'power4.inOut',
+              duration: 0.7,
+            },
+          )
+          .fromTo(
+            q('.animateArticle'),
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              ease: 'power4.out',
+              stagger: 0.1,
+            },
+            '<+=0.5',
+          )
+      } else {
+        gsap.timeline({}).fromTo(
           q('.animateArticle'),
           { opacity: 0, y: 30 },
           {
@@ -50,70 +69,59 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           },
           '<+=0.5',
         )
+      }
     })
     return () => {
       ctx.revert()
     }
   }, [inView])
 
+  useIsomorphicLayoutEffect(() => {
+    if (!inView || width < 1024) return
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: articleRef.current,
+            start: 'top-=400px top',
+            end: `+=${articleRef.current.offsetHeight * 0.8}px`,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        })
+        .to(articleRef.current, {
+          yPercent: 30,
+        })
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [inView, width])
+
+  //TODO check with expected mobile.
   return (
     <section
       ref={ref}
       className={clsx(
-        'mt-[65px] title-s pt-[51px] pb-[59px]',
+        'title-s pt-[51px]',
         'lg:!bg-white lg:pt-[178px] lg:relative lg:pb-[119px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
       style={{ backgroundColor: theme?.background, color: theme?.heading }}
     >
-      <div
-        className={clsx(
-          'pl-[24px]',
-          stegaClean(data?.ctaCard?.contentPosition) === 'left'
-            ? 'lg:pl-[164px] lg:pr-[48px]'
-            : 'lg:pr-[164px] lg:pl-[48px]',
-        )}
-      >
-        {data?.ctaCard.subtitle?.type === 'text' && (
-          <h2
-            className={clsx(
-              'w-[140px] text-[21px] tracking-[-0.16px] leading-[20.58px] font-codec-bold',
-              'lg:hidden',
-            )}
-          >
-            {data?.ctaCard?.subtitle?.text}
-          </h2>
-        )}
-        {data?.ctaCard?.subtitle?.type === 'svg' && (
-          <div
-            className={clsx('w-[140px]', 'lg:hidden')}
-            dangerouslySetInnerHTML={{ __html: data?.ctaCard?.subtitle?.svg }}
-          />
-        )}
+      <div ref={innerContentRef}>
         <div
           className={clsx(
-            'aspect-w-6 aspect-h-4 relative mt-[26px]',
-            'lg:aspect-w-7 lg:mt-[0px]',
+            'pl-[24px]',
+            stegaClean(data?.ctaCard?.contentPosition) === 'left'
+              ? 'lg:pl-[164px] lg:pr-[48px]'
+              : 'lg:pr-[164px] lg:pl-[48px]',
           )}
         >
-          <MediaComponent media={data?.backgroundImage} />
-        </div>
-      </div>
-      <article
-        ref={articleRef}
-        className={clsx(
-          'mt-[22px] px-[24px]',
-          'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px] [clip-path:inset(0%_0%_100%_0%)]',
-          stegaClean(data?.ctaCard?.contentPosition) === 'left'
-            ? 'lg:left-[0px]'
-            : 'lg:right-[0px]',
-        )}
-        style={{ backgroundColor: theme.background, color: theme.heading }}
-      >
-        <div className={clsx('hidden', 'lg:block')}>
-          {data?.ctaCard?.subtitle?.type === 'text' && (
+          {data?.ctaCard.subtitle?.type === 'text' && width < 1024 && (
             <h2
               className={clsx(
-                'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold animateArticle',
+                'w-[140px] text-[21px] tracking-[-0.16px] leading-[20.58px] font-codec-bold animateArticle opacity-0',
+                'lg:hidden',
               )}
             >
               {data?.ctaCard?.subtitle?.text}
@@ -121,44 +129,86 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           )}
           {data?.ctaCard?.subtitle?.type === 'svg' && (
             <div
-              className={clsx('w-[140px] animateArticle')}
+              className={clsx('w-[140px] animateArticle', 'lg:hidden')}
               dangerouslySetInnerHTML={{ __html: data?.ctaCard?.subtitle?.svg }}
             />
           )}
-        </div>
-        <div>
-          <h3
+          <div
             className={clsx(
-              'text-extra-bold text-[32px] leading-[35.2px] animateArticle',
-              'lg:title-s-desktop',
+              'aspect-w-6 aspect-h-4 relative mt-[26px]',
+              'lg:aspect-w-7 lg:mt-[0px]',
             )}
           >
-            {data?.ctaCard?.title}
-          </h3>
-
-          {data?.ctaCard?.description ? (
-            <div
+            <MediaComponent media={data?.backgroundImage} />
+          </div>
+        </div>
+        <article
+          ref={articleRef}
+          className={clsx(
+            'mt-[22px] px-[24px] pb-[59px]',
+            'lg:px-[48px] lg:pt-[48px] lg:w-[585px] lg:h-[705px] lg:flex lg:flex-col lg:justify-between lg:pb-[54px] lg:absolute lg:top-[71px] lg:[clip-path:inset(0%_0%_100%_0%)]',
+            stegaClean(data?.ctaCard?.contentPosition) === 'left'
+              ? 'lg:left-[0px]'
+              : 'lg:right-[0px]',
+          )}
+          style={{ backgroundColor: theme.background, color: theme.heading }}
+        >
+          <div className={clsx('hidden', 'lg:block')}>
+            {data?.ctaCard?.subtitle?.type === 'text' && (
+              <h2
+                className={clsx(
+                  'w-[185px] text-[28px] tracking-[-0.16px] leading-[27.44px] font-codec-bold animateArticle opacity-0',
+                )}
+              >
+                {data?.ctaCard?.subtitle?.text}
+              </h2>
+            )}
+            {data?.ctaCard?.subtitle?.type === 'svg' && (
+              <div
+                className={clsx('w-[140px] animateArticle')}
+                dangerouslySetInnerHTML={{
+                  __html: data?.ctaCard?.subtitle?.svg,
+                }}
+              />
+            )}
+          </div>
+          <div>
+            <h3
               className={clsx(
-                'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle',
-                'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
+                'text-extra-bold text-[32px] leading-[35.2px] animateArticle opacity-0',
+                'lg:title-s-desktop',
               )}
             >
-              <PortableText
-                value={data?.ctaCard?.description}
-                components={WysiwygComponentsWithoutPadding as any}
-              />
-            </div>
-          ) : (
-            <div className={clsx('h-[48px', 'lg:h-[64px]')}></div>
-          )}
-          <PageLink
-            data={data?.ctaCard?.cta}
-            className={clsx('mt-[21px] block', 'lg:mt-[24px] animateArticle')}
-          >
-            <Button label={data?.ctaCard?.cta?.title} />
-          </PageLink>
-        </div>
-      </article>
+              {data?.ctaCard?.title}
+            </h3>
+
+            {data?.ctaCard?.description ? (
+              <div
+                className={clsx(
+                  'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle opacity-0',
+                  'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
+                )}
+              >
+                <PortableText
+                  value={data?.ctaCard?.description}
+                  components={WysiwygComponentsWithoutPadding as any}
+                />
+              </div>
+            ) : (
+              <div className={clsx('h-[48px', 'lg:h-[64px]')}></div>
+            )}
+            <PageLink
+              data={data?.ctaCard?.cta}
+              className={clsx(
+                'mt-[21px] block',
+                'lg:mt-[24px] animateArticle opacity-0',
+              )}
+            >
+              <Button label={data?.ctaCard?.cta?.title} />
+            </PageLink>
+          </div>
+        </article>
+      </div>
     </section>
   )
 }

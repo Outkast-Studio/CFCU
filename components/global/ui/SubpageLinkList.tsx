@@ -49,7 +49,7 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
                 ></span>
                 <span
                   className={clsx(
-                    'sblock w-[13px] h-[2px] bg-lavender absolute left-[0px] top-[0px] origin-center group-data-[state=open]:rotate-[90deg] transition-transform duration-300 ease-in-out',
+                    'sblock w-[13px] h-[2px] bg-lavender absolute left-[0px] top-[0px] origin-center group-data-[state=open]:rotate-[90deg] transition-transform duration-300 ease-in-out-cubic',
                   )}
                 ></span>
               </div>

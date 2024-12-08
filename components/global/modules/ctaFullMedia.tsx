@@ -55,7 +55,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
         ref={contentRef}
         className={clsx(
           'px-[24px] relative pt-[36px] flex flex-col gap-y-[314px] justify-between pb-[113px]',
-          'lg:px-[48px] lg:pt-[58px] lg:gap-y-[272px]',
+          'lg:px-[48px] lg:pt-[58px] lg:pb-[55px] lg:gap-y-[272px]',
         )}
       >
         {data?.needsOverlay && (
@@ -68,7 +68,9 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
         <div className={clsx('w-full h-full absolute inset-0 z-[1]')}>
           <MediaComponent media={data.backgroundMedia} isPlaying={isPlaying} />
         </div>
-        <div className={clsx('relative z-[2]')}>
+        <div
+          className={clsx('relative z-[2]', 'xl:pl-[calc((100%-1800px)/2)]')}
+        >
           <div className={clsx('mt-[15px]')}>
             {stegaClean(data?.topContent?.title?.type) === 'svg' ? (
               <div
@@ -100,7 +102,12 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
             )}
           </div>
         </div>
-        <div className={clsx('flex justify-between items-end ')}>
+        <div
+          className={clsx(
+            'flex justify-between items-end',
+            'xl:pl-[calc((100%-1800px)/2)]',
+          )}
+        >
           <div className={clsx('relative z-[2]')}>
             <h3
               style={{ color: theme.background }}
