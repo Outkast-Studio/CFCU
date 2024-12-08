@@ -96,7 +96,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
       >
         <article
           className={clsx(
-            'pb-[58px] relative z-[3] max-w-[841px] pl-[14px]',
+            'pb-[58px] relative z-[3] max-w-[841px] px-[14px]',
             'lg:pl-[0px] lg:pb-[0px]',
           )}
         >

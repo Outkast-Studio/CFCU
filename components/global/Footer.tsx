@@ -20,7 +20,7 @@ const Footer = () => {
       <footer
         className={clsx(
           'px-[24px] py-[66px]',
-          'lg:px-[48px] lg:py-[102px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:px-[48px] lg:pt-[102px] lg:pb-[46px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
         )}
       >
         <div className={clsx('lg:grid lg:grid-cols-12 lg:gap-x-[24px]')}>

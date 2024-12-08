@@ -82,14 +82,11 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
         </h2>
         <div
           className={clsx(
-            'mt-[12px] font-codec-news text-[#353535]/65 text-center text-[18px] leading-[25.2px] max-w-[961px]',
+            'mt-[12px] font-codec-pro text-black/75 text-center text-[18px] leading-[25.2px] max-w-[961px]',
             'lg:w-paragraph-xl-desktop lg:mt-[17px]',
           )}
         >
-          <PortableText
-            value={data?.description}
-            components={WysiwygComponentsWithoutPadding as any}
-          />
+          <PortableText value={data?.description} />
         </div>
         <PageLink
           data={data?.cta}
@@ -159,11 +156,10 @@ const PostCard = ({
         </div>
         <div
           className={clsx(
-            'flex flex-col  ',
-            'lg:mt-[31px]',
+            'flex flex-col',
             isFeatured
               ? 'gap-y-[8px] mt-[24px] lg:max-w-[582px]  lg:gap-y-[13px] lg:mt-[31px]'
-              : 'mt-[16px] lg:max-w-[298px] gap-y-[10px]  lg:gap-y-[8px] lg:mt-[25px]',
+              : 'mt-[16px] lg:max-w-[298px] gap-y-[10px]  lg:gap-y-[0px] lg:mt-[25px]',
           )}
         >
           <h4
@@ -178,7 +174,7 @@ const PostCard = ({
             className={clsx(
               isFeatured
                 ? 'font-codec-ultra text-[36px] leading-[36px] lg:text-[62px] lg:leading-[58px]'
-                : 'font-codec-extra-bold text-[18px] leading-[23.4px] lg:text-[24px] lg:leading-[28px]',
+                : 'font-codec-extra-bold text-[18px] leading-[23.4px] lg:text-[24px] lg:leading-[28px] lg:mt-[12px]',
               'text-lavender',
             )}
           >
@@ -189,7 +185,7 @@ const PostCard = ({
               'font-codec-news',
               isFeatured
                 ? 'text-[16px] leading-[24px] lg:text-[24px] lg:leading-[36px]'
-                : 'text-[14px] leading-[19.6px] lg:text-[18px] lg:leading-[26px]',
+                : 'text-[14px] leading-[19.6px] lg:text-[18px] lg:leading-[26px] lg:mt-[8px]',
             )}
           >
             {data?.excerpt}

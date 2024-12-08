@@ -74,7 +74,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
     return () => {
       ctx.revert()
     }
-  }, [inView])
+  }, [inView, width])
 
   useIsomorphicLayoutEffect(() => {
     if (!inView || width < 1024) return
@@ -195,7 +195,9 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
                 />
               </div>
             ) : (
-              <div className={clsx('h-[48px', 'lg:h-[64px]')}></div>
+              <div
+                className={clsx('h-[48px]', 'lg:h-[64px] lg:mt-[16px]')}
+              ></div>
             )}
             <PageLink
               data={data?.ctaCard?.cta}

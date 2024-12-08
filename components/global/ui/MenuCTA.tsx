@@ -93,7 +93,10 @@ const MenuCTA = ({
           {data.description}
         </p>
       </div>
-      <PageLink data={data.cta} className={clsx('overflow-hidden')}>
+      <PageLink
+        data={data.cta}
+        className={clsx('overflow-hidden lg:overflow-visible')}
+      >
         {/* <button
           ref={ctaRef}
           style={{ backgroundColor: theme.ctaBackground }}

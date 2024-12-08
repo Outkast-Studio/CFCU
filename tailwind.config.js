@@ -264,7 +264,7 @@ module.exports = {
         '.w-paragraph-xl-desktop': {
           'font-size': '24px',
           'line-height': '36px',
-          'font-family': 'var(--font-codec-news)',
+          'font-family': 'var(--font-codec-pro)',
         },
         '.w-h1-desktop': {
           'font-family': 'var(--font-codec-bold)',
