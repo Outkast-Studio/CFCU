@@ -15,16 +15,12 @@ import Link from 'next/link'
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
+
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
       const tl = gsap
         .timeline({ delay: 0.7 })
-        // .fromTo(
-        //   backgroundRef.current,
-        //   { scale: 1.05 },
-        //   { scale: 1, ease: 'power4.inOut', duration: 3 },
-        // )
         .fromTo(
           q('.subItem'),
           { opacity: 0, y: 30 },
@@ -75,7 +71,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',
         )}
       >
-        <MediaComponent media={data.backgroundMedia} />
+        <MediaComponent media={data.backgroundMedia} priority={true} />
       </div>
       <div
         className={clsx(
@@ -106,15 +102,18 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           </h1>
           <p
             className={clsx(
-              'text-[18px] leading-[23.4px] font-codec-regular text-white pl-[14px] pr-[14px] mt-[11px] max-w-[590px] subItem',
-              'lg:font-codec-light lg:text-[26px] lg:leading-[33.8px] lg:mt-[19px] lg:pl-[0px]',
+              'text-[18px] leading-[23.4px] font-codec-regular text-white mt-[11px] max-w-[590px] subItem opacity-0',
+              'lg:font-codec-light lg:text-[26px] lg:leading-[33.8px] lg:mt-[19px]',
             )}
           >
             {data.description}
           </p>
           <PageLink
             data={data.cta}
-            className={clsx('mt-[16px] block', 'lg:mt-[31px] w-fit subItem')}
+            className={clsx(
+              'mt-[16px] block',
+              'lg:mt-[31px] w-fit subItem opacity-0',
+            )}
           >
             <Button label={data.cta.title} />
           </PageLink>

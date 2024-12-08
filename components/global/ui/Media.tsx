@@ -12,11 +12,13 @@ import { SanityImage } from 'sanity-image'
 interface MediaComponentProps {
   media: Media
   isPlaying?: boolean
+  priority?: boolean
 }
 
 export default function MediaComponent({
   media,
   isPlaying,
+  priority,
 }: MediaComponentProps) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
@@ -45,6 +47,7 @@ export default function MediaComponent({
         baseUrl="https://cdn.sanity.io/images/uq2qrg8z/production/"
         hotspot={media?.image?.hotspot}
         className="object-cover w-full h-full"
+        priority={priority}
       />
     )
   } else if (stegaClean(media?.mediaType) === 'video' && media?.video) {
