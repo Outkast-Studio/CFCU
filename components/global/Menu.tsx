@@ -109,12 +109,12 @@ const Menu = ({
       ref={containerRef}
       key={'Menu container'}
       className={clsx(
-        'fixed top-0 left-0 w-full z-[12] bg-white h-full [clip-path:inset(0px_0px_100%_0px)]',
+        'fixed top-0 left-0 w-full z-[12] bg-white h-full min-h-[100lvh] [clip-path:inset(0px_0px_100%_0px)]',
       )}
     >
       <div
         className={clsx(
-          'min-h-[100lvh]  pt-[68px] overflow-y-auto h-full pb-[102px]',
+          'min-h-[100%]  pt-[68px] overflow-y-auto h-full pb-[102px]',
           'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[20px]',
         )}
       >
