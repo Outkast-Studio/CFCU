@@ -33,6 +33,7 @@ const Menu = ({
   const [mounted, setMounted] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
+    if (!mounted) return
     const ctx = gsap.context(() => {
       if (menuOpen) {
         const tl = gsap
@@ -75,6 +76,10 @@ const Menu = ({
     return () => {
       ctx.revert()
     }
+  }, [mounted])
+
+  useEffect(() => {
+    setMounted(true)
   }, [])
 
   useIsomorphicLayoutEffect(() => {
