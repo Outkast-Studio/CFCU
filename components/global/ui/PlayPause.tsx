@@ -6,7 +6,12 @@ interface Props {
 }
 const PlayPause = ({ isPlaying }: Props) => {
   return (
-    <div className={clsx('scale-[0.75] w-fit h-fit', 'lg:scale-[1]')}>
+    <div
+      className={clsx(
+        ' w-[32px] h-[32px] ',
+        'lg:h-[52px] lg:w-[52px] lg:hover:opacity-80 transition-opacity duration-200',
+      )}
+    >
       {isPlaying ? (
         <svg
           width="52"
@@ -14,6 +19,7 @@ const PlayPause = ({ isPlaying }: Props) => {
           viewBox="0 0 52 52"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={clsx('w-[32px] h-[32px]', 'lg:h-[52px] lg:w-[52px] ')}
         >
           <circle cx="24" cy="28" r="17" fill="#3C1053" />
           <path
@@ -28,6 +34,7 @@ const PlayPause = ({ isPlaying }: Props) => {
           viewBox="0 0 52 52"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={clsx('w-[32px] h-[32px] ', 'lg:h-[52px] lg:w-[52px] ')}
         >
           <circle cx="26" cy="26" r="26" fill="white" />
           <path

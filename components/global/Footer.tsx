@@ -112,6 +112,7 @@ const Footer = () => {
                   data={link}
                   className={clsx(
                     'font-codec-bold text-[18px] leading-[16.2px] text-white',
+                    'lg:hover:opacity-60 transition-opacity duration-150',
                   )}
                 >
                   <span>{link.title}</span>
