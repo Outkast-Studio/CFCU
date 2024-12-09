@@ -371,6 +371,10 @@ export default defineType({
 //Singleton Types --------------------------------------------------------------------------
 export interface GlobalSettingsType {
   navigation: {
+    headerBarLinks: Array<{
+      title: string
+      url: string
+    }>
     topLevelNavigation: Array<{
       icon: ImageAsset
       titleLink: PageLinkType

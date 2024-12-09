@@ -22,6 +22,31 @@ export default defineType({
       group: 'navigation',
       fields: [
         defineField({
+          name: 'headerBarLinks',
+          title: 'Header Bar Links',
+          description: 'Links that appear in the sticky header bar.',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [
+                defineField({
+                  name: 'title',
+                  title: 'Title',
+                  type: 'string',
+                  validation: (Rule: any) => Rule.required(),
+                }),
+                defineField({
+                  name: 'url',
+                  title: 'URL',
+                  type: 'url',
+                  validation: (Rule: any) => Rule.required(),
+                }),
+              ],
+            },
+          ],
+        }),
+        defineField({
           name: 'topLevelNavigation',
           title: 'Top Level Navigation',
           type: 'array',

@@ -18,6 +18,7 @@ const Header = () => {
 
   const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen)
   const alertHeight = useGlobalSettingsStore((state) => state.alertHeight)
+  const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const isPastPoint = useScrollPastPoint(alertHeight)
   const { width } = useWindowSize()
 
@@ -42,26 +43,19 @@ const Header = () => {
           )}
         >
           <div>
-            <a
-              href={'#'}
-              className={clsx(
-                'hidden px-[12px] py-[9.5px] text-white',
-                'lg:inline-block',
-                'lg:hover:opacity-60 transition-opacity duration-150',
-              )}
-            >
-              Become a Member
-            </a>
-            <a
-              href={'#'}
-              className={clsx(
-                'hidden px-[12px] py-[9.5px] text-white',
-                'lg:inline-block',
-                'lg:hover:opacity-60 transition-opacity duration-150',
-              )}
-            >
-              Log In
-            </a>
+            {globalSettings?.navigation?.headerBarLinks?.map((link, index) => (
+              <a
+                key={index}
+                href={link.url}
+                className={clsx(
+                  'hidden px-[12px] py-[9.5px] text-white',
+                  'lg:inline-block',
+                  'lg:hover:opacity-60 transition-opacity duration-150',
+                )}
+              >
+                {link.title}
+              </a>
+            ))}
           </div>
           <button
             disabled={closeInitiated}

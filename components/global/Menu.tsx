@@ -129,8 +129,11 @@ const Menu = ({
             'lg:hidden',
           )}
         >
-          <a href={'#'}>Become a Member</a>
-          <a href={'#'}>Log In</a>
+          {globalSettings?.navigation?.headerBarLinks?.map((link, index) => (
+            <a key={index} href={link.url}>
+              {link.title}
+            </a>
+          ))}
         </div>
         <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
           <SearchBar setMenuOpen={setMenuOpen} />
