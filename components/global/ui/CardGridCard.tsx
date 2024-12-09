@@ -18,9 +18,14 @@ export default function CardGridCard({
           className={clsx('aspect-w-10 aspect-h-11 relative overflow-hidden')}
         >
           <Image
-            src={data?.image ? urlForImage(data?.image).url() : ''}
+            src={
+              data?.image
+                ? urlForImage(data?.image).width(888).quality(100).url()
+                : ''
+            }
             alt={data?.image?.alt as string}
-            fill
+            width={888}
+            height={888}
             className={clsx(
               'object-cover w-full h-full lg:group-hover:scale-[1.03] tranisiton-transform duration-300 ease-in-out-cubic',
             )}

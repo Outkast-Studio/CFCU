@@ -57,7 +57,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           <h2
             style={{ color: theme?.subtitle }}
             className={clsx(
-              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px] animateContent',
+              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px] animateContent opacity-0',
               'lg:subtitle-l  lg:mb-[16px]',
             )}
           >
@@ -67,7 +67,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
         <h3
           className={clsx(
             'title-l text-center',
-            'lg:title-l-desktop animateContent',
+            'lg:title-l-desktop animateContent opacity-0',
           )}
           style={{ color: theme?.heading }}
         >
@@ -77,7 +77,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           <div
             style={{ color: theme?.monotoneCopy }}
             className={clsx(
-              ' w-paragraph text-center mt-[20px] animateContent',
+              ' w-paragraph text-center mt-[20px] animateContent opacity-0',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
@@ -86,7 +86,10 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
         )}
         <PageLink
           data={data?.cta}
-          className={clsx('mt-[20px] block animateContent', 'lg:mt-[24px]')}
+          className={clsx(
+            'mt-[20px] block animateContent opacity-0',
+            'lg:mt-[24px]',
+          )}
         >
           <Button label={data?.cta?.title} />
         </PageLink>
