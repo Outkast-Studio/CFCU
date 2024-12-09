@@ -37,12 +37,16 @@ export default defineType({
               name: 'title',
               title: 'Title',
               type: 'string',
+              description:
+                'The title for the accordion item. This needs to be unique from the other accordion items.',
               validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: 'content',
               title: 'Content',
               type: 'blockContent',
+              description:
+                'Content for the accordion item. Feel free to use wysiwyg styles here.',
               validation: (Rule) => Rule.required(),
             }),
           ],
