@@ -7,7 +7,17 @@ export default defineField({
     defineField({
       name: 'icon',
       title: 'Icon',
-      type: 'inlineSvg',
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description:
+            "Describe what's in the image for screen readers and search engines.",
+          validation: (Rule: any) => Rule.required(),
+        },
+      ],
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
@@ -26,6 +36,7 @@ export default defineField({
     defineField({
       name: 'navigationCards',
       title: 'Navigation Cards',
+      description: 'The cards to display in the navigation section',
       type: 'array',
       of: [
         defineField({

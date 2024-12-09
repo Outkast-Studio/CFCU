@@ -9,12 +9,14 @@ export default defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'The title of the section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
+      description: 'The description of the section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -26,6 +28,7 @@ export default defineField({
     defineField({
       name: 'featuredArticle',
       title: 'Featured Article',
+      description: 'The article to display on the left side of the section.',
       type: 'reference',
       to: [{ type: 'post' }],
       validation: (Rule) => Rule.required(),
@@ -34,6 +37,7 @@ export default defineField({
       name: 'articleGrid',
       title: 'Article Grid',
       type: 'array',
+      description: 'The articles to display on the right side of the section.',
       of: [
         defineArrayMember({
           type: 'reference',

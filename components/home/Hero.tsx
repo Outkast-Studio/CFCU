@@ -9,13 +9,16 @@ import Image from 'next/image'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
+import { stegaClean } from '@sanity/client/stega'
+import PlayPause from 'components/global/ui/PlayPause'
 
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
   const gradientRef = useRef<HTMLDivElement>(null)
+  const [isPlaying, setIsPlaying] = useState(true)
 
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -87,8 +90,23 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           'lg:inset-x-[18px] lg:inset-y-[16px] lg:rounded-[20px]',
         )}
       >
-        <MediaComponent media={data.backgroundMedia} priority={true} />
+        <MediaComponent
+          media={data?.backgroundMedia}
+          priority={true}
+          isPlaying={isPlaying}
+        />
       </div>
+      {stegaClean(data?.backgroundMedia?.mediaType) === 'video' && (
+        <button
+          className={clsx(
+            'absolute !right-[16px] !bottom-[16px] !top-[unset] !left-[unset] z-[10] !w-fit !h-fit',
+            'lg:!right-[36px] lg:!bottom-[36px] ',
+          )}
+          onClick={() => setIsPlaying((prev) => !prev)}
+        >
+          <PlayPause isPlaying={isPlaying} />
+        </button>
+      )}
       <div
         className={clsx(
           'lg:px-[30px] lg:flex lg:justify-between lg:relative lg:z-[3] lg:items-end lg:pb-[46px]',

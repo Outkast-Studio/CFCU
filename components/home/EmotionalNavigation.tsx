@@ -87,8 +87,11 @@ const EmotionalNavigation = ({
           'lg:px-[48px] lg:pt-[36px] lg:shrink-0  lg:h-[620px] lg:sticky lg:top-[calc((100vh-620px)/2)]',
         )}
       >
-        <div
-          dangerouslySetInnerHTML={{ __html: data.icon as any }}
+        <Image
+          src={urlForImage(data?.icon).url()}
+          alt={data.icon.alt as string}
+          width={122}
+          height={92}
           className={clsx('emotionalNavigationIcon emotionalAnimateOut')}
         />
         <h2

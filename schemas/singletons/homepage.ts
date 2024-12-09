@@ -34,16 +34,18 @@ export default defineType({
       title: 'Meta Title',
       type: 'string',
       group: 'seo',
+      validation: (Rule: any) => Rule.required(),
       description:
-        'Title for search engines. If left blank, the title for this page will be set to the default title.',
+        'Title for search engines. This is also used to power search results.',
     }),
     defineField({
       name: 'metaDescription',
       title: 'Meta Description',
       type: 'text',
       group: 'seo',
+      validation: (Rule: any) => Rule.required(),
       description:
-        'Description for search engines. If left blank, the description for this page will be set to the default description.',
+        'Description for search engines. This is also used to power search results.',
     }),
     defineField({
       name: 'ogImage',

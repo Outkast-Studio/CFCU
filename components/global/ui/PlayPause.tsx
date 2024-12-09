@@ -1,11 +1,12 @@
 import React from 'react'
+import { clsx } from 'clsx'
 
 interface Props {
   isPlaying: boolean
 }
 const PlayPause = ({ isPlaying }: Props) => {
   return (
-    <div>
+    <div className={clsx('scale-[0.75] w-fit h-fit', 'lg:scale-[1]')}>
       {isPlaying ? (
         <svg
           width="52"

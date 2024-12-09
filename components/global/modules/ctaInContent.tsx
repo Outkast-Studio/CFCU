@@ -13,12 +13,13 @@ import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import PlayPause from '../ui/PlayPause'
 
 const CtaInContent = ({ data }: { data: CtaInContentType }) => {
   const theme = getThemeClasses(data?.theme?.label)
   const innerContentRef = useRef(null)
   const articleRef = useRef(null)
-  const [introComplete, setIntroComplete] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(true)
 
   const { ref, inView } = useInView({
     threshold: 0.5,
@@ -34,7 +35,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
 
       if (width > 1024) {
         gsap
-          .timeline({ onComplete: () => setIntroComplete(true) })
+          .timeline()
           .fromTo(
             articleRef.current,
             {
@@ -139,7 +140,21 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               'lg:aspect-w-7 lg:mt-[0px]',
             )}
           >
-            <MediaComponent media={data?.backgroundImage} />
+            <MediaComponent
+              media={data?.backgroundImage}
+              isPlaying={isPlaying}
+            />
+
+            {stegaClean(data?.backgroundImage?.mediaType) === 'video' && (
+              <button
+                className={clsx(
+                  'absolute !right-[24px] !bottom-[24px] !top-[unset] !left-[unset] z-[2] !w-fit !h-fit',
+                )}
+                onClick={() => setIsPlaying((prev) => !prev)}
+              >
+                <PlayPause isPlaying={isPlaying} />
+              </button>
+            )}
           </div>
         </div>
         <article

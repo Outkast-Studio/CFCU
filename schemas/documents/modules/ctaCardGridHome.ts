@@ -9,18 +9,21 @@ export default defineField({
       name: 'subTitle',
       title: 'Subtitle',
       type: 'string',
+      description: 'The subtitle of the section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'The title of the section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'cards',
       title: 'Cards',
       type: 'array',
+      description: 'The cards to display in the section',
       of: [
         defineArrayMember({
           type: 'object',
@@ -68,12 +71,14 @@ export default defineField({
       name: 'linkListTitle',
       title: 'Link List Title',
       type: 'string',
+      description: 'The title of the link list card.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'linkList',
       title: 'Link List',
       type: 'array',
+      description: 'The links to display in the link list card.',
       of: [
         defineArrayMember({
           type: 'pageLink',

@@ -66,7 +66,7 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
           />
         )}
         <div className={clsx('w-full h-full absolute inset-0 z-[1]')}>
-          <MediaComponent media={data.backgroundMedia} isPlaying={isPlaying} />
+          <MediaComponent media={data?.backgroundMedia} isPlaying={isPlaying} />
         </div>
         <div
           className={clsx('relative z-[2]', 'xl:pl-[calc((100%-1800px)/2)]')}

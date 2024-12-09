@@ -19,6 +19,7 @@ export default defineField({
           name: 'contentPosition',
           title: 'Content Position',
           type: 'string',
+          description: 'The side the content should be on.',
           options: {
             list: [
               { title: 'Left', value: 'left' },
@@ -33,13 +34,13 @@ export default defineField({
         defineField({
           name: 'subtitle',
           title: 'Subtitle',
+          description: 'The subtitle at the top of the card.',
           type: 'object',
           fields: [
             defineField({
               name: 'type',
               title: 'Type',
               type: 'string',
-
               options: {
                 list: [
                   { title: 'Text', value: 'text' },
@@ -65,12 +66,14 @@ export default defineField({
         defineField({
           name: 'title',
           title: 'Title',
+          description: 'The title of the card.',
           type: 'string',
           validation: (Rule: any) => Rule.required(),
         }),
         defineField({
           name: 'description',
           title: 'Description',
+          description: 'The optional description of the card.',
           type: 'blockContent',
         }),
         defineField({
@@ -83,7 +86,8 @@ export default defineField({
     }),
     defineField({
       name: 'backgroundImage',
-      title: 'backgroundImage',
+      title: 'Background Image',
+      description: 'The media to display in the section',
       type: 'media',
       validation: (Rule: any) => Rule.required(),
     }),

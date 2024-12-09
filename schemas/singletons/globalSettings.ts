@@ -17,6 +17,7 @@ export default defineType({
     defineField({
       name: 'navigation',
       title: 'Navigation',
+      description: 'This powers the site wide navigation and menu.',
       type: 'object',
       group: 'navigation',
       fields: [
@@ -174,6 +175,7 @@ export default defineType({
     defineField({
       name: 'footer',
       title: 'Footer',
+      description: 'This powers the site wide footer.',
       type: 'object',
       group: 'footer',
       fields: [

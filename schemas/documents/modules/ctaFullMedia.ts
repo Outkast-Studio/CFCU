@@ -14,6 +14,7 @@ export default defineField({
     defineField({
       name: 'backgroundMedia',
       title: 'Background Media',
+      description: 'The media to display as the background for the section',
       type: 'media',
       validation: (Rule) => Rule.required(),
     }),
@@ -22,12 +23,13 @@ export default defineField({
       title: 'Needs Overlay',
       type: 'boolean',
       description:
-        'If true, this will add a darkened overlay to keep content readable.',
+        'If true, this will add a darkened overlay to keep the content readable.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'topContent',
       title: 'Top Content',
+      description: 'The content to display at the top of the section.',
       type: 'object',
       fields: [
         defineField({
@@ -73,6 +75,7 @@ export default defineField({
     defineField({
       name: 'lowerContent',
       title: 'Lower Content',
+      description: 'The content to display at the bottom of the section.',
       type: 'object',
       fields: [
         defineField({
@@ -92,6 +95,8 @@ export default defineField({
       name: 'cta',
       title: 'Call to Action',
       type: 'pageLink',
+      description:
+        'The call to action button that displays at the bottom of the section.',
       validation: (Rule) => Rule.required(),
     }),
   ],
