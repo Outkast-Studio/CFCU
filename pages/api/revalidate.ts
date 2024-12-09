@@ -74,18 +74,19 @@ async function queryStaleRoutes(
   >,
 ): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
-  switch (body._type) {
-    case 'globalSettings':
-      return await queryAllRoutes(client)
-    case 'homepage':
-      return ['/']
-    case 'subPage':
-      return await querySubPageRoutes(client)
-    case 'post':
-      return await queryPostRoutes(client)
-    default:
-      console.log(body)
-  }
+  return queryAllRoutes(client)
+  // switch (body._type) {
+  //   case 'globalSettings':
+  //     return await queryAllRoutes(client)
+  //   case 'homepage':
+  //     return ['/']
+  //   case 'subPage':
+  //     return await querySubPageRoutes(client)
+  //   case 'post':
+  //     return await queryPostRoutes(client)
+  //   default:
+  //     console.log(body)
+  // }
 }
 
 async function _queryAllRoutes(client: SanityClient): Promise<string[]> {

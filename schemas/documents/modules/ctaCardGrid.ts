@@ -9,16 +9,19 @@ export default defineField({
       name: 'subTitle',
       title: 'Subtitle',
       type: 'string',
+      description: 'The subtitle for the card grid section',
     }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'The main title for the card grid section',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
+      description: 'Description text above the card grid',
     }),
 
     defineField({

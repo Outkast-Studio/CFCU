@@ -5,6 +5,7 @@ import 'swiper/css'
 import CardGridCard from '../ui/CardGridCard'
 import Link from 'next/link'
 import { useWindowSize } from 'hooks/useWindowSize'
+import { PortableText } from '@portabletext/react'
 
 const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()
@@ -36,6 +37,16 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
             {data?.title}
           </h3>
         )}
+        {data?.description && (
+          <div
+            className={clsx(
+              'w-paragraph-s-desktop text-black/75 mt-[17px]',
+              'lg:w-paragraph-l-desktop lg:max-w-[1216px]',
+            )}
+          >
+            <PortableText value={data?.description} />
+          </div>
+        )}
       </div>
       {width < 1024 && (
         <Swiper
@@ -52,7 +63,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
           ))}
         </Swiper>
       )}
-      <div className={clsx('lg:mt-[56px] lg:px-[48px', 'xl:px-[0px]')}>
+      <div className={clsx('lg:mt-[56px] lg:px-[48px]', 'xl:px-[0px]')}>
         {width >= 1024 && (
           <div
             className={clsx(
