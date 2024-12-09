@@ -40,7 +40,7 @@ const Menu = ({
           .timeline()
           .fromTo(
             containerRef.current,
-            { clipPath: 'inset(0px 0px 105% 0px)' },
+            { clipPath: 'inset(0px 0px 120% 0px)' },
             {
               clipPath: 'inset(0px 0px 0px 0px)',
               ease: 'power4.inOut',
@@ -114,12 +114,12 @@ const Menu = ({
       ref={containerRef}
       key={'Menu container'}
       className={clsx(
-        'fixed top-0 left-0 w-full z-[12] bg-white h-[100%] min-h-[105lvh] [clip-path:inset(0px_0px_105%_0px)]',
+        'fixed top-0 left-0 w-full z-[12] bg-white h-full min-h-[105lvh] [clip-path:inset(0px_0px_120%_0px)]',
       )}
     >
       <div
         className={clsx(
-          'min-h-[105lvh]  pt-[68px] overflow-y-auto h-full pb-[102px] bg-white',
+          'min-h-[105lvh]  pt-[68px] overflow-y-auto h-full pb-[120px] bg-white',
           'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[20px]',
         )}
       >
