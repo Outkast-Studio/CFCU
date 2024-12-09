@@ -63,7 +63,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
             'lg:mb-[11px] lg:subtitle-l',
           )}
         >
-          {data.subtitle}
+          {data?.subtitle}
         </h2>
       )}
       <h3 className={clsx('title-xl text-lavender', 'lg:title-xl-desktop')}>

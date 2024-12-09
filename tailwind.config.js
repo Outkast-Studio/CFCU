@@ -267,7 +267,7 @@ module.exports = {
           'font-family': 'var(--font-codec-pro)',
         },
         '.w-h1-desktop': {
-          'font-family': 'var(--font-codec-bold)',
+          'font-family': 'var(--font-codec-heavy)',
           'font-size': '90px',
           'line-height': '94px',
           'letter-spacing': '-0.32px',
