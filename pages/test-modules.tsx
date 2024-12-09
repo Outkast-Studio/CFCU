@@ -1,5 +1,10 @@
 import { readToken } from 'lib/sanity.api'
-import { getGlobalSettings, getClient, getHomepage } from 'lib/sanity.client'
+import {
+  getGlobalSettings,
+  getClient,
+  getHomepage,
+  getTestModules,
+} from 'lib/sanity.client'
 import {
   globalSettingsQuery,
   homepageQuery,
@@ -42,6 +47,7 @@ export default function Page(props: PageProps) {
     setGlobalSettings(globalSettings)
   }, [data, setGlobalSettings, globalSettings])
 
+  console.log(data)
   return (
     <Layout>
       <ModuleFactory modules={data.modules} />
@@ -53,7 +59,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   const { draftMode = false, params = {} } = ctx
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const globalSettings = await getGlobalSettings(client)
-  const testModules = await getHomepage(client)
+  const testModules = await getTestModules(client)
 
   return {
     props: {
