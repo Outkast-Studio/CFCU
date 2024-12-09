@@ -279,7 +279,7 @@ module.exports = {
           'letter-spacing': '-0.32px',
         },
         '.w-h3-desktop': {
-          'font-family': 'var(--font-extra-bold)',
+          'font-family': 'var(--font-codec-extra-bold)',
           'font-size': '52px',
           'line-height': '58px',
           'letter-spacing': '-0.32px',

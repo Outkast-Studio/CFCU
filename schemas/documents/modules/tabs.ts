@@ -36,12 +36,14 @@ export default defineType({
               name: 'title',
               title: 'Title',
               type: 'string',
+              description: 'The title for the tab',
               validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: 'icon',
               title: 'Icon',
               type: 'image',
+              description: 'Optional icon for the tab title.',
             }),
             defineField({
               name: 'content',

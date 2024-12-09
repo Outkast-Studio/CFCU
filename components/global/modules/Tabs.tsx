@@ -4,11 +4,51 @@ import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
+import { useWindowSize } from '@/hooks/useWindowSize'
+
 const Tabs = ({ data }: { data: TabsType }) => {
   const [activeTab, setActiveTab] = useState(0)
+  const [contentTab, setContentTab] = useState(0)
+  const contentRef = useRef(null)
+  const { width } = useWindowSize()
 
+  useIsomorphicLayoutEffect(() => {
+    if (!contentRef.current) return
+    if (width < 1024) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        { y: 0, opacity: 1 },
+        {
+          y: -30,
+          opacity: 0,
+          ease: 'power4.in',
+          duration: 0.4,
+          onComplete: () => {
+            setContentTab(activeTab)
+            gsap.fromTo(
+              contentRef.current,
+              { y: 30, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                ease: 'power4.out',
+                duration: 0.4,
+                delay: 0.2,
+              },
+            )
+          },
+        },
+      )
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [activeTab])
   return (
     <section
       className={clsx(
@@ -44,14 +84,14 @@ const Tabs = ({ data }: { data: TabsType }) => {
       )}
       <div className={clsx('mt-[26px]', 'lg:hidden')}>
         <Accordion.Root
-          defaultValue={data?.tabs?.[0].title + 0}
+          defaultValue={data?.tabs?.[contentTab].title}
           type="single"
           collapsible
           className={clsx('w-full')}
         >
           {data?.tabs?.map((item, index) => (
             <Accordion.Item
-              value={item?.title + index}
+              value={item?.title}
               key={index}
               className={clsx('group')}
             >
@@ -107,7 +147,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
               key={index}
               onClick={() => setActiveTab(index)}
               className={clsx(
-                'py-[32px] flex justify-between w-full border-t-[1px] transition-colors duration-200',
+                'py-[32px] flex justify-between w-full border-t-[1px] transition-colors duration-200 group gap-x-[18px]',
                 activeTab === index
                   ? 'border-t-lavender'
                   : 'border-t-lightGrey',
@@ -125,7 +165,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
                 )}
                 <h4
                   className={clsx(
-                    'w-h6-desktop transition-colors duration-200 text-left',
+                    'w-h6-desktop transition-colors duration-200 text-left group-hover:text-lavender',
                     activeTab === index ? 'text-lavender' : 'text-[#777777]',
                   )}
                 >
@@ -155,10 +195,12 @@ const Tabs = ({ data }: { data: TabsType }) => {
 
         {/* TODO sort the portable text */}
         <div className={clsx('col-start-7 col-end-13')}>
-          <PortableText
-            value={data?.tabs?.[activeTab]?.content}
-            components={WysiwygComponentsWithoutPadding as any}
-          />
+          <div ref={contentRef} className={clsx('h-fit ')}>
+            <PortableText
+              value={data?.tabs?.[contentTab]?.content}
+              components={WysiwygComponentsWithoutPadding as any}
+            />
+          </div>
         </div>
       </div>
     </section>
