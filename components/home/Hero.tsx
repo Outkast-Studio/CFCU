@@ -24,7 +24,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
       const tl = gsap
-        .timeline({ delay: 0.7 })
+        .timeline({ delay: 0.5 })
         .fromTo(
           q('.subItem'),
           { opacity: 0, y: 30 },
@@ -125,13 +125,13 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
             )}
           >
             <SplitTextDynamic
-              value={data.title}
+              value={data?.title}
               classNames={'line'}
               wrapperHeights={'100px'}
               duration={0.7}
               stagger={0.1}
               yPercent={40}
-              delay={0.5}
+              delay={0.3}
             />
           </h1>
           <p
@@ -140,16 +140,16 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
               'lg:font-codec-light lg:text-[26px] lg:leading-[33.8px] lg:mt-[19px]',
             )}
           >
-            {data.description}
+            {data?.description}
           </p>
           <PageLink
-            data={data.cta}
+            data={data?.cta}
             className={clsx(
               'mt-[16px] block',
               'lg:mt-[31px] w-fit subItem opacity-0',
             )}
           >
-            <Button label={data.cta.title} />
+            <Button label={data?.cta?.title} />
           </PageLink>
         </article>
         <article
@@ -159,10 +159,10 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
           )}
         >
           <div className={clsx('max-w-[300px] text-[18px] leading-[26px] ')}>
-            <PortableText value={data.testimonial.content} />
+            <PortableText value={data?.testimonial?.content} />
           </div>
           <h6 className={clsx('font-codec-heavy text-[16px] leading-[24px]')}>
-            – {data.testimonial.author}, {data.testimonial.title}
+            – {data?.testimonial?.author}, {data?.testimonial?.title}
           </h6>
         </article>
       </div>
