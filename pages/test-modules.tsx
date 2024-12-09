@@ -47,7 +47,6 @@ export default function Page(props: PageProps) {
     setGlobalSettings(globalSettings)
   }, [data, setGlobalSettings, globalSettings])
 
-  console.log(data)
   return (
     <Layout>
       <ModuleFactory modules={data.modules} />

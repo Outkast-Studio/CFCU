@@ -14,6 +14,7 @@ export default defineField({
     defineField({
       name: 'imagePosition',
       title: 'Image Position',
+      description: 'The position of the image in the section.',
       type: 'string',
       initialValue: 'left',
       options: {
@@ -42,6 +43,7 @@ export default defineField({
       name: 'links',
       title: 'Links',
       type: 'array',
+      validation: (Rule) => Rule.required(),
       of: [
         {
           type: 'pageLink',
