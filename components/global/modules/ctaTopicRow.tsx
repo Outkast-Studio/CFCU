@@ -73,11 +73,14 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
           )}
         >
           <Image
-            src={urlForImage(data?.image).url()}
+            src={urlForImage(data?.image).width(1000).quality(90).url()}
             alt={data?.image.alt as string}
-            width={1920}
-            height={1080}
-            className={clsx('object-cover w-full h-full')}
+            width={1000}
+            height={1000}
+            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            className={clsx(
+              'object-cover w-full h-full opacity-0 transition-all transition-opacity duration-300 ease-in-out-cubic',
+            )}
           />
         </div>
         <div
