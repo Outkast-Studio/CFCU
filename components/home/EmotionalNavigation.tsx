@@ -45,7 +45,7 @@ const EmotionalNavigation = ({
         })
 
       const tl = gsap.to(container, {
-        xPercent: -80,
+        xPercent: width > 1440 ? -80 : -90,
         ease: 'none',
         scrollTrigger: {
           onEnter: () => {

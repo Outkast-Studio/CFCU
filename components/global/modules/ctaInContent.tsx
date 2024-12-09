@@ -91,7 +91,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           },
         })
         .to(articleRef.current, {
-          yPercent: 20,
+          yPercent: width > 1440 ? 30 : 10,
         })
     })
     return () => {

@@ -60,7 +60,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
     <section
       ref={heroRef}
       className={clsx(
-        'min-h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end overflow-hidden',
+        'min-h-[600px] h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end overflow-hidden',
         'lg:px-[18px] lg:py-[16px]',
       )}
     >
