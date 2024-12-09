@@ -1,9 +1,8 @@
 import { CtaCardGridHomeType } from 'types/sanity'
 import { clsx } from 'clsx'
-import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import CardGridCard from '../ui/CardGridCard'
-import Link from 'next/link'
 import { useWindowSize } from 'hooks/useWindowSize'
 import { PortableText } from '@portabletext/react'
 
@@ -56,7 +55,7 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
           slidesPerView={'auto'}
           className={clsx('mt-[39px]')}
         >
-          {data.cards.map((card, index) => (
+          {data?.cards?.map((card, index) => (
             <SwiperSlide key={index} className={clsx('!w-fit')}>
               <CardGridCard data={card} />
             </SwiperSlide>

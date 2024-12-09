@@ -22,7 +22,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(containerRef.current)
       const tl = gsap
-        .timeline({ delay: 0.2 })
+        .timeline()
         .fromTo(
           containerRef.current,
           { clipPath: 'inset(100% 0% 0% 0%)' },
