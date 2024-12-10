@@ -61,7 +61,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
       ref={heroRef}
       className={clsx(
         'min-h-[600px] h-[100svh] bg-lavender px-[10px] py-[12px] relative flex flex-col justify-end overflow-hidden',
-        'lg:px-[18px] lg:py-[16px]',
+        'lg:px-[18px] lg:py-[16px] lg:min-h-[800px]',
       )}
     >
       <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>

@@ -93,6 +93,7 @@ const SearchResultsPage = ({
           src={defualtSubPageHero}
           alt={'origami'}
           fill
+          priority
           className={clsx('object-cover w-full h-full absolute top-0 left-0 ')}
         />
         <div

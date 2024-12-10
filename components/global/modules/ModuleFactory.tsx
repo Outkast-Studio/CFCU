@@ -19,6 +19,7 @@ import Wysiwyg from './wysiwyg'
 import TeamGrid from './TeamGrid'
 import SanitizedEmbed from './Embed'
 import ErrorBoundary from './ErrorBoundary'
+import RateTable from './RateTable'
 
 const ModuleFactory = ({ modules }) => {
   if (modules.length === 0) return null
@@ -27,18 +28,13 @@ const ModuleFactory = ({ modules }) => {
   const otherModules = modules.filter((module) => module?._type !== 'siteAlert')
 
   return (
-    <ErrorBoundary fallback={<div>Error loading module</div>}>
-      {/* {siteAlerts.map((module, index) => (
-        <React.Fragment key={`site-alert-${index}`}>
-          {renderModule(module)}
-        </React.Fragment>
-      ))} */}
+    <>
       {otherModules.map((module, index) => (
         <React.Fragment key={`module-${index}`}>
           {renderModule(module)}
         </React.Fragment>
       ))}
-    </ErrorBoundary>
+    </>
   )
 }
 
@@ -82,7 +78,9 @@ export const renderModule = (module) => {
       return <TeamGrid data={module} />
     case 'embed':
       return <SanitizedEmbed embed={module} />
+    case 'rateTable':
+      return <RateTable data={module} />
     default:
-      return null
+      return <></>
   }
 }

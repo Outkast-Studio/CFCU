@@ -19,7 +19,6 @@ export default defineType({
         { type: 'post' },
         { type: 'homepage', name: 'homepage', title: 'Home' },
         { type: 'location', name: 'location', title: 'Location' },
-        { type: 'rates', name: 'rates', title: 'Rates' },
         { type: 'subPage', name: 'subPage', title: 'Sub Page' },
         { type: 'blogHomePage', name: 'blogHomePage', title: 'Blog Home Page' },
         {

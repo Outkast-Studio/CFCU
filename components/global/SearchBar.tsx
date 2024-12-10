@@ -5,15 +5,19 @@ import { useRouter } from 'next/router'
 
 const SearchBar = ({
   setMenuOpen,
+  setCloseInitiated,
+  setMenuButtonOpen,
 }: {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setCloseInitiated?: React.Dispatch<React.SetStateAction<boolean>>
+  setMenuButtonOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const [search, setSearch] = useState('')
 
   const router = useRouter()
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    setMenuOpen(false)
+    setCloseInitiated(true)
     setSearch('')
     router.push(`/search?q=${encodeURIComponent(search)}`)
   }

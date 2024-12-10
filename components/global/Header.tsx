@@ -135,6 +135,7 @@ const Header = () => {
           setMenuOpen={setIsMenuOpen}
           closeInitiated={closeInitiated}
           setCloseInitiated={setCloseInitiated}
+          setMenuButtonOpen={setMenuButtonOpen}
         />
       )}
     </>

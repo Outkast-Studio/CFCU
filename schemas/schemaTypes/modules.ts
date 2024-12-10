@@ -114,6 +114,12 @@ export const modules = defineField({
       title: 'Embed',
       to: [{ type: 'embed', title: 'Embed' }],
     },
+    {
+      type: 'reference',
+      name: 'rateTable',
+      title: 'Rate Table',
+      to: [{ type: 'rateTable', title: 'Rate Table' }],
+    },
   ],
   validation: (Rule) =>
     Rule.custom((modules) => {

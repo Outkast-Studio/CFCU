@@ -18,11 +18,13 @@ const Menu = ({
   setMenuOpen,
   setCloseInitiated,
   closeInitiated,
+  setMenuButtonOpen,
 }: {
   menuOpen: boolean
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
   setCloseInitiated?: React.Dispatch<React.SetStateAction<boolean>>
   closeInitiated?: boolean
+  setMenuButtonOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const topLevelNavigation = globalSettings?.navigation?.topLevelNavigation
@@ -41,13 +43,10 @@ const Menu = ({
           .fromTo(
             containerRef.current,
             {
-              clipPath:
-                width > 1024
-                  ? 'inset(0px 0px 110% 0px)'
-                  : 'inset(0px 0px 120% 0px)',
+              clipPath: 'inset(0% 0% 100% 0%)',
             },
             {
-              clipPath: 'inset(0px 0px 0px 0px)',
+              clipPath: 'inset(0% 0% 0% 0%)',
               ease: 'power4.inOut',
               duration: 0.7,
             },
@@ -89,6 +88,7 @@ const Menu = ({
 
   useIsomorphicLayoutEffect(() => {
     if (!closeInitiated) return
+    setMenuButtonOpen(false)
     const ctx = gsap.context(() => {
       const tl = gsap
         .timeline({
@@ -119,7 +119,7 @@ const Menu = ({
       ref={containerRef}
       key={'Menu container'}
       className={clsx(
-        'fixed top-0 left-0 w-full z-[12] bg-white h-full min-h-[105lvh] [clip-path:inset(0px_0px_120%_0px)]',
+        'fixed top-0 left-0 w-full z-[12] bg-white h-screen min-h-[105lvh] [clip-path:inset(0%_0%_100%_0%)]',
       )}
     >
       <div
@@ -141,7 +141,11 @@ const Menu = ({
           ))}
         </div>
         <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
-          <SearchBar setMenuOpen={setMenuOpen} />
+          <SearchBar
+            setMenuOpen={setMenuOpen}
+            setCloseInitiated={setCloseInitiated}
+            setMenuButtonOpen={setMenuButtonOpen}
+          />
 
           {width > 1024 ? (
             <div className={clsx('grid grid-cols-12 gap-x-[24px] mt-[60px]')}>
