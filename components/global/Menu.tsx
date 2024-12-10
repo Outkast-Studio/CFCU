@@ -40,7 +40,12 @@ const Menu = ({
           .timeline()
           .fromTo(
             containerRef.current,
-            { clipPath: 'inset(0px 0px 120% 0px)' },
+            {
+              clipPath:
+                width > 1024
+                  ? 'inset(0px 0px 110% 0px)'
+                  : 'inset(0px 0px 120% 0px)',
+            },
             {
               clipPath: 'inset(0px 0px 0px 0px)',
               ease: 'power4.inOut',
@@ -152,7 +157,7 @@ const Menu = ({
                     />
                   </div>
                   <PageLink
-                    onClick={() => setCloseInitiated(false)}
+                    onClick={() => setCloseInitiated(true)}
                     data={item.titleLink}
                     className={clsx(
                       'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender mt-[13.63px] block w-fit',
@@ -170,7 +175,7 @@ const Menu = ({
                       <PageLink
                         data={link}
                         key={index}
-                        onClick={() => setCloseInitiated(false)}
+                        onClick={() => setCloseInitiated(true)}
                         className={clsx(
                           'lg:hover:opacity-60 transition-opacity duration-150',
                         )}
@@ -213,7 +218,7 @@ const Menu = ({
                           />
                         </div>
                         <PageLink
-                          onClick={() => setCloseInitiated(false)}
+                          onClick={() => setCloseInitiated(true)}
                           data={item.titleLink}
                           className={clsx(
                             'text-[28px] leading-[26.88px] font-codec-extra-bold text-lavender w-fit',
@@ -252,7 +257,7 @@ const Menu = ({
                         <PageLink
                           data={link}
                           key={index}
-                          onClick={() => setCloseInitiated(false)}
+                          onClick={() => setCloseInitiated(true)}
                           className={clsx(
                             'lg:hover:opacity-60 transition-opacity duration-150',
                           )}
@@ -320,7 +325,7 @@ const Menu = ({
                     <PageLink
                       data={link}
                       key={index}
-                      onClick={() => setCloseInitiated(false)}
+                      onClick={() => setCloseInitiated(true)}
                       className={clsx(
                         'lg:hover:opacity-60 transition-opacity duration-150',
                       )}
