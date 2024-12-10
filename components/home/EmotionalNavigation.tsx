@@ -84,7 +84,7 @@ const EmotionalNavigation = ({
       <div
         className={clsx(
           'px-[24px]',
-          'lg:px-[48px] lg:pt-[36px] lg:shrink-0  lg:h-[620px] lg:sticky lg:top-[calc((100vh-620px)/2)]',
+          'lg:px-[48px] lg:pt-[36px] lg:shrink-0  lg:h-[620px]',
         )}
       >
         <Image

@@ -125,7 +125,7 @@ const Menu = ({
       <div
         className={clsx(
           'min-h-[105lvh]  pt-[68px] overflow-y-auto h-full pb-[120px] bg-white',
-          'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:pb-[20px]',
+          'lg:pt-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:mb-[48px] lg:min-h-screen',
         )}
       >
         <div
@@ -346,6 +346,7 @@ const Menu = ({
               data={globalSettings?.navigation?.navigationCta}
               menuOpen={menuOpen}
               setMenuOpen={setMenuOpen}
+              setCloseInitiated={setCloseInitiated}
             />
           )}
         </div>

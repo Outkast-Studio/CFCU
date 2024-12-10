@@ -18,7 +18,7 @@ const PageLink = ({
     if (!data?.externalLink) {
       switch (data?.link?._type) {
         case 'post':
-          setHref(`/posts/${data?.link?.slug}`)
+          setHref(`/${data?.link?.slug}`)
           break
         case 'homepage':
           setHref('/')
@@ -27,13 +27,13 @@ const PageLink = ({
           setHref(`/${data?.link?.slug}`)
           break
         case 'blogHomePage':
-          setHref(`/blog`)
+          setHref(`/posts`)
           break
         case 'locationHomePage':
           setHref(`/locations`)
           break
         case 'topic':
-          setHref(`/blog/${data?.link?.slug}`)
+          setHref(`/${data?.link?.slug}`)
           break
         default:
           setHref('/')

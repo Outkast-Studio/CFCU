@@ -8,6 +8,7 @@ import { formatDate } from 'utils'
 
 const Hero = ({ post }: { post: PostPageType }) => {
   //TODO update this page button when we know the behaviour here. Also update the tags.
+  console.log(post.topics)
   return (
     <section
       className={clsx(
@@ -130,7 +131,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 )}
               >
                 {post?.topics?.map((topic, index) => (
-                  <Link key={index} href={'/posts/' + topic?.slug?.current}>
+                  <Link key={index} href={'/' + topic?.slug?.current}>
                     {topic?.name}
                   </Link>
                 ))}

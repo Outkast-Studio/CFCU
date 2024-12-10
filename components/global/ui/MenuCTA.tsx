@@ -12,10 +12,12 @@ const MenuCTA = ({
   data,
   menuOpen,
   setMenuOpen,
+  setCloseInitiated,
 }: {
   data: GlobalSettingsType['navigation']['navigationCta']
   menuOpen: boolean
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setCloseInitiated?: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
   const [mounted, setMounted] = useState(false)
   const theme = getThemeClasses(data.theme.label) as any
@@ -125,6 +127,7 @@ const MenuCTA = ({
           </svg>
         </button> */}
         <Button
+          cb={() => setCloseInitiated(true)}
           label={data.cta.title}
           className={clsx('elementAnimation mt-[21px] overflow-hidden')}
         />

@@ -50,6 +50,7 @@ export default defineType({
           name: 'topLevelNavigation',
           title: 'Top Level Navigation',
           type: 'array',
+          description: 'Top level navigation link sets.',
           of: [
             defineField({
               name: 'linkCollection',
@@ -115,6 +116,7 @@ export default defineType({
           name: 'bottomLevelNavigation',
           title: 'Bottom Level Navigation',
           type: 'array',
+          description: 'Bottom level navigation link sets.',
           of: [
             defineField({
               name: 'linkCollection',

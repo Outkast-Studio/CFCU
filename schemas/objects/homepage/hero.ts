@@ -8,6 +8,7 @@ export default defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'The main title displayed in the hero section',
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
@@ -15,12 +16,14 @@ export default defineField({
       title: 'Description',
       type: 'text',
       rows: 3,
+      description: 'The short description displayed below the title',
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
       name: 'cta',
       title: 'Call to Action',
       type: 'pageLink',
+      description: 'The call to action button',
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
@@ -31,6 +34,7 @@ export default defineField({
         defineField({
           name: 'content',
           title: 'Content',
+          description: 'The content of the testimonial',
           type: 'blockContent',
           validation: (Rule: any) => Rule.required(),
         }),
@@ -38,12 +42,14 @@ export default defineField({
           name: 'author',
           title: 'Author',
           type: 'string',
+          description: 'The author of the testimonial',
           validation: (Rule: any) => Rule.required(),
         }),
         defineField({
           name: 'title',
           title: 'Title',
           type: 'string',
+          description: 'The title of the person giving the testimonial.',
           validation: (Rule: any) => Rule.required(),
         }),
       ],
@@ -52,6 +58,7 @@ export default defineField({
       name: 'backgroundMedia',
       title: 'Background Media',
       type: 'media',
+      description: 'The background media for the hero section',
       validation: (Rule: any) => Rule.required(),
     }),
   ],
