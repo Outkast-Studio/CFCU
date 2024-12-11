@@ -88,7 +88,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                         width={1000}
                         height={1000}
                         className={clsx(
-                          'object-contain opacity-0 transition-all  duration-300 ease-in-out-cubic',
+                          'object-cover opacity-0 transition-all  duration-300 ease-in-out-cubic',
                         )}
                         onLoadingComplete={(image) =>
                           image.classList.remove('opacity-0')
@@ -98,12 +98,15 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                   ) : (
                     <Image
                       key={(String(index) + logo?.logo?.alt) as string}
-                      src={urlForImage(logo?.logo).url()}
+                      src={urlForImage(logo?.logo)
+                        .width(1000)
+                        .quality(90)
+                        .url()}
                       alt={logo?.logo?.alt as string}
                       width={1000}
                       height={1000}
                       className={clsx(
-                        'object-contain opacity-0 transition-all  duration-300 ease-in-out-cubic',
+                        'object-cover opacity-0 transition-all  duration-300 ease-in-out-cubic',
                       )}
                       onLoadingComplete={(image) =>
                         image.classList.remove('opacity-0')
