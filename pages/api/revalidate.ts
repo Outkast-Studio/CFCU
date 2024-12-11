@@ -91,6 +91,8 @@ async function queryStaleRoutes(
         return ['/']
       case 'post':
         return await getIndividualPostSlugs(client, body._id)
+      case 'topic':
+        return await getTopicPostPageSlugs(client, body._id)
       case 'subPage':
         return await querySubPageRoutes(client)
       case 'post':
@@ -207,43 +209,60 @@ async function getIndividualPostSlugs(
 ): Promise<string[]> {
   const allPostPages = await getAllPostHomePageSlugs(client)
   //FOR each of the topic pages we have to revalidate all pages.
-  const postSlug = await client.fetch(
-    groq`*[_type == "post" && _id == $postId][0].slug.current`,
+  const post = await client.fetch(
+    groq`*[_type == "post" && _id == $postId][0]{
+      _id,
+      slug,
+      topics[]->{
+        _id,
+        slug
+      }
+    }`,
     { postId },
   )
-  return [...allPostPages, `/${postSlug}`]
+  const topicPagesThatNeedToBeRevalidated = []
+  post.topics.forEach(async (topic) => {
+    const slugs = await getTopicPostPageSlugs(client, topic._id)
+    topicPagesThatNeedToBeRevalidated.push(...slugs)
+  })
+  console.log(topicPagesThatNeedToBeRevalidated)
+  return [
+    ...allPostPages,
+    `/${post.slug.current}`,
+    ...topicPagesThatNeedToBeRevalidated,
+  ]
 }
 
-// export async function getTopicPostPageSlugs(
-//   client: SanityClient,
-//   topicId: string,
-// ): Promise<string[]> {
-//   // Fetch the total number of blog posts for the given topic
-//   const totalPosts = await client.fetch(
-//     groq`count(*[_type == "post" && references($topicId)])`,
-//     { topicId },
-//   )
-//   const postsPerPage = 10 // Adjust this based on your pagination setup
+export async function getTopicPostPageSlugs(
+  client: SanityClient,
+  topicId: string,
+): Promise<string[]> {
+  // Fetch the total number of blog posts for the given topic
+  const totalPosts = await client.fetch(
+    groq`count(*[_type == "post" && references($topicId)])`,
+    { topicId },
+  )
+  const postsPerPage = 10 // Adjust this based on your pagination setup
 
-//   // Calculate the number of pages
-//   const totalPages = Math.ceil(totalPosts / postsPerPage)
+  // Calculate the number of pages
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
 
-//   // Fetch the topic slug
-//   const topicSlug = await client.fetch(
-//     groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
-//     { topicId },
-//   )
+  // Fetch the topic slug
+  const topicSlug = await client.fetch(
+    groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
+    { topicId },
+  )
 
-//   if (!topicSlug) {
-//     throw new Error(`Topic with ID ${topicId} not found`)
-//   }
+  if (!topicSlug) {
+    throw new Error(`Topic with ID ${topicId} not found`)
+  }
 
-//   // Generate routes for each page
-//   return Array.from(
-//     { length: totalPages },
-//     (_, i) => `/topics/${topicSlug}/page/${i + 1}`,
-//   )
-// }
+  // Generate routes for each page
+  return Array.from(
+    { length: totalPages },
+    (_, i) => `/${topicSlug}/page/${i + 1}`,
+  )
+}
 
 const moduleTypes = [
   'ctaInContent',
