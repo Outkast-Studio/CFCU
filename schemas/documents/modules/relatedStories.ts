@@ -101,7 +101,7 @@ export default defineType({
     prepare({ title, useTopic, topic }) {
       return {
         title: 'Related Stories',
-        subtitle: `${title}${useTopic ? ` - Topic: ${topic}` : ''}`,
+        subtitle: `${title}`,
       }
     },
   },

@@ -14,20 +14,29 @@ const PostCard = ({
   className?: string
 }) => {
   return (
-    <Link href={`/${data.slug.current}`} className={clsx('block', className)}>
+    <Link
+      href={`/${data.slug.current}`}
+      className={clsx('block group h-fit', className)}
+    >
       <article
         className={clsx(
+          'h-fit',
           !isBlogListing ? 'min-w-[240px] max-w-[calc(33vw-26px)]' : 'w-full',
           'lg:max-w-[unset]',
         )}
       >
-        <Image
-          src={urlForImage(data?.thumbnailImage).url()}
-          alt={data?.thumbnailImage?.alt as string}
-          width={1920}
-          height={1080}
-          className={clsx('object-cover w-full h-auto')}
-        />
+        <div className={clsx('overflow-hidden w-full')}>
+          <Image
+            src={urlForImage(data?.thumbnailImage).url()}
+            alt={data?.thumbnailImage?.alt as string}
+            width={1920}
+            height={1080}
+            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            className={clsx(
+              'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
+            )}
+          />
+        </div>
         <div className={clsx('flex flex-col mt-[13px]', 'lg:mt-[25px]')}>
           <h4
             className={clsx(
@@ -41,6 +50,7 @@ const PostCard = ({
             className={clsx(
               'font-codec-extra-bold text-[18px] leading-[23.4px] lg:text-[24px] lg:leading-[28px]  mt-[10px] text-lavender',
               'lg:w-h5-desktop lg:mt-[12px]',
+              'lg:group-hover:opacity-80 transition-opacity duration-150',
             )}
           >
             {data?.title}
