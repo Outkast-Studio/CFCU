@@ -26,7 +26,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
     gsap.set(q('.animateContent'), { y: 30, opacity: 0 })
     if (!inView) return
     const ctx = gsap.context(() => {
-      gsap.timeline({}).fromTo(
+      gsap.timeline({ delay: 0.15 }).fromTo(
         q('.animateContent'),
         { opacity: 0, y: 30 },
         {
@@ -35,7 +35,6 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           ease: 'power4.out',
           stagger: 0.1,
         },
-        '<+=0.5',
       )
     })
     return () => {
@@ -44,7 +43,10 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
   }, [inView])
 
   return (
-    <div ref={ref} className={clsx('lg:px-[48px] lg:py-[63px]')}>
+    <div
+      ref={ref}
+      className={clsx('overflow-hidden', 'lg:px-[48px] lg:py-[63px]')}
+    >
       <section
         ref={contentRef}
         style={{ backgroundColor: theme?.background }}

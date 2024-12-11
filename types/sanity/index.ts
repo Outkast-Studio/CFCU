@@ -327,7 +327,7 @@ export interface ColumnSplitType {
 
 export interface GlobalAlertType {
   tabName: string
-  content: PortableTextBlock[]
+  content: string
   theme: {
     value: string
     label: string
