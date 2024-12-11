@@ -53,7 +53,7 @@ export default async function revalidate(
       console.error(invalidId, { body })
       return res.status(400).send(invalidId)
     }
-    const staleRoutes = await queryStaleRoutes(req.body as any)
+    const staleRoutes = await queryStaleRoutes(body as any)
     console.log(staleRoutes)
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
 
