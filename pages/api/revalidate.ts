@@ -94,7 +94,7 @@ async function queryStaleRoutes(
       case 'topic':
         return await getTopicPostPageSlugs(client, body._id)
       case 'subPage':
-        return await querySubPageRoutes(client)
+        return await querySubPageRoutes(client, body._id)
       case 'post':
         return await queryPostRoutes(client)
       default:
@@ -123,11 +123,24 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
   ]
 }
 
-async function querySubPageRoutes(client: SanityClient): Promise<StaleRoute[]> {
-  const postRoutes = await client.fetch(
-    groq`*[_type == "subPage"].slug.current`,
+async function querySubPageRoutes(
+  client: SanityClient,
+  subPageId: string,
+): Promise<StaleRoute[]> {
+  const subPage = await client.fetch(
+    groq`*[_type == "post" && _id == $subPageId][0]{
+      _id,
+      slug,
+      parent->{
+        slug
+      }
+    }`,
+    { subPageId },
   )
-  return [...postRoutes.map((slug) => `/${slug}`)]
+  if (subPage.parent) {
+    return [`/${subPage.slug.current}`, `/${subPage.parent.slug.current}`]
+  }
+  return [`/${subPage.slug.current}`]
 }
 
 async function queryPostRoutes(client: SanityClient): Promise<StaleRoute[]> {
@@ -136,11 +149,9 @@ async function queryPostRoutes(client: SanityClient): Promise<StaleRoute[]> {
   )
   return [...postRoutes.map((slug) => `/${slug}`)]
 }
-
 // Mapping for pages without slugs
 const pagesWithoutSlugs = {
   homepage: '/',
-  bloghomepage: '/posts',
   locationHomepage: '/locations',
 }
 
@@ -148,7 +159,7 @@ async function moduleHandler(client: SanityClient, body: any) {
   const moduleId = body._id
   const allRoutesRefferedTo = await client.fetch(
     groq`*[
-    _type in ["subPage", "post", "topic", "location", "homepage", "locationHomepage"] 
+    _type in ["subPage", "post", "location", "homepage", "locationHomepage"] 
     && references($moduleId)
   ]{
     _type,
@@ -243,25 +254,18 @@ export async function getTopicPostPageSlugs(
     { topicId },
   )
   const postsPerPage = 10 // Adjust this based on your pagination setup
-
   // Calculate the number of pages
   const totalPages = Math.ceil(totalPosts / postsPerPage)
-
   // Fetch the topic slug
   const topicSlug = await client.fetch(
     groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
     { topicId },
   )
-
   if (!topicSlug) {
     throw new Error(`Topic with ID ${topicId} not found`)
   }
-
   // Generate routes for each page
-  return Array.from(
-    { length: totalPages },
-    (_, i) => `/${topicSlug}/page/${i + 1}`,
-  )
+  return Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`)
 }
 
 const moduleTypes = [
