@@ -89,6 +89,10 @@ async function queryStaleRoutes(
         return await getAllPostHomePageSlugs(client)
       case 'homepage':
         return ['/']
+      case 'location':
+        return await getIndividualLocaitonSlugs(client, body._id)
+      case 'locationHomepage':
+        return ['/locations']
       case 'post':
         return await getIndividualPostSlugs(client, body._id)
       case 'topic':
@@ -168,6 +172,7 @@ async function moduleHandler(client: SanityClient, body: any) {
   `,
     { moduleId },
   )
+
   // Process the results to handle pages without slugs and format routes
   const processedRoutes = allRoutesRefferedTo
     .map((route: { _type: string; slug: string | null }) => {
@@ -246,6 +251,21 @@ async function getIndividualPostSlugs(
     `/${post.slug.current}`,
     ...topicPagesThatNeedToBeRevalidated,
   ]
+}
+
+async function getIndividualLocaitonSlugs(
+  client: SanityClient,
+  locationId: string,
+): Promise<string[]> {
+  const location = await client.fetch(
+    groq`*[_type == "location" && _id == $locationId][0]{
+    _id,
+    slug,
+
+  }`,
+    { locationId },
+  )
+  return [`/${location.slug.current}`, '/locations']
 }
 
 export async function getTopicPostPageSlugs(
