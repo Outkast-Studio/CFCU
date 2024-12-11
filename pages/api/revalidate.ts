@@ -1,27 +1,3 @@
-/**
- * This code is responsible for revalidating the cache when a post or author is updated.
- *
- * It is set up to receive a validated GROQ-powered Webhook from Sanity.io:
- * https://www.sanity.io/docs/webhooks
- *
- * 1. Go to the API section of your Sanity project on sanity.io/manage or run `npx sanity hook create`
- * 2. Click "Create webhook"
- * 3. Set the URL to https://YOUR_NEXTJS_SITE_URL/api/revalidate
- * 4. Dataset: Choose desired dataset or leave at default "all datasets"
- * 5. Trigger on: "Create", "Update", and "Delete"
- * 6. Filter: _type == "post" || _type == "author" || _type == "settings"
- * 7. Projection: Leave empty
- * 8. Status: Enable webhook
- * 9. HTTP method: POST
- * 10. HTTP Headers: Leave empty
- * 11. API version: v2021-03-25
- * 12. Include drafts: No
- * 13. Secret: Set to the same value as SANITY_REVALIDATE_SECRET (create a random secret if you haven't yet)
- * 14. Save the cofiguration
- * 15. Add the secret to Vercel: `npx vercel env add SANITY_REVALIDATE_SECRET`
- * 16. Redeploy with `npx vercel --prod` to apply the new environment variable
- */
-
 import { apiVersion, dataset, projectId } from 'lib/sanity.api'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
@@ -113,7 +89,7 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
   const routes = await client.fetch(
     groq`*[_type in ["post", "location", "subPage"]].slug.current`,
   )
-  const allTopics = await client.fetch(groq`*[_type == "topic"].slug.current`)
+  const allTopics = await client.fetch(groq`*[_type == "topic"]`)
 
   const topicPagesThatNeedToBeRevalidated = await Promise.all(
     allTopics.map(async (topic) => {
@@ -320,41 +296,3 @@ const moduleTypes = [
   'embed',
   'rateTable',
 ]
-
-//Functions needed:
-//ModuleHandler.
-//Handle Post type.
-//Handle Homepage type.
-//Handle topic type.
-//Handle blogHomepage Type.
-//Handle individualPost type.
-//Handle location type.
-//Handle locationHomepage type.
-
-// {
-//   _createdAt: '2024-11-27T00:44:04Z',
-//   _rev: 'ghY242dzA1Js3AqZtHhGE2',
-//   _id: '25d36294-a973-4386-aa81-09eae71237ff',
-//   _updatedAt: '2024-12-11T20:55:03Z',
-//   _type: 'ctaText',
-//   title: 'Become a Member today',
-//   theme: { label: 'Yellow', value: '#FFC600' },
-//   cta: {
-//     link: {
-//       _type: 'reference',
-//       _ref: 'd6113c1f-933a-40dc-9fba-7c5062620baa'
-//     },
-//     title: 'Apply Today',
-//     _type: 'pageLink'
-//   },
-//   subtitle: 'THE BIG STUFF, DONE BETTER',
-//   description: [
-//     {
-//       _key: '3928d44ebef4',
-//       _type: 'block',
-//       children: [Array],
-//       markDefs: [],
-//       style: 'normal'
-//     }
-//   ]
-// }
