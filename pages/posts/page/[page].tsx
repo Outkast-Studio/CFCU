@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
   const { draftMode = false, params = {} } = context
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const page = params.page ? Number(params.page as string) : 1
-  const itemsPerPage = 1 // Adjust as needed
+  const itemsPerPage = 10 // Adjust as needed
 
   const globalSettings = await getGlobalSettings(client)
   const blogHomepage = await getBlogHomepage(client)

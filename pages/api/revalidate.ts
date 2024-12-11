@@ -211,7 +211,7 @@ async function getIndividualPostSlugs(
     groq`*[_type == "post" && _id == $postId][0].slug.current`,
     { postId },
   )
-  return [...allPostPages, `/posts/${postSlug}`]
+  return [...allPostPages, `/${postSlug}`]
 }
 
 // export async function getTopicPostPageSlugs(
