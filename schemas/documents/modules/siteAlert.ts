@@ -15,7 +15,8 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'blockContent',
+      type: 'text',
+      rows: 6,
       validation: (Rule) => Rule.required(),
       description: 'The main alert message content',
     }),

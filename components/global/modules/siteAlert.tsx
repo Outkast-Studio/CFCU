@@ -1,8 +1,9 @@
 import { GlobalAlertType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, use } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)
@@ -12,11 +13,15 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const setAlertHeightGlobal = useGlobalSettingsStore(
     (state) => state.setAlertHeight,
   )
+  const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen)
+
+  const { width } = useWindowSize()
+
   useEffect(() => {
     if (contentRef.current) {
       setAlertHeight(contentRef.current.scrollHeight)
-      setAlertIsOpen(true)
       setAlertHeightGlobal(contentRef.current.scrollHeight)
+      setAlertIsOpen(true)
     }
     return () => {
       setAlertIsOpen(false)
@@ -25,16 +30,26 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (alertIsOpen) {
+      setAlertHeight(contentRef.current.scrollHeight)
+      setAlertHeightGlobal(contentRef.current.scrollHeight)
+    }
+  }, [width])
+
   return (
     <section
       style={{ maxHeight: alertHeight || 'unset' }}
       className={clsx(
-        ' bg-alertRed px-[24px] w-full z-[10] flex justify-between transition-all h-fit ease-in duration-300 overflow-hidden',
+        ' bg-alertRed px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
         isClosed && '!max-h-[0px]',
       )}
     >
-      <div ref={contentRef} className={clsx('flex gap-x-[20px] py-[24px]')}>
+      <div
+        ref={contentRef}
+        className={clsx('flex flex-col gap-[20px] py-[24px]', 'lg:flex-row')}
+      >
         <h6
           className={clsx(
             'text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit',
@@ -42,11 +57,14 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
         >
           {data?.tabName}
         </h6>
-        <div
-          className={clsx('max-w-[1075px] w-paragraph-s-desktop text-white')}
+        <p
+          className={clsx(
+            'max-w-[1075px] w-paragraph-s-desktop text-white',
+            'lg:w-[90%]',
+          )}
         >
-          <PortableText value={data?.content} />
-        </div>
+          {data?.content}
+        </p>
       </div>
       <button
         onClick={() => {
@@ -54,7 +72,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
           setAlertIsOpen(false)
         }}
         className={clsx(
-          'transition-opacity duration-150',
+          'transition-opacity duration-150 py-[24px]',
           isClosed && 'opacity-0',
         )}
       >

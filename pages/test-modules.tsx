@@ -21,6 +21,8 @@ import { Layout } from 'components/layouts/Layout'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useEffect } from 'react'
 import ModuleFactory from 'components/global/modules/ModuleFactory'
+import React from 'react'
+import { renderModule } from 'components/global/modules/ModuleFactory'
 interface PageProps extends SharedPageProps {
   params: QueryParams
   globalSettings: GlobalSettingsType
@@ -47,8 +49,18 @@ export default function Page(props: PageProps) {
     setGlobalSettings(globalSettings)
   }, [data, setGlobalSettings, globalSettings])
 
+  const siteAlerts = data?.modules?.filter(
+    //@ts-ignore
+    (module) => module?._type === 'siteAlert',
+  )
+
   return (
     <Layout>
+      {siteAlerts?.map((module, index) => (
+        <React.Fragment key={`site-alert-${index}`}>
+          {renderModule(module)}
+        </React.Fragment>
+      ))}
       <ModuleFactory modules={data.modules} />
     </Layout>
   )

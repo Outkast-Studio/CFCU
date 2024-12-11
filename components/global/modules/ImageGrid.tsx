@@ -83,7 +83,10 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                       key={(String(index) + logo?.logo?.alt) as string}
                     >
                       <Image
-                        src={urlForImage(logo?.logo).url()}
+                        src={urlForImage(logo?.logo)
+                          .width(1000)
+                          .quality(90)
+                          .url()}
                         alt={logo?.logo?.alt as string}
                         width={1000}
                         height={1000}
