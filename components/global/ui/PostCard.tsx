@@ -7,12 +7,14 @@ import { PostPageType } from '@/types/sanity'
 const PostCard = ({
   data,
   isBlogListing,
+  className,
 }: {
   data: PostPageType
   isBlogListing?: boolean
+  className?: string
 }) => {
   return (
-    <Link href={`/${data.slug.current}`} className={clsx('block')}>
+    <Link href={`/${data.slug.current}`} className={clsx('block', className)}>
       <article
         className={clsx(
           !isBlogListing ? 'min-w-[240px] max-w-[calc(33vw-26px)]' : 'w-full',

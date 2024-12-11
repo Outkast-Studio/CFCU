@@ -13,6 +13,7 @@ import { stegaClean } from '@sanity/client/stega'
 import PostCard from '../ui/PostCard'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
+  const posts = data?.useTopic ? data?.topic?.relatedPosts : data?.posts
   return (
     <section
       style={{
@@ -64,14 +65,18 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
               <PortableText value={data?.description} />
             </div>
           )}
-          <PageLink data={data?.pageLink} className={clsx('mt-[16px] block')}>
-            <Button
-              label={data?.pageLink?.title}
-              className={clsx(
-                stegaClean(data?.backgroundColor) === 'white' && '!p-[0px]',
-              )}
-            />
-          </PageLink>
+          {data?.pageLink && (
+            <PageLink data={data?.pageLink} className={clsx('mt-[16px] block')}>
+              <Button
+                label={data?.pageLink?.title}
+                className={clsx(
+                  stegaClean(data?.backgroundColor) === 'white'
+                    ? '!p-[0px]'
+                    : '!bg-lightGrey',
+                )}
+              />
+            </PageLink>
+          )}
         </article>
         <div className={clsx('mt-[47px]', 'lg:hidden')}>
           <Swiper
@@ -80,7 +85,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             spaceBetween={13}
             slidesPerView={'auto'}
           >
-            {data?.posts?.map((post, index) => (
+            {posts?.map((post, index) => (
               <SwiperSlide key={index} className={clsx('!w-fit')}>
                 {<PostCard data={post} key={index} />}
               </SwiperSlide>
@@ -93,9 +98,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-[0px]',
           )}
         >
-          {data?.posts?.map((post, index) => (
-            <PostCard data={post} key={index} />
-          ))}
+          {posts?.map((post, index) => <PostCard data={post} key={index} />)}
         </div>
       </div>
     </section>

@@ -280,9 +280,11 @@ export interface RelatedStoriesType {
   subTitle?: string
   description?: PortableTextBlock[]
   pageLink: PageLinkType
-  posts: PostPageType[]
+  posts?: PostPageType[]
   headingVariant: 'normal' | 'large'
   backgroundColor: 'lightGrey' | 'white'
+  useTopic: boolean
+  topic?: TopicWithRelatedPosts
 }
 
 export interface AccordionItem {

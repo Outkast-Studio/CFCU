@@ -117,8 +117,18 @@ export const modulesFragment = groq`
     },
     _type == 'relatedStories' => {
       ...,
+      useTopic,
       posts[]->{
         ...,
+      },
+      topic->{
+        _id,
+        title,
+        "slug": slug.current,
+        "relatedPosts": *[_type == 'post' && references(^._id)] | order(createdAt desc)[0...3]{
+      ...,
+          // Add any other fields you need from the post
+        }
       },
       pageLink{
         ...,
@@ -129,7 +139,7 @@ export const modulesFragment = groq`
           "slug": slug.current
         }
       }
-    },
+    }
   }
 `
 

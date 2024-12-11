@@ -62,22 +62,46 @@ export default defineType({
       description: 'Link to view all stories',
     }),
     defineField({
+      name: 'useTopic',
+      title: 'Use Topic Instead of Posts',
+      type: 'boolean',
+      initialValue: false,
+      description: 'If checked, a topic will be used instead of specific posts',
+    }),
+    defineField({
       name: 'posts',
       title: 'Posts',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'post' }] }],
-      validation: (Rule) => Rule.max(3).min(3).error('You must add 3 items'),
+      validation: (Rule) =>
+        Rule.custom((field, context) => {
+          if (context.document?.useTopic) return true
+          return field && field.length === 3 ? true : 'You must add 3 items'
+        }),
       description: 'Select posts to display in the grid',
+      hidden: ({ document }) => document?.useTopic,
+    }),
+    defineField({
+      name: 'topic',
+      title: 'Topic',
+      type: 'reference',
+      to: [{ type: 'topic' }],
+      validation: (Rule) => Rule.required(),
+      description:
+        'Select a topic to display related stories. The first 3 posts will be displayed based on the date they were created.',
+      hidden: ({ document }) => !document?.useTopic,
     }),
   ],
   preview: {
     select: {
       title: 'title',
+      useTopic: 'useTopic',
+      topic: 'topic.title',
     },
-    prepare({ title }) {
+    prepare({ title, useTopic, topic }) {
       return {
         title: 'Related Stories',
-        subtitle: title,
+        subtitle: `${title}${useTopic ? ` - Topic: ${topic}` : ''}`,
       }
     },
   },
