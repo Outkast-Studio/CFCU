@@ -264,14 +264,14 @@ export interface SubPageHeroType {
 
 export interface TextCardGridCard {
   title: string
-  description: PortableTextBlock[]
+  description: string
   pageLink: PageLinkType
 }
 
 export interface TextCardGridType {
   title: string
   subtitle: string
-  description: PortableTextBlock[]
+  description: string
   cards: TextCardGridCard[]
 }
 

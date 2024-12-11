@@ -139,7 +139,7 @@ const PostCard = ({
   isFeatured: boolean
 }) => {
   return (
-    <Link href={`/posts/${data.slug.current}`} className={clsx('block group')}>
+    <Link href={`/${data.slug.current}`} className={clsx('block group')}>
       <article
         className={clsx('h-fit', isFeatured && 'lg:sticky lg:top-[48px]')}
       >

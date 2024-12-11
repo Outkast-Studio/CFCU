@@ -9,23 +9,28 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'The main title displayed in the hero section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
+      description: 'The subtitle displayed above the title',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      rows: 3,
+      type: 'text',
+      description: 'The short description displayed below the title',
     }),
     defineField({
       name: 'cards',
       title: 'Cards',
       type: 'array',
+      description: 'The cards displayed in the card grid',
       of: [
         {
           type: 'object',
@@ -39,14 +44,14 @@ export default defineType({
             defineField({
               name: 'description',
               title: 'Description',
-              type: 'blockContent',
+              type: 'text',
+              rows: 3,
               validation: (Rule) => Rule.required(),
             }),
             defineField({
               name: 'pageLink',
               title: 'Page Link',
               type: 'pageLink',
-              validation: (Rule) => Rule.required(),
             }),
           ],
         },

@@ -49,6 +49,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
       ctx.revert()
     }
   }, [activeTab])
+
   return (
     <section
       className={clsx(
@@ -84,9 +85,8 @@ const Tabs = ({ data }: { data: TabsType }) => {
       )}
       <div className={clsx('mt-[26px]', 'lg:hidden')}>
         <Accordion.Root
-          defaultValue={data?.tabs?.[contentTab].title}
+          defaultValue={data?.tabs?.[activeTab].title}
           type="single"
-          collapsible
           className={clsx('w-full')}
         >
           {data?.tabs?.map((item, index) => (
