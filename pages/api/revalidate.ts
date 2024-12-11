@@ -231,12 +231,13 @@ async function getIndividualPostSlugs(
     }`,
     { postId },
   )
+  console.log(post, 'This is the post')
   const topicPagesThatNeedToBeRevalidated = []
   post.topics.forEach(async (topic) => {
     const slugs = await getTopicPostPageSlugs(client, topic._id)
     topicPagesThatNeedToBeRevalidated.push(...slugs)
   })
-  console.log(topicPagesThatNeedToBeRevalidated)
+  console.log(topicPagesThatNeedToBeRevalidated, 'These are the topics')
   return [
     ...allPostPages,
     `/${post.slug.current}`,
