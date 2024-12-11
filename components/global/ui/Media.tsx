@@ -33,22 +33,29 @@ export default function MediaComponent({
 
   if (stegaClean(media?.mediaType) === 'image' && media?.image) {
     return (
-      // <Image
-      //   //@ts-ignore
-      //   src={urlForImage(media?.image?.asset).url()}
-      //   //@ts-ignore
-      //   alt={media?.image?.alt}
-      //   fill
-      //   className={clsx('object-cover w-full h-full')}
-      // />
-      <SanityImage
-        id={media?.image?.asset?._ref}
+      <Image
+        //@ts-ignore
+        src={urlForImage(media?.image?.asset).url()}
+        //@ts-ignore
         alt={media?.image?.alt}
-        baseUrl="https://cdn.sanity.io/images/uq2qrg8z/production/"
-        hotspot={media?.image?.hotspot}
-        className="object-cover w-full h-full"
+        fill
         priority={priority}
+        onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+        className={clsx(
+          'object-cover w-full h-full',
+          !priority &&
+            'opacity-0 transition-all duration-300 ease-in-out-cubic',
+        )}
       />
+      // <SanityImage
+      //   id={media?.image?.asset?._ref}
+      //   alt={media?.image?.alt}
+      //   baseUrl="https://cdn.sanity.io/images/uq2qrg8z/production/"
+      //   hotspot={media?.image?.hotspot}
+      //   className="object-cover w-full h-full"
+
+      //   priority={priority}
+      // />
     )
   } else if (stegaClean(media?.mediaType) === 'video' && media?.video) {
     return (
