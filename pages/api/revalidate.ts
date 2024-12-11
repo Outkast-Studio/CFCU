@@ -74,19 +74,28 @@ async function queryStaleRoutes(
   >,
 ): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
+
+  console.log(body)
   return queryAllRoutes(client)
-  // switch (body._type) {
-  //   case 'globalSettings':
-  //     return await queryAllRoutes(client)
-  //   case 'homepage':
-  //     return ['/']
-  //   case 'subPage':
-  //     return await querySubPageRoutes(client)
-  //   case 'post':
-  //     return await queryPostRoutes(client)
-  //   default:
-  //     console.log(body)
-  // }
+
+  //Check if type is a module -> If it is, run the moduleHandler to find all slugs that reference that module. Then return them.
+  // If the type is not a module -> return the appropriate route for that type.
+  if (moduleTypes.includes(body._type)) {
+    return await moduleHandler(client, body)
+  } else {
+    switch (body._type) {
+      case 'globalSettings':
+        return await queryAllRoutes(client)
+      case 'homepage':
+        return ['/']
+      case 'subPage':
+        return await querySubPageRoutes(client)
+      case 'post':
+        return await queryPostRoutes(client)
+      default:
+        console.log(body)
+    }
+  }
 }
 
 async function _queryAllRoutes(client: SanityClient): Promise<string[]> {
@@ -100,6 +109,7 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
     groq`*[_type == "subPage"].slug.current`,
   )
 
+  //TODO see if theres an elegant way to find where the data is being used and revalidate that component.
   return [
     '/',
     '/test-modules',
@@ -121,3 +131,51 @@ async function queryPostRoutes(client: SanityClient): Promise<StaleRoute[]> {
   )
   return [...postRoutes.map((slug) => `/${slug}`)]
 }
+
+async function moduleHandler(client: SanityClient, body: any) {
+  const moduleId = body.moduleId
+  const allRoutesRefferedTo = await client.fetch(
+    groq`*[
+    _type in ["subpage", "post", "topic", "location", "bloghomepage", "homepage"] 
+    && references($moduleId)
+  ]{
+    _type,
+    "slug": slug.current
+  }
+  `,
+    moduleId,
+  )
+  return allRoutesRefferedTo
+}
+
+const moduleTypes = [
+  'ctaInContent',
+  'ctaTopicRow',
+  'ctaCardGridHome',
+  'ctaCardGrid',
+  'ctaText',
+  'ctaFullMedia',
+  'getInspired',
+  'textCardGrid',
+  'relatedStories',
+  'accordion',
+  'siteAlert',
+  'tabs',
+  'columnSplit',
+  'imageGrid',
+  'quickExit',
+  'wysiwyg',
+  'teamGrid',
+  'embed',
+  'rateTable',
+]
+
+//Functions needed:
+//ModuleHandler.
+//Handle Post type.
+//Handle Homepage type.
+//Handle topic type.
+//Handle blogHomepage Type.
+//Handle individualPost type.
+//Handle location type.
+//Handle locationHomepage type.
