@@ -10,19 +10,19 @@ export default defineType({
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
-      description: 'Main heading for the logo grid section',
+      description: 'Main heading for the image grid section',
     }),
     defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      description: 'Optional subtitle for the logo grid section',
+      description: 'Optional subtitle for the image grid section',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent',
-      description: 'Optional description text for the logo grid section',
+      description: 'Optional description text for the image grid section',
     }),
     defineField({
       name: 'backgroundColor',
@@ -42,7 +42,7 @@ export default defineType({
     }),
     defineField({
       name: 'logoGroups',
-      title: 'Logo Groups',
+      title: 'Image Groups',
       type: 'array',
       of: [
         {
@@ -50,13 +50,16 @@ export default defineType({
           fields: [
             defineField({
               name: 'logoGroupTitle',
-              title: 'Logo Group Title',
+              title: 'Image Group Title',
+              description:
+                'The title of the logo group. If left blank, this group will stack below previous group.',
               type: 'string',
             }),
             defineField({
               name: 'columns',
               title: 'Number of Columns',
               type: 'number',
+              description: 'The number of columns in the Image group.',
               options: {
                 list: [2, 3, 4],
               },
@@ -64,7 +67,7 @@ export default defineType({
             }),
             defineField({
               name: 'logos',
-              title: 'Logos',
+              title: 'Images',
               type: 'array',
               of: [
                 {
@@ -72,7 +75,7 @@ export default defineType({
                   fields: [
                     defineField({
                       name: 'logo',
-                      title: 'Logo',
+                      title: 'Image',
                       type: 'image',
                       fields: [
                         {
@@ -89,7 +92,7 @@ export default defineType({
                       name: 'link',
                       title: 'Link',
                       type: 'url',
-                      description: 'Link to the page for the logo',
+                      description: 'Link to the page for the Image',
                     }),
                   ],
                   preview: {
@@ -114,7 +117,8 @@ export default defineType({
             },
             prepare(selection) {
               return {
-                title: selection.logoGroupTitle || 'Logo Group',
+                title: 'Image Group',
+                subtitle: selection.logoGroupTitle,
               }
             },
           },
