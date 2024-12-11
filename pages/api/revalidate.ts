@@ -130,12 +130,6 @@ async function querySubPageRoutes(
   return [`/${subPage.slug.current}`]
 }
 
-async function queryPostRoutes(client: SanityClient): Promise<StaleRoute[]> {
-  const postRoutes = await client.fetch(
-    groq`*[_type == "openPosition"].slug.current`,
-  )
-  return [...postRoutes.map((slug) => `/${slug}`)]
-}
 // Mapping for pages without slugs
 const pagesWithoutSlugs = {
   homepage: '/',
@@ -219,7 +213,6 @@ async function getIndividualPostSlugs(
     }`,
     { postId },
   )
-  console.log(post, 'This is the post')
 
   const topicPagesThatNeedToBeRevalidated = await Promise.all(
     post.topics.map(async (topic) => {
@@ -228,11 +221,24 @@ async function getIndividualPostSlugs(
     }),
   ).then((slugArrays) => slugArrays.flat())
 
-  console.log(topicPagesThatNeedToBeRevalidated, 'These are the topics')
+  // Find modules that reference this post
+  const referencingModules = await client.fetch(
+    groq`*[_type in ["getInspired", "relatedStories"] && references($postId)]._id`,
+    { postId },
+  )
+
+  // Use moduleRevalidation for each referencing module
+  const moduleRevalidationSlugs = await Promise.all(
+    referencingModules.map(async (moduleId) => {
+      return moduleHandler(client, { _id: moduleId })
+    }),
+  ).then((slugArrays) => slugArrays.flat())
+
   return [
     ...allPostPages,
     `/${post.slug.current}`,
     ...topicPagesThatNeedToBeRevalidated,
+    ...moduleRevalidationSlugs,
   ]
 }
 

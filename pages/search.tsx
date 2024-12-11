@@ -107,13 +107,15 @@ export default function SearchResults({
           'xl:px-[0px]',
         )}
       >
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          prevUrl={prevUrl}
-          nextUrl={nextUrl}
-          generateButtonUrl={generateButtonUrl}
-        />
+        {totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            prevUrl={prevUrl}
+            nextUrl={nextUrl}
+            generateButtonUrl={generateButtonUrl}
+          />
+        )}
       </div>
     </Layout>
   )
