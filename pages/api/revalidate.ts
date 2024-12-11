@@ -53,8 +53,8 @@ export default async function revalidate(
       console.error(invalidId, { body })
       return res.status(400).send(invalidId)
     }
-
-    const staleRoutes = await queryStaleRoutes(body as any)
+    const staleRoutes = await queryStaleRoutes(req.body as any)
+    console.log(staleRoutes)
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`
@@ -65,7 +65,7 @@ export default async function revalidate(
   }
 }
 
-type StaleRoute = '/' | `/${string}` | '/test-modules'
+type StaleRoute = '/' | `/${string}` | '/test-modules' | string
 
 async function queryStaleRoutes(
   body: Pick<
@@ -75,8 +75,7 @@ async function queryStaleRoutes(
 ): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
 
-  console.log(body)
-  return queryAllRoutes(client)
+  // return queryAllRoutes(client)
 
   //Check if type is a module -> If it is, run the moduleHandler to find all slugs that reference that module. Then return them.
   // If the type is not a module -> return the appropriate route for that type.
@@ -86,8 +85,12 @@ async function queryStaleRoutes(
     switch (body._type) {
       case 'globalSettings':
         return await queryAllRoutes(client)
+      case 'blogHomepage':
+        return await getAllPostHomePageSlugs(client)
       case 'homepage':
         return ['/']
+      case 'post':
+        return await getIndividualPostSlugs(client, body._id)
       case 'subPage':
         return await querySubPageRoutes(client)
       case 'post':
@@ -132,21 +135,115 @@ async function queryPostRoutes(client: SanityClient): Promise<StaleRoute[]> {
   return [...postRoutes.map((slug) => `/${slug}`)]
 }
 
+// Mapping for pages without slugs
+const pagesWithoutSlugs = {
+  homepage: '/',
+  bloghomepage: '/posts',
+  locationHomepage: '/locations',
+}
+
 async function moduleHandler(client: SanityClient, body: any) {
-  const moduleId = body.moduleId
+  const moduleId = body._id
   const allRoutesRefferedTo = await client.fetch(
     groq`*[
-    _type in ["subpage", "post", "topic", "location", "bloghomepage", "homepage"] 
+    _type in ["subPage", "post", "topic", "location", "homepage", "locationHomepage"] 
     && references($moduleId)
   ]{
     _type,
-    "slug": slug.current
+    "slug": coalesce(slug.current, null)
   }
   `,
-    moduleId,
+    { moduleId },
   )
-  return allRoutesRefferedTo
+  // Process the results to handle pages without slugs and format routes
+  const processedRoutes = allRoutesRefferedTo
+    .map((route: { _type: string; slug: string | null }) => {
+      if (route.slug === null && route._type in pagesWithoutSlugs) {
+        // Use predefined slug for pages without slugs
+        return {
+          _type: route._type,
+          slug: pagesWithoutSlugs[
+            route._type as keyof typeof pagesWithoutSlugs
+          ],
+        }
+      } else if (route.slug) {
+        // Format slug for pages with slugs
+        return {
+          _type: route._type,
+          slug: '/' + route.slug, // Special case for homepage
+        }
+      } else {
+        console.warn(`Unexpected document type without slug: ${route._type}`)
+        return null
+      }
+    })
+    .filter((route) => route !== null)
+    .map((route) => route.slug)
+
+  return processedRoutes
 }
+
+//This will calculate the amount of pages based on the total number of posts and the number of posts per page.
+async function getAllPostHomePageSlugs(
+  client: SanityClient,
+): Promise<string[]> {
+  // Fetch the total number of blog posts
+  const totalPosts = await client.fetch(groq`count(*[_type == "post"])`)
+  const postsPerPage = 10 // Adjust this based on your pagination setup
+
+  // Calculate the number of pages
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+
+  // Generate routes for each page
+  return Array.from(
+    { length: totalPages },
+    (_, i) => `/posts/page/${String(i + 1)}`,
+  )
+}
+
+async function getIndividualPostSlugs(
+  client: SanityClient,
+  postId: string,
+): Promise<string[]> {
+  const allPostPages = await getAllPostHomePageSlugs(client)
+  //FOR each of the topic pages we have to revalidate all pages.
+  const postSlug = await client.fetch(
+    groq`*[_type == "post" && _id == $postId][0].slug.current`,
+    { postId },
+  )
+  return [...allPostPages, `/posts/${postSlug}`]
+}
+
+// export async function getTopicPostPageSlugs(
+//   client: SanityClient,
+//   topicId: string,
+// ): Promise<string[]> {
+//   // Fetch the total number of blog posts for the given topic
+//   const totalPosts = await client.fetch(
+//     groq`count(*[_type == "post" && references($topicId)])`,
+//     { topicId },
+//   )
+//   const postsPerPage = 10 // Adjust this based on your pagination setup
+
+//   // Calculate the number of pages
+//   const totalPages = Math.ceil(totalPosts / postsPerPage)
+
+//   // Fetch the topic slug
+//   const topicSlug = await client.fetch(
+//     groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
+//     { topicId },
+//   )
+
+//   if (!topicSlug) {
+//     throw new Error(`Topic with ID ${topicId} not found`)
+//   }
+
+//   // Generate routes for each page
+//   return Array.from(
+//     { length: totalPages },
+//     (_, i) => `/topics/${topicSlug}/page/${i + 1}`,
+//   )
+// }
 
 const moduleTypes = [
   'ctaInContent',
@@ -179,3 +276,31 @@ const moduleTypes = [
 //Handle individualPost type.
 //Handle location type.
 //Handle locationHomepage type.
+
+// {
+//   _createdAt: '2024-11-27T00:44:04Z',
+//   _rev: 'ghY242dzA1Js3AqZtHhGE2',
+//   _id: '25d36294-a973-4386-aa81-09eae71237ff',
+//   _updatedAt: '2024-12-11T20:55:03Z',
+//   _type: 'ctaText',
+//   title: 'Become a Member today',
+//   theme: { label: 'Yellow', value: '#FFC600' },
+//   cta: {
+//     link: {
+//       _type: 'reference',
+//       _ref: 'd6113c1f-933a-40dc-9fba-7c5062620baa'
+//     },
+//     title: 'Apply Today',
+//     _type: 'pageLink'
+//   },
+//   subtitle: 'THE BIG STUFF, DONE BETTER',
+//   description: [
+//     {
+//       _key: '3928d44ebef4',
+//       _type: 'block',
+//       children: [Array],
+//       markDefs: [],
+//       style: 'normal'
+//     }
+//   ]
+// }
