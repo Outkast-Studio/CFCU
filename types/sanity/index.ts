@@ -196,8 +196,10 @@ export interface GetInspiredType {
     title: string
     path: string
   }
-  featuredArticle: PostPageType
-  articleGrid: PostPageType[]
+  featuredArticle?: PostPageType
+  articleGrid?: PostPageType[]
+  useTopic: boolean
+  topic?: TopicWithRelatedPosts
 }
 
 export interface CtaFullMediaType {

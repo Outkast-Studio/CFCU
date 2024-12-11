@@ -16,12 +16,15 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useWindowSize } from '@/hooks/useWindowSize'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
-  const leftGridItems = data?.articleGrid?.filter(
-    (article, index) => index % 2 === 0,
-  )
-  const rightGridItems = data?.articleGrid?.filter(
-    (article, index) => index % 2 === 1,
-  )
+  const posts = data?.useTopic
+    ? data?.topic?.relatedPosts.slice(1)
+    : data?.articleGrid
+  const featuredArticle = data?.useTopic
+    ? data?.topic?.relatedPosts[0]
+    : data?.featuredArticle
+
+  const leftGridItems = posts?.filter((article, index) => index % 2 === 0)
+  const rightGridItems = posts?.filter((article, index) => index % 2 === 1)
 
   const gridRef = useRef<HTMLDivElement>(null)
   const leftGridItemsRef = useRef<HTMLDivElement>(null)
@@ -101,7 +104,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative',
         )}
       >
-        <PostCard data={data?.featuredArticle} isFeatured={true} />
+        <PostCard data={featuredArticle} isFeatured={true} />
         <div
           ref={gridRef}
           className={clsx(
@@ -139,7 +142,7 @@ const PostCard = ({
   isFeatured: boolean
 }) => {
   return (
-    <Link href={`/${data.slug.current}`} className={clsx('block group')}>
+    <Link href={`/${data?.slug?.current}`} className={clsx('block group')}>
       <article
         className={clsx('h-fit', isFeatured && 'lg:sticky lg:top-[48px]')}
       >

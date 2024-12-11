@@ -72,6 +72,7 @@ export default defineType({
       name: 'posts',
       title: 'Posts',
       type: 'array',
+      hidden: ({ document }) => document?.useTopic as boolean,
       of: [{ type: 'reference', to: [{ type: 'post' }] }],
       validation: (Rule) =>
         Rule.custom((field, context) => {
@@ -79,7 +80,6 @@ export default defineType({
           return field && field.length === 3 ? true : 'You must add 3 items'
         }),
       description: 'Select posts to display in the grid',
-      hidden: ({ document }) => document?.useTopic,
     }),
     defineField({
       name: 'topic',

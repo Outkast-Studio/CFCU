@@ -26,6 +26,15 @@ export const modulesFragment = groq`
           "slug": slug.current
         }
       },
+      topic->{
+        _id,
+        title,
+        "slug": slug.current,
+        "relatedPosts": *[_type == 'post' && references(^._id)] | order(createdAt desc)[0...3]{
+      ...,
+          // Add any other fields you need from the post
+        }
+      },
       "featuredArticle": featuredArticle->{
         ...,
       },
