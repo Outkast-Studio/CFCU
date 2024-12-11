@@ -99,8 +99,6 @@ async function queryStaleRoutes(
         return await getTopicPostPageSlugs(client, body._id)
       case 'subPage':
         return await querySubPageRoutes(client, body._id)
-      case 'post':
-        return await queryPostRoutes(client)
       default:
         console.log(body)
     }
@@ -112,18 +110,27 @@ async function _queryAllRoutes(client: SanityClient): Promise<string[]> {
 }
 
 async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
-  const postRoutes = await client.fetch(groq`*[_type == "post"].slug.current`)
-
-  const subPageRoutes = await client.fetch(
-    groq`*[_type == "subPage"].slug.current`,
+  const routes = await client.fetch(
+    groq`*[_type in ["post", "location", "subPage"]].slug.current`,
   )
+  const allTopics = await client.fetch(groq`*[_type == "topic"].slug.current`)
 
-  //TODO see if theres an elegant way to find where the data is being used and revalidate that component.
+  const topicPagesThatNeedToBeRevalidated = await Promise.all(
+    allTopics.map(async (topic) => {
+      const slugs = await getTopicPostPageSlugs(client, topic._id)
+      return slugs
+    }),
+  ).then((slugArrays) => slugArrays.flat())
+
+  const postHomeRoutes = await getAllPostHomePageSlugs(client)
+
   return [
     '/',
+    '/locations',
     '/test-modules',
-    ...postRoutes.map((slug) => `/${slug}`),
-    ...subPageRoutes.map((slug) => `/${slug}`),
+    ...routes.map((slug) => `/${slug}`),
+    ...topicPagesThatNeedToBeRevalidated,
+    ...postHomeRoutes,
   ]
 }
 
