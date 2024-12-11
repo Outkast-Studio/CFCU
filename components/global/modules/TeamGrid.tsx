@@ -80,10 +80,13 @@ function TeamCard({ data }: { data: GroupMember }) {
         )}
       >
         <Image
-          src={urlForImage(data?.image).url()}
+          src={urlForImage(data?.image).width(600).url()}
           alt={data?.image?.alt as string}
           fill
-          className={clsx('object-cover w-full h-full')}
+          className={clsx(
+            'object-cover w-full h-full opacity-0 transition-all duration-300 ease-in-out-cubic',
+          )}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
         />
       </div>
       <h5 className={clsx('w-h5-desktop text-lavender mt-[16px]')}>
