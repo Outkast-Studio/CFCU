@@ -22,7 +22,7 @@ export default defineType({
           fields: [
             defineField({
               name: 'columnTitle',
-              title: 'ColumnTitle',
+              title: 'Column Title',
               description: 'The title of the column',
               type: 'string',
               validation: (Rule) => Rule.required(),
