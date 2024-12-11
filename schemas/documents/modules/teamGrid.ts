@@ -9,21 +9,20 @@ export default defineType({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      description:
-        'A short subtitle displayed above the main title (e.g., "LEADERSHIP")',
+      description: 'A short subtitle displayed above the main title',
     }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description:
-        'The main title for the team grid section (e.g., "Board of Directors")',
+      description: 'The main title for the team grid section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
+      rows: 5,
       description:
         'A brief description or introduction to the team grid section',
     }),
@@ -39,8 +38,7 @@ export default defineType({
               name: 'groupTitle',
               title: 'Group Title',
               type: 'string',
-              description:
-                'The title for this group of team members (e.g., "Executive Team")',
+              description: 'The title for this group of team members',
               validation: (Rule) => Rule.required(),
             }),
             defineField({
@@ -97,6 +95,13 @@ export default defineType({
                       type: 'string',
                       description:
                         'The email address for the team member (optional)',
+                    }),
+                    defineField({
+                      name: 'moreInfoLink',
+                      title: 'More Info Link',
+                      type: 'pageLink',
+                      description:
+                        'A link to additional information about the team member (optional)',
                     }),
                   ],
                   preview: {

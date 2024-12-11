@@ -25,7 +25,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'absolute lg:group-hover:translate-x-[-0px] translate-x-[-35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'absolute group-hover:translate-x-[-0px] translate-x-[-35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         <path
@@ -35,7 +35,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
       </svg>
       <span
         className={clsx(
-          'font-codec-extra-bold text-[18px] leading-[27px] inline-block lg:group-hover:translate-x-[25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'font-codec-extra-bold text-[18px] leading-[27px] inline-block group-hover:translate-x-[25px] ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         {label}
@@ -47,7 +47,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className={clsx(
-          'lg:group-hover:translate-x-[35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
+          'group-hover:translate-x-[35px]  ease-[cubic-bezier(0.645,0.045,0.355,1)] transition-transform duration-200',
         )}
       >
         <path

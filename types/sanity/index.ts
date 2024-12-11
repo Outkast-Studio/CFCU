@@ -233,6 +233,7 @@ export interface GroupMember {
   title: string
   phoneNumber?: string
   email?: string
+  moreInfoLink?: PageLinkType
 }
 
 interface TeamRow {
@@ -243,7 +244,7 @@ interface TeamRow {
 export interface TeamGridType {
   subtitle?: string
   title: string
-  description?: PortableTextBlock[]
+  description?: string
   teamRows: TeamRow[]
 }
 
@@ -343,34 +344,6 @@ export interface EmbedType {
 export interface WysiwygType {
   content: PortableTextBlock[]
 }
-
-import { defineField, defineType } from 'sanity'
-
-export default defineType({
-  name: 'wysiwyg',
-  title: 'WYSIWYG',
-  type: 'object',
-  fields: [
-    defineField({
-      name: 'content',
-      title: 'Content',
-      type: 'blockContent',
-      validation: (Rule) => Rule.required(),
-      description: 'Rich text content for this section',
-    }),
-  ],
-  preview: {
-    select: {
-      content: 'content',
-    },
-    prepare({ content }) {
-      return {
-        title: 'WYSIWYG Content',
-        subtitle: 'Rich Text Section',
-      }
-    },
-  },
-})
 
 //Singleton Types --------------------------------------------------------------------------
 export interface GlobalSettingsType {

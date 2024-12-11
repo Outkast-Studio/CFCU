@@ -3,10 +3,14 @@ import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from '@/lib/sanity.image'
+import PageLink from '../ui/PageLink'
+import Button from '../ui/Button'
 
 const TeamGrid = ({ data }: { data: TeamGridType }) => {
   return (
-    <section className={clsx('pt-[54px]', 'lg:pt-[80px] lg:pb-[158px]')}>
+    <section
+      className={clsx('pt-[54px] pb-[125px]', 'lg:pt-[80px] lg:pb-[158px]')}
+    >
       <div
         className={clsx(
           'flex items-center justify-center flex-col px-[24px] mb-[34px]',
@@ -27,14 +31,14 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
           {data?.title}
         </h3>
         {data?.description && (
-          <div
+          <p
             className={clsx(
               'w-paragraph-w-desktop text-center mt-[12px]',
               'lg:w-paragraph-l-desktop text-black/75  lg:mt-[8px]',
             )}
           >
-            <PortableText value={data?.description} />
-          </div>
+            {data?.description}
+          </p>
         )}
       </div>
       <div className={clsx('flex flex-col gap-y-[78px]', 'lg:gap-y-[86px]')}>
@@ -134,6 +138,14 @@ function TeamCard({ data }: { data: GroupMember }) {
             {data?.email}
           </span>
         </a>
+      )}
+      {data?.moreInfoLink && (
+        <PageLink data={data?.moreInfoLink} className={clsx('mt-[16px]')}>
+          <Button
+            label={data?.moreInfoLink.title}
+            className={clsx('!bg-lavender !text-white')}
+          />
+        </PageLink>
       )}
     </article>
   )
