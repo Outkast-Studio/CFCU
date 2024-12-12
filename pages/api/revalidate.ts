@@ -118,12 +118,12 @@ async function querySubPageRoutes(
     groq`*[_type == "subPage" && _id == $subPageId][0]{
       _id,
       slug,
-      "parent": coalesce(parent->{
-        "slug": slug.current
-      }, null)
+      parent->{_id, slug}
     }`,
     { subPageId },
   )
+
+  console.log(subPage, 'This is the subPage')
   if (!subPage) return []
   const allOtherSlugs = await getAllRefercingSlugs(
     client,
