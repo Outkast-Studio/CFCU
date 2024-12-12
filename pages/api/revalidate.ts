@@ -115,7 +115,7 @@ async function querySubPageRoutes(
   subPageId: string,
 ): Promise<StaleRoute[]> {
   const subPage = await client.fetch(
-    groq`*[_type == "post" && _id == $subPageId][0]{
+    groq`*[_type == "subPage" && _id == $subPageId][0]{
       _id,
       slug,
       "parent": coalesce(parent->{
