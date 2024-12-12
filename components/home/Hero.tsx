@@ -19,12 +19,14 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const backgroundRef = useRef<HTMLDivElement>(null)
   const gradientRef = useRef<HTMLDivElement>(null)
   const [isPlaying, setIsPlaying] = useState(true)
+  const [lineAmount, setLineAmount] = useState(0)
 
   useIsomorphicLayoutEffect(() => {
+    if (!lineAmount) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
       const tl = gsap
-        .timeline({ delay: 0.5 })
+        .timeline({ delay: lineAmount * 0.2 })
         .fromTo(
           q('.subItem'),
           { opacity: 0, y: 30 },
@@ -55,7 +57,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
     return () => {
       ctx.revert()
     }
-  }, [])
+  }, [lineAmount])
   return (
     <section
       ref={heroRef}
@@ -132,6 +134,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
               stagger={0.1}
               yPercent={40}
               delay={0.3}
+              setLineAmount={(count) => setLineAmount(count)}
             />
           </h1>
           <p

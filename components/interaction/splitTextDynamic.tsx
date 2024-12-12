@@ -7,6 +7,20 @@ import { myWysiwygComponentsWithoutPadding } from 'pages/_app'
 import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
 import { useWindowSize } from 'hooks/useWindowSize'
+import { useState } from 'react'
+
+type Props = {
+  value: string
+  classNames: string
+  wrapperHeights: string
+  stagger: number
+  duration: number
+  delay?: number
+  paused?: boolean
+  yPercent?: number
+  isHeading?: boolean
+  setLineAmount?: (count: number) => void
+}
 
 const SplitTextDynamic = ({
   value,
@@ -17,9 +31,13 @@ const SplitTextDynamic = ({
   delay = 0,
   paused = false,
   yPercent = 100,
-}) => {
+  isHeading = false,
+  setLineAmount = () => {},
+}: Props) => {
   const headingRef = useRef(null)
   const tlRef = useRef(null)
+  const accessibilityRef = useRef(null)
+  const [animationComplete, setAnimationComplete] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -29,6 +47,7 @@ const SplitTextDynamic = ({
         type: 'lines',
         linesClass: 'line opacity-0',
       })
+      setLineAmount(split.lines.length)
       gsap.set(headingRef.current, { opacity: 1 })
       split.lines.forEach((line: HTMLDivElement) => {
         const wrapperDiv = document.createElement('div')
@@ -37,21 +56,29 @@ const SplitTextDynamic = ({
         wrapperDiv.appendChild(line)
       })
       gsap.set(split.lines, { yPercent: 100 })
-      tlRef.current = gsap.timeline({ paused: true }).fromTo(
-        split.lines,
-        {
-          yPercent,
-          opacity: 0,
-        },
-        {
-          duration: duration,
-          yPercent: 0,
-          opacity: 1,
-          stagger: stagger,
-          ease: 'power4.out',
-          delay,
-        },
-      )
+      tlRef.current = gsap
+        .timeline({
+          paused: true,
+          onComplete: () => {
+            // headingRef.current.remove()
+            setAnimationComplete(true)
+          },
+        })
+        .fromTo(
+          split.lines,
+          {
+            yPercent,
+            opacity: 0,
+          },
+          {
+            duration: duration,
+            yPercent: 0,
+            opacity: 1,
+            stagger: stagger,
+            ease: 'power4.out',
+            delay,
+          },
+        )
     })
     return () => ctx.revert()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -67,6 +94,9 @@ const SplitTextDynamic = ({
       <p ref={headingRef} className={clsx(classNames, 'opacity-0')}>
         {stegaClean(value)}
       </p>
+      {/* {animationComplete && (
+        <>{isHeading ? <>{value}</> : <p ref={accessibilityRef}>{value}</p>}</>
+      )} */}
     </>
   )
 }

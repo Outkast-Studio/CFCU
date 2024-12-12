@@ -58,7 +58,11 @@ export default function DynamicPage(props: PageProps) {
 
   return (
     <Layout seo={props.seo}>
-      <SubPage data={data as SubPageType} childrenPages={props.childrenPages} />
+      <SubPage
+        data={data as SubPageType}
+        childrenPages={props.childrenPages}
+        key={data.slug.current}
+      />
     </Layout>
   )
   // Conditionally render based on page type

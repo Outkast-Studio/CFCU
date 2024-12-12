@@ -11,7 +11,8 @@ import PostCard from '../global/ui/PostCard'
 import Pagination from 'components/search/pagination'
 import Link from 'next/link'
 import FilterButton from '../global/ui/FilterButton'
-import blogHomePage from '@/schemas/singletons/blogHomePage'
+
+import SplitTextDynamic from '../interaction/splitTextDynamic'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType
@@ -35,14 +36,16 @@ const PostHomePage = ({
   pagination,
 }: Props) => {
   return (
-    <main
-      className={clsx(
-        'px-[24px]',
-        'lg:px-[48px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
-      )}
-    >
-      <section className={clsx('pt-[60px]', 'lg:pt-[48px]')}>
-        <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+    <main>
+      <section
+        className={clsx(
+          'pt-[60px]',
+          'lg:pt-[48px]',
+          'px-[24px]',
+          'lg:px-[48px]',
+        )}
+      >
+        <Link href={'/'} className={clsx('absolute w-fit focus:!shadow-none')}>
           <Image
             src={'/icons/logoPurple.png'}
             alt={'Community Financial Logo'}
@@ -60,7 +63,9 @@ const PostHomePage = ({
           {!isBlogHome && (
             <Link
               href={'/posts/page/1'}
-              className={clsx('inline-block cursor-pointer mb-[16px] group')}
+              className={clsx(
+                'inline-block cursor-pointer mb-[16px] group hover:opacity-80 transition-opacity duration-200',
+              )}
             >
               <button
                 className={clsx(
@@ -119,8 +124,9 @@ const PostHomePage = ({
       </section>
       <section
         className={clsx(
-          'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] mt-[49px]',
-          'lg:mt-[111px] lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px]',
+          'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] mt-[49px] px-[24px]',
+          'lg:mt-[111px] lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px] lg:px-[48px] lg:max-w-[1800px] lg:mx-auto',
+          'xl:px-[0px]',
         )}
       >
         {allPosts.map((post, index) => (

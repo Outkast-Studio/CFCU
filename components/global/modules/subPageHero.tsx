@@ -17,11 +17,13 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
   const gradientRef = useRef<HTMLDivElement>(null)
   const [isPlaying, setIsPlaying] = useState(true)
   const { width } = useWindowSize()
+  const [lineAmount, setLineAmount] = useState(0)
 
   useIsomorphicLayoutEffect(() => {
+    if (!lineAmount) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
-      const tl = gsap.timeline({ delay: 0.5 }).fromTo(
+      const tl = gsap.timeline({ delay: lineAmount * 0.2 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
         {
@@ -50,7 +52,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
     return () => {
       ctx.revert()
     }
-  }, [])
+  }, [lineAmount])
   return (
     <section
       ref={heroRef}
@@ -131,6 +133,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
               stagger={0.1}
               yPercent={40}
               delay={0.3}
+              setLineAmount={(count) => setLineAmount(count)}
             />
           </h1>
           <div className={clsx('flex justify-between items-end')}>

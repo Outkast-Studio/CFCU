@@ -4,6 +4,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
+import DynamicImage from 'components/global/ui/DynamicImage'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -82,39 +83,10 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                       className={clsx('lg:block w-full')}
                       key={(String(index) + logo?.logo?.alt) as string}
                     >
-                      <Image
-                        src={urlForImage(logo?.logo)
-                          .width(1000)
-                          .quality(90)
-                          .url()}
-                        alt={logo?.logo?.alt as string}
-                        width={1000}
-                        height={1000}
-                        className={clsx(
-                          'object-cover opacity-0 transition-all  duration-300 ease-in-out-cubic',
-                        )}
-                        onLoadingComplete={(image) =>
-                          image.classList.remove('opacity-0')
-                        }
-                      />
+                      <DynamicImage logo={logo} className={clsx('w-full')} />
                     </a>
                   ) : (
-                    <Image
-                      key={(String(index) + logo?.logo?.alt) as string}
-                      src={urlForImage(logo?.logo)
-                        .width(1000)
-                        .quality(90)
-                        .url()}
-                      alt={logo?.logo?.alt as string}
-                      width={1000}
-                      height={1000}
-                      className={clsx(
-                        'object-cover opacity-0 transition-all  duration-300 ease-in-out-cubic',
-                      )}
-                      onLoadingComplete={(image) =>
-                        image.classList.remove('opacity-0')
-                      }
-                    />
+                    <DynamicImage logo={logo} className={clsx('w-full')} />
                   ),
                 )}
               </div>
