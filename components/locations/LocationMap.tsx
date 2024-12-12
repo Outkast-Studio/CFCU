@@ -175,7 +175,7 @@ export default function MapView({
       atmLocations?.forEach((atm: any) => {
         const marker = document.createElement('div')
         const isActive = atm.name === selectedATM?.name
-        marker.className = `marker cursor-pointer ${showATMs ? 'block' : 'hidden'}`
+        marker.className = `marker group cursor-pointer ${showATMs ? 'block' : 'hidden'}`
         // Use a different marker style for ATMs
         marker.innerHTML = `<svg width="35" height="33" viewBox="0 0 35 33" fill="none" xmlns="http://www.w3.org/2000/svg" >
 <rect x="0.5" y="0.5" width="34" height="32" rx="4.5" fill=${isActive ? '"#FFFFFF"' : '"#008566"'}/>

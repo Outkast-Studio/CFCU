@@ -23,6 +23,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
             alt={'Community Financial Logo'}
             width={500}
             height={108}
+            priority
             className={clsx(
               'w-[212px] relative z-[2]',
               'lg:w-[244.71px] lg:absolute lg:top-[48px] lg:left-[48px] ',
@@ -31,6 +32,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
         </Link>
         <Image
           src={defaultSubPage}
+          priority
           alt="origami"
           fill
           className={clsx('w-full h-full object-cover absolute top-0 left-0')}

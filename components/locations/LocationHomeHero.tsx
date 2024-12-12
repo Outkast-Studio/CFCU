@@ -99,6 +99,7 @@ const LocationHomeHero = ({
             src={'/icons/LogoFull.png'}
             alt={'Community Financial Logo'}
             width={500}
+            priority
             height={108}
             className={clsx('w-[212px]', 'lg:w-[244.71px]')}
           />

@@ -69,9 +69,10 @@ const Header = () => {
               }
             }}
             className={clsx(
-              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-colors duration-300 ease-linear',
+              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear',
               'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px]',
               menuButtonOpen ? 'bg-orange lg:bg-white' : 'bg-orange',
+              'lg:hover:bg-white',
             )}
           >
             <div className={clsx('hidden', 'lg:block h-[23px]')}>
