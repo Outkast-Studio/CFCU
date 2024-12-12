@@ -27,10 +27,13 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
     <article>
       <div className={clsx('aspect-w-16 aspect-h-9')}>
         <Image
-          src={urlForImage(data?.thumbnailImage).url()}
+          src={urlForImage(data?.thumbnailImage).width(1200).quality(100).url()}
           alt={data?.thumbnailImage?.alt as string}
           fill
-          className={clsx('object-cover w-full h-full')}
+          className={clsx(
+            'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
+          )}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
         />
       </div>
       <h4

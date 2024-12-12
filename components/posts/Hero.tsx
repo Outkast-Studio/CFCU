@@ -182,7 +182,11 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 )}
               >
                 {post?.topics?.map((topic, index) => (
-                  <Link key={index} href={'/' + topic?.slug?.current + '/1'}>
+                  <Link
+                    key={index}
+                    href={'/' + topic?.slug?.current + '/1'}
+                    className={clsx('hover:no-underline')}
+                  >
                     {topic?.name}
                   </Link>
                 ))}
@@ -230,7 +234,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
             fill
             onLoadingComplete={(image) => image.classList.remove('opacity-0')}
             className={clsx(
-              'object-cover w-full h-full opacity-0 transition-opacity duration-300 ease-linear',
+              'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
             )}
             priority
           />

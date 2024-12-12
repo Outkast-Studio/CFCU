@@ -136,7 +136,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
               setLineAmount={(count) => setLineAmount(count)}
             />
           </h1>
-          <div className={clsx('flex justify-between items-end')}>
+          <div className={clsx('flex justify-between items-end gap-x-[16px]')}>
             <p
               className={clsx(
                 'w-paragraph-m-desktop text-white subItem opacity-0',

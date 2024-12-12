@@ -44,7 +44,7 @@ export default function PostSlugRoute({
 
   return (
     <Layout seo={seo}>
-      <PostPage data={data} />
+      <PostPage data={data} key={data?.slug?.current} />
     </Layout>
   )
 }

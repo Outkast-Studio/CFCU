@@ -190,7 +190,7 @@ export default defineType({
       type: 'string',
       group: 'seo',
       description:
-        'Title for search engines. If left blank, the title for this page will be set to the default title.',
+        'Title for search engines. This also powers the search results page.',
     }),
     defineField({
       name: 'metaDescription',
@@ -198,7 +198,7 @@ export default defineType({
       type: 'text',
       group: 'seo',
       description:
-        'Description for search engines. If left blank, the description for this page will be set to the default description.',
+        'Description for search engines. This also powers the search results page.',
     }),
     defineField({
       name: 'ogImage',

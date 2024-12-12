@@ -46,7 +46,7 @@ export default function ProjectSlugRoute(props: PageProps) {
 
   return (
     <Layout seo={props.seo}>
-      <LocationPageComponent data={data} />
+      <LocationPageComponent data={data} key={data?.slug?.current} />
     </Layout>
   )
 }

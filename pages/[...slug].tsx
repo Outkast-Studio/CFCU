@@ -42,12 +42,6 @@ export default function DynamicPage(props: PageProps) {
     setGlobalSettings(props.globalSettings)
   }, [setGlobalSettings, props.globalSettings])
 
-  // const postData = useLiveQuery<PageData>(
-  //   stegaClean(props.pageType) === 'post' ? props.pageData : null,
-  //   postBySlugQuery,
-  //   props.params,
-  // )[0]
-
   const [subPageData] = useLiveQuery<PageData>(
     props.pageData,
     subPageBySlugQuery,
@@ -65,26 +59,6 @@ export default function DynamicPage(props: PageProps) {
       />
     </Layout>
   )
-  // Conditionally render based on page type
-  // switch (stegaClean(props.pageType)) {
-  //   case 'post':
-  //     return (
-  //       <Layout seo={props.seo}>
-  //         <PostPage data={data as PostPageType} />
-  //       </Layout>
-  //     )
-  //   case 'subPage':
-  //     return (
-  //       <Layout seo={props.seo}>
-  //         <SubPage
-  //           data={data as SubPageType}
-  //           childrenPages={props.childrenPages}
-  //         />
-  //       </Layout>
-  //     )
-  //   default:
-  //     return <></>
-  // }
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
