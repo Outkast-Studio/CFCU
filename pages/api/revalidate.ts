@@ -130,10 +130,10 @@ async function querySubPageRoutes(
     moduleTypes,
   )
   ///TODO Query all pages that reference this subPage.
-  if (subPage.parent) {
+  if (subPage?.parent) {
     return [
-      `/${subPage.slug.current}`,
-      `/${subPage.parent.slug.current}`,
+      `/${subPage?.slug?.current}`,
+      `/${subPage?.parent?.slug.current}`,
       ...allOtherSlugs,
     ]
   }
