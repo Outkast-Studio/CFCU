@@ -130,6 +130,7 @@ const SearchResultsPage = ({
               type="submit"
               className={clsx(
                 'w-[50px] h-[52px] bg-orange flex items-center justify-center rounded-[6px] flex-shrink-0',
+                'hover:opacity-80 transition-opacity duration-200',
               )}
             >
               <svg
@@ -175,11 +176,14 @@ const SearchResultsPage = ({
                 key={result._id}
                 className={clsx('py-[28px] border-t-[1px] border-t-black/10')}
               >
-                <Link href={createSlug(result._type, result?.slug?.current)}>
+                <Link
+                  href={createSlug(result._type, result?.slug?.current)}
+                  className={clsx('group')}
+                >
                   <h3
                     className={clsx(
-                      'w-h6',
-                      'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold',
+                      'w-h6 group-hover:opacity-80 transition-opacity duration-200',
+                      'text-lavender lg:text-[38px] lg:leading-[41.8px] font-codec-extra-bold ',
                     )}
                   >
                     {result.metaTitle}
@@ -199,7 +203,7 @@ const SearchResultsPage = ({
             ))}
           </ul>
         ) : (
-          <p className="text-gray-600">No results found.</p>
+          <p className="text-gray-600 mt-[16px]">No results found.</p>
         )}
       </section>
     </div>
