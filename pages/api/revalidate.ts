@@ -66,7 +66,7 @@ async function queryStaleRoutes(
       case 'homepage':
         return ['/']
       case 'location':
-        return await getIndividualLocaitonSlugs(client, body._id)
+        return await getIndividualLocationSlugs(client, body._id)
       case 'locationHomepage':
         return ['/locations']
       case 'post':
@@ -124,6 +124,8 @@ async function querySubPageRoutes(
     }`,
     { subPageId },
   )
+
+  ///TODO Query all pages that reference this subPage.
   if (subPage.parent) {
     return [`/${subPage.slug.current}`, `/${subPage.parent.slug.current}`]
   }
@@ -140,7 +142,7 @@ async function moduleHandler(client: SanityClient, body: any) {
   const moduleId = body._id
   const allRoutesRefferedTo = await client.fetch(
     groq`*[
-    _type in ["subPage", "post", "location", "homepage", "locationHomepage"] 
+    _type in ["subPage", "post", "location", "homepage", "locationHomepage", 'testModules'] 
     && references($moduleId)
   ]{
     _type,
@@ -242,19 +244,52 @@ async function getIndividualPostSlugs(
   ]
 }
 
-async function getIndividualLocaitonSlugs(
+async function getIndividualLocationSlugs(
   client: SanityClient,
   locationId: string,
 ): Promise<string[]> {
   const location = await client.fetch(
     groq`*[_type == "location" && _id == $locationId][0]{
-    _id,
-    slug,
-
-  }`,
+      _id,
+      slug,
+    }`,
     { locationId },
   )
-  return [`/${location.slug.current}`, '/locations']
+
+  // Query all pages that directly reference this location
+  const referencingPages = await client.fetch(
+    groq`*[references($locationId) && _type in ["page", "subPage", "post", "topic"]]{
+      _type,
+      "slug": slug.current
+    }`,
+    { locationId },
+  )
+
+  // Find modules that reference this location
+  const referencingModules = await client.fetch(
+    groq`*[_type in $moduleTypes && references($locationId)]._id`,
+    { locationId, moduleTypes },
+  )
+
+  // Use moduleRevalidation for each referencing module
+  const moduleRevalidationSlugs = await Promise.all(
+    referencingModules.map(async (moduleId) => {
+      return moduleHandler(client, { _id: moduleId })
+    }),
+  ).then((slugArrays) => slugArrays.flat())
+
+  // Combine all slugs
+  const slugsToRevalidate = [
+    `/${location.slug.current}`,
+    '/locations',
+    ...referencingPages.map((page: { _type: string; slug: string }) =>
+      page._type === 'page' ? `/${page.slug}` : `/${page._type}/${page.slug}`,
+    ),
+    ...moduleRevalidationSlugs,
+  ]
+
+  // Remove duplicates
+  return Array.from(new Set(slugsToRevalidate))
 }
 
 export async function getTopicPostPageSlugs(
@@ -262,6 +297,8 @@ export async function getTopicPostPageSlugs(
   topicId: string,
 ): Promise<string[]> {
   // Fetch the total number of blog posts for the given topic
+
+  ///TODO Query all pages that reference this topic.
   const totalPosts = await client.fetch(
     groq`count(*[_type == "post" && references($topicId)])`,
     { topicId },
