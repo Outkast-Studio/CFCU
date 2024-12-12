@@ -35,6 +35,9 @@ const PageLink = ({
         case 'topic':
           setHref(`/${data?.link?.slug}`)
           break
+        case 'location':
+          setHref(`/${data?.link?.slug}`)
+          break
         default:
           setHref('/')
           break
