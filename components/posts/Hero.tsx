@@ -33,7 +33,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
         )}
       >
         <article>
-          <Link href={'/posts'} className={clsx('block')}>
+          <Link href={'/posts/page/1'} className={clsx('block')}>
             <button
               className={clsx(
                 'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-lightGrey',

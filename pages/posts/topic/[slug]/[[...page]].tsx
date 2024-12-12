@@ -28,7 +28,7 @@ interface PageProps extends SharedPageProps {
   seo: Seo
 }
 
-const POSTS_PER_PAGE = 1
+const POSTS_PER_PAGE = 10
 
 interface Query {
   [key: string]: string

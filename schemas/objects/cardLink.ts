@@ -12,6 +12,15 @@ export default defineType({
       to: [
         { type: 'post' },
         { type: 'homepage', name: 'homepage', title: 'Home' },
+        { type: 'location', name: 'location', title: 'Location' },
+        { type: 'subPage', name: 'subPage', title: 'Sub Page' },
+        { type: 'blogHomePage', name: 'blogHomePage', title: 'Blog Home Page' },
+        {
+          type: 'locationHomePage',
+          name: 'locationHomePage',
+          title: 'Location Home Page',
+        },
+        { type: 'topic', name: 'topic', title: 'Topic' },
         // Add any other document types that can be linked
       ],
       description: 'Select the page to link to',

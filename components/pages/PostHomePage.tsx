@@ -59,7 +59,7 @@ const PostHomePage = ({
         >
           {!isBlogHome && (
             <Link
-              href={'/posts'}
+              href={'/posts/page/1'}
               className={clsx('inline-block cursor-pointer mb-[16px] group')}
             >
               <button
