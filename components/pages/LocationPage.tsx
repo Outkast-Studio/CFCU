@@ -29,7 +29,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
     if (!lineAmount) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
-      const tl = gsap.timeline({ delay: lineAmount * 0.2 }).fromTo(
+      const tl = gsap.timeline({ delay: lineAmount * 0.3 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
         {
@@ -37,7 +37,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
           y: 0,
           ease: 'power4.out',
           duration: 0.7,
-          stagger: 0.07,
+          stagger: 0.1,
         },
         '<',
       )
@@ -136,16 +136,14 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
             </h1>
             <div
               className={clsx(
-                'mt-[22px] grid grid-cols-2',
-                'lg:mt-[55px] gap-x-[24px] gap-y-[37px]',
+                'mt-[22px] grid grid-cols-2 opacity-0 subItem',
+                'lg:mt-[55px] gap-x-[24px] gap-y-[37px] ',
               )}
             >
               <DetailCard subtitle="Address" content={data?.address} />
               <DetailCard subtitle="Phone" content={data?.phoneNumber} />
 
-              <div
-                className={clsx('flex flex-col gap-y-[6px] opacity-0 subItem')}
-              >
+              <div className={clsx('flex flex-col gap-y-[6px] ')}>
                 <h6
                   className={clsx(
                     'subtitle-s text-white/70 font-codec-news uppercase',
@@ -219,11 +217,7 @@ function DetailCard({
   content: string
 }) {
   return (
-    <div
-      className={clsx(
-        'max-w-[200px] flex flex-col gap-y-[6px] opacity-0 subItem',
-      )}
-    >
+    <div className={clsx('max-w-[200px] flex flex-col gap-y-[6px] ')}>
       <h6
         className={clsx(
           'subtitle-s text-white/70 font-codec-news uppercase',

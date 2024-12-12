@@ -123,13 +123,11 @@ const Hero = ({ post }: { post: PostPageType }) => {
           </p>
           <div
             className={clsx(
-              'grid grid-cols-2 gap-x-[24px gap-y-[29px] mt-[22px]',
+              'grid grid-cols-2 gap-x-[24px gap-y-[29px] mt-[22px] subItem opacity-0',
               'lg:mt-[36px] lg:w-[75%]',
             )}
           >
-            <div
-              className={clsx('flex flex-col gap-y-[8px] subItem opacity-0')}
-            >
+            <div className={clsx('flex flex-col gap-y-[8px]')}>
               <h4
                 className={clsx(
                   'subtitle-s text-black/75 font-codec-news uppercase',
@@ -146,9 +144,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 {post?.author?.name}
               </h5>
             </div>
-            <div
-              className={clsx('flex flex-col gap-y-[8px] subItem opacity-0')}
-            >
+            <div className={clsx('flex flex-col gap-y-[8px] ')}>
               <h4
                 className={clsx(
                   'subtitle-s text-black/75 font-codec-news uppercase',
@@ -165,9 +161,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 {formatDate(post?.date)}
               </h5>
             </div>
-            <div
-              className={clsx('flex flex-col gap-y-[8px] subItem opacity-0')}
-            >
+            <div className={clsx('flex flex-col gap-y-[8px] ')}>
               <h4
                 className={clsx(
                   'subtitle-s text-black/75 font-codec-news uppercase',
@@ -178,14 +172,16 @@ const Hero = ({ post }: { post: PostPageType }) => {
               </h4>
               <div
                 className={clsx(
-                  'font-codec-pro text-lavender underline text-[16px] leading-[20.8px] flex flex-col gap-y-[8px] ',
+                  'font-codec-pro text-lavender  text-[16px] leading-[20.8px] flex flex-col gap-y-[8px] ',
                 )}
               >
                 {post?.topics?.map((topic, index) => (
                   <Link
                     key={index}
                     href={'/' + topic?.slug?.current + '/1'}
-                    className={clsx('hover:no-underline')}
+                    className={clsx(
+                      'underline hover:!no-underline w-fit block',
+                    )}
                   >
                     {topic?.name}
                   </Link>
@@ -193,9 +189,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
               </div>
             </div>
             {post?.shareLinks && (
-              <div
-                className={clsx('flex flex-col gap-y-[8px] subItem opacity-0')}
-              >
+              <div className={clsx('flex flex-col gap-y-[8px]')}>
                 <h4
                   className={clsx(
                     'subtitle-s text-black/75 font-codec-news uppercase',
@@ -210,7 +204,14 @@ const Hero = ({ post }: { post: PostPageType }) => {
                   )}
                 >
                   {post?.shareLinks?.map((link, index) => (
-                    <a key={index} href={link.link} target="_blank">
+                    <a
+                      key={index}
+                      href={link.link}
+                      target="_blank"
+                      className={clsx(
+                        'hover:opacity-80 transition-opacity duration-200',
+                      )}
+                    >
                       <Image
                         src={urlForImage(link.icon).url()}
                         alt={link.icon.alt as string}
