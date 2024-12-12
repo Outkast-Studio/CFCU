@@ -23,7 +23,7 @@ const LocationHomeHero = ({
   useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
-      const tl = gsap.timeline({ delay: 0.5 }).fromTo(
+      gsap.timeline({ delay: 0.5 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
         {

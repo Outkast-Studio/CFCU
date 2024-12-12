@@ -233,7 +233,12 @@ export default function MapView({
   )
 
   return (
-    <div className="relative w-full h-[80vh] overflow-hidden">
+    <div
+      className={clsx(
+        'relative w-full h-[80vh] overflow-hidden transition-opacity  duration-300 ease-linear',
+        mapLoaded ? 'opacity-100' : 'opacity-0',
+      )}
+    >
       <div ref={mapContainer} className="w-full h-full absolute" />
 
       {mapLoaded && (
