@@ -70,6 +70,7 @@ export default function TopicSlugRoute({
   return (
     <Layout seo={seo}>
       <PostHomePage
+        key={data?.slug?.current}
         data={data}
         allPosts={relatedPosts}
         pagination={extendedPagination}

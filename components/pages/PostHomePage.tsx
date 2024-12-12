@@ -11,8 +11,11 @@ import PostCard from '../global/ui/PostCard'
 import Pagination from 'components/search/pagination'
 import Link from 'next/link'
 import FilterButton from '../global/ui/FilterButton'
-
+import { useState, useRef } from 'react'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
 import SplitTextDynamic from '../interaction/splitTextDynamic'
+import { useWindowSize } from '@/hooks/useWindowSize'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType
@@ -35,9 +38,35 @@ const PostHomePage = ({
   isBlogHome,
   pagination,
 }: Props) => {
+  const [lineAmount, setLineAmount] = useState(0)
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { width } = useWindowSize()
+  useIsomorphicLayoutEffect(() => {
+    if (!lineAmount) return
+    console.log(lineAmount)
+    const ctx = gsap.context(() => {
+      const q = gsap.utils.selector(heroRef.current)
+      const tl = gsap.timeline({ delay: lineAmount * 0.3 }).fromTo(
+        q('.subItem'),
+        { opacity: 0, y: width > 1024 ? 30 : 10 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power4.out',
+          duration: 0.7,
+          stagger: 0.1,
+        },
+        '<',
+      )
+    })
+    return () => {
+      ctx.revert()
+    }
+  }, [lineAmount])
   return (
     <main>
       <section
+        ref={heroRef}
         className={clsx(
           'pt-[60px]',
           'lg:pt-[48px]',
@@ -51,12 +80,13 @@ const PostHomePage = ({
             alt={'Community Financial Logo'}
             width={500}
             height={108}
+            priority
             className={clsx('w-[212px]', 'lg:w-[244.71px]')}
           />
         </Link>
         <div
           className={clsx(
-            'mt-[119px] flex flex-col items-center',
+            'mt-[185px] flex flex-col items-center',
             'lg:mt-[143px]',
           )}
         >
@@ -64,12 +94,12 @@ const PostHomePage = ({
             <Link
               href={'/posts/page/1'}
               className={clsx(
-                'inline-block cursor-pointer mb-[16px] group hover:opacity-80 transition-opacity duration-200',
+                'inline-block cursor-pointer mb-[16px] group  subItem opacity-0',
               )}
             >
               <button
                 className={clsx(
-                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-lightGrey',
+                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-lightGrey hover:opacity-80 transition-opacity duration-200',
                 )}
               >
                 <svg
@@ -103,11 +133,20 @@ const PostHomePage = ({
               'lg:text-[172px] lg:leading-[154.8px] lg:tracking-[-0.16px] ',
             )}
           >
-            {data?.title}
+            <SplitTextDynamic
+              value={data?.title}
+              classNames={'line'}
+              wrapperHeights={'154.8px'}
+              duration={0.7}
+              stagger={0.1}
+              yPercent={10}
+              delay={0.3}
+              setLineAmount={(count) => setLineAmount(count)}
+            />
           </h1>
           <div
             className={clsx(
-              'text-black/75 text-center mt-[20px] w-paragraph-m-desktop',
+              'text-black/75 text-center mt-[20px] w-paragraph-m-desktop subItem opacity-0',
               'lg:max-w-[922px] lg:mx-auto lg:font-codec-news lg:mt-[2px] lg:text-[24px] lg:leading-[36px]',
             )}
           >
@@ -117,7 +156,7 @@ const PostHomePage = ({
             <FilterButton
               title="Filter by Topic"
               items={allTopics}
-              className={clsx('mt-[29px]', 'lg:mt-[42px]')}
+              className={clsx('mt-[29px]', 'lg:mt-[42px] subItem opacity-0')}
             />
           )}
         </div>

@@ -51,7 +51,7 @@ const CustomSelectButton = ({ title, items, className }: Props) => {
       <select
         ref={selectRef}
         className={clsx(
-          'block justify-center gap-x-[10px] bg-lightGrey rounded-full w-[182px] px-[20px] py-[10.5px] font-codec-extra-bold text-[18px] leading-[27px] text-lavender appearance-none cursor-pointer',
+          'block justify-center gap-x-[10px] bg-lightGrey rounded-full w-[182px] px-[20px] py-[10.5px] font-codec-extra-bold text-[18px] leading-[27px] text-lavender appearance-none cursor-pointer focus:outline-lavender',
           'lg:text-left',
         )}
         value={''}
