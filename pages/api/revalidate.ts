@@ -236,12 +236,80 @@ async function getIndividualPostSlugs(
     }),
   ).then((slugArrays) => slugArrays.flat())
 
+  const allOtherSlugs = await getAllRefercingSlugs(client, postId, moduleTypes)
+
   return [
     ...allPostPages,
     `/${post.slug.current}`,
     ...topicPagesThatNeedToBeRevalidated,
     ...moduleRevalidationSlugs,
+    ...allOtherSlugs,
   ]
+}
+
+async function getAllRefercingSlugs(
+  client: SanityClient,
+  body: any,
+  modules: string[],
+): Promise<string[]> {
+  const id = body._id
+  const referencingPages = await client.fetch(
+    groq`*[references($id) && _type in ["subPage", "post", "topic", 'homepage', 'locationHomePage', 'blogHomePage', 'globalSettings']]{
+      _type,
+      "slug": slug.current
+    }`,
+    { id },
+  )
+
+  if (referencingPages.find((page) => page._type === 'globalSettings')) {
+    const allRoutes = await queryAllRoutes(client)
+    return allRoutes
+  }
+
+  const referencingPagesSlugs = referencingPages
+    .map((route: { _type: string; slug: string | null }) => {
+      if (route.slug === null && route._type in pagesWithoutSlugs) {
+        // Use predefined slug for pages without slugs
+        return {
+          _type: route._type,
+          slug: pagesWithoutSlugs[
+            route._type as keyof typeof pagesWithoutSlugs
+          ],
+        }
+      } else if (route.slug) {
+        // Format slug for pages with slugs
+        return {
+          _type: route._type,
+          slug: '/' + route.slug, // Special case for homepage
+        }
+      } else {
+        console.warn(`Unexpected document type without slug: ${route._type}`)
+        return null
+      }
+    })
+    .filter((route) => route !== null)
+    .map((route) => route.slug)
+
+  // Find modules that reference this location
+  const referencingModules = await client.fetch(
+    groq`*[_type in $modules && references($id)]._id`,
+    { id, modules },
+  )
+
+  console.log(referencingModules, 'This is the referencing modules')
+  // Use moduleRevalidation for each referencing module
+  const moduleRevalidationSlugs = await Promise.all(
+    referencingModules.map(async (moduleId) => {
+      return moduleHandler(client, { _id: moduleId })
+    }),
+  ).then((slugArrays) => slugArrays.flat())
+
+  const slugsToRevalidate = [
+    ...referencingPagesSlugs,
+    ...moduleRevalidationSlugs,
+  ]
+  // Remove duplicates
+  return Array.from(new Set(slugsToRevalidate))
 }
 
 async function getIndividualLocationSlugs(
@@ -256,43 +324,17 @@ async function getIndividualLocationSlugs(
     { locationId },
   )
 
-  // Query all pages that directly reference this location
-  const referencingPages = await client.fetch(
-    groq`*[references($locationId) && _type in ["subPage", "post", "topic", 'homepage', 'locationHomePage', 'blogHomePage', 'globalSettings']]{
-      _type,
-      "slug": slug.current
-    }`,
-    { locationId },
+  const allOtherSlugs = await getAllRefercingSlugs(
+    client,
+    locationId,
+    moduleTypes,
   )
-
-  console.log(referencingPages, 'This is the referencing pages')
-  if (referencingPages.find((page) => page._type === 'globalSettings')) {
-    const allRoutes = await queryAllRoutes(client)
-    return allRoutes
-  }
-
-  // Find modules that reference this location
-  const referencingModules = await client.fetch(
-    groq`*[_type in $moduleTypes && references($locationId)]._id`,
-    { locationId, moduleTypes },
-  )
-
-  console.log(referencingModules, 'This is the referencing modules')
-  // Use moduleRevalidation for each referencing module
-  const moduleRevalidationSlugs = await Promise.all(
-    referencingModules.map(async (moduleId) => {
-      return moduleHandler(client, { _id: moduleId })
-    }),
-  ).then((slugArrays) => slugArrays.flat())
 
   // Combine all slugs
   const slugsToRevalidate = [
     `/${location.slug.current}`,
     '/locations',
-    ...referencingPages.map((page: { _type: string; slug: string }) =>
-      page._type === 'page' ? `/${page.slug}` : `/${page._type}/${page.slug}`,
-    ),
-    ...moduleRevalidationSlugs,
+    ...allOtherSlugs,
   ]
 
   // Remove duplicates
@@ -310,6 +352,9 @@ export async function getTopicPostPageSlugs(
     groq`count(*[_type == "post" && references($topicId)])`,
     { topicId },
   )
+
+  const allOtherSlugs = await getAllRefercingSlugs(client, topicId, moduleTypes)
+
   const postsPerPage = 10 // Adjust this based on your pagination setup
   // Calculate the number of pages
   const totalPages = Math.ceil(totalPosts / postsPerPage)
@@ -322,7 +367,10 @@ export async function getTopicPostPageSlugs(
     throw new Error(`Topic with ID ${topicId} not found`)
   }
   // Generate routes for each page
-  return Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`)
+  return [
+    ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+    ...allOtherSlugs,
+  ]
 }
 
 const moduleTypes = [
