@@ -258,12 +258,18 @@ async function getIndividualLocationSlugs(
 
   // Query all pages that directly reference this location
   const referencingPages = await client.fetch(
-    groq`*[references($locationId) && _type in ["page", "subPage", "post", "topic"]]{
+    groq`*[references($locationId) && _type in ["subPage", "post", "topic", 'homepage', 'locationHomePage', 'blogHomePage', 'globalSettings']]{
       _type,
       "slug": slug.current
     }`,
     { locationId },
   )
+
+  console.log(referencingPages, 'This is the referencing pages')
+  if (referencingPages.find((page) => page._type === 'globalSettings')) {
+    const allRoutes = await queryAllRoutes(client)
+    return allRoutes
+  }
 
   // Find modules that reference this location
   const referencingModules = await client.fetch(
@@ -271,6 +277,7 @@ async function getIndividualLocationSlugs(
     { locationId, moduleTypes },
   )
 
+  console.log(referencingModules, 'This is the referencing modules')
   // Use moduleRevalidation for each referencing module
   const moduleRevalidationSlugs = await Promise.all(
     referencingModules.map(async (moduleId) => {

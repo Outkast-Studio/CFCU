@@ -27,13 +27,13 @@ const PageLink = ({
           setHref(`/${data?.link?.slug}`)
           break
         case 'blogHomePage':
-          setHref(`/posts`)
+          setHref(`/posts/page/1`)
           break
         case 'locationHomePage':
           setHref(`/locations`)
           break
         case 'topic':
-          setHref(`/${data?.link?.slug}`)
+          setHref(`/${data?.link?.slug}/1`)
           break
         case 'location':
           setHref(`/${data?.link?.slug}`)

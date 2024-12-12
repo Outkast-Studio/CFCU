@@ -17,6 +17,7 @@ export default defineType({
       type: 'reference',
       to: [
         { type: 'post' },
+        { type: 'topic' },
         { type: 'homepage', name: 'homepage', title: 'Home' },
         { type: 'location', name: 'location', title: 'Location' },
         { type: 'subPage', name: 'subPage', title: 'Sub Page' },
