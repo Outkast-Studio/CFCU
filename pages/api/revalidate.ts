@@ -124,6 +124,7 @@ async function querySubPageRoutes(
     }`,
     { subPageId },
   )
+  if (!subPage) return []
   const allOtherSlugs = await getAllRefercingSlugs(
     client,
     subPageId,
@@ -137,7 +138,7 @@ async function querySubPageRoutes(
       ...allOtherSlugs,
     ]
   }
-  return [`/${subPage.slug.current}`, ...allOtherSlugs]
+  return [`/${subPage?.slug?.current}`, ...allOtherSlugs]
 }
 
 // Mapping for pages without slugs
