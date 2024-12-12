@@ -249,10 +249,9 @@ async function getIndividualPostSlugs(
 
 async function getAllRefercingSlugs(
   client: SanityClient,
-  body: any,
+  id: string,
   modules: string[],
 ): Promise<string[]> {
-  const id = body._id
   const referencingPages = await client.fetch(
     groq`*[references($id) && _type in ["subPage", "post", "topic", 'homepage', 'locationHomePage', 'blogHomePage', 'globalSettings']]{
       _type,
