@@ -118,9 +118,9 @@ async function querySubPageRoutes(
     groq`*[_type == "post" && _id == $subPageId][0]{
       _id,
       slug,
-      parent->{
-        slug
-      }
+      "parent": coalesce(parent->{
+        "slug": slug.current
+      }, null)
     }`,
     { subPageId },
   )
