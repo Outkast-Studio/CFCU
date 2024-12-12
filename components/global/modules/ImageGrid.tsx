@@ -83,10 +83,38 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                       className={clsx('lg:block w-full')}
                       key={(String(index) + logo?.logo?.alt) as string}
                     >
-                      <DynamicImage logo={logo} className={clsx('w-full')} />
+                      <Image
+                        src={urlForImage(logo?.logo)
+                          .width(1000)
+                          .quality(100)
+                          .url()}
+                        alt={logo?.logo.alt as string}
+                        width={1000}
+                        height={1000}
+                        onLoadingComplete={(image) =>
+                          image.classList.remove('opacity-0')
+                        }
+                        className={clsx(
+                          'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
+                        )}
+                      />
                     </a>
                   ) : (
-                    <DynamicImage logo={logo} className={clsx('w-full')} />
+                    <Image
+                      src={urlForImage(logo?.logo)
+                        .width(1000)
+                        .quality(100)
+                        .url()}
+                      alt={logo?.logo.alt as string}
+                      width={1000}
+                      height={1000}
+                      onLoadingComplete={(image) =>
+                        image.classList.remove('opacity-0')
+                      }
+                      className={clsx(
+                        'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
+                      )}
+                    />
                   ),
                 )}
               </div>
