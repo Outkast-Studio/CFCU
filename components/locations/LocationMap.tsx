@@ -10,6 +10,8 @@ import { LocationPage, ATMLocation } from 'types/sanity'
 import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import Button from 'components/global/ui/Button'
+import { gsap } from 'gsap'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 
 // Replace with your Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN
@@ -328,9 +330,26 @@ const LocationCard = ({
   setSelectedLocation: React.Dispatch<React.SetStateAction<LocationPage | null>>
   setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null)
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power4.out' },
+      )
+    })
+
+    return () => {
+      ctx.revert()
+    }
+  }, [])
   return (
     <article
-      className={clsx('w-[428px] bg-white p-[30px] relative mapCardShadow')}
+      ref={cardRef}
+      className={clsx(
+        'w-[428px] bg-white p-[30px] relative mapCardShadow opacity-0',
+      )}
     >
       <button
         onClick={() => setSelectedLocation(null)}
@@ -427,9 +446,26 @@ const ATMCard = ({
   setSelectedLocation: React.Dispatch<React.SetStateAction<LocationPage | null>>
   setSelectedATM: React.Dispatch<React.SetStateAction<ATMLocation | null>>
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null)
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power4.out' },
+      )
+    })
+
+    return () => {
+      ctx.revert()
+    }
+  }, [])
   return (
     <article
-      className={clsx('w-[428px] bg-white p-[30px] relative mapCardShadow')}
+      ref={cardRef}
+      className={clsx(
+        'w-[428px] bg-white p-[30px] relative mapCardShadow opacity-0',
+      )}
     >
       <button
         onClick={() => setSelectedATM(null)}

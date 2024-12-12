@@ -25,6 +25,8 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description:
+        'The slug must follow the format "locations/[location-name]"',
       options: {
         source: 'title',
         maxLength: 96,
@@ -54,7 +56,8 @@ export default defineType({
       title: 'Coordinates',
       type: 'object',
       group: 'locationSettings',
-      description: 'The coordinates of the location for the interactive map.',
+      description:
+        'The coordinates of the location for the interactive map. You can use https://www.gps-coordinates.net/ to find the coordinates.',
       fields: [
         defineField({
           name: 'latitude',
@@ -75,6 +78,8 @@ export default defineType({
       name: 'thumbnailImage',
       title: 'Thumbnail Image',
       type: 'image',
+      description:
+        'The image that will be used for the location page hero and cards on the location home page.',
       fields: [
         {
           name: 'alt',

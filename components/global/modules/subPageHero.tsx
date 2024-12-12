@@ -88,6 +88,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
               <MediaComponent
                 media={data?.backgroundMedia}
                 isPlaying={isPlaying}
+                priority={true}
               />
             </div>
           </div>
@@ -116,11 +117,16 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
             'lg:gap-y-[19px] lg:pb-[71px]',
           )}
         >
-          <h1 className={clsx('w-h1 text-white', 'lg:page-title-desktop')}>
+          <h1
+            className={clsx(
+              'w-h1 text-white',
+              'lg:page-title-desktop lg:!leading-[85px]',
+            )}
+          >
             <SplitTextDynamic
               value={data?.title}
               classNames={'line'}
-              wrapperHeights={'100px'}
+              wrapperHeights={'85px'}
               duration={0.7}
               stagger={0.1}
               yPercent={40}

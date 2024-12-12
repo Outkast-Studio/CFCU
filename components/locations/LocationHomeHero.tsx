@@ -5,14 +5,60 @@ import defualtSubPageHero from 'public/images/defaultSubPage.png'
 import MediaComponent from 'components/global/ui/Media'
 import { LocationHomepageType } from 'types/sanity'
 import Link from 'next/link'
+import { gsap } from 'gsap'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useRef } from 'react'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 
 const LocationHomeHero = ({
   data,
 }: {
   data: LocationHomepageType['pageHero']
 }) => {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const backgroundRef = useRef<HTMLDivElement>(null)
+  const { width } = useWindowSize()
+
+  useIsomorphicLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const q = gsap.utils.selector(heroRef.current)
+      const tl = gsap.timeline({ delay: 0.5 }).fromTo(
+        q('.subItem'),
+        { opacity: 0, y: width > 1024 ? 30 : 10 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power4.out',
+          duration: 0.7,
+          stagger: 0.1,
+        },
+        '<',
+      )
+    })
+    if (data?.needsBackgroundMedia) {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: backgroundRef.current,
+            start: 'top-=16px top',
+            end: `+=${backgroundRef.current.offsetHeight * 0.8}px`,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        })
+        .to(backgroundRef.current, { scale: 1.05 }, '<+=0')
+    }
+    return () => {
+      ctx.revert()
+    }
+  }, [])
+
   return (
-    <section className={clsx('relative', 'lg:min-h-[650px] lg:h-[70vh]')}>
+    <section
+      ref={heroRef}
+      className={clsx('relative', 'lg:min-h-[650px] lg:h-[70vh]')}
+    >
       <div className={clsx('absolute h-full w-full bg-lavender')}>
         {data?.needsBackgroundMedia && (
           <div
@@ -22,6 +68,7 @@ const LocationHomeHero = ({
             )}
           >
             <div
+              ref={backgroundRef}
               className={clsx(
                 'rounded-[10px] overflow-hidden relative h-full',
                 'lg:rounded-[20px]',
@@ -63,11 +110,19 @@ const LocationHomeHero = ({
           )}
         >
           <h1 className={clsx('w-h1 text-white', 'lg:page-title-desktop')}>
-            {data?.title}
+            <SplitTextDynamic
+              value={data?.title}
+              classNames={'line'}
+              wrapperHeights={'85px'}
+              duration={0.7}
+              stagger={0.1}
+              yPercent={40}
+              delay={0.3}
+            />
           </h1>
           <p
             className={clsx(
-              'w-paragraph-m-desktop text-white',
+              'w-paragraph-m-desktop text-white subItem opacity-0',
               'lg:text-[26px] lg:leading-[33.8px]',
             )}
           >

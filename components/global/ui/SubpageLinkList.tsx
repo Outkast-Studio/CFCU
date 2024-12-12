@@ -15,7 +15,13 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
         )}
       >
         {data?.map((page) => (
-          <Link href={page?.slug?.current} key={page?.slug?.current}>
+          <Link
+            href={page?.slug?.current}
+            key={page?.slug?.current}
+            className={clsx(
+              'hover:opacity-60 transition-opacity ease-linear duration-200',
+            )}
+          >
             {' '}
             {page?.title}
           </Link>
