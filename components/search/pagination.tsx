@@ -84,7 +84,7 @@ const Pagination = ({
               value={selectedPage}
               className={clsx(
                 'top-0 left-0 opacity- cursor-pointer appearance-none',
-                'w-[83px] flex items-center justify-between bg-lightGrey rounded-[4px] pl-[16px] pr-[8px] h-[48px] mr-[9px] ',
+                'w-[83px] flex items-center justify-between bg-lightGrey rounded-[4px] pl-[16px] pr-[8px] h-[48px] mr-[9px] focus:outline-lavender',
                 'text-lavender font-codec-extra-bold text-[18px] leading-[27px]',
               )}
             >

@@ -43,7 +43,6 @@ const PostHomePage = ({
   const { width } = useWindowSize()
   useIsomorphicLayoutEffect(() => {
     if (!lineAmount) return
-    console.log(lineAmount)
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
       const tl = gsap.timeline({ delay: lineAmount * 0.3 }).fromTo(

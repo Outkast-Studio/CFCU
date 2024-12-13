@@ -2,11 +2,8 @@ import React from 'react'
 import { useEffect, useRef } from 'react'
 import { SplitText } from 'gsap/dist/SplitText'
 import { gsap } from 'gsap'
-import { PortableText } from '@portabletext/react'
-import { myWysiwygComponentsWithoutPadding } from 'pages/_app'
 import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
-import { useWindowSize } from 'hooks/useWindowSize'
 import { useState } from 'react'
 
 type Props = {
@@ -36,8 +33,6 @@ const SplitTextDynamic = ({
 }: Props) => {
   const headingRef = useRef(null)
   const tlRef = useRef(null)
-  const accessibilityRef = useRef(null)
-  const [animationComplete, setAnimationComplete] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -60,8 +55,8 @@ const SplitTextDynamic = ({
         .timeline({
           paused: true,
           onComplete: () => {
-            // headingRef.current.remove()
-            setAnimationComplete(true)
+            headingRef.current.classList.remove('opacity-0')
+            split.revert()
           },
         })
         .fromTo(
@@ -88,16 +83,10 @@ const SplitTextDynamic = ({
     if (paused) return
     tlRef.current.play()
   }, [paused])
-  //TODO need to consider accessibility here.
   return (
-    <>
-      <p ref={headingRef} className={clsx(classNames, 'opacity-0')}>
-        {stegaClean(value)}
-      </p>
-      {/* {animationComplete && (
-        <>{isHeading ? <>{value}</> : <p ref={accessibilityRef}>{value}</p>}</>
-      )} */}
-    </>
+    <span ref={headingRef} className={clsx(classNames, 'opacity-0')}>
+      {stegaClean(value)}
+    </span>
   )
 }
 export default SplitTextDynamic

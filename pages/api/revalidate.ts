@@ -123,7 +123,6 @@ async function querySubPageRoutes(
     { subPageId },
   )
 
-  console.log(subPage, 'This is the subPage')
   if (!subPage) return []
   const allOtherSlugs = await getAllRefercingSlugs(
     client,
@@ -304,7 +303,6 @@ async function getAllRefercingSlugs(
     { id, modules },
   )
 
-  console.log(referencingModules, 'This is the referencing modules')
   // Use moduleRevalidation for each referencing module
   const moduleRevalidationSlugs = await Promise.all(
     referencingModules.map(async (moduleId) => {
