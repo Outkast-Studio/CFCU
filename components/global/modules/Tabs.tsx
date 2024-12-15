@@ -195,7 +195,10 @@ const Tabs = ({ data }: { data: TabsType }) => {
 
         {/* TODO sort the portable text */}
         <div className={clsx('col-start-7 col-end-13')}>
-          <div ref={contentRef} className={clsx('h-fit ')}>
+          <div
+            ref={contentRef}
+            className={clsx('h-fit flex flex-col gap-y-[24px]')}
+          >
             <PortableText
               value={data?.tabs?.[contentTab]?.content}
               components={WysiwygComponentsWithoutPadding as any}

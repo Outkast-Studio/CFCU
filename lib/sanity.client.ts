@@ -27,6 +27,7 @@ import {
   topicBySlugQuery,
   topicSlugsQuery,
   allTopicsQuery,
+  fourOhFourQuery,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -241,4 +242,8 @@ export async function getTopicBySlug(
 
 export async function getAllTopics(client: SanityClient) {
   return (await client.fetch(allTopicsQuery)) || []
+}
+
+export async function get404Page(client: SanityClient) {
+  return (await client.fetch(fourOhFourQuery)) || {}
 }

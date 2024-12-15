@@ -593,3 +593,11 @@ export interface TopicPageType {
 export interface TopicWithRelatedPosts extends TopicPageType {
   relatedPosts: PostPageType[]
 }
+
+export interface FourOhFour {
+  backgroundMedia: Media
+  backgroundNeedsGradient?: boolean
+  title: string
+  description: string
+  links: PageLinkType[]
+}

@@ -46,6 +46,8 @@ export const iframeOptions = {
           return '/test-modules'
         case 'locationHomePage':
           return '/locations'
+        case '404':
+          return '/404'
         case 'rates':
           return (document as any)?.slug?.current
             ? `/${(document as any).slug.current}`
@@ -63,6 +65,11 @@ export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
   return (S, { schemaType }) => {
     switch (schemaType) {
       case 'dynamicPage':
+        return S.document().views([
+          S.view.form(),
+          S.view.component(Iframe).options(iframeOptions).title('Preview'),
+        ])
+      case '404':
         return S.document().views([
           S.view.form(),
           S.view.component(Iframe).options(iframeOptions).title('Preview'),

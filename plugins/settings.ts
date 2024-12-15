@@ -10,6 +10,7 @@ import globalSettings from 'schemas/singletons/globalSettings'
 import homepage from 'schemas/singletons/homepage'
 import testModules from 'schemas/singletons/testModules'
 import { Browser, Folder } from '@phosphor-icons/react/dist/ssr'
+import fourOhFour from 'schemas/singletons/404'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -76,6 +77,7 @@ export const settingsStructure = (
       'topic',
       'teamGrid',
       'embed',
+      '404',
     ]
 
     const globalSettingsListItem = S.listItem()
@@ -101,6 +103,21 @@ export const settingsStructure = (
           .id(homepage.name)
           .schemaType(homepage.name)
           .documentId(homepage.name)
+          .views([
+            S.view.form(),
+            S.view.component(Iframe).options(iframeOptions).title('Preview'),
+          ]),
+      )
+
+    const fourOhFourListItem = S.listItem()
+      .title(fourOhFour.title)
+      .icon(fourOhFour.icon)
+      .child(
+        S.editor()
+          .title(fourOhFour.title)
+          .id(fourOhFour.name)
+          .schemaType(fourOhFour.name)
+          .documentId(fourOhFour.name)
           .views([
             S.view.form(),
             S.view.component(Iframe).options(iframeOptions).title('Preview'),
@@ -198,6 +215,8 @@ export const settingsStructure = (
         globalSettingsListItem,
         S.divider(),
         homepageListItem,
+        S.divider(),
+        fourOhFourListItem,
         S.divider(),
         postsListItem,
         S.divider(),

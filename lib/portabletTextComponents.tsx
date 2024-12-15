@@ -292,8 +292,8 @@ export const WysiwygComponents = {
     h5: ({ children }) => (
       <h5
         className={clsx(
-          ' w-h5 text-lavender max-w-[888px] mx-auto w-full',
-          'lg:w-h5-desktop',
+          ' w-h5 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
+          'lg:w-h5-desktop lg:px-[0px]',
         )}
       >
         {children}
