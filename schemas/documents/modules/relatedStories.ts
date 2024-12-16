@@ -51,7 +51,8 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
+      rows: 3,
       description: 'Description text above the page link',
     }),
     defineField({
@@ -86,7 +87,14 @@ export default defineType({
       title: 'Topic',
       type: 'reference',
       to: [{ type: 'topic' }],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((field, context) => {
+          if (context.document?.useTopic) {
+            return 'You must select a topic'
+          } else {
+            return true
+          }
+        }),
       description:
         'Select a topic to display related stories. The first 3 posts will be displayed based on the date they were created.',
       hidden: ({ document }) => !document?.useTopic,

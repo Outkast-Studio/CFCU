@@ -16,6 +16,7 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
+      description: 'The title of the post',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -23,6 +24,7 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description: 'The slug stucture for this post will be /posts/[slug]',
       options: {
         source: 'title',
         maxLength: 96,
@@ -51,12 +53,14 @@ export default defineType({
       name: 'type',
       title: 'Type',
       type: 'string',
+      description: 'The type of post. Guide, news, story, etc.',
       validation: (Rule) => Rule.required(),
     }),
 
     defineField({
       name: 'author',
       title: 'Author',
+      description: 'The author of the post',
       type: 'reference',
       to: [{ type: 'author' }],
       validation: (Rule) => Rule.required(),
@@ -64,12 +68,14 @@ export default defineType({
     defineField({
       name: 'date',
       title: 'Date',
+      description: 'The date the post was published',
       type: 'datetime',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
+      description: 'A brief summary of the post that is used on the post card.',
       type: 'text',
       validation: (Rule) => Rule.required(),
     }),

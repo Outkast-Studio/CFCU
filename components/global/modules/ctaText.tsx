@@ -76,15 +76,15 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           {data?.title}
         </h3>
         {data.description && (
-          <div
+          <p
             style={{ color: theme?.monotoneCopy }}
             className={clsx(
               ' w-paragraph text-center mt-[20px] animateContent opacity-0',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
-            <PortableText value={data?.description} />
-          </div>
+            {data?.description}
+          </p>
         )}
         <PageLink
           data={data?.cta}

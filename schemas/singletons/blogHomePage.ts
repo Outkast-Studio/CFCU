@@ -25,7 +25,8 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
+      rows: 3,
       validation: (Rule) => Rule.required(),
       description: 'A brief description to accompany the main title',
     }),
@@ -67,4 +68,14 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+    prepare({ title }) {
+      return {
+        title: 'Blog Home Page',
+      }
+    },
+  },
 })

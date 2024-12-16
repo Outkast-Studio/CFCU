@@ -22,7 +22,7 @@ import ErrorBoundary from './ErrorBoundary'
 import RateTable from './RateTable'
 
 const ModuleFactory = ({ modules }) => {
-  if (modules.length === 0) return null
+  if (!modules || modules?.length === 0) return null
 
   const siteAlerts = modules.filter((module) => module?._type === 'siteAlert')
   const otherModules = modules.filter((module) => module?._type !== 'siteAlert')

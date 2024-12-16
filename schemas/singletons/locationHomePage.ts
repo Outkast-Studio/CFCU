@@ -108,4 +108,11 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Location Home Page',
+      }
+    },
+  },
 })

@@ -91,7 +91,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
           },
         })
         .to(articleRef.current, {
-          yPercent: width > 1600 ? 30 : 10,
+          yPercent: width > 1600 ? 30 : 0,
         })
     })
     return () => {
@@ -199,15 +199,13 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
 
             {data?.ctaCard?.description ? (
               <div
+                style={{ color: theme?.heading }}
                 className={clsx(
                   'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle opacity-0',
                   'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
                 )}
               >
-                <PortableText
-                  value={data?.ctaCard?.description}
-                  components={WysiwygComponentsWithoutPadding as any}
-                />
+                <PortableText value={data?.ctaCard?.description} />
               </div>
             ) : (
               <div

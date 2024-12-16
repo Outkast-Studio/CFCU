@@ -133,7 +133,7 @@ export interface CtaCardGridHomeType {
   cards: Array<{
     image: ImageAsset
     title: string
-    description: PortableTextBlock
+    description: string
     cardLink: CardLinkType
   }>
   linkListTitle: string
@@ -185,7 +185,7 @@ export interface CtaTextType {
   }
   title: string
   subtitle?: string
-  description?: PortableTextBlock
+  description?: string
   cta: PageLinkType
 }
 
@@ -281,7 +281,7 @@ export interface TextCardGridType {
 export interface RelatedStoriesType {
   title: string
   subTitle?: string
-  description?: PortableTextBlock[]
+  description?: string
   pageLink: PageLinkType
   posts?: PostPageType[]
   headingVariant: 'normal' | 'large'
@@ -485,7 +485,7 @@ export interface LocationHomepageType {
 
 export interface BlogHomepageType {
   title: string
-  description: PortableTextBlock[]
+  description: string
   modules: Modules
 }
 
@@ -580,7 +580,7 @@ export interface TopicPageType {
     current: string
   }
   title: string
-  description: PortableTextBlock[]
+  description: string
   metaTitle?: string
   metaDescription?: string
   ogImage?: {

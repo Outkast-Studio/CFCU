@@ -20,7 +20,8 @@ export default defineField({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
+      rows: 3,
       description: 'Description text above the card grid',
     }),
 
@@ -57,7 +58,8 @@ export default defineField({
             defineField({
               name: 'description',
               title: 'Description',
-              type: 'blockContent',
+              type: 'text',
+              rows: 3,
               description: 'Description text for the card',
             }),
             defineField({

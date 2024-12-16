@@ -58,14 +58,14 @@ export default function CardGridCard({
           </h5>
         )}
         {data?.description && (
-          <div
+          <p
             className={clsx(
               'text-[14px] leading-[21px] text-black/65 mt-[4px]',
               'lg:w-paragraph-s-desktop',
             )}
           >
-            <PortableText value={data?.description} />
-          </div>
+            {data?.description}
+          </p>
         )}
       </article>
     </CardLink>

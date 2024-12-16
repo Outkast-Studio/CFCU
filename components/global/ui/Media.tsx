@@ -35,7 +35,7 @@ export default function MediaComponent({
     return (
       <Image
         //@ts-ignore
-        src={urlForImage(media?.image?.asset).url()}
+        src={urlForImage(media?.image?.asset).width(2440).url()}
         //@ts-ignore
         alt={media?.image?.alt}
         fill

@@ -53,7 +53,8 @@ export default defineField({
             defineField({
               name: 'description',
               title: 'Description',
-              type: 'blockContent',
+              type: 'text',
+              rows: 3,
               validation: (Rule) => Rule.required(),
             }),
             defineField({

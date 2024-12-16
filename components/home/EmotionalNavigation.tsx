@@ -89,7 +89,7 @@ const EmotionalNavigation = ({
       >
         <Image
           src={urlForImage(data?.icon).url()}
-          alt={data.icon.alt as string}
+          alt={data?.icon?.alt as string}
           width={122}
           height={92}
           className={clsx('emotionalNavigationIcon emotionalAnimateOut')}
@@ -127,7 +127,7 @@ const EmotionalNavigation = ({
           ref={containerRef}
           className={clsx('hidden', 'lg:flex lg:gap-x-[24px] ')}
         >
-          {data.navigationCards.map((card, index) => (
+          {data?.navigationCards?.map((card, index) => (
             <CardDesktop data={card} key={index} />
           ))}
         </div>
@@ -187,14 +187,14 @@ const CardMobile = ({
       <Accordion.Content className={clsx('AccordionContent overflow-hidden')}>
         <p>{data.description}</p>
         <nav className={clsx('flex flex-col gap-y-[12px] mt-[18px] pb-[41px]')}>
-          {data.links.map((link, index) => (
+          {data?.links?.map((link, index) => (
             <PageLink
               data={link}
               key={index}
               className={clsx('flex flex-row gap-x-[6px] items-center')}
             >
               <span className={clsx('font-codec-extra-bold')}>
-                {link.title}
+                {link?.title}
               </span>
               <svg
                 width="16"
@@ -206,7 +206,7 @@ const CardMobile = ({
                 <path
                   d="M13.8538 8.35378L9.35375 12.8538C9.25993 12.9476 9.13268 13.0003 9 13.0003C8.86732 13.0003 8.74007 12.9476 8.64625 12.8538C8.55243 12.76 8.49972 12.6327 8.49972 12.5C8.49972 12.3674 8.55243 12.2401 8.64625 12.1463L12.2931 8.50003H2.5C2.36739 8.50003 2.24021 8.44736 2.14645 8.35359C2.05268 8.25982 2 8.13264 2 8.00003C2 7.86743 2.05268 7.74025 2.14645 7.64648C2.24021 7.55271 2.36739 7.50003 2.5 7.50003H12.2931L8.64625 3.85378C8.55243 3.75996 8.49972 3.63272 8.49972 3.50003C8.49972 3.36735 8.55243 3.2401 8.64625 3.14628C8.74007 3.05246 8.86732 2.99976 9 2.99976C9.13268 2.99976 9.25993 3.05246 9.35375 3.14628L13.8538 7.64628C13.9002 7.69272 13.9371 7.74786 13.9623 7.80856C13.9874 7.86926 14.0004 7.93433 14.0004 8.00003C14.0004 8.06574 13.9874 8.13081 13.9623 8.1915C13.9371 8.2522 13.9002 8.30735 13.8538 8.35378Z"
                   fill={
-                    stegaClean(data.theme.label) === 'Yellow'
+                    stegaClean(data?.theme?.label) === 'Yellow'
                       ? '#3C1053'
                       : '#FFC600'
                   }
@@ -225,14 +225,14 @@ const CardDesktop = ({
 }: {
   data: HomepageType['emotionalNavigation']['navigationCards'][0]
 }) => {
-  const colors = getThemeClasses(stegaClean(data.theme.label))
+  const colors = getThemeClasses(stegaClean(data?.theme?.label))
   if (!colors) {
     return <div></div>
   }
 
   return (
     <article
-      style={{ backgroundColor: colors.background, color: colors.heading }}
+      style={{ backgroundColor: colors?.background, color: colors?.heading }}
       className={clsx('px-[53px] pt-[77px] w-[547px] h-[620px] flex-shrink-0')}
     >
       <h4
@@ -240,16 +240,16 @@ const CardDesktop = ({
           'text-left text-[16px] leading-[16px] tracking-[1.6px] uppercase font-codec-news',
         )}
       >
-        {data.subtitle}
+        {data?.subtitle}
       </h4>
       <h3 className={clsx('title-s-desktop text-left mt-[8px]')}>
-        {data.title}
+        {data?.title}
       </h3>
       <p className={clsx('w-paragraph-l-desktop mt-[17px]')}>
-        {data.description}
+        {data?.description}
       </p>
       <nav className={clsx('flex flex-col gap-y-[12px] mt-[20px] pb-[41px]')}>
-        {data.links.map((link, index) => (
+        {data?.links.map((link, index) => (
           <PageLink
             data={link}
             key={index}
@@ -260,7 +260,7 @@ const CardDesktop = ({
                 'font-codec-extra-bold text-[18px] leading-[27px]',
               )}
             >
-              {link.title}
+              {link?.title}
             </span>
             <svg
               width="16"
@@ -275,7 +275,7 @@ const CardDesktop = ({
               <path
                 d="M13.8538 8.35378L9.35375 12.8538C9.25993 12.9476 9.13268 13.0003 9 13.0003C8.86732 13.0003 8.74007 12.9476 8.64625 12.8538C8.55243 12.76 8.49972 12.6327 8.49972 12.5C8.49972 12.3674 8.55243 12.2401 8.64625 12.1463L12.2931 8.50003H2.5C2.36739 8.50003 2.24021 8.44736 2.14645 8.35359C2.05268 8.25982 2 8.13264 2 8.00003C2 7.86743 2.05268 7.74025 2.14645 7.64648C2.24021 7.55271 2.36739 7.50003 2.5 7.50003H12.2931L8.64625 3.85378C8.55243 3.75996 8.49972 3.63272 8.49972 3.50003C8.49972 3.36735 8.55243 3.2401 8.64625 3.14628C8.74007 3.05246 8.86732 2.99976 9 2.99976C9.13268 2.99976 9.25993 3.05246 9.35375 3.14628L13.8538 7.64628C13.9002 7.69272 13.9371 7.74786 13.9623 7.80856C13.9874 7.86926 14.0004 7.93433 14.0004 8.00003C14.0004 8.06574 13.9874 8.13081 13.9623 8.1915C13.9371 8.2522 13.9002 8.30735 13.8538 8.35378Z"
                 fill={
-                  stegaClean(data.theme.label) === 'Yellow'
+                  stegaClean(data?.theme?.label) === 'Yellow'
                     ? '#3C1053'
                     : '#FFC600'
                 }

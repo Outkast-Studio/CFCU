@@ -143,14 +143,14 @@ const PostHomePage = ({
               setLineAmount={(count) => setLineAmount(count)}
             />
           </h1>
-          <div
+          <p
             className={clsx(
               'text-black/75 text-center mt-[20px] w-paragraph-m-desktop subItem opacity-0',
               'lg:max-w-[922px] lg:mx-auto lg:font-codec-news lg:mt-[2px] lg:text-[24px] lg:leading-[36px]',
             )}
           >
-            <PortableText value={data?.description} />
-          </div>
+            {data?.description}
+          </p>
           {isBlogHome && (
             <FilterButton
               title="Filter by Topic"

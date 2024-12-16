@@ -56,14 +56,14 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             {data?.title}
           </h3>
           {data.description && (
-            <div
+            <p
               className={clsx(
                 'text-[18px] leading-[25.2px] flex flex-col gap-y-[24px] text-center font-codec-news break-words mt-[13px] text-black/75',
                 'lg:w-paragraph-l-desktop lg:mt-[0px] lg:max-w-[980px]',
               )}
             >
-              <PortableText value={data?.description} />
-            </div>
+              {data?.description}
+            </p>
           )}
           {data?.pageLink && (
             <PageLink data={data?.pageLink} className={clsx('mt-[16px] block')}>
