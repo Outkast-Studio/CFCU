@@ -61,7 +61,7 @@ async function queryStaleRoutes(
     switch (body._type) {
       case 'globalSettings':
         return await queryAllRoutes(client)
-      case 'blogHomepage':
+      case 'blogHomePage':
         return await getAllPostHomePageSlugs(client)
       case 'homepage':
         return ['/']
