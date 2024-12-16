@@ -72,7 +72,7 @@ export interface CtaInContentType {
     subtitle?: {
       type?: 'text' | 'svg'
       text?: string
-      svg?: string
+      svg?: ImageAsset
     }
     title: string
     description?: PortableTextBlock

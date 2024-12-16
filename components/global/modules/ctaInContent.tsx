@@ -131,9 +131,12 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             </h2>
           )}
           {data?.ctaCard?.subtitle?.type === 'svg' && (
-            <div
-              className={clsx('w-[140px] animateArticle', 'lg:hidden')}
-              dangerouslySetInnerHTML={{ __html: data?.ctaCard?.subtitle?.svg }}
+            <Image
+              src={urlForImage(data?.ctaCard?.subtitle?.svg).url()}
+              alt={data?.ctaCard?.subtitle?.svg?.alt as string}
+              width={140}
+              height={140}
+              className={clsx('animateArticle')}
             />
           )}
           <div
