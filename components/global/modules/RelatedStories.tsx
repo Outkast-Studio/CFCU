@@ -47,7 +47,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
           )}
           <h3
             className={clsx(
-              'title-xl text-lavender ',
+              'title-xl text-lavender text-center',
               stegaClean(data?.headingVariant) === 'large'
                 ? 'lg:title-xl-desktop'
                 : 'lg:title-m-desktop lg:py-[20px]',
