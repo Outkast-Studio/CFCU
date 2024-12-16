@@ -29,11 +29,13 @@ const Header = () => {
           transform: `translateY(${alertIsOpen ? alertHeight + (width < 1024 ? 60 : 48) : width > 1024 ? 48 : 60}px)`,
         }}
         className={clsx(
-          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 delay-300',
+          'fixed top-[00px] right-[24px] z-[13] transition-all ease-in duration-300 ',
           'lg:right-[48px] lg:top-[0] ',
           alertIsOpen && 'lg:top-[0px]  ease-in-out-cubic',
           (isMenuOpen || isPastPoint) &&
             '!translate-y-[60px] lg:!translate-y-[48px]',
+          globalSettings?.navigation?.headerBarLinks?.length === 0 &&
+            'opacity-0',
         )}
       >
         <div
