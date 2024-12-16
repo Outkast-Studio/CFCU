@@ -6,8 +6,8 @@ const LocationHours = ({ data }: { data: LocationPage['hours'] }) => {
   return (
     <section
       className={clsx(
-        'max-w-[888px] mx-auto pb-[75px] px-[24px]',
-        'lg:px-[0px]',
+        'max-w-[888px] mx-auto px-[24px]',
+        'lg:px-[0px] lg:pb-[0px]',
       )}
     >
       <h2 className={clsx('w-h2', 'lg:w-h2-desktop text-lavender')}>Hours</h2>

@@ -12,7 +12,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
         'lg:grid lg:grid-cols-12 lg:gap-x-[24px] lg:px-[48px] lg:py-[89px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
     >
-      <article className={clsx('lg:col-span-5', 'ml:col-span-4')}>
+      <article className={clsx('lg:col-span-5 lg:pr-[24px]', 'ml:col-span-4')}>
         {data.subTitle && (
           <h2
             className={clsx(
