@@ -213,7 +213,7 @@ export interface CtaFullMediaType {
     title: {
       type: 'text' | 'svg'
       text?: string
-      svg?: string
+      svg?: ImageAsset
     }
     subtitle?: string
   }

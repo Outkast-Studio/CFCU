@@ -92,7 +92,10 @@ const EmotionalNavigation = ({
           alt={data?.icon?.alt as string}
           width={122}
           height={92}
-          className={clsx('emotionalNavigationIcon emotionalAnimateOut')}
+          className={clsx(
+            'emotionalNavigationIcon emotionalAnimateOut w-[75px]',
+            'lg:w-[122px]',
+          )}
         />
         <h2
           className={clsx(

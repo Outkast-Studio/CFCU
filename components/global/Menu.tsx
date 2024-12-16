@@ -245,6 +245,9 @@ const Menu = ({
                         <path
                           d="M8.05273 12.9199H4.55273V8.16211H0V4.78516L4.55273 4.77148L4.53906 0H8.03906L8.05273 4.77148H12.6738V8.16211H8.05273V12.9199Z"
                           fill="#3C1053"
+                          className={clsx(
+                            'group-data-[state=open]:fill-orange transition-colors duration-300 ease-in-out-cubic',
+                          )}
                         />
                       </svg>
                     </Accordion.Trigger>

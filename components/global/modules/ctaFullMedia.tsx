@@ -14,6 +14,8 @@ import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useInView } from 'react-intersection-observer'
+import { urlForImage } from '@/lib/sanity.image'
+import Image from 'next/image'
 
 const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
@@ -73,11 +75,12 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
         >
           <div className={clsx('mt-[15px]')}>
             {stegaClean(data?.topContent?.title?.type) === 'svg' ? (
-              <div
-                className={clsx('w-[199px] animateContent')}
-                dangerouslySetInnerHTML={{
-                  __html: data?.topContent?.title?.svg,
-                }}
+              <Image
+                src={urlForImage(data?.topContent?.title?.svg).url()}
+                alt={data?.topContent?.title?.svg?.alt as string}
+                width={199}
+                height={199}
+                className={clsx('animateContent object-contain')}
               />
             ) : (
               <h2

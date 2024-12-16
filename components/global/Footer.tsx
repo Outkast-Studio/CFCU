@@ -152,7 +152,7 @@ const Footer = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className={clsx(
-                  'group-hover:translate-y-[0px] group-hover:opacity-100 opacity-0 group-hover:ease-in-cubic translate-y-[6px] transition-all duration-200 ease-out-cubic',
+                  'lg:group-hover:translate-y-[0px] lg:group-hover:opacity-100 lg:opacity-0 group-hover:ease-in-cubic lg:translate-y-[6px] transition-all duration-200 ease-out-cubic',
                 )}
               >
                 <path

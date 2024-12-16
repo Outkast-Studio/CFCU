@@ -58,7 +58,17 @@ export default defineField({
             defineField({
               name: 'svg',
               title: 'SVG',
-              type: 'inlineSvg',
+              type: 'image',
+              fields: [
+                {
+                  name: 'alt',
+                  type: 'string',
+                  title: 'Alternative text',
+                  description:
+                    "Describe what's in the image for screen readers and search engines.",
+                  validation: (Rule: any) => Rule.required(),
+                },
+              ],
               hidden: ({ parent }) => parent?.type !== 'svg',
             }),
           ],

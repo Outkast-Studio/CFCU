@@ -75,6 +75,8 @@ async function queryStaleRoutes(
         return await getTopicPostPageSlugs(client, body._id)
       case 'subPage':
         return await querySubPageRoutes(client, body._id)
+      case '404':
+        return ['/404']
       default:
         console.log(body, 'this is not running then.')
         return []
