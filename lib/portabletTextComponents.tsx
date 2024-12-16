@@ -13,11 +13,15 @@ export const WysiwygComponentsWithoutPadding = {
         )}
       >
         <Image
-          src={urlForImage(value).width(2440).url()}
+          src={urlForImage(value).width(2440).quality(100).url()}
           alt={String(value.alt)}
-          width={2440}
-          height={2440}
-          className={clsx('w-full object-cover')}
+          width={1000}
+          height={1000}
+          quality={100}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          className={clsx(
+            'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+          )}
         />
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
           {value.caption}
@@ -36,7 +40,10 @@ export const WysiwygComponentsWithoutPadding = {
           alt={String(value.alt)}
           width={2440}
           height={2440}
-          className={clsx('w-full object-cover')}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          className={clsx(
+            'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+          )}
         />
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
           {value.caption}
@@ -201,11 +208,15 @@ export const WysiwygComponents = {
         )}
       >
         <Image
-          src={urlForImage(value).width(2440).url()}
+          src={urlForImage(value).width(2440).quality(100).url()}
           alt={String(value.alt)}
-          width={2440}
-          height={2440}
-          className={clsx('w-full object-cover')}
+          width={1000}
+          height={1000}
+          quality={100}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          className={clsx(
+            'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+          )}
         />
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
           {value.caption}
@@ -224,7 +235,10 @@ export const WysiwygComponents = {
           alt={String(value.alt)}
           width={2440}
           height={2440}
-          className={clsx('w-full object-cover')}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          className={clsx(
+            'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+          )}
         />
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
           {value.caption}

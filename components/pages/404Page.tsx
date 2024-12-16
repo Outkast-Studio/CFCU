@@ -152,6 +152,7 @@ const Hero = ({ data }: { data: FourOhFour }) => {
             <div className={clsx('flex gap-x-[16px] mt-[16px]')}>
               {data?.links?.map((link) => (
                 <PageLink
+                  key={link?.title}
                   data={link}
                   className={clsx(
                     'mt-[16px] block',

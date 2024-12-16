@@ -4,7 +4,6 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
-import DynamicImage from 'components/global/ui/DynamicImage'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -101,6 +100,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                     </a>
                   ) : (
                     <Image
+                      key={(String(index) + logo?.logo?.alt) as string}
                       src={urlForImage(logo?.logo)
                         .width(1000)
                         .quality(100)

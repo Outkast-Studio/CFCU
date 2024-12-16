@@ -35,7 +35,8 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       setAlertHeight(contentRef.current.scrollHeight)
       setAlertHeightGlobal(contentRef.current.scrollHeight)
     }
-  }, [width])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [width, setAlertHeight, setAlertHeightGlobal])
 
   return (
     <section

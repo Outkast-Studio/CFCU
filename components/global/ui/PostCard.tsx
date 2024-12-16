@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import { PostPageType } from '@/types/sanity'
-import DynamicImage from 'components/global/ui/DynamicImage'
-import { ImageAsset } from 'sanity'
 
 const PostCard = ({
   data,
@@ -41,12 +39,6 @@ const PostCard = ({
               'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
             )}
           />
-          {/* <DynamicImage
-            image={data?.thumbnailImage as any}
-            className={clsx(
-              'w-full lg:group-hover:scale-[1.03] tranisiton-transform duration-300 ease-in-out-cubic',
-            )}
-          /> */}
         </div>
         <div className={clsx('flex flex-col mt-[13px]', 'lg:mt-[25px]')}>
           <h4
