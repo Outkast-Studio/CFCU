@@ -77,6 +77,7 @@ async function queryStaleRoutes(
         return await querySubPageRoutes(client, body._id)
       default:
         console.log(body, 'this is not running then.')
+        return []
     }
   }
 }
