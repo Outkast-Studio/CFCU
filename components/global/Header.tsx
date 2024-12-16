@@ -6,6 +6,9 @@ import { AnimatePresence } from 'framer-motion'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useScrollPastPoint } from 'hooks/useScrollPastPoint'
 import { useWindowSize } from 'hooks/useWindowSize'
+import { useRef } from 'react'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { gsap } from 'gsap'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -21,21 +24,49 @@ const Header = () => {
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const isPastPoint = useScrollPastPoint(alertHeight)
   const { width } = useWindowSize()
+  const headerRef = useRef<HTMLDivElement>(null)
+  const [entryRun, setEntryRun] = useState(false)
+
+  useIsomorphicLayoutEffect(() => {
+    if (!globalSettings?.navigation?.headerBarLinks || !width || entryRun)
+      return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          ease: 'linear',
+          duration: 0.2,
+          delay: 0.1,
+          onComplete: () => {
+            setEntryRun(true)
+          },
+        },
+      )
+      return () => {
+        ctx.revert()
+      }
+    })
+  }, [globalSettings, width, entryRun])
 
   return (
     <>
       <header
-        style={{
-          transform: `translateY(${alertIsOpen ? alertHeight + (width < 1024 ? 60 : 48) : width > 1024 ? 48 : 60}px)`,
-        }}
+        ref={headerRef}
+        style={
+          alertIsOpen
+            ? {
+                transform: `translateY(${alertHeight + (width < 1024 ? 60 : 48)}px)`,
+              }
+            : {}
+        }
         className={clsx(
-          'fixed top-[00px] right-[24px] z-[13] transition-all ease-in duration-300 ',
+          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 translate-y-[60px] lg:translate-y-[48px] opacity-0',
           'lg:right-[48px] lg:top-[0] ',
           alertIsOpen && 'lg:top-[0px]  ease-in-out-cubic',
           (isMenuOpen || isPastPoint) &&
             '!translate-y-[60px] lg:!translate-y-[48px]',
-          globalSettings?.navigation?.headerBarLinks?.length === 0 &&
-            'opacity-0',
         )}
       >
         <div

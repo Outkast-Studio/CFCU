@@ -49,13 +49,13 @@ const SubpageLinkList = ({ data }: { data: SubPageType[] }) => {
               >
                 Explore this section
               </h4>
-              <div className={clsx('relative h-[2px]')}>
+              <div className={clsx('relative h-[3px]')}>
                 <span
-                  className={clsx('block w-[13px] h-[2px] bg-lavender')}
+                  className={clsx('block w-[13px] h-[3px] bg-lavender')}
                 ></span>
                 <span
                   className={clsx(
-                    'sblock w-[13px] h-[2px] bg-lavender absolute left-[0px] top-[0px] origin-center group-data-[state=open]:rotate-[90deg] transition-transform duration-300 ease-in-out-cubic',
+                    'sblock w-[13px] h-[3px] bg-lavender absolute left-[0px] top-[0px] origin-center group-data-[state=closed]:rotate-[90deg] transition-transform duration-300 ease-in-out-cubic',
                   )}
                 ></span>
               </div>
