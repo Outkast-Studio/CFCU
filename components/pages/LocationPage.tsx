@@ -29,6 +29,17 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
     if (!lineAmount) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
+      gsap.fromTo(
+        q('.backButton'),
+        { opacity: 0, y: width > 1024 ? 30 : 10 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power4.out',
+          duration: 0.7,
+          delay: 0.15,
+        },
+      )
       const tl = gsap.timeline({ delay: lineAmount * 0.3 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
@@ -90,7 +101,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
           <article className={clsx('relative z-[2]')}>
             <Link
               href={'/locations'}
-              className={clsx('block opacity-0 subItem group ')}
+              className={clsx('block opacity-0 backButton group ')}
             >
               <button
                 className={clsx(

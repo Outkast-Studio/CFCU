@@ -19,6 +19,17 @@ const Hero = ({ post }: { post: PostPageType }) => {
     if (!lineAmount) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
+      gsap.fromTo(
+        q('.backButton'),
+        { opacity: 0, y: width > 1024 ? 30 : 10 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: 'power4.out',
+          duration: 0.7,
+          delay: 0.15,
+        },
+      )
       const tl = gsap.timeline({ delay: lineAmount * 0.2 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
@@ -69,7 +80,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
           >
             <button
               className={clsx(
-                'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-lightGrey subItem opacity-0',
+                'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-lightGrey backButton opacity-0',
               )}
             >
               <svg
