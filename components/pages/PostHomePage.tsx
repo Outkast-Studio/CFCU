@@ -45,7 +45,21 @@ const PostHomePage = ({
     if (!lineAmount) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
-      const tl = gsap.timeline({ delay: lineAmount * 0.3 }).fromTo(
+      if (!isBlogHome) {
+        gsap.fromTo(
+          q('.backButton'),
+          { opacity: 0, y: width > 1024 ? 30 : 10 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: 'power4.out',
+            duration: 0.7,
+            delay: 0.15,
+          },
+        )
+      }
+
+      const tl = gsap.timeline({ delay: lineAmount * 0.25 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
         {
@@ -93,7 +107,7 @@ const PostHomePage = ({
             <Link
               href={'/posts/page/1'}
               className={clsx(
-                'inline-block cursor-pointer mb-[16px] group  subItem opacity-0',
+                'inline-block cursor-pointer mb-[16px] group  backButton opacity-0',
               )}
             >
               <button

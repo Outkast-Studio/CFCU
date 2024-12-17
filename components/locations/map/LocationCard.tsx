@@ -71,7 +71,10 @@ export default function LocationCard({
           alt={data?.thumbnailImage?.alt as string}
           fill
           quality={100}
-          className={clsx('object-cover w-full h-full')}
+          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          className={clsx(
+            'object-cover w-full h-full opacity-0 transition-all duration-200 ease-linear',
+          )}
         />
       </div>
       <h4
