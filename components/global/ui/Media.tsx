@@ -8,6 +8,8 @@ import { urlForFile } from 'lib/sanity.file'
 import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
 import { SanityImage } from 'sanity-image'
+import { useNextSanityImage } from 'next-sanity-image'
+import { getClient } from '@/lib/sanity.client'
 
 interface MediaComponentProps {
   media: Media
@@ -22,6 +24,7 @@ export default function MediaComponent({
 }: MediaComponentProps) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
+
   useEffect(() => {
     if (!videoPlayerRef.current) return
     if (isPlaying) {
@@ -49,8 +52,7 @@ export default function MediaComponent({
         onLoadingComplete={(image) => image.classList.remove('opacity-0')}
         className={clsx(
           'object-cover w-full h-full',
-          !priority &&
-            'opacity-0 transition-all duration-300 ease-in-out-cubic',
+          'opacity-0 transition-all duration-300 ease-in-out-cubic',
         )}
       />
       // <SanityImage
