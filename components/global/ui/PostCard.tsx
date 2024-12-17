@@ -61,6 +61,7 @@ const PostCard = ({
           <p
             className={clsx(
               'font-codec-news mt-[4px] max-w-[152px] text-[14px] leading-[19.6px]',
+              'md:max-w-[300px]',
               'lg:w-paragraph-m-desktop lg:max-w-[390px]',
             )}
           >

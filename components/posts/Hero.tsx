@@ -71,7 +71,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
           'lg:mt-[99px] lg:grid lg:grid-cols-2 gap-x-[24px] items-center',
         )}
       >
-        <article>
+        <article className={clsx('w-full')}>
           <Link
             href={'/posts/page/1'}
             className={clsx(
@@ -127,7 +127,8 @@ const Hero = ({ post }: { post: PostPageType }) => {
           <p
             className={clsx(
               'font-codec-news text-black/75 mt-[8px] w-paragraph-m-desktop subItem opacity-0',
-              'lg:text-[26px] lg:leading-[39px] lg:max-w-[542px] l:mt-[17px]',
+              'md:max-w-[542px]',
+              'lg:text-[26px] lg:leading-[39px]  l:mt-[17px]',
             )}
           >
             {post?.excerpt}

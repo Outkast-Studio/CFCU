@@ -39,7 +39,7 @@ export default function LocationCard({
       onClick={(e) => e.stopPropagation()}
       ref={cardRef}
       className={clsx(
-        'bg-white p-[30px] relative mapCardShadow opacity-0 max-w-[329px] w-[90%]',
+        'bg-white p-[30px] relative mapCardShadow opacity-0 mx-w-[329px] w-[90%]',
         'lg:max-w-[428px] lg:w-[428px]',
       )}
     >

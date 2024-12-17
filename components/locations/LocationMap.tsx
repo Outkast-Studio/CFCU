@@ -181,7 +181,7 @@ export default function MapView({
           .addTo(map.current!)
 
         newMarker.getElement().addEventListener('click', () => {
-          if (window.innerWidth > 768) {
+          if (window.innerWidth > 1024) {
             setSelectedLocation(location)
             setSelectedATM(null)
             // Calculate initial position for the popup
@@ -218,7 +218,7 @@ export default function MapView({
           .addTo(map.current!)
 
         newMarker.getElement().addEventListener('click', () => {
-          if (window.innerWidth > 768) {
+          if (window.innerWidth > 1024) {
             setSelectedATM(atm)
             setSelectedLocation(null)
             const point = map.current!.project([atm.longitude, atm.latitude])

@@ -34,7 +34,7 @@ const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
         )
         .fromTo(
           q('.elementAnimation'),
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,

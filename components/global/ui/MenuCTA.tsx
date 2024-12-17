@@ -97,7 +97,7 @@ const MenuCTA = ({
       </div>
       <PageLink
         data={data?.cta}
-        className={clsx('overflow-hidden lg:overflow-visible')}
+        className={clsx('overflow-hidden md:overflow-visible')}
       >
         <Button
           cb={() => setCloseInitiated(true)}
