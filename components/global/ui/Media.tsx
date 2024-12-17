@@ -32,35 +32,37 @@ export default function MediaComponent({
   }, [isPlaying])
 
   if (stegaClean(media?.mediaType) === 'image' && media?.image) {
-    if (priority) {
-      return (
-        <SanityImage
-          id={media?.image?.asset?._ref}
-          alt={media?.image?.alt}
-          baseUrl="https://cdn.sanity.io/images/uq2qrg8z/production/"
-          hotspot={media?.image?.hotspot}
-          className="object-cover w-full h-full"
-          priority={priority}
-        />
-      )
-    } else {
-      return (
-        <Image
-          //@ts-ignore
-          src={urlForImage(media?.image?.asset).width(2440).url()}
-          //@ts-ignore
-          alt={media?.image?.alt}
-          fill
-          priority={priority}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
-          className={clsx(
-            'object-cover w-full h-full',
-            !priority &&
-              'opacity-0 transition-all duration-300 ease-in-out-cubic',
-          )}
-        />
-      )
-    }
+    return (
+      <Image
+        //@ts-ignore
+        src={urlForImage(media?.image?.asset)
+          .height(1080)
+          .width(1920)
+          .quality(100)
+          .url()}
+        //@ts-ignore
+        alt={media?.image?.alt}
+        width={1920}
+        height={1080}
+        quality={100}
+        priority={priority}
+        onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+        className={clsx(
+          'object-cover w-full h-full',
+          !priority &&
+            'opacity-0 transition-all duration-300 ease-in-out-cubic',
+        )}
+      />
+      // <SanityImage
+      //   id={media?.image?.asset?._ref}
+      //   alt={media?.image?.alt}
+      //   baseUrl="https://cdn.sanity.io/images/uq2qrg8z/production/"
+      //   hotspot={media?.image?.hotspot}
+      //   className="object-cover w-full h-full"
+
+      //   priority={priority}
+      // />
+    )
   } else if (stegaClean(media?.mediaType) === 'video' && media?.video) {
     return (
       <figure className={clsx('w-full h-full')}>
