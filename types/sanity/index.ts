@@ -336,8 +336,6 @@ export interface GlobalAlertType {
 }
 
 export interface EmbedType {
-  scriptsForHead?: string[]
-  scriptsForBeforeBody?: string[]
   scriptsForBody?: string[]
 }
 
