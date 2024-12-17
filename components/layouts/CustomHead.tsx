@@ -16,7 +16,8 @@ export function CustomHead({
   twitter = { handle: '@**Business' },
 }) {
   //Replace with the default OG image
-  const defaultOGImage = ''
+  const defaultOGImage =
+    'https://cdn.sanity.io/images/uq2qrg8z/production/292b9d74cd91c7064c06ea5f211a8a8f54c5758a-1200x630.png'
 
   const [isProduction, setIsProduction] = useState(false)
   useEffect(() => {
@@ -42,12 +43,12 @@ export function CustomHead({
           name="keywords"
           content={keywords && keywords.length ? keywords.join(',') : keywords}
         />
-        <meta name="author" content="**Business" />
+        <meta name="author" content="Community Financial" />
         <meta name="referrer" content="no-referrer" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="geo.region" content="US" />
-        <meta name="twitter:creator" content="@**Business" />
-        <meta name="twitter:title" content={title || '**Business'} />
+        <meta name="twitter:creator" content="Community Financial" />
+        <meta name="twitter:title" content={title || 'Community Financial'} />
         <meta name="twitter:description" content={description || ''} />
         <meta
           name="twitter:image"
@@ -96,12 +97,12 @@ export function CustomHead({
           ],
           defaultImageWidth: 1200,
           defaultImageHeight: 630,
-          site_name: '',
+          site_name: 'cfcu',
         }}
         twitter={{
           handle: twitter.handle,
           cardType: 'summary_large_image',
-          site: '**Business URL',
+          site: 'https://www.cfcu.org/',
         }}
       />
     </>
