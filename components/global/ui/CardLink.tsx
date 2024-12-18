@@ -16,12 +16,28 @@ const CardLink = ({
     if (!data?.externalLink) {
       switch (data?.link?._type) {
         case 'post':
-          setHref(`/posts/${data.link.slug}`)
+          setHref(`/${data?.link?.slug}`)
           break
         case 'homepage':
           setHref('/')
+          break
+        case 'subPage':
+          setHref(`/${data?.link?.slug}`)
+          break
+        case 'blogHomePage':
+          setHref(`/posts/page/1`)
+          break
+        case 'locationHomePage':
+          setHref(`/locations`)
+          break
+        case 'topic':
+          setHref(`/${data?.link?.slug}/1`)
+          break
+        case 'location':
+          setHref(`/${data?.link?.slug}`)
+          break
         default:
-          setHref('')
+          setHref('/')
           break
       }
     }
