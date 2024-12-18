@@ -10,7 +10,7 @@ export default defineType({
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
-      description: 'Title for this section',
+      description: 'Title is only used to help identify the section in Sanity.',
     }),
     defineField({
       name: 'content',
