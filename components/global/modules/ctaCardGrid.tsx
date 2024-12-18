@@ -37,14 +37,14 @@ const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
           </h3>
         )}
         {data?.description && (
-          <div
+          <p
             className={clsx(
               'w-paragraph-s-desktop text-black/75 mt-[17px]',
               'lg:w-paragraph-l-desktop lg:max-w-[1216px]',
             )}
           >
-            <PortableText value={data?.description} />
-          </div>
+            {data?.description}
+          </p>
         )}
       </div>
       {width < 1024 && (
