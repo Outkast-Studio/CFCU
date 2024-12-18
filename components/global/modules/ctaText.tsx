@@ -59,7 +59,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           <h2
             style={{ color: theme?.subtitle }}
             className={clsx(
-              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px] animateContent opacity-0',
+              'text-[14px] leading-[16px] tracking-[1.6px] uppercase mb-[6px] animateContent opacity-0 text-center',
               'lg:subtitle-l  lg:mb-[16px]',
             )}
           >

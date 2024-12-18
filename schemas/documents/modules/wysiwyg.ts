@@ -6,6 +6,13 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+      description: 'Title for this section',
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'blockContent',
@@ -15,12 +22,12 @@ export default defineType({
   ],
   preview: {
     select: {
-      content: 'content',
+      title: 'title',
     },
-    prepare({ content }) {
+    prepare({ title }) {
       return {
         title: 'WYSIWYG Content',
-        subtitle: 'Rich Text Section',
+        subtitle: title,
       }
     },
   },
