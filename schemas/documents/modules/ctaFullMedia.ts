@@ -9,6 +9,14 @@ export default defineField({
       name: 'theme',
       title: 'Theme',
       type: 'simplerColor',
+      options: {
+        colorList: [
+          { label: 'Orange', value: '#F56600' },
+          { label: 'Yellow', value: '#FFC600' },
+          { label: 'Lavender', value: '#3C1053' },
+          { label: 'White', value: '#FFFFFF' },
+        ],
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
