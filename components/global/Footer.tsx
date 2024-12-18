@@ -16,7 +16,12 @@ const Footer = () => {
   )
   const copiedRef = useRef<HTMLParagraphElement>(null)
   return (
-    <div className={clsx('bg-lavender ', 'lg:pt-[36px]')}>
+    <div
+      className={clsx(
+        'bg-lavender border-t-[1px] border-t-white/10',
+        'lg:pt-[36px] lg:border-b-[0px]',
+      )}
+    >
       <footer
         className={clsx(
           'px-[24px] py-[66px]',
