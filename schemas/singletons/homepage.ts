@@ -1,6 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { HouseLine } from '@phosphor-icons/react'
-import { modules } from 'schemas/schemaTypes/modules'
+import { homepageModules } from 'schemas/schemaTypes/homepageModules'
 
 export default defineType({
   name: 'homepage',
@@ -28,7 +28,7 @@ export default defineType({
       group: 'emotionalNavigation',
       validation: (Rule: any) => Rule.required(),
     }),
-    modules,
+    homepageModules,
     defineField({
       name: 'metaTitle',
       title: 'Meta Title',

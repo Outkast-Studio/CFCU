@@ -1,8 +1,8 @@
 import { defineField } from 'sanity'
 
-export const modules = defineField({
-  name: 'modules',
-  title: 'Page Modules',
+export const homepageModules = defineField({
+  name: 'homepageModules',
+  title: 'Homepage Modules',
   type: 'array',
   group: 'modules',
   of: [
@@ -24,12 +24,12 @@ export const modules = defineField({
       title: 'CTA Text',
       to: [{ type: 'ctaText', title: 'CTA Text' }],
     },
-    // {
-    //   type: 'reference',
-    //   name: 'ctaCardGridHome',
-    //   title: 'CTA Card Grid Home',
-    //   to: [{ type: 'ctaCardGridHome', title: 'CTA Card Grid Home' }],
-    // },
+    {
+      type: 'reference',
+      name: 'ctaCardGridHome',
+      title: 'CTA Card Grid Home',
+      to: [{ type: 'ctaCardGridHome', title: 'CTA Card Grid Home' }],
+    },
     {
       type: 'reference',
       name: 'ctaCardGrid',
