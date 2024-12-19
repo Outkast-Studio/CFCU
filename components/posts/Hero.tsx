@@ -55,7 +55,13 @@ const Hero = ({ post }: { post: PostPageType }) => {
         'lg:px-[48px] lg:pt-[48px] lg:pb-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
     >
-      <Link href={'/'} className={clsx('block w-fit focus:!shadow-none')}>
+      <Link
+        href={'/'}
+        className={clsx(
+          'block w-fit focus:!shadow-none',
+          'lg:absolute lg:left-[48px]',
+        )}
+      >
         <Image
           src={'/icons/logoPurple.png'}
           alt={'Community Financial Logo'}

@@ -129,7 +129,7 @@ export interface LogoGridType {
 export interface CtaCardGridHomeType {
   subTitle: string
   title: string
-  description?: PortableTextBlock[]
+  description?: string
   cards: Array<{
     image: ImageAsset
     title: string
@@ -149,7 +149,7 @@ export interface CtaCardGridType {
   cards: Array<{
     image: ImageAsset
     title: string
-    description: PortableTextBlock
+    description: string
     cardLink: CardLinkType
   }>
 }

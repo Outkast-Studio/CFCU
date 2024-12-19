@@ -50,7 +50,7 @@ async function queryStaleRoutes(
   >,
 ): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
-
+  console.log(body)
   // return queryAllRoutes(client)
 
   //Check if type is a module -> If it is, run the moduleHandler to find all slugs that reference that module. Then return them.
@@ -132,6 +132,7 @@ async function querySubPageRoutes(
     subPageId,
     moduleTypes,
   )
+  console.log(subPage, allOtherSlugs)
   ///TODO Query all pages that reference this subPage.
   if (subPage?.parent) {
     return [

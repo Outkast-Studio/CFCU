@@ -47,7 +47,6 @@ export default defineType({
         { title: 'H5', value: 'h5' },
         { title: 'H6', value: 'h6' },
         { title: 'Quote', value: 'blockquote' },
-        { title: 'caption', value: 'caption' },
       ],
       lists: [
         { title: 'Bullet', value: 'bullet' },
