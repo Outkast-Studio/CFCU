@@ -161,7 +161,7 @@ export const WysiwygComponentsWithoutPadding = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className={clsx('flex gap-x-[16px] items-start')}>
+      <li className={clsx('flex gap-x-[16px] items-center')}>
         <span
           className={clsx(
             'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0',
@@ -370,10 +370,10 @@ export const WysiwygComponents = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className={clsx('flex gap-x-[16px] items-start')}>
+      <li className={clsx('flex gap-x-[16px] items-center')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 ',
           )}
         ></span>
         <span

@@ -21,7 +21,8 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
+      rows: 3,
       description: 'Main description text below the title',
     }),
     defineField({

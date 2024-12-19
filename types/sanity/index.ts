@@ -311,7 +311,7 @@ interface TabItem {
 export interface TabsType {
   title: string
   subtitle?: string
-  description?: PortableTextBlock[]
+  description?: string
   tabs: TabItem[]
 }
 

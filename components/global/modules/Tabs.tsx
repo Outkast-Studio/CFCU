@@ -54,7 +54,7 @@ const Tabs = ({ data }: { data: TabsType }) => {
     <section
       className={clsx(
         'px-[24px] py-[66px]',
-        'lg:px-[48px] lg:pb-[116px] lg:pt-[95px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+        'lg:px-[48px] lg:pb-[116px] lg:pt-[95px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:relative',
       )}
     >
       {data?.subtitle && (
@@ -71,17 +71,14 @@ const Tabs = ({ data }: { data: TabsType }) => {
         {data?.title}
       </h3>
       {data?.description && (
-        <div
+        <p
           className={clsx(
             'w-paragraph-s-desktop mt-[15px] text-black/75',
             'lg:w-paragraph-l-desktop lg:mt-[22px]',
           )}
         >
-          <PortableText
-            value={data?.description}
-            components={WysiwygComponentsWithoutPadding as any}
-          />
-        </div>
+          {data?.description}
+        </p>
       )}
       <div className={clsx('mt-[26px]', 'lg:hidden')}>
         <Accordion.Root
@@ -138,10 +135,15 @@ const Tabs = ({ data }: { data: TabsType }) => {
       <div
         className={clsx(
           'hidden',
-          'lg:grid lg:grid-cols-12 lg:gap-x-[24px] lg:mt-[38px]',
+          'lg:grid lg:grid-cols-12 lg:gap-x-[24px] lg:mt-[38px] lg:relative',
         )}
       >
-        <div className={clsx('col-span-5 flex-col')}>
+        <div
+          className={clsx(
+            'col-span-5 flex-col',
+            'lg:top-[48px] lg:h-fit lg:sticky',
+          )}
+        >
           {data?.tabs?.map((item, index) => (
             <button
               key={index}
