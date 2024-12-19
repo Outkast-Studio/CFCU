@@ -133,6 +133,7 @@ async function querySubPageRoutes(
     subPageId,
     moduleTypes,
   )
+
   console.log(subPage, allOtherSlugs)
   ///TODO Query all pages that reference this subPage.
   if (subPage?.parent) {
@@ -274,6 +275,7 @@ async function getAllRefercingSlugs(
   )
 
   if (referencingPages.find((page) => page._type === 'globalSettings')) {
+    console.log('global settings being run')
     const allRoutes = await queryAllRoutes(client)
     return allRoutes
   }
