@@ -233,7 +233,7 @@ async function getIndividualPostSlugs(
 
   const topicPagesThatNeedToBeRevalidated = await Promise.all(
     post.topics.map(async (topic) => {
-      const slugs = await getTopicPostPageSlugs(client, topic._id)
+      const slugs = await getTopicPostPageSlugs(client, topic._id, true)
       return slugs
     }),
   ).then((slugArrays) => slugArrays.flat())
@@ -390,9 +390,8 @@ export async function getTopicPostPageSlugs(
   if (!topicSlug) {
     throw new Error(`Topic with ID ${topicId} not found`)
   }
-  // Generate routes for each page
 
-  if (isQueryAllRoutes) {
+  if (!isQueryAllRoutes) {
     const allOtherSlugs = await getAllRefercingSlugs(
       client,
       topicId,
@@ -402,10 +401,11 @@ export async function getTopicPostPageSlugs(
       ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
       ...allOtherSlugs,
     ]
+  } else {
+    return [
+      ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+    ]
   }
-  return [
-    ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
-  ]
 }
 
 const moduleTypes = [
