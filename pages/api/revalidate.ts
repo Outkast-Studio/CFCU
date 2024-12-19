@@ -276,7 +276,7 @@ async function getAllRefercingSlugs(
     const allRoutes = await queryAllRoutes(client)
     return allRoutes
   }
-  console.log(referencingPages)
+  console.log(referencingPages, 'pages')
 
   const referencingPagesSlugs = referencingPages
     .map((route: { _type: string; slug: string | null }) => {
@@ -308,7 +308,7 @@ async function getAllRefercingSlugs(
     { id, modules },
   )
 
-  console.log(referencingModules)
+  console.log(referencingModules, 'modules')
 
   // Use moduleRevalidation for each referencing module
   const moduleRevalidationSlugs = await Promise.all(
@@ -317,7 +317,7 @@ async function getAllRefercingSlugs(
     }),
   ).then((slugArrays) => slugArrays.flat())
 
-  console.log(moduleRevalidationSlugs)
+  console.log(moduleRevalidationSlugs, 'module reval slugs')
 
   const slugsToRevalidate = [
     ...referencingPagesSlugs,
