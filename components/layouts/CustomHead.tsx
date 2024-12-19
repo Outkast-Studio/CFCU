@@ -19,6 +19,9 @@ export function CustomHead({
   const defaultOGImage =
     'https://cdn.sanity.io/images/uq2qrg8z/production/292b9d74cd91c7064c06ea5f211a8a8f54c5758a-1200x630.png'
 
+  const defaultDescription =
+    'At Community Financial, we value belonging over banking. How better to create belonging than by investing in the communities where we live, play, and serve?'
+
   const [isProduction, setIsProduction] = useState(false)
   useEffect(() => {
     // VERCEL_ENV is 'production' for production deployments
@@ -81,10 +84,10 @@ export function CustomHead({
       </NextHead>
       <NextSeo
         title={title}
-        description={description || ''}
+        description={description || defaultDescription}
         openGraph={{
           title,
-          description: description || '',
+          description: description || defaultDescription,
           type: 'website',
           locale: 'en_US',
           images: [
