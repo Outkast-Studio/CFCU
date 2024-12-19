@@ -87,7 +87,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
           >
             {posts?.map((post, index) => (
               <SwiperSlide key={index} className={clsx('!w-fit')}>
-                {<PostCard data={post} key={index} />}
+                {<PostCard data={post} key={index} fixSize={true} />}
               </SwiperSlide>
             ))}
           </Swiper>
@@ -98,7 +98,9 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
             'lg:grid lg:grid-cols-3 lg:gap-x-[24px] lg:px-[48px] lg:mt-[44px] xl:px-[0px]',
           )}
         >
-          {posts?.map((post, index) => <PostCard data={post} key={index} />)}
+          {posts?.map((post, index) => (
+            <PostCard data={post} key={index} fixSize={true} />
+          ))}
         </div>
       </div>
     </section>

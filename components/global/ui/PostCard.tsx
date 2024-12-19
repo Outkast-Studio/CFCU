@@ -8,10 +8,12 @@ const PostCard = ({
   data,
   isBlogListing,
   className,
+  fixSize,
 }: {
   data: PostPageType
   isBlogListing?: boolean
   className?: string
+  fixSize?: boolean
 }) => {
   return (
     <Link
@@ -25,7 +27,12 @@ const PostCard = ({
           'lg:max-w-[unset]',
         )}
       >
-        <div className={clsx('overflow-hidden w-full')}>
+        <div
+          className={clsx(
+            'overflow-hidden w-full',
+            fixSize && 'aspect-w-1 aspect-h-1',
+          )}
+        >
           <Image
             src={urlForImage(data?.thumbnailImage)
               .width(1000)
@@ -37,6 +44,7 @@ const PostCard = ({
             onLoadingComplete={(image) => image.classList.remove('opacity-0')}
             className={clsx(
               'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
+              fixSize && '!h-full',
             )}
           />
         </div>

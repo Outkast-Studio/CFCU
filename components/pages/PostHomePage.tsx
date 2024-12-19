@@ -182,7 +182,7 @@ const PostHomePage = ({
         )}
       >
         {allPosts.map((post, index) => (
-          <PostCard data={post} key={index} isBlogListing />
+          <PostCard data={post} key={index} isBlogListing fixSize={true} />
         ))}
       </section>
       <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
