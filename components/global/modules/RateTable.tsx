@@ -75,7 +75,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         <div
           className={clsx(
             'px-[24px] pt-[28px] text-black w-paragraph-s-desktop rateTableBlock',
-            'lg:px-[48px]',
+            'lg:px-[48px] lg:pt-[12px]',
           )}
         >
           <PortableText value={data?.tableNotes} />
