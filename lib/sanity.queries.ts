@@ -1,5 +1,9 @@
 import { groq } from 'next-sanity'
-import { modulesFragment, ratesModulesFragment } from 'lib/sanity.modules'
+import {
+  modulesFragment,
+  ratesModulesFragment,
+  homepageModulesFragment,
+} from 'lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
   navigation{
@@ -136,7 +140,7 @@ emotionalNavigation{
     }
   }
 },
-  ${modulesFragment}
+  ${homepageModulesFragment}
 }`
 
 export const testModulesQuery = groq`

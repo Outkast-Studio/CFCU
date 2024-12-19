@@ -429,7 +429,7 @@ export interface HomepageType {
       links: Array<PageLinkType>
     }>
   }
-  modules: Modules
+  homepageModules: Modules
   ctaInContent: CtaInContentType
   getInspired: {
     title: string
