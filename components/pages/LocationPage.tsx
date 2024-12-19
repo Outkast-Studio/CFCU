@@ -151,9 +151,12 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
                 'lg:mt-[55px] gap-x-[24px] gap-y-[37px] ',
               )}
             >
-              <DetailCard subtitle="Address" content={data?.address} />
-              <DetailCard subtitle="Phone" content={data?.phoneNumber} />
-
+              {data?.address && (
+                <DetailCard subtitle="Address" content={data?.address} />
+              )}
+              {data?.phoneNumber && (
+                <DetailCard subtitle="Phone" content={data?.phoneNumber} />
+              )}
               <div className={clsx('flex flex-col gap-y-[6px] ')}>
                 <h6
                   className={clsx(
@@ -163,24 +166,30 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
                 >
                   Services
                 </h6>
-                <ul
-                  className={clsx(
-                    'w-paragraph-s-desktop text-white font-codec-news flex flex-col gap-y-[6px] ',
-                    'lg:text-[18px] lg:leading-[27px]',
-                  )}
-                >
-                  {data?.services?.map((service, index) => (
-                    <li key={index}>{service}</li>
-                  ))}
-                </ul>
+                {data?.services?.length > 0 && (
+                  <ul
+                    className={clsx(
+                      'w-paragraph-s-desktop text-white font-codec-news flex flex-col gap-y-[6px] ',
+                      'lg:text-[18px] lg:leading-[27px]',
+                    )}
+                  >
+                    {data?.services?.map((service, index) => (
+                      <li key={index}>{service}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               <div className={clsx('flex flex-col gap-y-[42px]')}>
-                <DetailCard subtitle="FAX" content={data?.faxNumber} />
-                <DetailCard
-                  subtitle="Mailing Address"
-                  content={data?.mailingAddress}
-                />
+                {data?.faxNumber && (
+                  <DetailCard subtitle="FAX" content={data?.faxNumber} />
+                )}
+                {data?.mailingAddress && (
+                  <DetailCard
+                    subtitle="Mailing Address"
+                    content={data?.mailingAddress}
+                  />
+                )}
               </div>
             </div>
             {data?.appointmentLink && (
