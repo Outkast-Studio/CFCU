@@ -42,8 +42,8 @@ body {
 .ctaFullMediaGradient {
   background: linear-gradient(
     270deg,
-    rgba(0, 0, 0, 0) 23.29%,
-    rgba(0, 0, 0, 0.6) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.6) 0%
   );
 }
 
@@ -73,6 +73,16 @@ iframe {
 body.menuOpen {
   position: fixed;
   overflow-y: scroll;
+}
+
+@media (min-width: 1024px) {
+  .ctaFullMediaGradient {
+    background: linear-gradient(
+      270deg,
+      rgba(0, 0, 0, 0) 23.29%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
 }
 /* input:focus,
 a:focus,
