@@ -117,6 +117,7 @@ async function querySubPageRoutes(
   client: SanityClient,
   subPageId: string,
 ): Promise<StaleRoute[]> {
+  console.log(subPageId, 'subPageId')
   const subPage = await client.fetch(
     groq`*[_type == "subPage" && _id == $subPageId][0]{
       _id,
@@ -125,7 +126,7 @@ async function querySubPageRoutes(
     }`,
     { subPageId },
   )
-
+  console.log(subPage, 'subPage')
   if (!subPage) return []
   const allOtherSlugs = await getAllRefercingSlugs(
     client,
