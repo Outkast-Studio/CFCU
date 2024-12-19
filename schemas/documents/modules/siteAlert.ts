@@ -28,8 +28,8 @@ export default defineType({
     },
     prepare({ title, content }) {
       return {
-        title: 'Site Alert',
-        subtitle: title,
+        title: title,
+        subtitle: content,
       }
     },
   },

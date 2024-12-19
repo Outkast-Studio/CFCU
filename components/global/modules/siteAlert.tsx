@@ -22,6 +22,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       setAlertHeight(contentRef.current.scrollHeight)
       setAlertHeightGlobal(contentRef.current.scrollHeight)
       setAlertIsOpen(true)
+      window.scrollTo(0, 0)
     }
     return () => {
       setAlertIsOpen(false)
