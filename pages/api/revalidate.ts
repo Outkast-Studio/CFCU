@@ -7,20 +7,8 @@ import {
   type SanityDocument,
 } from 'next-sanity'
 import { parseBody, type ParsedBody } from 'next-sanity/webhook'
-import { config as sanityConfig } from 'next-sanity/webhook'
+export { config } from 'next-sanity/webhook'
 
-export const config = {
-  ...sanityConfig,
-  api: {
-    ...sanityConfig.api,
-    bodyParser: {
-      ...sanityConfig.api?.bodyParser,
-      sizeLimit: '2mb',
-    },
-    externalResolver: true,
-  },
-  maxDuration: 45,
-}
 export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse,
