@@ -322,7 +322,7 @@ interface Column {
 export interface ColumnSplitType {
   title: string
   subtitle?: string
-  description?: PortableTextBlock[]
+  description?: string
   columns: Column[]
 }
 

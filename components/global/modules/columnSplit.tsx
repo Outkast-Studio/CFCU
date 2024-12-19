@@ -25,14 +25,14 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
         {data?.title}
       </h3>
       {data?.description && (
-        <div
+        <p
           className={clsx(
-            'mt-[15px] text-black/75 w-paragraph-s-desktop',
+            'mt-[15px] text-black/75 w-paragraph-s-desktop block',
             'lg:mt-[11px] lg:w-paragraph-l-desktop',
           )}
         >
-          <PortableText value={data?.description} />
-        </div>
+          {data?.description}
+        </p>
       )}
       <div
         className={clsx(
