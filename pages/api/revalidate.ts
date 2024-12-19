@@ -97,7 +97,7 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
 
   const topicPagesThatNeedToBeRevalidated = await Promise.all(
     allTopics.map(async (topic) => {
-      const slugs = await getTopicPostPageSlugs(client, topic._id)
+      const slugs = await getTopicPostPageSlugs(client, topic._id, true)
       return slugs
     }),
   ).then((slugArrays) => slugArrays.flat())
@@ -166,7 +166,7 @@ async function moduleHandler(client: SanityClient, body: any) {
   `,
     { moduleId },
   )
-  console.log(moduleHandler, 'moduleHandler')
+
   // Process the results to handle pages without slugs and format routes
   const processedRoutes = allRoutesRefferedTo
     .map((route: { _type: string; slug: string | null }) => {
@@ -368,6 +368,7 @@ async function getIndividualLocationSlugs(
 export async function getTopicPostPageSlugs(
   client: SanityClient,
   topicId: string,
+  isQueryAllRoutes?: boolean,
 ): Promise<string[]> {
   // Fetch the total number of blog posts for the given topic
 
@@ -377,7 +378,6 @@ export async function getTopicPostPageSlugs(
     { topicId },
   )
   console.log(topicId, 'topicId page being called.')
-  // const allOtherSlugs = await getAllRefercingSlugs(client, topicId, moduleTypes)
 
   const postsPerPage = 10 // Adjust this based on your pagination setup
   // Calculate the number of pages
@@ -387,14 +387,24 @@ export async function getTopicPostPageSlugs(
     groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
     { topicId },
   )
-
   if (!topicSlug) {
     throw new Error(`Topic with ID ${topicId} not found`)
   }
   // Generate routes for each page
+
+  if (isQueryAllRoutes) {
+    const allOtherSlugs = await getAllRefercingSlugs(
+      client,
+      topicId,
+      moduleTypes,
+    )
+    return [
+      ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+      ...allOtherSlugs,
+    ]
+  }
   return [
     ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
-    // ...allOtherSlugs,
   ]
 }
 
