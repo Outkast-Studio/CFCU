@@ -70,8 +70,8 @@ export const renderModule = (module) => {
       return <ColumnSplit data={module} />
     case 'imageGrid':
       return <ImageGrid data={module} />
-    case 'quickExit':
-      return <QuickExit data={module} />
+    // case 'quickExit':
+    //   return <QuickExit data={module} />
     case 'wysiwyg':
       return <Wysiwyg data={module} />
     case 'teamGrid':

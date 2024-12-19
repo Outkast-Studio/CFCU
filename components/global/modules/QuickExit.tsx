@@ -1,11 +1,10 @@
 import { QuickExitType } from 'types/sanity'
 import { clsx } from 'clsx'
-export default function FastExitButton({ data }: { data: QuickExitType }) {
+export default function FastExitButton({ url }: { url: string }) {
   const handleFastExit = () => {
-    window.open(data?.exitUrl, '_blank')
+    window.open(url, '_blank')
     window.location.href = 'https://www.google.com'
   }
-
   return (
     <button
       onClick={handleFastExit}

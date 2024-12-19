@@ -9,6 +9,7 @@ import { useWindowSize } from 'hooks/useWindowSize'
 import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
+import FastExitButton from './modules/QuickExit'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -28,6 +29,7 @@ const Header = () => {
   const [entryRun, setEntryRun] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
+    console.log(globalSettings)
     if (!globalSettings?.navigation?.headerBarLinks || !width || entryRun)
       return
     const ctx = gsap.context(() => {
@@ -52,6 +54,9 @@ const Header = () => {
 
   return (
     <>
+      {globalSettings?.quickExit?.showFastExit && (
+        <FastExitButton url={globalSettings?.quickExit?.exitUrl} />
+      )}
       <header
         ref={headerRef}
         style={

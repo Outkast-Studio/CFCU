@@ -210,8 +210,6 @@ export const settingsStructure = (
     return S.list()
       .title('Content')
       .items([
-        testModulesListItem,
-        S.divider(),
         globalSettingsListItem,
         S.divider(),
         homepageListItem,

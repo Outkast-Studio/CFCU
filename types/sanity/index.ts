@@ -386,6 +386,10 @@ export interface GlobalSettingsType {
     }>
     lowerFooterMessage: string
   }
+  quickExit: {
+    showFastExit?: boolean
+    exitUrl?: string
+  }
 }
 
 export type Modules = Array<

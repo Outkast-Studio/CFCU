@@ -12,6 +12,7 @@ export default defineType({
       title: 'Navigation',
     },
     { name: 'footer', title: 'Footer' },
+    { name: 'quickExit', title: 'Quick Exit' },
   ],
   fields: [
     defineField({
@@ -321,6 +322,27 @@ export default defineType({
           type: 'text',
           rows: 2,
           validation: (Rule: any) => Rule.required(),
+        }),
+      ],
+    }),
+    defineField({
+      name: 'quickExit',
+      title: 'Quick Exit',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'showFastExit',
+          title: 'Show Fast Exit',
+          type: 'boolean',
+          initialValue: false,
+          validation: (Rule: any) => Rule.required(),
+        }),
+        defineField({
+          name: 'exitUrl',
+          title: 'Exit URL',
+          type: 'url',
+          description:
+            'The URL to redirect to when the user clicks the exit button',
         }),
       ],
     }),
