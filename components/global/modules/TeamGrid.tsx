@@ -18,7 +18,12 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
         )}
       >
         {data?.subtitle && (
-          <h2 className={clsx('mb-[11px] subtitle-l', ' text-[#606060] ')}>
+          <h2
+            className={clsx(
+              'mb-[11px] subtitle-l text-center',
+              ' text-[#606060] ',
+            )}
+          >
             {data?.subtitle}
           </h2>
         )}
