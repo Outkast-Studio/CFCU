@@ -42,21 +42,21 @@ const RateTable = ({ data }: { data: RateTableType }) => {
           Date Updated {formatDate(data?._updatedAt)}
         </h4>
       </div>
-      <div className={clsx('relative h-fit')}>
+      <div className={clsx('relative h-fit w-full')}>
         <div
           ref={gradientRef}
           className={clsx(
-            'absolute right-0 top-0 w-[70px] h-full rateTableGradient z-[2]',
+            'absolute right-0 top-0 w-[32px] h-full rateTableGradient z-[2]',
           )}
         ></div>
         <div
           className={clsx(
-            'overflow-x-auto mt-[29px] px-[24px] relative',
-            'lg:mt-[44px] lg:px-[48px]',
+            ' mt-[29px] relative flex overflow-x-auto pl-[24px]',
+            'lg:mt-[44px] lg:px-[48px] ',
             'xl:px-[0px]',
           )}
         >
-          <table className="w-full" ref={tableRef}>
+          <table className="block " ref={tableRef}>
             <thead>
               <tr>
                 {data?.columns?.map((column, index) => (
@@ -91,6 +91,11 @@ const RateTable = ({ data }: { data: RateTableType }) => {
               ))}
             </tbody>
           </table>
+          <div
+            className={clsx(
+              'w-[24px] h-[24px] bg-white flex-shrink-0 lg:hidden',
+            )}
+          ></div>
         </div>
       </div>
       {data?.tableNotes && (
