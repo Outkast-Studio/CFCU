@@ -20,6 +20,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         className={clsx(
           'px-[24px] flex flex-col gap-y-[9px]',
           'lg:flex-row lg:justify-between lg:items-end lg:px-[48px]',
+          'xl:px-[0px]',
         )}
       >
         <h3 className={clsx('text-lavender title-m', 'lg:title-m-desktop')}>
@@ -33,6 +34,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         className={clsx(
           'overflow-x-auto mt-[29px] px-[24px]',
           'lg:mt-[44px] lg:px-[48px]',
+          'xl:px-[0px]',
         )}
       >
         <table className="w-full">
@@ -76,6 +78,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
           className={clsx(
             'px-[24px] pt-[28px] text-black w-paragraph-s-desktop rateTableBlock',
             'lg:px-[48px] lg:pt-[12px]',
+            'xl:px-[0px]',
           )}
         >
           <PortableText value={data?.tableNotes} />
