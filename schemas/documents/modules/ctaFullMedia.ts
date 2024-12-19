@@ -10,6 +10,7 @@ export default defineField({
       title: 'Theme',
       type: 'simplerColor',
       options: {
+        //@ts-ignore
         colorList: [
           { label: 'Orange', value: '#F56600' },
           { label: 'Yellow', value: '#FFC600' },
