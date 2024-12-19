@@ -90,12 +90,12 @@ export const homepageModules = defineField({
       title: 'Image Grid',
       to: [{ type: 'imageGrid', title: 'Image Grid' }],
     },
-    {
-      type: 'reference',
-      name: 'quickExit',
-      title: 'Quick Exit',
-      to: [{ type: 'quickExit', title: 'Quick Exit' }],
-    },
+    // {
+    //   type: 'reference',
+    //   name: 'quickExit',
+    //   title: 'Quick Exit',
+    //   to: [{ type: 'quickExit', title: 'Quick Exit' }],
+    // },
     {
       type: 'reference',
       name: 'teamGrid',
