@@ -60,7 +60,7 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
             </h4>
             <div
               className={clsx(
-                'flex justify-center items-center gap-[24px] flex-wrap',
+                'flex justify-center items-start gap-[24px] flex-wrap',
               )}
             >
               {row?.groupMembers?.map((member, index) => (
