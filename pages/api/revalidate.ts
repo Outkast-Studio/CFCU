@@ -166,7 +166,7 @@ async function moduleHandler(client: SanityClient, body: any) {
   `,
     { moduleId },
   )
-
+  console.log(moduleHandler, 'moduleHandler')
   // Process the results to handle pages without slugs and format routes
   const processedRoutes = allRoutesRefferedTo
     .map((route: { _type: string; slug: string | null }) => {
@@ -274,14 +274,19 @@ async function getAllRefercingSlugs(
     }`,
     { id },
   )
+  console.log(referencingPages, 'referencing pages')
+  const globalSettingsPresent = referencingPages.find(
+    (page) => page._type === 'globalSettings',
+  )
+  console.log(globalSettingsPresent, 'global settings present')
 
-  if (referencingPages.find((page) => page._type === 'globalSettings')) {
+  if (globalSettingsPresent) {
     console.log('global settings being run')
     const allRoutes = await queryAllRoutes(client)
+    console.log(allRoutes, 'all routes')
     return allRoutes
   }
   console.log(referencingPages, 'pages')
-
   const referencingPagesSlugs = referencingPages
     .map((route: { _type: string; slug: string | null }) => {
       if (route.slug === null && route._type in pagesWithoutSlugs) {
@@ -371,8 +376,8 @@ export async function getTopicPostPageSlugs(
     groq`count(*[_type == "post" && references($topicId)])`,
     { topicId },
   )
-
-  const allOtherSlugs = await getAllRefercingSlugs(client, topicId, moduleTypes)
+  console.log(topicId, 'topicId page being called.')
+  // const allOtherSlugs = await getAllRefercingSlugs(client, topicId, moduleTypes)
 
   const postsPerPage = 10 // Adjust this based on your pagination setup
   // Calculate the number of pages
@@ -382,13 +387,14 @@ export async function getTopicPostPageSlugs(
     groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
     { topicId },
   )
+
   if (!topicSlug) {
     throw new Error(`Topic with ID ${topicId} not found`)
   }
   // Generate routes for each page
   return [
     ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
-    ...allOtherSlugs,
+    // ...allOtherSlugs,
   ]
 }
 
