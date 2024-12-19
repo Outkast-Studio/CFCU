@@ -10,16 +10,16 @@ const WTable = ({
   data: RateTableType
   noPadding?: boolean
 }) => {
-  const maxRows = data.columns.reduce(
-    (max, column) => Math.max(max, column.columnValues.length),
+  const maxRows = data?.columns?.reduce(
+    (max, column) => Math.max(max, column?.columnValues?.length),
     0,
   )
 
   return (
     <section
       className={clsx(
-        'py-[89px] w-full',
-        'lg:py-[74px]',
+        'py-[0px] w-full',
+        'lg:py-[0]',
         !noPadding && 'lg:max-w-[888px] lg:px-[0px] lg:mx-auto',
       )}
     >
@@ -78,7 +78,7 @@ const WTable = ({
                       'lg:pl-[31px] lg:pb-[20px] lg:pt-[16px] lg:w-paragraph-l-desktop',
                     )}
                   >
-                    <p>{column.columnValues[rowIndex] || '\u00A0'}</p>
+                    <p>{column?.columnValues[rowIndex] || '\u00A0'}</p>
                   </td>
                 ))}
               </tr>

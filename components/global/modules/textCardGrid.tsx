@@ -136,12 +136,14 @@ function CardGridItem({ card }: { card: TextCardGridType['cards'][0] }) {
       >
         {card?.description}
       </p>
-      <PageLink data={card?.pageLink}>
-        <Button
-          label={card?.pageLink?.title}
-          className={clsx('!bg-lavender !text-white')}
-        />
-      </PageLink>
+      {card?.pageLink?.title && (
+        <PageLink data={card?.pageLink}>
+          <Button
+            label={card?.pageLink?.title}
+            className={clsx('!bg-lavender !text-white')}
+          />
+        </PageLink>
+      )}
     </article>
   )
 }

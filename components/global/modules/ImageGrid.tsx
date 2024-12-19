@@ -84,12 +84,13 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                     >
                       <Image
                         src={urlForImage(logo?.logo)
-                          .width(1000)
+                          .width(1200)
                           .quality(100)
                           .url()}
                         alt={logo?.logo.alt as string}
                         width={1000}
                         height={1000}
+                        quality={100}
                         onLoadingComplete={(image) =>
                           image.classList.remove('opacity-0')
                         }
@@ -102,12 +103,13 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                     <Image
                       key={(String(index) + logo?.logo?.alt) as string}
                       src={urlForImage(logo?.logo)
-                        .width(1000)
+                        .width(12000)
                         .quality(100)
                         .url()}
                       alt={logo?.logo.alt as string}
                       width={1000}
                       height={1000}
+                      quality={100}
                       onLoadingComplete={(image) =>
                         image.classList.remove('opacity-0')
                       }

@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  const ITEMS_PER_PAGE = 30 // You can adjust this value as needed
+  const ITEMS_PER_PAGE = 1 // You can adjust this value as needed
 
   // Calculate start and end for pagination
   const start = (page - 1) * ITEMS_PER_PAGE

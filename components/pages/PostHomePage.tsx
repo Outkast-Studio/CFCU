@@ -185,16 +185,18 @@ const PostHomePage = ({
           <PostCard data={post} key={index} isBlogListing />
         ))}
       </section>
-      {pagination.totalPages > 1 && (
-        <Pagination
-          key={pagination.currentPage}
-          totalPages={pagination.totalPages}
-          currentPage={pagination.currentPage}
-          prevUrl={pagination.prevUrl}
-          nextUrl={pagination.nextUrl}
-          generateButtonUrl={pagination.generateButtonUrl}
-        />
-      )}
+      <div className={clsx('px-[24px]', 'lg:px-[48px]')}>
+        {pagination.totalPages > 1 && (
+          <Pagination
+            key={pagination.currentPage}
+            totalPages={pagination.totalPages}
+            currentPage={pagination.currentPage}
+            prevUrl={pagination.prevUrl}
+            nextUrl={pagination.nextUrl}
+            generateButtonUrl={pagination.generateButtonUrl}
+          />
+        )}
+      </div>
     </main>
   )
 }
