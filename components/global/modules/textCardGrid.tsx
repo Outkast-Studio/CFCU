@@ -26,35 +26,35 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
     triggerOnce: true,
   })
 
-  useIsomorphicLayoutEffect(() => {
-    if (
-      !leftGridItemsRef.current ||
-      !rightGridItemsRef.current ||
-      !gridRef.current ||
-      !inView ||
-      width < 1024
-    )
-      return
+  // useIsomorphicLayoutEffect(() => {
+  //   if (
+  //     !leftGridItemsRef.current ||
+  //     !rightGridItemsRef.current ||
+  //     !gridRef.current ||
+  //     !inView ||
+  //     width < 1024
+  //   )
+  //     return
 
-    const ctx = gsap.context(() => {
-      gsap.set(leftGridItemsRef.current, { yPercent: 5 })
-      gsap.set(rightGridItemsRef.current, { yPercent: -4 })
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: 'top-=400px top',
-            end: `+=${gridRef.current.offsetHeight * 0.8}px`,
-            scrub: true,
-          },
-        })
-        .to(leftGridItemsRef.current, { yPercent: -10 })
-        .to(rightGridItemsRef.current, { yPercent: 8 }, '<+=0')
-    })
-    return () => {
-      ctx.revert()
-    }
-  }, [inView, width])
+  //   const ctx = gsap.context(() => {
+  //     gsap.set(leftGridItemsRef.current, { yPercent: 5 })
+  //     gsap.set(rightGridItemsRef.current, { yPercent: -4 })
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: gridRef.current,
+  //           start: 'top-=400px top',
+  //           end: `+=${gridRef.current.offsetHeight * 0.8}px`,
+  //           scrub: true,
+  //         },
+  //       })
+  //       .to(leftGridItemsRef.current, { yPercent: -10 })
+  //       .to(rightGridItemsRef.current, { yPercent: 8 }, '<+=0')
+  //   })
+  //   return () => {
+  //     ctx.revert()
+  //   }
+  // }, [inView, width])
 
   return (
     <section
@@ -95,11 +95,14 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
         ref={gridRef}
         className={clsx(
           'flex flex-col gap-y-[48px] mt-[32px]',
-          'md:flex-row md:gap-x-[42px]',
+          'md:flex-row md:gap-x-[42px] md:grid md:grid-cols-2',
           'lg:col-start-7 lg:col-end-13 lg:grid lg:grid-cols-2 lg:gap-x-[42px]',
         )}
       >
-        <div
+        {data?.cards?.map((card, index) => (
+          <CardGridItem card={card} key={index} />
+        ))}
+        {/* <div
           className={clsx('flex flex-col gap-y-[48px]', 'lg:gap-y-[81px]')}
           ref={leftGridItemsRef}
         >
@@ -114,7 +117,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
           {rightGridItems?.map((card, index) => (
             <CardGridItem card={card} key={index} />
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )
