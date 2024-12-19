@@ -2,25 +2,26 @@ import Image from 'next/image'
 import { urlForImage } from '../lib/sanity.image'
 import clsx from 'clsx'
 import WTable from '@/components/global/ui/wTable'
+import { getImageDimensions } from '@sanity/asset-utils'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
     image: ({ value }) => (
       <figure
         className={clsx(
-          'flex flex-col gap-y-[17px]  w-full',
+          'flex flex-col gap-y-[17px]  w-full re',
           'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
         )}
       >
         <Image
-          src={urlForImage(value).width(2440).quality(100).url()}
+          src={urlForImage(value).width(1200).quality(100).url()}
           alt={String(value.alt)}
-          width={1000}
-          height={1000}
           quality={100}
+          width={getImageDimensions(value).width}
+          height={getImageDimensions(value).height}
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={clsx(
-            'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+            'w-full object-contain opacity-0 transition-all duration-300 ease-in-out-cubic',
           )}
         />
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
@@ -38,8 +39,8 @@ export const WysiwygComponentsWithoutPadding = {
         <Image
           src={urlForImage(value).width(2440).url()}
           alt={String(value.alt)}
-          width={2440}
-          height={2440}
+          width={getImageDimensions(value).width}
+          height={getImageDimensions(value).height}
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={clsx(
             'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
@@ -210,8 +211,8 @@ export const WysiwygComponents = {
         <Image
           src={urlForImage(value).width(2440).quality(100).url()}
           alt={String(value.alt)}
-          width={1000}
-          height={1000}
+          width={getImageDimensions(value).width}
+          height={getImageDimensions(value).height}
           quality={100}
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={clsx(
@@ -233,8 +234,8 @@ export const WysiwygComponents = {
         <Image
           src={urlForImage(value).width(2440).url()}
           alt={String(value.alt)}
-          width={2440}
-          height={2440}
+          width={getImageDimensions(value).width}
+          height={getImageDimensions(value).height}
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={clsx(
             'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
