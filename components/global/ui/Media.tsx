@@ -83,9 +83,13 @@ export default function MediaComponent({
           Your browser does not support the video tag.
         </video>
 
-        {media?.video?.caption && (
-          <figcaption>{media?.video?.caption}</figcaption>
-        )}
+        {/* {media?.video?.caption && (
+          <figcaption
+            className={clsx('w-paragraph-s-desktop text-black/75 mt-[8px]')}
+          >
+            {media?.video?.caption}
+          </figcaption>
+        )} */}
       </figure>
     )
   }

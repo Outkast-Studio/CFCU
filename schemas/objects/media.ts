@@ -45,13 +45,6 @@ export default defineField({
         accept: 'video/*',
       },
       hidden: ({ parent }) => parent?.mediaType !== 'video',
-      fields: [
-        defineField({
-          name: 'caption',
-          title: 'Caption',
-          type: 'string',
-        }),
-      ],
     }),
   ],
   preview: {
@@ -60,13 +53,12 @@ export default defineField({
       imageUrl: 'image.asset.url',
       videoUrl: 'video.asset.url',
       alt: 'image.alt',
-      caption: 'video.caption',
     },
     prepare(selection) {
-      const { mediaType, imageUrl, videoUrl, alt, caption } = selection
+      const { mediaType, imageUrl, videoUrl, alt } = selection
       return {
         title: mediaType === 'image' ? 'Image' : 'Video',
-        subtitle: mediaType === 'image' ? alt : caption,
+        subtitle: mediaType === 'image' ? alt : '',
         media: mediaType === 'image' ? imageUrl : videoUrl,
       }
     },
