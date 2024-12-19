@@ -51,12 +51,12 @@ const RateTable = ({ data }: { data: RateTableType }) => {
         ></div>
         <div
           className={clsx(
-            ' mt-[29px] relative flex overflow-x-auto pl-[24px]',
+            ' mt-[29px] relative flex overflow-x-auto pl-[24px] w-full',
             'lg:mt-[44px] lg:px-[48px] ',
             'xl:px-[0px]',
           )}
         >
-          <table className="block " ref={tableRef}>
+          <table className="w-full" ref={tableRef}>
             <thead>
               <tr>
                 {data?.columns?.map((column, index) => (
