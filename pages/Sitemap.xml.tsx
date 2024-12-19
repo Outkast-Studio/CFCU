@@ -1,4 +1,5 @@
 import { getClient } from 'lib/sanity.client'
+import { groq, SanityClient } from 'next-sanity'
 
 type SitemapLocation = {
   url: string
@@ -18,10 +19,17 @@ type SitemapLocation = {
 const defaultUrls: SitemapLocation[] = [
   {
     url: '/',
-    changefreq: 'daily',
+    changefreq: 'monthly',
     priority: 1,
     lastmod: new Date(), // or custom date: '2023-06-12T00:00:00.000Z',
   },
+  {
+    url: '/locations',
+    changefreq: 'monthly',
+    priority: 1,
+    lastmod: new Date(), // or custom date: '2023-06-12T00:00:00.000Z',
+  },
+
   //   { url: '/about', priority: 0.5 },
   //   { url: '/blog', changefreq: 'weekly', priority: 0.7 },
 ]
@@ -40,6 +48,7 @@ const createSitemap = (locations: SitemapLocation[]) => {
                         ? `<lastmod>${location.lastmod.toISOString()}</lastmod>`
                         : ''
                     }
+                        <changefreq>${location.changefreq}</changefreq>
                   </url>`
         })
         .join('')}
@@ -54,29 +63,118 @@ export default function SiteMap() {
 export async function getServerSideProps({ res }) {
   const client = getClient()
 
-  // Get list of Post urls
-  // const [posts = []] = await Promise.all([getAllPosts(client)])
-  // const postUrls: SitemapLocation[] = posts
-  //   .filter(({ slug = '' }) => slug)
-  //   .map((post) => {
-  //     return {
-  //       url: `/posts/${post.slug}`,
-  //       priority: 0.5,
-  //       lastmod: new Date(post._updatedAt),
-  //     }
-  //   })
+  const locationsSlugs = await client.fetch<{ slug: string }[]>(
+    `
+    *[_type == "location"]{
+      "slug": slug.current
+    }
+  `,
+  )
 
-  // ... get more routes here
+  console.log(locationsSlugs, 'locations slugs')
+  const postSlugs = await client.fetch<{ slug: string }[]>(
+    `
+    *[_type == "post"]{
+       "slug": slug.current
+    }
+  `,
+  )
 
-  // Return the default urls, combined with dynamic urls above
-  const locations = [...defaultUrls]
+  const subpageSlugs = await client.fetch<{ slug: string }[]>(
+    `
+    *[_type == "subPage"]{
+       "slug": slug.current
+    }
+  `,
+  )
+
+  const allTopicIds = await client.fetch<{ _id: string }[]>(
+    `
+    *[_type == "topic"]{
+      _id
+    }
+  `,
+  )
+
+  const topicSlugs = await Promise.all(
+    allTopicIds.map(async (topicId) => {
+      const slugs = await getTopicPostPageSlugs(client, topicId._id)
+      return slugs
+    }),
+  )
+
+  const allPostsPageSlugs = await getAllPostHomePageSlugs(client)
+  // Combine all slugs into one array
+  const allSlugs = [
+    ...new Set([
+      ...locationsSlugs.map((slug) => slug.slug),
+      ...postSlugs.map((slug) => slug.slug),
+      ...subpageSlugs.map((slug) => slug.slug),
+      ...topicSlugs.flat(),
+      ...allPostsPageSlugs,
+    ]),
+  ]
+
+  const allSlugsWithSitemapProps = allSlugs.map((slug) => ({
+    url: '/' + slug,
+    changefreq: 'monthly' as SitemapLocation['changefreq'],
+    priority: 1,
+    lastmod: new Date(), // or custom date: '2023-06-12T00:00:00.000Z',
+  }))
+
+  const allPaths = [...defaultUrls, ...allSlugsWithSitemapProps]
 
   // Set response to XML
   res.setHeader('Content-Type', 'text/xml')
-  res.write(createSitemap(locations))
+  res.write(createSitemap(allPaths))
   res.end()
 
   return {
     props: {},
   }
+}
+
+async function getTopicPostPageSlugs(
+  client: SanityClient,
+  topicId: string,
+): Promise<string[]> {
+  // Fetch the total number of blog posts for the given topic
+
+  ///TODO Query all pages that reference this topic.
+  const totalPosts = await client.fetch(
+    groq`count(*[_type == "post" && references($topicId)])`,
+    { topicId },
+  )
+  const postsPerPage = 10 // Adjust this based on your pagination setup
+  // Calculate the number of pages
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  // Fetch the topic slug
+  const topicSlug = await client.fetch(
+    groq`*[_type == "topic" && _id == $topicId][0].slug.current`,
+    { topicId },
+  )
+  if (!topicSlug) {
+    throw new Error(`Topic with ID ${topicId} not found`)
+  }
+
+  return [
+    ...Array.from({ length: totalPages }, (_, i) => `${topicSlug}/${i + 1}`),
+  ]
+}
+
+async function getAllPostHomePageSlugs(
+  client: SanityClient,
+): Promise<string[]> {
+  // Fetch the total number of blog posts
+  const totalPosts = await client.fetch(groq`count(*[_type == "post"])`)
+  const postsPerPage = 10 // Adjust this based on your pagination setup
+
+  // Calculate the number of pages
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+
+  // Generate routes for each page
+  return Array.from(
+    { length: totalPages },
+    (_, i) => `posts/page/${String(i + 1)}`,
+  )
 }
