@@ -309,7 +309,7 @@ export default function MapView({
           'absolute lg:bottom-[64px] z-[10] bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px]',
         )}
       >
-        Toggle ATM&apos;s
+        Toggle Co-op Network ATM
       </button>
 
       {selectedLocation && popupPosition && (
