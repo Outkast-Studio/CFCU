@@ -46,19 +46,19 @@ export default defineType({
         'The slug stucture for this topic will be /posts/topic/[slug]',
     }),
 
-    defineField({
-      name: 'title',
-      title: 'Page Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 3,
-      validation: (Rule) => Rule.required(),
-    }),
+    // defineField({
+    //   name: 'title',
+    //   title: 'Page Title',
+    //   type: 'string',
+    //   validation: (Rule) => Rule.required(),
+    // }),
+    // defineField({
+    //   name: 'description',
+    //   title: 'Description',
+    //   type: 'text',
+    //   rows: 3,
+    //   validation: (Rule) => Rule.required(),
+    // }),
 
     defineField({
       name: 'metaTitle',

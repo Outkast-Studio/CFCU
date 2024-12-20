@@ -29,7 +29,6 @@ const Header = () => {
   const [entryRun, setEntryRun] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
-    console.log(globalSettings)
     if (!globalSettings?.navigation?.headerBarLinks || !width || entryRun)
       return
     const ctx = gsap.context(() => {

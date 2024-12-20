@@ -71,7 +71,6 @@ export async function getServerSideProps({ res }) {
   `,
   )
 
-  console.log(locationsSlugs, 'locations slugs')
   const postSlugs = await client.fetch<{ slug: string }[]>(
     `
     *[_type == "post"]{

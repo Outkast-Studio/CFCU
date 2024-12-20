@@ -6,8 +6,14 @@ import {
   getAllTopicSlugs,
   getTopicBySlug,
   getGlobalSettings,
+  getBlogHomepage,
 } from 'lib/sanity.client'
-import { TopicPageType, PostPageType, GlobalSettingsType } from 'types/sanity'
+import {
+  TopicPageType,
+  PostPageType,
+  GlobalSettingsType,
+  BlogHomepageType,
+} from 'types/sanity'
 import { QueryParams } from 'next-sanity'
 import { readToken } from 'lib/sanity.api'
 import { Seo, SharedPageProps } from '@/pages/_app'
@@ -15,12 +21,14 @@ import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useLiveQuery } from 'next-sanity/preview'
 import { topicBySlugQuery } from '@/lib/sanity.queries'
+import blogHomePage from '@/schemas/singletons/blogHomePage'
 
 interface PageProps extends SharedPageProps {
   topicData: TopicPageType
   relatedPosts: PostPageType[]
   globalSettings: GlobalSettingsType
   params: QueryParams
+  blogHomepage: BlogHomepageType
   pagination: {
     currentPage: number
     totalPages: number
@@ -41,6 +49,7 @@ export default function TopicSlugRoute({
   pagination,
   seo,
   params,
+  blogHomepage,
 }: PageProps) {
   const prevUrl = `/${topicData.slug.current}/${Math.max(1, pagination.currentPage - 1)}`
   const nextUrl = `/${topicData.slug.current}/${Math.min(pagination.totalPages, pagination.currentPage + 1)}`
@@ -71,7 +80,7 @@ export default function TopicSlugRoute({
     <Layout seo={seo}>
       <PostHomePage
         key={data?.slug?.current}
-        data={data}
+        data={blogHomepage}
         allPosts={relatedPosts}
         pagination={extendedPagination}
       />
@@ -92,6 +101,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
     page,
     POSTS_PER_PAGE,
   )
+  const blogHomepage = await getBlogHomepage(client)
 
   if (!topicData) {
     return { notFound: true }
@@ -113,6 +123,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
       topicData,
       relatedPosts,
       globalSettings,
+      blogHomepage,
       params: {
         ...params,
         slug,
