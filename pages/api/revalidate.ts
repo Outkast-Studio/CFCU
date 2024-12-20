@@ -215,6 +215,7 @@ async function getAllPostHomePageSlugs(
       return slugs
     }),
   )
+  console.log(topicSlugs)
   // Generate routes for each page
   return [...postHomepageSlgus, ...topicSlugs]
 }
