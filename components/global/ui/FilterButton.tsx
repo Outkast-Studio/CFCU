@@ -13,7 +13,8 @@ interface Props {
 
 const CustomSelectButton = ({ title, items, className }: Props) => {
   const [selectedItem, setSelectedItem] = useState('')
-  const filteredTopics = items.filter((item) => item.relatedPosts.length > 0)
+  // const filteredTopics = items.filter((item) => item.relatedPosts.length > 0)
+  const filteredTopics = items.map((item) => item)
   const router = useRouter()
   const selectRef = useRef<HTMLSelectElement>(null)
 

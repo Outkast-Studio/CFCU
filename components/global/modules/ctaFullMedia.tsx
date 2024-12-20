@@ -107,7 +107,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
             {data?.topContent?.subtitle && (
               <p
                 className={clsx(
-                  'font-codec-heavy text-[16px] leading-[24px] text-white mt-[13px] max-w-[310px] animateContent',
+                  'font-codec-heavy text-[16px] leading-[18px] text-white mt-[13px] max-w-[310px] animateContent',
                   'lg:max-w-[389px]',
                 )}
               >
@@ -136,7 +136,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
               <div
                 className={clsx(
                   'w-paragraph mt-[14px] max-w-[330px] text-white animateContent',
-                  'lg:max-w-[454px] lg:w-paragraph-l-desktop',
+                  'lg:max-w-[454px] lg:w-paragraph-l-desktop lg:!leading-[28px]',
                 )}
               >
                 <PortableText value={data.lowerContent.description} />
