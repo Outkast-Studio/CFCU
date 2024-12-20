@@ -53,8 +53,8 @@ const ModuleFactory = ({ modules }) => {
         return <ColumnSplit data={module} />
       case 'logoGrid':
         return <LogoGrid data={module} />
-      case 'quickExit':
-        return <QuickExit data={module} />
+      // case 'quickExit':
+      //   return <QuickExit data={module} />
       case 'rateTable':
         return <RateTable data={module} />
       default:

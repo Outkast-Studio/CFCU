@@ -191,7 +191,7 @@ export interface CtaTextType {
 
 export interface GetInspiredType {
   title: string
-  description: PortableTextBlock
+  description: string
   cta: {
     title: string
     path: string

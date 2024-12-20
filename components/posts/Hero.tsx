@@ -130,83 +130,91 @@ const Hero = ({ post }: { post: PostPageType }) => {
               setLineAmount={(count) => setLineAmount(count)}
             />
           </h1>
-          <p
-            className={clsx(
-              'font-codec-news text-black/75 mt-[8px] w-paragraph-m-desktop subItem opacity-0',
-              'md:max-w-[542px]',
-              'lg:text-[26px] lg:leading-[39px]  l:mt-[17px]',
-            )}
-          >
-            {post?.excerpt}
-          </p>
+          {post?.excerpt && (
+            <p
+              className={clsx(
+                'font-codec-news text-black/75 mt-[8px] w-paragraph-m-desktop subItem opacity-0',
+                'md:max-w-[542px]',
+                'lg:text-[26px] lg:leading-[39px]  l:mt-[17px]',
+              )}
+            >
+              {post?.excerpt}
+            </p>
+          )}
           <div
             className={clsx(
               'grid grid-cols-2 gap-x-[24px gap-y-[29px] mt-[22px] subItem opacity-0',
               'lg:mt-[36px] lg:w-[75%]',
             )}
           >
-            <div className={clsx('flex flex-col gap-y-[8px]')}>
-              <h4
-                className={clsx(
-                  'subtitle-s text-black/75 font-codec-news uppercase',
-                  'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
-                )}
-              >
-                Author
-              </h4>
-              <h5
-                className={clsx(
-                  'font-codec-pro text-black text-[16px] leading-[20.8px]',
-                )}
-              >
-                {post?.author?.name}
-              </h5>
-            </div>
-            <div className={clsx('flex flex-col gap-y-[8px] ')}>
-              <h4
-                className={clsx(
-                  'subtitle-s text-black/75 font-codec-news uppercase',
-                  'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
-                )}
-              >
-                Date
-              </h4>
-              <h5
-                className={clsx(
-                  'font-codec-pro text-black text-[16px] leading-[20.8px]',
-                )}
-              >
-                {formatDate(post?.date)}
-              </h5>
-            </div>
-            <div className={clsx('flex flex-col gap-y-[8px] ')}>
-              <h4
-                className={clsx(
-                  'subtitle-s text-black/75 font-codec-news uppercase',
-                  'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
-                )}
-              >
-                Topics
-              </h4>
-              <div
-                className={clsx(
-                  'font-codec-pro text-lavender  text-[16px] leading-[20.8px] flex flex-col gap-y-[8px] ',
-                )}
-              >
-                {post?.topics?.map((topic, index) => (
-                  <Link
-                    key={index}
-                    href={'/' + topic?.slug?.current + '/1'}
-                    className={clsx(
-                      'underline hover:!no-underline w-fit block',
-                    )}
-                  >
-                    {topic?.name}
-                  </Link>
-                ))}
+            {post?.author && (
+              <div className={clsx('flex flex-col gap-y-[8px]')}>
+                <h4
+                  className={clsx(
+                    'subtitle-s text-black/75 font-codec-news uppercase',
+                    'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
+                  )}
+                >
+                  Author
+                </h4>
+                <h5
+                  className={clsx(
+                    'font-codec-pro text-black text-[16px] leading-[20.8px]',
+                  )}
+                >
+                  {post?.author?.name}
+                </h5>
               </div>
-            </div>
-            {post?.shareLinks && (
+            )}
+            {post?.date && (
+              <div className={clsx('flex flex-col gap-y-[8px] ')}>
+                <h4
+                  className={clsx(
+                    'subtitle-s text-black/75 font-codec-news uppercase',
+                    'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
+                  )}
+                >
+                  Date
+                </h4>
+                <h5
+                  className={clsx(
+                    'font-codec-pro text-black text-[16px] leading-[20.8px]',
+                  )}
+                >
+                  {formatDate(post?.date)}
+                </h5>
+              </div>
+            )}
+            {post?.topics?.length > 0 && (
+              <div className={clsx('flex flex-col gap-y-[8px] ')}>
+                <h4
+                  className={clsx(
+                    'subtitle-s text-black/75 font-codec-news uppercase',
+                    'lg:text-[14px] lg:leading-[14px] lg:tracking-[1.6px]',
+                  )}
+                >
+                  Topics
+                </h4>
+                <div
+                  className={clsx(
+                    'font-codec-pro text-lavender  text-[16px] leading-[20.8px] flex flex-col gap-y-[8px] ',
+                  )}
+                >
+                  {post?.topics?.map((topic, index) => (
+                    <Link
+                      key={index}
+                      href={'/' + topic?.slug?.current + '/1'}
+                      className={clsx(
+                        'underline hover:!no-underline w-fit block',
+                      )}
+                    >
+                      {topic?.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {post?.shareLinks?.length > 0 && (
               <div className={clsx('flex flex-col gap-y-[8px]')}>
                 <h4
                   className={clsx(

@@ -83,14 +83,14 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
         >
           {data?.title}
         </h2>
-        <div
+        <p
           className={clsx(
             'mt-[12px] font-codec-pro text-black/75 text-center text-[18px] leading-[25.2px] max-w-[961px]',
             'lg:w-paragraph-xl-desktop lg:mt-[17px]',
           )}
         >
-          <PortableText value={data?.description} />
-        </div>
+          {data?.description}
+        </p>
         <PageLink
           data={data?.cta}
           className={clsx('mt-[10.5px] block', 'lg:mt-[7.5px]')}

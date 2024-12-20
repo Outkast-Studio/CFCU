@@ -15,7 +15,8 @@ export default defineField({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'text',
+      rows: 3,
       description: 'The description of the section',
       validation: (Rule) => Rule.required(),
     }),
