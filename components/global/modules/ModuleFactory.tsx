@@ -31,7 +31,7 @@ const ModuleFactory = ({ modules }) => {
     <>
       {otherModules.map((module, index) => (
         <React.Fragment key={`module-${index}`}>
-          {renderModule(module)}
+          {renderModule(module, index, otherModules.length)}
         </React.Fragment>
       ))}
     </>
@@ -40,7 +40,7 @@ const ModuleFactory = ({ modules }) => {
 
 export default ModuleFactory
 
-export const renderModule = (module) => {
+export const renderModule = (module, moduleIndex = 0, modulesLegnth = 0) => {
   switch (module?._type) {
     case 'ctaInContent':
       return <CTAInContent data={module} />
@@ -53,7 +53,13 @@ export const renderModule = (module) => {
     case 'ctaText':
       return <CTAText data={module} />
     case 'ctaFullMedia':
-      return <CTAFullMedia data={module} />
+      return (
+        <CTAFullMedia
+          data={module}
+          moduleIndex={moduleIndex}
+          modulesLength={modulesLegnth}
+        />
+      )
     case 'getInspired':
       return <GetInspired data={module} />
     case 'textCardGrid':

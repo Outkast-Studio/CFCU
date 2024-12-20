@@ -17,7 +17,12 @@ import { useInView } from 'react-intersection-observer'
 import { urlForImage } from '@/lib/sanity.image'
 import Image from 'next/image'
 
-const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
+interface Props {
+  data: CtaFullMediaType
+  moduleIndex?: number
+  modulesLength?: number
+}
+const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
   const [isPlaying, setIsPlaying] = useState(true)
 
@@ -52,7 +57,13 @@ const CtaFullMedia = ({ data }: { data: CtaFullMediaType }) => {
   }, [inView])
 
   return (
-    <div className={clsx('lg:py-[48px]')} ref={ref}>
+    <div
+      className={clsx(
+        'lg:py-[48px]',
+        moduleIndex == modulesLength - 1 && '!pb-[0px]',
+      )}
+      ref={ref}
+    >
       <section
         ref={contentRef}
         className={clsx(

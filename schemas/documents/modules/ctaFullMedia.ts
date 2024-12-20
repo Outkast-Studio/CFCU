@@ -33,7 +33,6 @@ export default defineField({
       type: 'boolean',
       description:
         'If true, this will add a darkened overlay to keep the content readable.',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'topContent',
