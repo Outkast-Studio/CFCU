@@ -4,7 +4,7 @@ import { homepageModules } from 'schemas/schemaTypes/homepageModules'
 
 export default defineType({
   name: 'homepage',
-  title: 'Home Page',
+  title: 'Homepage',
   icon: HouseLine as any,
   type: 'document',
   groups: [

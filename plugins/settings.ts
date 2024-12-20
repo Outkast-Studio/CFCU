@@ -198,7 +198,7 @@ export const settingsStructure = (
           ]),
       )
     const subpagesListItem = S.listItem()
-      .title('Sub Pages')
+      .title('Subpages')
       .icon(Folder)
       .schemaType('subPage')
       .child(S.documentTypeList('subPage').title('Sub Pages'))
@@ -214,13 +214,13 @@ export const settingsStructure = (
         S.divider(),
         homepageListItem,
         S.divider(),
-        fourOhFourListItem,
+        subpagesListItem,
         S.divider(),
         postsListItem,
         S.divider(),
-        subpagesListItem,
-        S.divider(),
         locationsListItem,
+        S.divider(),
+        fourOhFourListItem,
         S.divider(),
         ...defaultListItems,
       ])
