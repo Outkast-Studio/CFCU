@@ -200,12 +200,20 @@ async function getAllPostHomePageSlugs(
 
   // Calculate the number of pages
   const totalPages = Math.ceil(totalPosts / postsPerPage)
-
-  // Generate routes for each page
-  return Array.from(
+  const postHomepageSlgus = Array.from(
     { length: totalPages },
     (_, i) => `/posts/page/${String(i + 1)}`,
   )
+
+  const topicIds = await client.fetch(groq`*[_type == "topic"]{_id}`)
+  const topicSlugs = await Promise.all(
+    topicIds.map(async (topic) => {
+      const slugs = await getTopicPostPageSlugs(client, topic._id, true)
+      return slugs
+    }),
+  )
+  // Generate routes for each page
+  return [...postHomepageSlgus, ...topicSlugs.flat()]
 }
 
 async function getIndividualPostSlugs(
