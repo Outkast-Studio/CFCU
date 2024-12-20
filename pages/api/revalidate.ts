@@ -205,15 +205,18 @@ async function getAllPostHomePageSlugs(
     (_, i) => `/posts/page/${String(i + 1)}`,
   )
 
-  const topicIds = await client.fetch(groq`*[_type == "topic"]{_id}`)
+  console.log(postHomepageSlgus)
+
+  const topicIds = await client.fetch(groq`*[_type == "topic"]{"_id":_id}`)
+  console.log(topicIds)
   const topicSlugs = await Promise.all(
     topicIds.map(async (topic) => {
-      const slugs = await getTopicPostPageSlugs(client, topic._id, true)
+      const slugs = await getTopicPostPageSlugs(client, topic._id, true, true)
       return slugs
     }),
   )
   // Generate routes for each page
-  return [...postHomepageSlgus, ...topicSlugs.flat()]
+  return [...postHomepageSlgus, ...topicSlugs]
 }
 
 async function getIndividualPostSlugs(
@@ -366,6 +369,7 @@ export async function getTopicPostPageSlugs(
   client: SanityClient,
   topicId: string,
   isQueryAllRoutes?: boolean,
+  isQueryFromBlogHomepage?: boolean,
 ): Promise<string[]> {
   // Fetch the total number of blog posts for the given topic
 
@@ -387,8 +391,13 @@ export async function getTopicPostPageSlugs(
     throw new Error(`Topic with ID ${topicId} not found`)
   }
 
-  const blogHomepageSlugs = await getAllPostHomePageSlugs(client)
+  if (isQueryFromBlogHomepage) {
+    return [
+      ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+    ]
+  }
 
+  const blogHomepageSlugs = await getAllPostHomePageSlugs(client)
   if (!isQueryAllRoutes) {
     const allOtherSlugs = await getAllRefercingSlugs(
       client,
