@@ -82,6 +82,7 @@ export default function TopicSlugRoute({
         key={data?.slug?.current}
         data={blogHomepage}
         allPosts={relatedPosts}
+        topic={data}
         pagination={extendedPagination}
       />
     </Layout>

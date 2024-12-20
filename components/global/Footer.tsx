@@ -55,7 +55,7 @@ const Footer = () => {
                 >
                   <Image
                     src={
-                      social.icon
+                      social?.icon?.asset
                         ? urlForImage(social.icon).quality(100).url()
                         : ''
                     }

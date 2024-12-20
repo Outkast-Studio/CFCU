@@ -30,7 +30,7 @@ export default async function revalidate(
     }
     // res.status(200).json({ body })
     const staleRoutes = await queryStaleRoutes(body as any)
-    console.log(staleRoutes, 'this is the stale routes')
+
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`
@@ -50,7 +50,6 @@ async function queryStaleRoutes(
   >,
 ): Promise<StaleRoute[]> {
   const client = createClient({ projectId, dataset, apiVersion, useCdn: false })
-  console.log(body)
   // return queryAllRoutes(client)
 
   //Check if type is a module -> If it is, run the moduleHandler to find all slugs that reference that module. Then return them.
@@ -117,7 +116,6 @@ async function querySubPageRoutes(
   client: SanityClient,
   subPageId: string,
 ): Promise<StaleRoute[]> {
-  console.log(subPageId, 'subPageId')
   const subPage = await client.fetch(
     groq`*[_type == "subPage" && _id == $subPageId][0]{
       _id,
@@ -126,7 +124,6 @@ async function querySubPageRoutes(
     }`,
     { subPageId },
   )
-  console.log(subPage, 'subPage')
   if (!subPage) return []
   const allOtherSlugs = await getAllRefercingSlugs(
     client,
@@ -134,7 +131,6 @@ async function querySubPageRoutes(
     moduleTypes,
   )
 
-  console.log(subPage, allOtherSlugs)
   ///TODO Query all pages that reference this subPage.
   if (subPage?.parent) {
     return [
@@ -230,6 +226,8 @@ async function getIndividualPostSlugs(
     { postId },
   )
 
+  //Revalidate every topic here.
+
   const topicPagesThatNeedToBeRevalidated = await Promise.all(
     post.topics.map(async (topic) => {
       const slugs = await getTopicPostPageSlugs(client, topic._id, true)
@@ -273,19 +271,15 @@ async function getAllRefercingSlugs(
     }`,
     { id },
   )
-  console.log(referencingPages, 'referencing pages')
+
   const globalSettingsPresent = referencingPages.find(
     (page) => page._type === 'globalSettings',
   )
-  console.log(globalSettingsPresent, 'global settings present')
 
   if (globalSettingsPresent) {
-    console.log('global settings being run')
     const allRoutes = await queryAllRoutes(client)
-    console.log(allRoutes, 'all routes')
     return allRoutes
   }
-  console.log(referencingPages, 'pages')
   const referencingPagesSlugs = referencingPages
     .map((route: { _type: string; slug: string | null }) => {
       if (route.slug === null && route._type in pagesWithoutSlugs) {
@@ -316,16 +310,12 @@ async function getAllRefercingSlugs(
     { id, modules },
   )
 
-  console.log(referencingModules, 'modules')
-
   // Use moduleRevalidation for each referencing module
   const moduleRevalidationSlugs = await Promise.all(
     referencingModules.map(async (moduleId) => {
       return moduleHandler(client, { _id: moduleId })
     }),
   ).then((slugArrays) => slugArrays.flat())
-
-  console.log(moduleRevalidationSlugs, 'module reval slugs')
 
   const slugsToRevalidate = [
     ...referencingPagesSlugs,
@@ -376,7 +366,6 @@ export async function getTopicPostPageSlugs(
     groq`count(*[_type == "post" && references($topicId)])`,
     { topicId },
   )
-  console.log(topicId, 'topicId page being called.')
 
   const postsPerPage = 10 // Adjust this based on your pagination setup
   // Calculate the number of pages

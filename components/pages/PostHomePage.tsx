@@ -21,6 +21,7 @@ type Props = {
   data: BlogHomepageType
   allTopics?: TopicWithRelatedPosts[]
   isBlogHome?: boolean
+  topic?: TopicPageType
   pagination: {
     currentPage: number
     totalPages: number
@@ -37,6 +38,7 @@ const PostHomePage = ({
   allTopics,
   isBlogHome,
   pagination,
+  topic,
 }: Props) => {
   const [lineAmount, setLineAmount] = useState(0)
   const heroRef = useRef<HTMLDivElement>(null)
@@ -173,12 +175,26 @@ const PostHomePage = ({
             />
           )}
         </div>
+        {topic?.name && (
+          <div
+            className={clsx(
+              'pt-[33px] text-center border-t-[1px] border-t-[#F0F0F0]  mt-[32px] w-paragraph-m-desktop subItem opacity-0',
+              'lg:mt-[56px]',
+            )}
+          >
+            Showing{' '}
+            <span className={clsx('font-codec-heavy')}>{allPosts.length}</span>{' '}
+            results for{' '}
+            <span className={clsx('font-codec-heavy')}>{topic?.name}</span>
+          </div>
+        )}
       </section>
       <section
         className={clsx(
-          'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] mt-[49px] px-[24px]',
-          'lg:mt-[111px] lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px] lg:px-[48px] lg:max-w-[1800px] lg:mx-auto',
+          'grid grid-cols-2 gap-x-[24px] gap-y-[49px] mb-[95px] px-[24px]',
+          'lg:grid lg:grid-cols-3 lg:gap-x-[32px] lg:gap-y-[96px] lg:mb-[96px] lg:px-[48px] lg:max-w-[1800px] lg:mx-auto',
           'xl:px-[0px]',
+          topic?.name ? 'mt-[32px] lg:mt-[32px]' : 'mt-[49px] lg:mt-[111px]',
         )}
       >
         {allPosts.map((post, index) => (
