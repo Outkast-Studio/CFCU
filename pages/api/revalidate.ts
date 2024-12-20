@@ -390,6 +390,8 @@ export async function getTopicPostPageSlugs(
     throw new Error(`Topic with ID ${topicId} not found`)
   }
 
+  const blogHomepageSlugs = await getAllPostHomePageSlugs(client)
+
   if (!isQueryAllRoutes) {
     const allOtherSlugs = await getAllRefercingSlugs(
       client,
@@ -399,10 +401,12 @@ export async function getTopicPostPageSlugs(
     return [
       ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
       ...allOtherSlugs,
+      ...blogHomepageSlugs,
     ]
   } else {
     return [
       ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+      ...blogHomepageSlugs,
     ]
   }
 }
