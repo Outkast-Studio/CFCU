@@ -136,7 +136,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               alt={data?.ctaCard?.subtitle?.svg?.alt as string}
               width={140}
               height={140}
-              className={clsx('animateArticle')}
+              className={clsx('animateArticle', 'lg:hidden')}
             />
           )}
           <div

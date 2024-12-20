@@ -19,7 +19,7 @@ const PlayPause = ({ isPlaying }: Props) => {
           viewBox="0 0 52 52"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={clsx('w-[32px] h-[32px]', 'lg:h-[52px] lg:w-[52px] ')}
+          className={clsx('w-[32px] h-[32px]', 'lg:h-[36px] lg:w-[36px] ')}
         >
           <circle cx="24" cy="28" r="17" fill="#3C1053" />
           <path
@@ -34,7 +34,7 @@ const PlayPause = ({ isPlaying }: Props) => {
           viewBox="0 0 52 52"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className={clsx('w-[32px] h-[32px] ', 'lg:h-[52px] lg:w-[52px] ')}
+          className={clsx('w-[32px] h-[32px] ', 'lg:h-[36px] lg:w-[36px] ')}
         >
           <circle cx="26" cy="26" r="26" fill="white" />
           <path
