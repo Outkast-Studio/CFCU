@@ -196,7 +196,7 @@ async function getAllPostHomePageSlugs(
 ): Promise<string[]> {
   // Fetch the total number of blog posts
   const totalPosts = await client.fetch(groq`count(*[_type == "post"])`)
-  const postsPerPage = 10 // Adjust this based on your pagination setup
+  const postsPerPage = 10 // Adjust this based on your pagination setup //TODO THIS Will cause issues with revalidation. When we change the pagination we'll need to update this .
 
   // Calculate the number of pages
   const totalPages = Math.ceil(totalPosts / postsPerPage)
@@ -394,7 +394,10 @@ export async function getTopicPostPageSlugs(
 
   if (isQueryFromBlogHomepage) {
     return [
-      ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+      ...Array.from(
+        { length: totalPages || 1 },
+        (_, i) => `/${topicSlug}/${i + 1}`,
+      ),
     ]
   }
 
@@ -406,13 +409,19 @@ export async function getTopicPostPageSlugs(
       moduleTypes,
     )
     return [
-      ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+      ...Array.from(
+        { length: totalPages || 1 },
+        (_, i) => `/${topicSlug}/${i + 1}`,
+      ),
       ...allOtherSlugs,
       ...blogHomepageSlugs,
     ]
   } else {
     return [
-      ...Array.from({ length: totalPages }, (_, i) => `/${topicSlug}/${i + 1}`),
+      ...Array.from(
+        { length: totalPages || 1 },
+        (_, i) => `/${topicSlug}/${i + 1}`,
+      ),
       ...blogHomepageSlugs,
     ]
   }
