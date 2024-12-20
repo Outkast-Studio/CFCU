@@ -19,7 +19,7 @@ export default function CardGridCard({
         >
           <Image
             src={
-              data?.image?.asset
+              data?.image
                 ? urlForImage(data?.image).width(888).quality(100).url()
                 : ''
             }

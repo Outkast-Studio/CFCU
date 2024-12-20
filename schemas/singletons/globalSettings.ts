@@ -71,7 +71,13 @@ export default defineType({
                         "Describe what's in the image for screen readers and search engines.",
                     },
                   ],
-                  validation: (Rule: any) => Rule.required(),
+                  validation: (Rule) =>
+                    Rule.custom((value, context) => {
+                      if (!value || !value.asset) {
+                        return 'Image is required'
+                      }
+                      return true
+                    }),
                 }),
                 defineField({
                   name: 'titleLink',
@@ -137,7 +143,13 @@ export default defineType({
                         "Describe what's in the image for screen readers and search engines.",
                     },
                   ],
-                  validation: (Rule: any) => Rule.required(),
+                  validation: (Rule) =>
+                    Rule.custom((value, context) => {
+                      if (!value || !value.asset) {
+                        return 'Image is required'
+                      }
+                      return true
+                    }),
                 }),
                 defineField({
                   name: 'title',
@@ -228,7 +240,13 @@ export default defineType({
                         "Describe what's in the image for screen readers and search engines.",
                     },
                   ],
-                  validation: (Rule: any) => Rule.required(),
+                  validation: (Rule) =>
+                    Rule.custom((value: any, context) => {
+                      if (!value || !value?.asset) {
+                        return 'Image is required'
+                      }
+                      return true
+                    }),
                 },
                 {
                   name: 'url',
@@ -298,7 +316,13 @@ export default defineType({
                         "Describe what's in the image for screen readers and search engines.",
                     },
                   ],
-                  validation: (Rule: any) => Rule.required(),
+                  validation: (Rule) =>
+                    Rule.custom((value: any, context) => {
+                      if (!value || !value?.asset) {
+                        return 'Image is required'
+                      }
+                      return true
+                    }),
                 },
               ],
               preview: {

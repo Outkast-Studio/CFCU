@@ -86,7 +86,13 @@ export default defineType({
                             "Describe what's in the image for screen readers and search engines.",
                         },
                       ],
-                      validation: (Rule) => Rule.required(),
+                      validation: (Rule) =>
+                        Rule.custom((value, context) => {
+                          if (!value || !value.asset) {
+                            return 'Image is required'
+                          }
+                          return true
+                        }),
                     }),
                     defineField({
                       name: 'link',

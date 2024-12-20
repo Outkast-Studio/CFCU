@@ -7,7 +7,7 @@ class SafeImageUrlBuilder {
   private builder: any | null
 
   constructor(source: any) {
-    if (!source) {
+    if (!source || !source.asset) {
       console.warn('Image source is missing')
       this.builder = null
     } else {
@@ -21,7 +21,7 @@ class SafeImageUrlBuilder {
   }
 
   url(): string {
-    return this.builder ? this?.builder?.url() : '/placeholder.png'
+    return this.builder ? this?.builder?.url() : ''
   }
 
   // Implement other methods that you commonly use

@@ -18,7 +18,13 @@ export default defineField({
           validation: (Rule: any) => Rule.required(),
         },
       ],
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          if (!value || !value.asset) {
+            return 'Image is required'
+          }
+          return true
+        }),
     }),
     defineField({
       name: 'subtitle',

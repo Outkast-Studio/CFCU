@@ -42,7 +42,13 @@ export default defineField({
                   validation: (Rule) => Rule.required(),
                 },
               ],
-              validation: (Rule) => Rule.required(),
+              validation: (Rule) =>
+                Rule.custom((value, context) => {
+                  if (!value || !value.asset) {
+                    return 'Image is required'
+                  }
+                  return true
+                }),
             }),
             defineField({
               name: 'title',

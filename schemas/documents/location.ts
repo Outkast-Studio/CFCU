@@ -90,7 +90,13 @@ export default defineType({
           validation: (Rule: any) => Rule.required(),
         },
       ],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          if (!value || !value.asset) {
+            return 'Image is required'
+          }
+          return true
+        }),
       group: 'locationSettings',
     }),
 

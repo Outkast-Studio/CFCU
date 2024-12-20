@@ -38,7 +38,7 @@ export default function MediaComponent({
     return (
       <Image
         //@ts-ignore
-        src={urlForImage(media?.image?.asset)
+        src={urlForImage(media?.image)
           .height(1080)
           .width(1920)
           .quality(100)
