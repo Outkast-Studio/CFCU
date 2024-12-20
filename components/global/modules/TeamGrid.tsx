@@ -38,7 +38,7 @@ const TeamGrid = ({ data }: { data: TeamGridType }) => {
         {data?.description && (
           <p
             className={clsx(
-              'w-paragraph-w-desktop text-center mt-[12px]',
+              'w-paragraph-w-desktop text-center mt-[12px] max-w-[975px] mx-auto',
               'lg:w-paragraph-l-desktop text-black/75  lg:mt-[8px]',
             )}
           >
@@ -94,14 +94,18 @@ function TeamCard({ data }: { data: GroupMember }) {
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
         />
       </div>
-      <h5 className={clsx('w-h5-desktop text-lavender mt-[16px]')}>
+      <h5 className={clsx('w-h5-desktop text-lavender mt-[16px] text-center')}>
         {data?.name}
       </h5>
-      <h6 className={clsx('w-paragraph-m-desktop text-black/65 mt-[4px]')}>
+      <h6
+        className={clsx(
+          'w-paragraph-m-desktop text-black/65 mt-[4px] mb-[16px] text-center',
+        )}
+      >
         {data?.title}
       </h6>
       {data?.phoneNumber && (
-        <div className={clsx('flex gap-x-[6px] items-start mt-[16px]')}>
+        <div className={clsx('flex gap-x-[6px] items-start ')}>
           <svg
             width="25"
             height="24"
@@ -116,7 +120,7 @@ function TeamCard({ data }: { data: GroupMember }) {
           </svg>
           <span
             className={clsx(
-              'text-[18px] leading-[27px] font-codec-news text-lavender',
+              'text-[18px] leading-[27px] font-codec-news text-lavender text-center',
             )}
           >
             {data?.phoneNumber}
@@ -140,7 +144,7 @@ function TeamCard({ data }: { data: GroupMember }) {
 
           <span
             className={clsx(
-              'text-[18px] leading-[27px] font-codec-news text-lavender',
+              'text-[18px] leading-[27px] font-codec-news text-lavender text-center',
             )}
           >
             {data?.email}
@@ -148,7 +152,10 @@ function TeamCard({ data }: { data: GroupMember }) {
         </a>
       )}
       {data?.moreInfoLink && (
-        <PageLink data={data?.moreInfoLink} className={clsx('mt-[16px]')}>
+        <PageLink
+          data={data?.moreInfoLink}
+          className={clsx((data?.email || data?.phoneNumber) && 'mt-[16px]')}
+        >
           <Button
             label={data?.moreInfoLink.title}
             className={clsx('!bg-lavender !text-white')}

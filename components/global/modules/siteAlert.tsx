@@ -54,7 +54,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       >
         <h6
           className={clsx(
-            'text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit',
+            'text-[14px] leading-[14px] p-[10px] text-[#606060] font-codec-news bg-white rounded-full w-fit h-fit whitespace-nowrap',
           )}
         >
           {data?.tabName}
