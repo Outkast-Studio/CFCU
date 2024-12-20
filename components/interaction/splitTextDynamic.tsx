@@ -54,6 +54,7 @@ const SplitTextDynamic = ({
       tlRef.current = gsap
         .timeline({
           paused: true,
+          delay,
           onComplete: () => {
             headingRef.current.classList.remove('opacity-0')
             split.revert()
@@ -71,7 +72,6 @@ const SplitTextDynamic = ({
             opacity: 1,
             stagger: stagger,
             ease: 'power4.out',
-            delay,
           },
         )
     })

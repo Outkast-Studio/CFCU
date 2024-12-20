@@ -30,7 +30,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
           delay: 0.15,
         },
       )
-      const tl = gsap.timeline({ delay: lineAmount * 0.2 }).fromTo(
+      const tl = gsap.timeline({ delay: lineAmount * 0.2 + 0.1 }).fromTo(
         q('.subItem'),
         { opacity: 0, y: width > 1024 ? 30 : 10 },
         {
@@ -126,7 +126,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
               duration={0.7}
               stagger={0.1}
               yPercent={40}
-              delay={0.3}
+              delay={0.25}
               setLineAmount={(count) => setLineAmount(count)}
             />
           </h1>
