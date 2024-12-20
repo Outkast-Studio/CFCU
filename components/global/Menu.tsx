@@ -130,7 +130,7 @@ const Menu = ({
       >
         <div
           className={clsx(
-            'text-[16px]  font-codec-bold gap-x-[24px] flex justify-end pr-[99px] mb-[32px]',
+            'text-[16px]  font-codec-bold gap-x-[24px] flex justify-start pl-[24px] mb-[32px] text-lavender mt-[20px]',
             'lg:hidden',
           )}
         >
