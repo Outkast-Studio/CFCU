@@ -29,16 +29,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // Calculate start and end for pagination
   const start = (page - 1) * ITEMS_PER_PAGE
   const end = start + ITEMS_PER_PAGE
-
   // Perform the Sanity query with pagination
   const [results, totalResults] = await Promise.all([
     client.fetch<SearchResult[]>(`
-      *[_type in ["subPage", "rates", "location", "homepage", 'post'] && (metaTitle match "${searchQuery}*" || metaDescription match "${searchQuery}*")] {
+      *[_type in ["subPage", "location", "homepage", 'post', 'topic', 'blogHomePage', 'locationHomePage'] && (metaTitle match "${searchQuery}*" || metaDescription match "${searchQuery}*")]{
         ...,
       } | order(_createdAt desc) [${start}...${end}]
     `),
     client.fetch<number>(`
-      count(*[_type in ["subPage", "rates", "location", "homepage", 'post'] && (metaTitle match "${searchQuery}*" || metaDescription match "${searchQuery}*")])
+      count(*[_type in ["subPage", "location", "homepage", 'post', 'topic', 'blogHomePage', 'locationHomePage'] && (metaTitle match "${searchQuery}*" || metaDescription match "${searchQuery}*")])
     `),
   ])
 

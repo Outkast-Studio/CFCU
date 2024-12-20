@@ -1,8 +1,9 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, use } from 'react'
 import { clsx } from 'clsx'
 import Button from '../global/ui/Button'
 import ReversedButton from '../global/ui/ReverseArrowButton'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 interface PaginationProps {
   totalPages: number
@@ -25,8 +26,12 @@ const Pagination = ({
     selectRef.current?.focus()
     selectRef.current?.click()
   }
+  useEffect(() => {
+    setSelectedPage(currentPage)
+  }, [currentPage])
   return (
     <div
+      key={currentPage}
       className={clsx(
         'flex justify-between items-center gap-x-[32px] max-w-[1800px] mx-auto mb-[84px]',
       )}
