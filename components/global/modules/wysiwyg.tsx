@@ -8,7 +8,7 @@ const Wysiwyg = ({ data }: { data: WysiwygType }) => {
     <section
       className={clsx(
         'px-[0px] py-[44px] flex flex-col gap-y-[24px]',
-        'lg:pb-[41px] lg:pt-[105px] lg:px-[48px] lg:gap-y-[24px]',
+        'lg:py-[105px] lg:px-[48px] lg:gap-y-[24px]',
       )}
     >
       <PortableText
