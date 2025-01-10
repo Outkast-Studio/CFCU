@@ -134,7 +134,7 @@ export interface CtaCardGridHomeType {
     image: ImageAsset
     title: string
     description: string
-    cardLink: CardLinkType
+    cardLink?: CardLinkType
   }>
   linkListTitle: string
   linkList: Array<{

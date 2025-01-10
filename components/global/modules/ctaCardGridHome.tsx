@@ -13,6 +13,7 @@ import { useInView } from 'react-intersection-observer'
 const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()
   const containerRef = useRef<HTMLDivElement>(null)
+  console.log(data)
   const { ref, inView } = useInView({
     threshold: 0.6,
     triggerOnce: true,

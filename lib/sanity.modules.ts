@@ -214,6 +214,18 @@ export const homepageModulesFragment = groq`
     },
     _type == "ctaCardGridHome" => {
       ...,
+      cards[]{
+        ...,
+        cardLink{
+          ...,
+          link->{
+            _id,
+            _type,
+            title,
+            "slug": slug.current,
+          }
+        }
+      },
       linkList[]{
         ...,
         link->{
