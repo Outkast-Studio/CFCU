@@ -58,9 +58,9 @@ export const WysiwygComponentsWithoutPadding = {
     strong: ({ children }) => (
       <strong className={clsx('font-codec-heavy')}>{children}</strong>
     ),
-    link: ({ children, href }) => (
+    link: ({ children, value }) => (
       <a
-        href={href}
+        href={value.href}
         className={clsx('underline font-codec-heavy text-lavender')}
       >
         {children}
@@ -253,9 +253,9 @@ export const WysiwygComponents = {
     strong: ({ children }) => (
       <strong className={clsx('font-codec-heavy')}>{children}</strong>
     ),
-    link: ({ children, href }) => (
+    link: ({ children, value }) => (
       <a
-        href={href}
+        href={value.href}
         className={clsx('underline font-codec-heavy text-lavender')}
       >
         {children}
@@ -349,7 +349,7 @@ export const WysiwygComponents = {
     bullet: ({ children }) => (
       <ul
         className={clsx(
-          'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop px-[24px]',
+          'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop px-[24px] text-black/75',
           'lg:px-[0px] lg:w-paragraph-l-desktop',
         )}
       >
