@@ -47,7 +47,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
         <h4
           className={clsx(
             'w-h4 mt-[25px]',
-            'lg:text-[32px] lg:font-codec-extra-bold text-lavender ',
+            'lg:text-[32px] lg:font-codec-extra-bold text-lavender',
           )}
         >
           {data?.title}
