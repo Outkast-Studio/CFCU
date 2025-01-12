@@ -199,9 +199,9 @@ export const settingsStructure = (
             orderableDocumentListDeskItem({
               type: 'location',
               title: 'Orderable Locations',
-              S,
+              S: S as any,
               context,
-            }),
+            }) as any,
           ]),
       )
     const subpagesListItem = S.listItem()
