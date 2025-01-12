@@ -7,6 +7,7 @@ import { clsx } from 'clsx'
 import { ATMLocation, LocationPage } from 'types/sanity'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
+import { formatPhoneNumber } from '@/lib/utils'
 
 export default function LocationCard({
   data,
@@ -124,7 +125,7 @@ export default function LocationCard({
           />
         </svg>
 
-        <h5>{data?.phoneNumber}</h5>
+        <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
       <Link
         href={`/${data?.slug.current}`}

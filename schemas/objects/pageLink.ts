@@ -35,8 +35,9 @@ export default defineType({
     defineField({
       name: 'externalLink',
       title: 'External Link',
-      type: 'url',
-      description: 'Use this for linking to external websites',
+      type: 'string',
+      description:
+        'Use this for linking to external websites and telephone numbers. For telephone please use this format tel:123456 . Replace 12345 with your number.',
     }),
   ],
   preview: {

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import Button from 'components/global/ui/Button'
+import { formatPhoneNumber } from '@/lib/utils'
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
     <section
@@ -83,7 +84,7 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
           />
         </svg>
 
-        <h5>{data?.phoneNumber}</h5>
+        <a href={formatPhoneNumber(data?.phoneNumber)}>{data?.phoneNumber}</a>
       </div>
       <Link href={data?.slug.current} className={clsx('block mt-[25px]')}>
         <Button

@@ -14,6 +14,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 import { gsap } from 'gsap'
 import ModuleFactory, { renderModule } from '../global/modules/ModuleFactory'
 import React from 'react'
+import { formatPhoneNumber } from '@/lib/utils'
 
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -155,7 +156,11 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
                 <DetailCard subtitle="Address" content={data?.address} />
               )}
               {data?.phoneNumber && (
-                <DetailCard subtitle="Phone" content={data?.phoneNumber} />
+                <DetailCard
+                  subtitle="Phone"
+                  content={data?.phoneNumber}
+                  isPhoneNumber
+                />
               )}
               <div className={clsx('flex flex-col gap-y-[6px] ')}>
                 <h6
@@ -232,9 +237,13 @@ export default LocationPageComponent
 function DetailCard({
   subtitle,
   content,
+  isLink,
+  isPhoneNumber,
 }: {
   subtitle: string
   content: string
+  isLink?: boolean
+  isPhoneNumber?: boolean
 }) {
   return (
     <div className={clsx('max-w-[200px] flex flex-col gap-y-[6px] ')}>
@@ -246,13 +255,26 @@ function DetailCard({
       >
         {subtitle}
       </h6>
+
       <p
         className={clsx(
           'w-paragraph-s-desktop text-white font-codec-news',
           'lg:text-[18px] lg:leading-[27px]',
         )}
       >
-        {content}
+        {isPhoneNumber ? (
+          <a
+            href={formatPhoneNumber(content)}
+            className={clsx(
+              'font-codec-news text-white',
+              'lg:text-[18px] lg:leading-[27px]',
+            )}
+          >
+            {content}
+          </a>
+        ) : (
+          content
+        )}
       </p>
     </div>
   )

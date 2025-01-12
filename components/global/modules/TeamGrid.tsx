@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { urlForImage } from '@/lib/sanity.image'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
+import { formatPhoneNumber } from '@/lib/utils'
 
 const TeamGrid = ({ data }: { data: TeamGridType }) => {
   return (
@@ -106,7 +107,10 @@ function TeamCard({ data }: { data: GroupMember }) {
         {data?.title}
       </h6>
       {data?.phoneNumber && (
-        <div className={clsx('flex gap-x-[6px] items-start ')}>
+        <a
+          href={formatPhoneNumber(data?.phoneNumber)}
+          className={clsx('flex gap-x-[6px] items-start ')}
+        >
           <svg
             width="25"
             height="24"
@@ -126,7 +130,7 @@ function TeamCard({ data }: { data: GroupMember }) {
           >
             {data?.phoneNumber}
           </span>
-        </div>
+        </a>
       )}
       {data?.email && (
         <a href={`mailto:${data?.email}`} className={clsx('flex gap-x-[6px]')}>
