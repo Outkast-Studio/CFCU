@@ -86,15 +86,17 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
             {data?.description}
           </p>
         )}
-        <PageLink
-          data={data?.cta}
-          className={clsx(
-            'mt-[20px] block animateContent opacity-0',
-            'lg:mt-[24px]',
-          )}
-        >
-          <Button label={data?.cta?.title} />
-        </PageLink>
+        {data?.cta?.title && (
+          <PageLink
+            data={data?.cta}
+            className={clsx(
+              'mt-[20px] block animateContent opacity-0',
+              'lg:mt-[24px]',
+            )}
+          >
+            <Button label={data?.cta?.title} />
+          </PageLink>
+        )}
       </section>
     </div>
   )
