@@ -50,7 +50,10 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
     >
       <div
         ref={contentRef}
-        className={clsx('flex flex-col gap-[20px] py-[24px]', 'lg:flex-row')}
+        className={clsx(
+          'flex flex-col gap-[20px] py-[24px]',
+          'lg:flex-row lg:items-start',
+        )}
       >
         <h6
           className={clsx(

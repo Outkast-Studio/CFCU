@@ -66,6 +66,17 @@ export const WysiwygComponentsWithoutPadding = {
         {children}
       </a>
     ),
+    leftAligned: ({ children }) => (
+      <div className={clsx('text-left')}>{children}</div>
+    ),
+    centerAligned: ({ children }) => (
+      <div className={clsx('text-center')}>{children}</div>
+    ),
+    rightAligned: ({ children }) => (
+      <div className={clsx('text-right')}>{children}</div>
+    ),
+    sub: ({ children }) => <sub>{children}</sub>,
+    sup: ({ children }) => <sup>{children}</sup>,
   },
 
   block: {
@@ -261,6 +272,17 @@ export const WysiwygComponents = {
         {children}
       </a>
     ),
+    leftAligned: ({ children }) => (
+      <span className={clsx('text-left block')}>{children}</span>
+    ),
+    centerAligned: ({ children }) => (
+      <span className={clsx('text-center block')}>{children}</span>
+    ),
+    rightAligned: ({ children }) => (
+      <span className={clsx('text-right block')}>{children}</span>
+    ),
+    sub: ({ children }) => <sub>{children}</sub>,
+    sup: ({ children }) => <sup>{children}</sup>,
   },
 
   block: {

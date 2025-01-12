@@ -1,15 +1,17 @@
 import { defineArrayMember, defineType, defineField } from 'sanity'
-
-/**
- * This is the schema definition for the rich text fields used for
- * for this blog studio. When you import it in schemas.js it can be
- * reused in other parts of the studio with:
- *  {
- *    name: 'someName',
- *    title: 'Some title',
- *    type: 'blockContent'
- *  }
- */
+import {
+  TextSuperscript,
+  TextSubscript,
+  TextAlignRight,
+  TextAlignLeft,
+  TextAlignCenter,
+} from '@phosphor-icons/react'
+import { SubScript, SuperScript } from '@/components/global/ui/TextDecorators'
+import {
+  LeftAlignedText,
+  CenterAlignedText,
+  RightAlignedText,
+} from '@/components/global/ui/TextAlignment'
 
 // Define the horizontalRule type
 export const horizontalRule = defineType({
@@ -52,6 +54,7 @@ export default defineType({
         { title: 'Bullet', value: 'bullet' },
         { title: 'Number', value: 'number' },
       ],
+
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -61,6 +64,36 @@ export default defineType({
           { title: 'Emphasis', value: 'em' },
           { title: 'Underline', value: 'underline' },
           { title: 'Strike', value: 'strike-through' },
+          {
+            title: 'Subscript',
+            value: 'sub',
+            icon: TextSubscript as any,
+            component: SubScript,
+          },
+          {
+            title: 'Superscript',
+            value: 'sup',
+            icon: TextSuperscript as any,
+            component: SuperScript,
+          },
+          {
+            title: 'Left Align',
+            value: 'leftAligned',
+            icon: TextAlignLeft,
+            component: LeftAlignedText,
+          },
+          {
+            title: 'Center Align',
+            value: 'centerAligned',
+            icon: TextAlignCenter,
+            component: CenterAlignedText,
+          },
+          {
+            title: 'Right Align',
+            value: 'rightAligned',
+            icon: TextAlignRight,
+            component: RightAlignedText,
+          },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
