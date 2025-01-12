@@ -187,8 +187,8 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               <Image
                 src={urlForImage(data?.ctaCard?.subtitle?.svg).url()}
                 alt={data?.ctaCard?.subtitle?.svg?.alt as string}
-                width={140}
-                height={140}
+                width={185}
+                height={185}
                 className={clsx('animateArticle')}
               />
             )}
