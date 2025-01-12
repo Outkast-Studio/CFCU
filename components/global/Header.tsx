@@ -76,7 +76,7 @@ const Header = () => {
         <div
           className={clsx(
             'w-fit',
-            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold',
+            'lg:flex lg:gap-x-[12px] lg:p-[8px] lg:bg-purple lg:rounded-full lg:top-[30px] lg:right-[48px] font-codec-bold  lg:border-[1px] lg:border-white/[0.08]',
           )}
         >
           <div>
@@ -106,8 +106,8 @@ const Header = () => {
               }
             }}
             className={clsx(
-              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear group',
-              'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px]',
+              'w-[48px] h-[48px] flex items-center justify-center rounded-full overflow-hidden font-codec-bold transition-all duration-300 ease-linear group border-[1px] border-white/[0.08]',
+              'lg:w-fit lg:flex lg:px-[14px] lg:h-[unset] gap-x-[9px] lg:py-[9.5px] lg:border-[0px]',
               menuButtonOpen
                 ? 'bg-orange lg:bg-white lg:hover:bg-lightGrey lg:hover:text-black'
                 : 'bg-orange lg:hover:bg-white',
