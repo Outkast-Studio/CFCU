@@ -45,14 +45,14 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       className={clsx(
         ' bg-alertRed px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
-        isClosed && '!max-h-[0px]',
+        isClosed && '!max-h-[0px] !bg-transparent',
       )}
     >
       <div
         ref={contentRef}
         className={clsx(
           'flex flex-col gap-[20px] py-[24px]',
-          'lg:flex-row lg:items-start',
+          'lg:flex-row lg:items-center',
         )}
       >
         <h6

@@ -53,6 +53,8 @@ export function CustomHead({
         <meta name="twitter:creator" content="Community Financial" />
         <meta name="twitter:title" content={title || 'Community Financial'} />
         <meta name="twitter:description" content={description || ''} />
+        <meta name="theme-color" content="#FAFAFA" />
+
         <meta
           name="twitter:image"
           content={image ? urlForImage(image).url() : defaultOGImage}
