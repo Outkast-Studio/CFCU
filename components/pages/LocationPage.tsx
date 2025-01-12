@@ -14,7 +14,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 import { gsap } from 'gsap'
 import ModuleFactory, { renderModule } from '../global/modules/ModuleFactory'
 import React from 'react'
-import { formatPhoneNumber } from '@/lib/utils'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -153,7 +153,11 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               )}
             >
               {data?.address && (
-                <DetailCard subtitle="Address" content={data?.address} />
+                <DetailCard
+                  subtitle="Address"
+                  content={data?.address}
+                  isAddress={true}
+                />
               )}
               {data?.phoneNumber && (
                 <DetailCard
@@ -237,12 +241,12 @@ export default LocationPageComponent
 function DetailCard({
   subtitle,
   content,
-  isLink,
+  isAddress,
   isPhoneNumber,
 }: {
   subtitle: string
   content: string
-  isLink?: boolean
+  isAddress?: boolean
   isPhoneNumber?: boolean
 }) {
   return (
@@ -270,6 +274,10 @@ function DetailCard({
               'lg:text-[18px] lg:leading-[27px]',
             )}
           >
+            {content}
+          </a>
+        ) : isAddress ? (
+          <a href={getGoogleMapsLink(content)} target={'_blank'}>
             {content}
           </a>
         ) : (

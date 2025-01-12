@@ -7,7 +7,7 @@ import { clsx } from 'clsx'
 import { ATMLocation, LocationPage } from 'types/sanity'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
-import { formatPhoneNumber } from '@/lib/utils'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 export default function LocationCard({
   data,
@@ -66,26 +66,33 @@ export default function LocationCard({
           />
         </svg>
       </button>
-      <div className={clsx('aspect-w-16 aspect-h-9')}>
-        <Image
-          src={urlForImage(data?.thumbnailImage).width(600).quality(100).url()}
-          alt={data?.thumbnailImage?.alt as string}
-          fill
-          quality={100}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+      <Link href={`/${data?.slug.current}`}>
+        <div className={clsx('aspect-w-16 aspect-h-9')}>
+          <Image
+            src={urlForImage(data?.thumbnailImage)
+              .width(600)
+              .quality(100)
+              .url()}
+            alt={data?.thumbnailImage?.alt as string}
+            fill
+            quality={100}
+            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            className={clsx(
+              'object-cover w-full h-full opacity-0 transition-all duration-200 ease-linear',
+            )}
+          />
+        </div>
+      </Link>
+      <Link href={`/${data?.slug.current}`}>
+        <h4
           className={clsx(
-            'object-cover w-full h-full opacity-0 transition-all duration-200 ease-linear',
+            'w-h5',
+            'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
           )}
-        />
-      </div>
-      <h4
-        className={clsx(
-          'w-h5',
-          'mt-[25px] lg:text-[32px] font-codec-extra-bold text-lavender ',
-        )}
-      >
-        {data?.title}
-      </h4>
+        >
+          {data?.title}
+        </h4>
+      </Link>
       <div
         className={clsx(
           'w-paragraph-s-desktop flex gap-x-[6px] items-start font-codec-news text-black/75 mt-[12px]',
@@ -104,7 +111,9 @@ export default function LocationCard({
             fill="#F56600"
           />
         </svg>
-        <h5>{data?.address}</h5>
+        <a href={getGoogleMapsLink(data?.address)} target={'_blank'}>
+          {data?.address}
+        </a>
       </div>
       <div
         className={clsx(

@@ -68,6 +68,7 @@ export default defineType({
           name: 'latitude',
           title: 'Latitude',
           type: 'number',
+
           validation: (Rule: any) => Rule.required(),
         }),
         defineField({

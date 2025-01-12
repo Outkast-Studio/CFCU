@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import Button from 'components/global/ui/Button'
-import { formatPhoneNumber } from '@/lib/utils'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
+
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
     <section
@@ -26,25 +27,32 @@ export default LocationGrid
 const LocationCard = ({ data }: { data: LocationPage }) => {
   return (
     <article>
-      <div className={clsx('aspect-w-16 aspect-h-9')}>
-        <Image
-          src={urlForImage(data?.thumbnailImage).width(1200).quality(100).url()}
-          alt={data?.thumbnailImage?.alt as string}
-          fill
+      <Link href={data?.slug.current}>
+        <div className={clsx('aspect-w-16 aspect-h-9')}>
+          <Image
+            src={urlForImage(data?.thumbnailImage)
+              .width(1200)
+              .quality(100)
+              .url()}
+            alt={data?.thumbnailImage?.alt as string}
+            fill
+            className={clsx(
+              'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
+            )}
+            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          />
+        </div>
+      </Link>
+      <Link href={data?.slug.current}>
+        <h4
           className={clsx(
-            'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
+            'w-h4 mt-[25px]',
+            'lg:text-[32px] lg:font-codec-extra-bold text-lavender ',
           )}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
-        />
-      </div>
-      <h4
-        className={clsx(
-          'w-h4 mt-[25px]',
-          'lg:text-[32px] lg:font-codec-extra-bold text-lavender ',
-        )}
-      >
-        {data?.title}
-      </h4>
+        >
+          {data?.title}
+        </h4>
+      </Link>
       <div
         className={clsx(
           'w-paragraph-s-desktop flex gap-x-[6px] items-start font-codec-news text-black/75 mt-[12px]',
@@ -63,7 +71,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             fill="#F56600"
           />
         </svg>
-        <h5>{data?.address}</h5>
+        <a href={getGoogleMapsLink(data?.address)} target={'_blank'}>
+          {data?.address}
+        </a>
       </div>
       <div
         className={clsx(
