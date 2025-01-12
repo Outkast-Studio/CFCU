@@ -77,7 +77,7 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
             {stegaClean(data?.subtitle)}
           </h2>
         )}
-        <h3 className={clsx('title-xl text-lavender', 'ml:title-xl-desktop')}>
+        <h3 className={clsx('title-xl text-lavender', 'ml:title-l-desktop')}>
           {stegaClean(data?.title)}
         </h3>
         {data?.description && (

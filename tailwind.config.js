@@ -323,7 +323,7 @@ module.exports = {
         '.title-xl-desktop': {
           'font-family': 'var(--font-codec-ultra)',
           'font-size': '140px',
-          'line-height': '140px',
+          'line-height': '120px',
           'letter-spacing': '-0.32px',
         },
         '.page-title-desktop': {
