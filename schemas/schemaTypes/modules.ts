@@ -1,10 +1,17 @@
-import { defineField } from 'sanity'
+import { defineField, InputProps } from 'sanity'
+import { ArrayMembersWithoutActions } from '@/components/Sanity/ArrayMembersWithoutActions'
 
 export const modules = defineField({
   name: 'modules',
   title: 'Page Modules',
   type: 'array',
   group: 'modules',
+  components: {
+    input: (props: InputProps) =>
+      ArrayMembersWithoutActions(props, {
+        removeActions: ['Duplicate', 'Copy'],
+      }),
+  },
   of: [
     {
       type: 'reference',

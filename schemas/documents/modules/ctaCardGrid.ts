@@ -73,7 +73,6 @@ export default defineField({
               title: 'Card Link',
               type: 'cardLink',
               description: 'Where should the card link to?',
-              validation: (Rule) => Rule.required(),
             }),
           ],
         }),
