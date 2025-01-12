@@ -171,7 +171,7 @@ export const locationSlugsQuery = groq`
 `
 
 export const locationsQuery = groq`
-*[_type == "location"]{
+*[_type == "location"] | order(orderRank){
   ...,
   ${modulesFragment}
 }`

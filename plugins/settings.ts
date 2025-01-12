@@ -11,6 +11,7 @@ import homepage from 'schemas/singletons/homepage'
 import testModules from 'schemas/singletons/testModules'
 import { Browser, Folder } from '@phosphor-icons/react/dist/ssr'
 import fourOhFour from 'schemas/singletons/404'
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -42,7 +43,7 @@ export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
 export const settingsStructure = (
   typeDef: DocumentDefinition,
 ): StructureResolver => {
-  return (S) => {
+  return (S, context) => {
     const hiddenTypes = [
       'media.tag',
       'globalSettings',
@@ -195,6 +196,12 @@ export const settingsStructure = (
               .title('Locations')
               .schemaType('location')
               .child(S.documentTypeList('location').title('Locations')),
+            orderableDocumentListDeskItem({
+              type: 'location',
+              title: 'Orderable Locations',
+              S,
+              context,
+            }),
           ]),
       )
     const subpagesListItem = S.listItem()

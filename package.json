@@ -26,6 +26,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@sanity/client": "^6.22.4",
     "@sanity/image-url": "1.0.2",
+    "@sanity/orderable-document-list": "^1.2.2",
     "@sanity/overlays": "2.3.7",
     "@sanity/preview-url-secret": "1.5.3",
     "@sanity/vision": "3.26.0",

@@ -1,5 +1,9 @@
 import { defineField, defineType, validation } from 'sanity'
 import { GlobeHemisphereWest } from '@phosphor-icons/react'
+import {
+  orderRankField,
+  orderRankOrdering,
+} from '@sanity/orderable-document-list'
 import { modules } from 'schemas/schemaTypes/modules'
 
 export default defineType({
@@ -51,6 +55,7 @@ export default defineType({
           return true
         }),
     }),
+    orderRankField({ type: 'location' }),
     defineField({
       name: 'coordinates',
       title: 'Coordinates',
