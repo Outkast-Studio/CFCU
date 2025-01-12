@@ -26,6 +26,8 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description:
+        'Since the structure of sub page slugs is flexible, the generate button will only pull in the title of the sub page. Nested parents will not be pulled into the slug.',
       options: {
         source: 'title',
         maxLength: 96,
