@@ -51,7 +51,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
     <section
       ref={heroRef}
       className={clsx(
-        'px-[24px] pt-[60px] pb-[16px]',
+        'px-[24px] pt-[24px] pb-[16px]',
         'lg:px-[48px] lg:pt-[48px] lg:pb-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
       )}
     >

@@ -61,16 +61,16 @@ const Header = () => {
         style={
           alertIsOpen
             ? {
-                transform: `translateY(${alertHeight + (width < 1024 ? 60 : 48)}px)`,
+                transform: `translateY(${alertHeight + (width < 1024 ? 24 : 48)}px)`,
               }
             : {}
         }
         className={clsx(
-          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 translate-y-[60px] lg:translate-y-[48px] opacity-0',
+          'fixed top-[00px] right-[24px] z-[13] transition-transform ease-in duration-300 translate-y-[24px] lg:translate-y-[48px] opacity-0',
           'lg:right-[48px] lg:top-[0] ',
           alertIsOpen && 'lg:top-[0px]  ease-in-out-cubic',
           (isMenuOpen || isPastPoint) &&
-            '!translate-y-[60px] lg:!translate-y-[48px]',
+            '!translate-y-[24px] lg:!translate-y-[48px]',
         )}
       >
         <div

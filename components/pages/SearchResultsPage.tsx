@@ -70,7 +70,7 @@ const SearchResultsPage = ({
     <div>
       <section
         className={clsx(
-          'relative px-[24px] pt-[60px] pb-[45px]',
+          'relative px-[24px] pt-[24px] pb-[45px]',
           'lg:h-[650px]',
         )}
       >

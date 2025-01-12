@@ -73,7 +73,7 @@ const Hero = ({ data }: { data: FourOhFour }) => {
           width={500}
           height={108}
           className={clsx(
-            'w-[212px] leading-[47px] absolute top-[60px] left-[25px] z-[8]',
+            'w-[212px] leading-[47px] absolute top-[24px] left-[25px] z-[8]',
             'lg:w-[244.71px] lg:leading-[54px] lg:left-[48px] lg:top-[48px]',
           )}
         />

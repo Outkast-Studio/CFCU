@@ -83,7 +83,7 @@ const PostHomePage = ({
       <section
         ref={heroRef}
         className={clsx(
-          'pt-[60px]',
+          'pt-[24px]',
           'lg:pt-[48px]',
           'px-[24px]',
           'lg:px-[48px]',

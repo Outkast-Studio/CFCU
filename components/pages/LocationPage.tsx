@@ -69,7 +69,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
       <section
         ref={heroRef}
         className={clsx(
-          'pt-[60px] px-[24px] relative',
+          'pt-[24px] px-[24px] relative',
           'bg-lavender lg:px-[48px] lg:py-[201px]  items-end',
         )}
       >

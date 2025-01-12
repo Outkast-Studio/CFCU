@@ -90,7 +90,7 @@ const LocationHomeHero = ({
       </div>
       <div
         className={clsx(
-          'flex relative z-[2] px-[24px] pt-[59px] flex-col h-full justify-between gap-y-[111px]',
+          'flex relative z-[2] px-[24px] pt-[24px] flex-col h-full justify-between gap-y-[111px]',
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >

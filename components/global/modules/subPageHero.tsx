@@ -99,7 +99,7 @@ const SubPageHero = ({ data }: { data: SubPageHeroType }) => {
 
       <div
         className={clsx(
-          'flex relative z-[2] px-[24px] pt-[59px] flex-col h-full justify-between',
+          'flex relative z-[2] px-[24px] pt-[24px] flex-col h-full justify-between',
           'lg:px-[48px] lg:pt-[48px]',
         )}
       >
