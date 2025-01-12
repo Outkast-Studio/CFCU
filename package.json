@@ -60,7 +60,7 @@
     "sanity-plugin-media": "^2.3.2",
     "sanity-plugin-simpler-color-input": "^2.2.2",
     "sharp": "^0.33.5",
-    "styled-components": "6.1.8",
+    "styled-components": "^6.1.14",
     "swiper": "^11.1.14",
     "swr": "2.2.4",
     "tailwind-merge": "^2.5.5",
