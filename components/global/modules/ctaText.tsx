@@ -75,18 +75,18 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
         >
           {data?.title}
         </h3>
-        {data.description && (
-          <p
+        {data?.description && (
+          <div
             style={{ color: theme?.monotoneCopy }}
             className={clsx(
               ' w-paragraph text-center mt-[20px] animateContent opacity-0',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
-            {data?.description}
-          </p>
+            <PortableText value={data?.description} />
+          </div>
         )}
-        {data?.cta?.title && (
+        {/* {data?.ctas?.length title && (
           <PageLink
             data={data?.cta}
             className={clsx(
@@ -96,7 +96,23 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           >
             <Button label={data?.cta?.title} />
           </PageLink>
-        )}
+        )} */}
+        <div
+          className={clsx(
+            'mt-[20px] flex flex-col gap-y-[20px] items-center justify-center',
+            'lg:mt-[24px] lg:flex-row lg:gap-x-[24px]',
+          )}
+        >
+          {data?.ctas?.map((cta, index) => (
+            <PageLink
+              key={index}
+              data={cta}
+              className={clsx('block animateContent opacity-0')}
+            >
+              <Button label={cta?.title} />
+            </PageLink>
+          ))}
+        </div>
       </section>
     </div>
   )

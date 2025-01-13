@@ -26,13 +26,17 @@ export default defineField({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
-      rows: 3,
+      type: 'blockContentMin',
     }),
     defineField({
-      name: 'cta',
-      title: 'Call to Action',
-      type: 'pageLink',
+      name: 'ctas',
+      title: 'Call to Actions',
+      type: 'array',
+      of: [
+        {
+          type: 'pageLink',
+        },
+      ],
     }),
   ],
   preview: {

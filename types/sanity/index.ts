@@ -185,8 +185,8 @@ export interface CtaTextType {
   }
   title: string
   subtitle?: string
-  description?: string
-  cta: PageLinkType
+  description?: PortableTextBlock
+  ctas: PageLinkType[]
 }
 
 export interface GetInspiredType {
