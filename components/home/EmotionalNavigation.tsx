@@ -57,7 +57,7 @@ const EmotionalNavigation = ({
             contentTimeline.reverse()
           },
           trigger: section,
-          start: 'top top',
+          start: 'top top+=45px',
           end: `+=${container.offsetWidth * 0.8}px`,
           scrub: true,
           invalidateOnRefresh: true,
@@ -78,7 +78,7 @@ const EmotionalNavigation = ({
       ref={sectionRef}
       className={clsx(
         'pt-[90px] pb-[10px]',
-        'lg:pt-[149px] lg:flex lg:pb-[150px] lg:relative lg:overflow-x-hidden',
+        'lg:clamp-pt-[149px] lg:flex lg:pb-[150px] lg:relative lg:overflow-x-hidden',
       )}
     >
       <div
@@ -236,31 +236,49 @@ const CardDesktop = ({
   return (
     <article
       style={{ backgroundColor: colors?.background, color: colors?.heading }}
-      className={clsx('px-[53px] pt-[77px] w-[547px] h-[620px] flex-shrink-0')}
+      className={clsx(
+        'px-[53px] pt-[77px] ml:clamp-w-[547px]  ml:clamp-h-[620px] flex-shrink-0 h-[620px] w-[547px]',
+      )}
     >
       <h4
         className={clsx(
-          'text-left text-[16px] leading-[16px] tracking-[1.6px] uppercase font-codec-news',
+          'text-left ml:clamp-text-[16px] ml:clamp-leading-[16px] ml:clamp-tracking-[1.6px] uppercase font-codec-news',
+          'text-[16px] leading-[16px] tracking-[1.6px]',
         )}
       >
         {data?.subtitle}
       </h4>
-      <h3 className={clsx('title-s-desktop text-left mt-[8px]')}>
+      <h3
+        className={clsx(
+          'title-s-desktop ml:clamp-text-[50px] ml:clamp-leading-[50px] ml:clamp-tracking-[-0.32px] text-left ml:clamp-mt-[8px]',
+          'mt-[8px]',
+        )}
+      >
         {data?.title}
       </h3>
-      <p className={clsx('w-paragraph-l-desktop mt-[17px]')}>
+      <p
+        className={clsx(
+          'w-paragraph-l-desktop mt-[17px] ml:clamp-text-[21px] ml:clamp-leading-[31.5px] ml:clamp-mt-[17px]',
+        )}
+      >
         {data?.description}
       </p>
-      <nav className={clsx('flex flex-col gap-y-[12px] mt-[20px] pb-[41px]')}>
+      <nav
+        className={clsx(
+          'flex flex-col gap-y-[12px] mt-[20px] pb-[41px] ml:clamp-gap-y-[12px] ml:clamp-mt-[20px] ml:clamp-pb-[41px]',
+        )}
+      >
         {data?.links.map((link, index) => (
           <PageLink
             data={link}
             key={index}
-            className={clsx('flex flex-row gap-x-[6px] items-center group')}
+            className={clsx(
+              'flex flex-row gap-x-[6px] ml:clamp-gap-x-[6px] items-center group',
+            )}
           >
             <span
               className={clsx(
-                'font-codec-extra-bold text-[18px] leading-[27px]',
+                'font-codec-extra-bold ml:clamp-text-[18px] ml:clamp-leading-[27px]',
               )}
             >
               {link?.title}
