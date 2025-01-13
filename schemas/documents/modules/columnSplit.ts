@@ -6,17 +6,17 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      description: 'Optional subtitle for the column split section',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
       description: 'Main heading for the column split section',
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-      description: 'Optional subtitle for the column split section',
     }),
     defineField({
       name: 'description',

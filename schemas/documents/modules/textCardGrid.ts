@@ -6,17 +6,17 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      description: 'The main title displayed in the hero section',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
       description: 'The subtitle displayed above the title',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      description: 'The main title displayed in the hero section',
       validation: (Rule) => Rule.required(),
     }),
     defineField({

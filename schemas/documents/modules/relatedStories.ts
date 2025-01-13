@@ -20,6 +20,12 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'subTitle',
+      title: 'Sub Title',
+      type: 'string',
+      description: 'The sub title for the related stories section',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -41,12 +47,6 @@ export default defineType({
         layout: 'radio',
         direction: 'horizontal',
       },
-    }),
-    defineField({
-      name: 'subTitle',
-      title: 'Sub Title',
-      type: 'string',
-      description: 'The sub title for the related stories section',
     }),
     defineField({
       name: 'description',

@@ -6,17 +6,17 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'subTitle',
+      title: 'Sub Title',
+      type: 'string',
+      description: 'Sub title for the accordion section',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
       description: 'Main heading for the accordion section',
-    }),
-    defineField({
-      name: 'subTitle',
-      title: 'Sub Title',
-      type: 'string',
-      description: 'Sub title for the accordion section',
     }),
     defineField({
       name: 'description',

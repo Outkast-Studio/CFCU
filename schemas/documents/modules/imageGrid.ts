@@ -6,17 +6,17 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      description: 'Optional subtitle for the image grid section',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
       description: 'Main heading for the image grid section',
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-      description: 'Optional subtitle for the image grid section',
     }),
     defineField({
       name: 'description',

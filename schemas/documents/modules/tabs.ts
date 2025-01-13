@@ -6,17 +6,17 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      description: 'Optional subtitle text',
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
       description: 'Main heading for the tabs section',
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
-      description: 'Optional subtitle text',
     }),
     defineField({
       name: 'description',
