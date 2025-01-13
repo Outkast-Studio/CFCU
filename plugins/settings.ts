@@ -237,8 +237,6 @@ export const settingsStructure = (
         S.divider(),
         subpagesListItem,
         S.divider(),
-
-        S.divider(),
         postsListItem,
         S.divider(),
         locationsListItem,
