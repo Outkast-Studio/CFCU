@@ -151,7 +151,7 @@ export const WysiwygComponentsWithoutPadding = {
     bullet: ({ children }) => (
       <ul
         className={clsx(
-          'list-disc list-inside w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop ',
+          'list-disc list-inside w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop text-black/75',
           'lg:px-[0px] lg:w-paragraph-l-desktop',
         )}
       >
@@ -161,7 +161,7 @@ export const WysiwygComponentsWithoutPadding = {
     number: ({ children }) => (
       <ol
         className={clsx(
-          'list-none list-inside  w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop ',
+          'list-none list-inside  w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop text-black/75',
           'lg:px-[0px]',
         )}
       >
@@ -381,7 +381,7 @@ export const WysiwygComponents = {
     number: ({ children }) => (
       <ol
         className={clsx(
-          'list-none list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop px-[24px]',
+          'list-none list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] lg:w-paragraph-l-desktop px-[24px] text-black/75',
           'lg:px-[0px]',
         )}
       >
