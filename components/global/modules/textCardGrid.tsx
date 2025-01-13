@@ -99,9 +99,16 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
           'lg:col-start-7 lg:col-end-13 lg:grid lg:grid-cols-2 lg:gap-x-[42px]',
         )}
       >
-        {data?.cards?.map((card, index) => (
-          <CardGridItem card={card} key={index} />
-        ))}
+        <div className={clsx('flex flex-col gap-y-[48px]', 'lg:gap-y-[54px]')}>
+          {leftGridItems?.map((card, index) => (
+            <CardGridItem card={card} key={index} />
+          ))}
+        </div>
+        <div className={clsx('flex flex-col gap-y-[48px]', 'lg:gap-y-[54px]')}>
+          {rightGridItems?.map((card, index) => (
+            <CardGridItem card={card} key={index} />
+          ))}
+        </div>
         {/* <div
           className={clsx('flex flex-col gap-y-[48px]', 'lg:gap-y-[81px]')}
           ref={leftGridItemsRef}
@@ -133,8 +140,10 @@ function CardGridItem({ card }: { card: TextCardGridType['cards'][0] }) {
       </h4>
       <p
         className={clsx(
-          'w-paragraph-s text-black/75 mb-[19px]',
+          'w-paragraph-s text-black/75 ',
           'lg:w-paragraph-s-desktop lg:max-w-[320px]',
+
+          card?.pageLink?.title && 'mb-[19px]',
         )}
       >
         {card?.description}
