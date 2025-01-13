@@ -186,9 +186,9 @@ const PostCard = ({
           </h5>
           <p
             className={clsx(
-              'font-codec-news',
+              'font-codec-news text-black/75',
               isFeatured
-                ? 'text-[16px] leading-[24px] lg:text-[24px] lg:leading-[36px]'
+                ? 'text-[16px] leading-[24px] lg:text-[24px] lg:leading-[36px] '
                 : 'text-[14px] leading-[19.6px] lg:text-[18px] lg:leading-[26px] lg:mt-[8px]',
             )}
           >
