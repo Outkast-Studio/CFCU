@@ -37,7 +37,7 @@ export default defineType({
                   name: 'value',
                   title: 'Value',
                   description: 'The value for the column',
-                  type: 'string',
+                  type: 'blockContent',
                   validation: (Rule) => Rule.required(),
                 }),
               ],

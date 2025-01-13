@@ -12,6 +12,8 @@ import testModules from 'schemas/singletons/testModules'
 import { Browser, Folder } from '@phosphor-icons/react/dist/ssr'
 import fourOhFour from 'schemas/singletons/404'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
+import { PageHierarchyView } from '@/components/Sanity/PageHierarchyView'
+import { TreeView } from '@phosphor-icons/react'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -208,7 +210,19 @@ export const settingsStructure = (
       .title('Subpages')
       .icon(Folder)
       .schemaType('subPage')
-      .child(S.documentTypeList('subPage').title('Sub Pages'))
+      .child(
+        S.list()
+          .title('Subpages')
+          .items([
+            S.listItem()
+              .title('Subpages')
+              .child(S.documentTypeList('subPage').title('Sub Pages')),
+            S.listItem()
+              .title('Page Hierarchy')
+              .icon(TreeView)
+              .child(S.component(PageHierarchyView).title('Page Hierarchy')),
+          ]),
+      )
 
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) => !hiddenTypes.includes(listItem.getId()),
@@ -222,6 +236,8 @@ export const settingsStructure = (
         homepageListItem,
         S.divider(),
         subpagesListItem,
+        S.divider(),
+
         S.divider(),
         postsListItem,
         S.divider(),
