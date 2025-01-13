@@ -4,6 +4,7 @@ import { formatDate } from 'utils'
 import { PortableText } from '@portabletext/react'
 import { useEffect, useRef } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
 const RateTable = ({ data }: { data: RateTableType }) => {
   const maxRows = data?.columns?.reduce(
@@ -21,6 +22,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
       gradientRef.current.style.opacity = '1'
     }
   }, [width])
+
   return (
     <section
       className={clsx(
@@ -67,7 +69,7 @@ const RateTable = ({ data }: { data: RateTableType }) => {
                       'lg:pt-[23px] lg:pb-[16px] lg:pl-[31px] lg:w-h6-desktop',
                     )}
                   >
-                    {column?.columnTitle}
+                    <PortableText value={column?.columnTitle as any} />
                   </th>
                 ))}
               </tr>
@@ -75,18 +77,33 @@ const RateTable = ({ data }: { data: RateTableType }) => {
             <tbody>
               {Array.from({ length: maxRows }).map((_, rowIndex) => (
                 <tr key={rowIndex}>
-                  {data?.columns?.map((column, colIndex) => (
-                    <td
-                      key={colIndex}
-                      className={clsx(
-                        'pt-[16px] pb-[18px] pl-[20px] border-b-[1px] border-black/20 w-paragraph-s-desktop',
-                        rowIndex % 2 === 0 ? 'bg-[#EDEDED]/20' : 'bg-white',
-                        'lg:pl-[31px] lg:pb-[20px] lg:pt-[16px] lg:w-paragraph-l-desktop',
-                      )}
-                    >
-                      {column?.columnValues[rowIndex] || '\u00A0'}
-                    </td>
-                  ))}
+                  {data?.columns?.map((column, colIndex) => {
+                    return (
+                      <td
+                        key={colIndex}
+                        className={clsx(
+                          'pt-[16px] pb-[18px] pl-[20px] border-b-[1px] border-black/20 w-paragraph-s-desktop',
+                          rowIndex % 2 === 0 ? 'bg-[#EDEDED]/20' : 'bg-white',
+                          'lg:pl-[31px] lg:pb-[20px] lg:pt-[16px] lg:w-paragraph-l-desktop',
+                        )}
+                      >
+                        {
+                          //@ts-ignore
+                          column?.columnValues[rowIndex]?.value ? (
+                            <PortableText
+                              //@ts-ignore
+                              value={column?.columnValues[rowIndex]?.value}
+                              components={
+                                WysiwygComponentsWithoutPadding as any
+                              }
+                            />
+                          ) : (
+                            '\u00A0'
+                          )
+                        }
+                      </td>
+                    )
+                  })}
                 </tr>
               ))}
             </tbody>

@@ -252,7 +252,7 @@ export interface RateTableType {
   title: string
   columns: Array<{
     columnTitle: string
-    columnValues: string[]
+    columnValues: PortableTextBlock[]
   }>
   _updatedAt: string
   tableNotes?: PortableTextBlock[]

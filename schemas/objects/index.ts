@@ -25,12 +25,14 @@ import rateTable from '../documents/modules/rateTable'
 import wysiwyg from '../documents/modules/wysiwyg'
 import teamGrid from '../documents/modules/teamGrid'
 import embed from '../documents/modules/embed'
+import blockContentMin from '../objects/blockContentMin'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     hero,
     media,
     blockContent,
+    blockContentMin,
     emotionalNavigation,
     ctaInContent,
     getInspired,

@@ -24,7 +24,7 @@ export default defineType({
               name: 'columnTitle',
               title: 'Column Title',
               description: 'The title of the column',
-              type: 'string',
+              type: 'blockContentMin',
               validation: (Rule) => Rule.required(),
             }),
             defineField({
@@ -33,16 +33,58 @@ export default defineType({
               description: 'The values for the column',
               type: 'array',
               of: [
-                defineField({
-                  name: 'value',
-                  title: 'Value',
-                  description: 'The value for the column',
-                  type: 'blockContent',
-                  validation: (Rule) => Rule.required(),
-                }),
+                {
+                  type: 'object',
+                  title: 'Column Value',
+                  fields: [
+                    defineField({
+                      name: 'value',
+                      title: 'Value',
+                      description: 'For empty values, please use a space.',
+                      type: 'blockContentMin',
+                      validation: (Rule) => Rule.required(),
+                    }),
+                  ],
+                  preview: {
+                    select: {
+                      subtitle: 'value',
+                    },
+                    prepare(selection) {
+                      const { subtitle } = selection
+                      return {
+                        title: 'Value',
+                        subtitle:
+                          subtitle && subtitle[0]?.children
+                            ? subtitle[0].children
+                                .filter((child) => child._type === 'span')
+                                .map((span) => span.text)
+                                .join('')
+                            : 'No preview available',
+                      }
+                    },
+                  },
+                },
               ],
             }),
           ],
+          preview: {
+            select: {
+              subtitle: 'columnTitle',
+            },
+            prepare(selection) {
+              const { subtitle } = selection
+              return {
+                title: 'Column',
+                subtitle:
+                  subtitle && subtitle[0]?.children
+                    ? subtitle[0].children
+                        .filter((child) => child._type === 'span')
+                        .map((span) => span.text)
+                        .join('')
+                    : 'No preview available',
+              }
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.required(),
