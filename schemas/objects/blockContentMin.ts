@@ -7,6 +7,9 @@ import {
   TextAlignCenter,
 } from '@phosphor-icons/react'
 import { SubScript, SuperScript } from '@/components/global/ui/TextDecorators'
+import { PhoneList } from '@phosphor-icons/react'
+import { Phone } from 'lucide-react'
+import { UserIcon } from '@sanity/icons'
 import {
   LeftAlignedText,
   CenterAlignedText,
@@ -106,6 +109,22 @@ export default defineType({
                 title: 'URL',
                 name: 'href',
                 type: 'url',
+              },
+            ],
+          },
+          {
+            name: 'telEmailLink',
+            title: 'Tel/Email Link',
+            type: 'object',
+            icon: UserIcon,
+            fields: [
+              {
+                title: 'URL',
+                name: 'href',
+                description:
+                  'For telephone please use this format tel:123456 . Replace 12345 with your number. For email please use this format mailto:email@email.com',
+                type: 'string',
+                icon: Phone,
               },
             ],
           },

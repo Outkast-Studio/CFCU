@@ -12,6 +12,7 @@ import {
   CenterAlignedText,
   RightAlignedText,
 } from '@/components/global/ui/TextAlignment'
+import { PhoneList } from '@phosphor-icons/react'
 
 // Define the horizontalRule type
 export const horizontalRule = defineType({
@@ -106,6 +107,21 @@ export default defineType({
                 title: 'URL',
                 name: 'href',
                 type: 'url',
+              },
+            ],
+          },
+          {
+            name: 'telEmailLink',
+            title: 'Tel/Email Link',
+            type: 'object',
+            icon: PhoneList,
+            fields: [
+              {
+                title: 'URL',
+                name: 'href',
+                description:
+                  'For telephone please use this format tel:123456 . Replace 12345 with your number. For email please use this format mailto:email@email.com',
+                type: 'string',
               },
             ],
           },

@@ -66,6 +66,15 @@ export const WysiwygComponentsWithoutPadding = {
         {children}
       </a>
     ),
+    telEmailLink: ({ children, value }) => (
+      <a
+        href={value.href}
+        className={clsx('underline font-codec-heavy text-lavender')}
+      >
+        {children}
+      </a>
+    ),
+
     leftAligned: ({ children }) => (
       <div className={clsx('text-left')}>{children}</div>
     ),
@@ -265,6 +274,14 @@ export const WysiwygComponents = {
       <strong className={clsx('font-codec-heavy')}>{children}</strong>
     ),
     link: ({ children, value }) => (
+      <a
+        href={value.href}
+        className={clsx('underline font-codec-heavy text-lavender')}
+      >
+        {children}
+      </a>
+    ),
+    telEmailLink: ({ children, value }) => (
       <a
         href={value.href}
         className={clsx('underline font-codec-heavy text-lavender')}
