@@ -59,7 +59,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         ref={containerRef}
         className={clsx(
           'px-[24px] py-[26px] ',
-          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto',
+          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-start',
           stegaClean(data?.imagePosition) === 'left'
             ? 'lg:flex-row'
             : 'lg:flex-row-reverse',
@@ -68,20 +68,22 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
       >
         <div
           className={clsx(
-            'relative w-full h-auto ',
+            'relative w-full',
             'lg:flex-shrink-0 lg:w-[calc(50%-59px)]',
           )}
         >
-          <Image
-            src={urlForImage(data?.image).width(1000).quality(90).url()}
-            alt={data?.image.alt as string}
-            width={1000}
-            height={1000}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
-            className={clsx(
-              'object-cover w-full h-full opacity-0 transition-all  duration-300 ease-in-out-cubic',
-            )}
-          />
+          <div className={clsx('aspect-w-4 aspect-h-3 relative')}>
+            <Image
+              src={urlForImage(data?.image).width(1000).quality(90).url()}
+              alt={data?.image.alt as string}
+              width={1000}
+              height={1000}
+              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              className={clsx(
+                'object-cover w-full h-full opacity-0 transition-all  duration-300 ease-in-out-cubic',
+              )}
+            />
+          </div>
         </div>
         <div
           className={clsx(
