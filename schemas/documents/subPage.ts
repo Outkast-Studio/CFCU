@@ -42,13 +42,26 @@ export default defineType({
           if (typeof slug === 'undefined') {
             return true // Allow undefined values
           }
+
+          const slugValue = slug.current
+
+          if (!slugValue) {
+            return 'Slug is required'
+          }
+
           if (
-            slug.current &&
-            (slug.current.startsWith('posts/') ||
-              slug.current.startsWith('locations/') ||
-              slug.current.startsWith('rates/'))
+            slugValue.startsWith('posts/') ||
+            slugValue.startsWith('locations/') ||
+            slugValue.startsWith('rates/') ||
+            slugValue.startsWith('/')
           ) {
-            return 'Slug must not start with "posts/", "locations/", or "rates/"'
+            return 'Slug must not start with "posts/", "locations/", "rates/", or "/"'
+          }
+
+          // Check if the slug is valid (lowercase letters, numbers, and hyphens only)
+          const validSlugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+          if (!validSlugRegex.test(slugValue)) {
+            return 'Slug must contain only lowercase letters, numbers, and hyphens, and cannot start or end with a hyphen'
           }
           return true
         }),
