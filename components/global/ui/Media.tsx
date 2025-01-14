@@ -60,13 +60,13 @@ export default function MediaComponent({
           <Image
             //@ts-ignore
             src={urlForImage(media?.mobileImage)
-              .height(1080)
-              .width(1920)
+              .height(1948)
+              .width(1080)
               .quality(100)
               .url()}
             //@ts-ignore
             alt={media?.mobileImage?.alt}
-            width={1920}
+            width={1948}
             height={1080}
             quality={100}
             priority={priority}
