@@ -27,6 +27,7 @@ import teamGrid from '../documents/modules/teamGrid'
 import embed from '../documents/modules/embed'
 import blockContentMin from '../objects/blockContentMin'
 import globalAlert from '../documents/modules/globalAlert'
+import externalLink from '../documents/modules/externalLink'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -58,5 +59,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     teamGrid,
     embed,
     globalAlert,
+    externalLink,
   ],
 }

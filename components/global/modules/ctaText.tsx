@@ -13,7 +13,6 @@ import { gsap } from 'gsap'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
-
   const contentRef = useRef(null)
 
   const { ref, inView } = useInView({
@@ -42,6 +41,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
     }
   }, [inView])
 
+  console.log(data)
   return (
     <div
       ref={ref}

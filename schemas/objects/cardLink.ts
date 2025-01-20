@@ -28,8 +28,8 @@ export default defineType({
     defineField({
       name: 'externalLink',
       title: 'External Link',
-      type: 'url',
-      description: 'Use this for linking to external websites',
+      type: 'reference',
+      to: [{ type: 'externalLink' }],
     }),
   ],
   preview: {

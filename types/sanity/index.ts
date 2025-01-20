@@ -156,6 +156,7 @@ export interface CtaCardGridType {
 
 export interface PageLinkType {
   title: string
+  linkType: 'internal' | 'external'
   link?: {
     _id: string
     _type: string
@@ -164,7 +165,12 @@ export interface PageLinkType {
       current: string
     }
   }
-  externalLink?: string
+  externalLink?: {
+    _id: string
+    _type: string
+    title: string
+    externalLink: string
+  }
 }
 
 export interface CardLinkType {
@@ -176,13 +182,18 @@ export interface CardLinkType {
       current: string
     }
   }
-  externalLink?: string
+  externalLink?: {
+    _id: string
+    _type: string
+    externalLink: string
+  }
 }
 export interface CtaTextType {
   theme: {
     value: string
     label: string
   }
+
   title: string
   subtitle?: string
   description?: PortableTextBlock

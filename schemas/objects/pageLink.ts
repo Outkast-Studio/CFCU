@@ -5,51 +5,63 @@ export default defineType({
   title: 'Page Link',
   type: 'object',
   fields: [
+    // defineField({
+    //   name: 'linkType',
+    //   title: 'Link Type',
+    //   type: 'string',
+    //   options: {
+    //     list: [
+    //       { title: 'Internal', value: 'internal' },
+    //       { title: 'External', value: 'external' },
+    //     ],
+    //     layout: 'radio',
+    //   },
+    //   validation: (Rule) => Rule.required(),
+    // }),
     defineField({
       name: 'title',
       title: 'Link Title',
       type: 'string',
       description: 'The text to display for the link',
+      validation: (Rule) => Rule.required(),
+      // hidden: ({ parent }) => parent?.linkType !== 'internal',
     }),
     defineField({
       name: 'link',
-      title: 'Link',
+      title: 'Internal Link',
       type: 'reference',
       to: [
         { type: 'post' },
         { type: 'topic' },
-        { type: 'homepage', name: 'homepage', title: 'Home' },
-        { type: 'location', name: 'location', title: 'Location' },
-        { type: 'subPage', name: 'subPage', title: 'Sub Page' },
-        { type: 'blogHomePage', name: 'blogHomePage', title: 'Blog Home Page' },
-        {
-          type: 'locationHomePage',
-          name: 'locationHomePage',
-          title: 'Location Home Page',
-        },
-
+        { type: 'homepage' },
+        { type: 'location' },
+        { type: 'subPage' },
+        { type: 'blogHomePage' },
+        { type: 'locationHomePage' },
         // Add any other document types that can be linked
       ],
       description: 'Select the page to link to',
+      // hidden: ({ parent }) => parent?.linkType !== 'internal',
     }),
     defineField({
       name: 'externalLink',
       title: 'External Link',
-      type: 'string',
-      description:
-        'Use this for linking to external websites and telephone numbers. For telephone please use this format tel:123456 . Replace 12345 with your number.',
+      type: 'reference',
+      to: [{ type: 'externalLink' }],
+
+      // hidden: ({ parent }) => parent?.linkType !== 'external',
     }),
   ],
   preview: {
     select: {
       title: 'title',
-      targetTitle: 'link.title',
+      linkType: 'linkType',
+      internalLinkTitle: 'internalLink.title',
       externalLink: 'externalLink',
     },
-    prepare({ title, targetTitle, externalLink }) {
+    prepare({ title, linkType, internalLinkTitle, externalLink }) {
       return {
-        title: title || targetTitle || externalLink || 'Untitled Link',
-        subtitle: externalLink ? 'External Link' : 'Internal Link',
+        title: title,
       }
     },
   },

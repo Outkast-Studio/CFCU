@@ -51,7 +51,7 @@ const PageLink = ({
     </Link>
   ) : (
     <a
-      href={data?.externalLink}
+      href={data?.externalLink?.externalLink}
       target="_blank"
       className={clsx(className, 'w-fit')}
     >

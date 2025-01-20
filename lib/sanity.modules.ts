@@ -5,13 +5,18 @@ export const modulesFragment = groq`
     ...,
     _type == "ctaText" => {
       ...,
-      cta{
+      ctas[]{
         ...,
         link->{
           _id,
           _type,
           title,
           "slug": slug.current
+        },
+        externalLink->{
+          _id,
+          _type,
+          externalLink,
         }
       }
     },
@@ -24,7 +29,12 @@ export const modulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       },
       topic->{
         _id,
@@ -51,7 +61,12 @@ export const modulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "ctaCardGridHome" => {
@@ -63,7 +78,12 @@ export const modulesFragment = groq`
           _type,
           title,
           "slug": slug.current,
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "ctaCardGrid" => {
@@ -78,6 +98,11 @@ export const modulesFragment = groq`
             title,
             "slug": slug.current,
             externalLink
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       }
@@ -91,7 +116,12 @@ export const modulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "ctaInContent" => {
@@ -105,6 +135,11 @@ export const modulesFragment = groq`
             _type,
             title,
             "slug": slug.current
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       }
@@ -120,6 +155,11 @@ export const modulesFragment = groq`
             _type,
             title,
             "slug": slug.current
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       }
@@ -146,7 +186,12 @@ export const modulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     }
   }
@@ -170,7 +215,12 @@ export const homepageModulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "getInspired" => {
@@ -182,7 +232,12 @@ export const homepageModulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       },
       topic->{
         _id,
@@ -209,7 +264,12 @@ export const homepageModulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "ctaCardGridHome" => {
@@ -223,6 +283,11 @@ export const homepageModulesFragment = groq`
             _type,
             title,
             "slug": slug.current,
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       },
@@ -233,7 +298,12 @@ export const homepageModulesFragment = groq`
           _type,
           title,
           "slug": slug.current,
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "ctaCardGrid" => {
@@ -248,6 +318,11 @@ export const homepageModulesFragment = groq`
             title,
             "slug": slug.current,
             externalLink
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       }
@@ -261,7 +336,12 @@ export const homepageModulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     },
     _type == "ctaInContent" => {
@@ -275,6 +355,11 @@ export const homepageModulesFragment = groq`
             _type,
             title,
             "slug": slug.current
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       }
@@ -290,6 +375,11 @@ export const homepageModulesFragment = groq`
             _type,
             title,
             "slug": slug.current
+          },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
           }
         }
       }
@@ -316,7 +406,12 @@ export const homepageModulesFragment = groq`
           _type,
           title,
           "slug": slug.current
-        }
+        },
+          externalLink->{
+            _id,
+            _type, 
+            externalLink,
+          }
       }
     }
   }
