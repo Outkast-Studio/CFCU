@@ -6,11 +6,14 @@ export default defineType({
   title: 'Redirects',
   icon: ArrowsCounterClockwise as any,
   type: 'document',
+
   fields: [
     defineField({
       name: 'redirects',
       title: 'Redirects',
       type: 'array',
+      description:
+        'Please make all of your changes, then publish. The publish action will trigger a redeploy of your site which costs bandwidth. The less rebuilds, the better. Redirects will take around 5 minutes to update after publishing.',
       of: [
         defineField({
           name: 'redirect',
