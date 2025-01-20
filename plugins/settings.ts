@@ -14,6 +14,7 @@ import fourOhFour from 'schemas/singletons/404'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import { PageHierarchyView } from '@/components/Sanity/PageHierarchyView'
 import { TreeView } from '@phosphor-icons/react'
+import redirects from '@/schemas/singletons/redirects'
 
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
@@ -81,6 +82,7 @@ export const settingsStructure = (
       'teamGrid',
       'embed',
       '404',
+      'redirects',
     ]
 
     const globalSettingsListItem = S.listItem()
@@ -97,6 +99,7 @@ export const settingsStructure = (
             S.view.component(Iframe).options(iframeOptions).title('Preview'),
           ]),
       )
+
     const homepageListItem = S.listItem()
       .title(homepage.title)
       .icon(homepage.icon)
@@ -224,6 +227,18 @@ export const settingsStructure = (
           ]),
       )
 
+    const redirectsListItem = S.listItem()
+      .title(redirects.title)
+      .icon(redirects.icon)
+      .child(
+        S.editor()
+          .title(redirects.title)
+          .id(redirects.name)
+          .schemaType(redirects.name)
+          .documentId(redirects.name)
+          .views([S.view.form()]),
+      )
+
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) => !hiddenTypes.includes(listItem.getId()),
     )
@@ -232,6 +247,8 @@ export const settingsStructure = (
       .title('Content')
       .items([
         globalSettingsListItem,
+        S.divider(),
+        redirectsListItem,
         S.divider(),
         homepageListItem,
         S.divider(),

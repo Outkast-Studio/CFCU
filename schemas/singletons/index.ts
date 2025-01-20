@@ -5,6 +5,7 @@ import testModules from './testModules'
 import blogHomePage from './blogHomePage'
 import locationHomePage from './locationHomePage'
 import fourOhFour from './404'
+import redirects from './redirects'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,5 +15,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blogHomePage,
     locationHomePage,
     fourOhFour,
+    redirects,
   ],
 }
