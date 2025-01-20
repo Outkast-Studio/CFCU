@@ -37,7 +37,7 @@ const Header = () => {
   const { width } = useWindowSize()
   const headerRef = useRef<HTMLDivElement>(null)
   const [entryRun, setEntryRun] = useState(false)
-  console.log(globalSettings)
+
   useIsomorphicLayoutEffect(() => {
     if (!globalSettings?.navigation?.headerBarLinks || !width || entryRun)
       return
@@ -62,7 +62,6 @@ const Header = () => {
   }, [globalSettings, width, entryRun])
 
   useEffect(() => {
-    console.log(alertHeight, globalAlertHeight)
     setAlertHeightInternal(alertHeight + globalAlertHeight)
   }, [alertHeight, globalAlertHeight])
 

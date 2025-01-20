@@ -19,7 +19,6 @@ const SubPageHero = ({
   data: SubPageHeroType
   parent?: SubPageType
 }) => {
-  console.log(parent)
   const heroRef = useRef<HTMLDivElement>(null)
   const backgroundRef = useRef<HTMLDivElement>(null)
   const gradientRef = useRef<HTMLDivElement>(null)

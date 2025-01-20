@@ -24,7 +24,6 @@ const EmotionalNavigation = ({
 
   useIsomorphicLayoutEffect(() => {
     if (width < 1024) return
-    console.log(width)
     const section = sectionRef.current
     const container = containerRef.current
 
