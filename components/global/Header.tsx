@@ -10,11 +10,15 @@ import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import FastExitButton from './modules/QuickExit'
+import SiteAlert from './modules/siteAlert'
+import GlobalSiteAlert from './modules/GlobalSiteAlert'
+import globalAlert from '@/schemas/documents/modules/globalAlert'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [closeInitiated, setCloseInitiated] = useState(false)
   const [menuButtonOpen, setMenuButtonOpen] = useState(false)
+  const [alertHeightInternal, setAlertHeightInternal] = useState(0)
   useEffect(() => {
     if (isMenuOpen) document.body.style.overflow = 'hidden'
     else document.body.style.overflow = 'auto'
@@ -22,12 +26,18 @@ const Header = () => {
 
   const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen)
   const alertHeight = useGlobalSettingsStore((state) => state.alertHeight)
+  const globalAlertHeight = useGlobalSettingsStore(
+    (state) => state.globalAlertHeight,
+  )
+  const globalAlertIsOpen = useGlobalSettingsStore(
+    (state) => state.globalAlertIsOpen,
+  )
   const globalSettings = useGlobalSettingsStore((state) => state.globalSettings)
   const isPastPoint = useScrollPastPoint(alertHeight)
   const { width } = useWindowSize()
   const headerRef = useRef<HTMLDivElement>(null)
   const [entryRun, setEntryRun] = useState(false)
-
+  console.log(globalSettings)
   useIsomorphicLayoutEffect(() => {
     if (!globalSettings?.navigation?.headerBarLinks || !width || entryRun)
       return
@@ -51,17 +61,25 @@ const Header = () => {
     })
   }, [globalSettings, width, entryRun])
 
+  useEffect(() => {
+    console.log(alertHeight, globalAlertHeight)
+    setAlertHeightInternal(alertHeight + globalAlertHeight)
+  }, [alertHeight, globalAlertHeight])
+
   return (
     <>
       {globalSettings?.quickExit?.showFastExit && (
         <FastExitButton url={globalSettings?.quickExit?.exitUrl} />
       )}
+      {globalSettings?.globalAlerts?.map((alert, index) => (
+        <GlobalSiteAlert key={index} data={alert} />
+      ))}
       <header
         ref={headerRef}
         style={
-          alertIsOpen
+          alertIsOpen || globalAlertIsOpen
             ? {
-                transform: `translateY(${alertHeight + (width < 1024 ? 24 : 48)}px)`,
+                transform: `translateY(${alertHeightInternal + (width < 1024 ? 24 : 48)}px)`,
               }
             : {}
         }

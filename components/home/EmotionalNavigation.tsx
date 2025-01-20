@@ -24,6 +24,7 @@ const EmotionalNavigation = ({
 
   useIsomorphicLayoutEffect(() => {
     if (width < 1024) return
+    console.log(width)
     const section = sectionRef.current
     const container = containerRef.current
 
@@ -57,7 +58,7 @@ const EmotionalNavigation = ({
             contentTimeline.reverse()
           },
           trigger: section,
-          start: 'top top+=45px',
+          start: `top top+=${width > 1800 ? 48 : 0}px`,
           end: `+=${container.offsetWidth * 0.8}px`,
           scrub: true,
           invalidateOnRefresh: true,

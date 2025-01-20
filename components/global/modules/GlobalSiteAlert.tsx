@@ -5,43 +5,51 @@ import { useState, useRef, useEffect, use } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useWindowSize } from '@/hooks/useWindowSize'
 
-const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
+const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)
   // const [alertHeight, setAlertHeight] = useState(0)
   const contentRef = useRef<HTMLDivElement>(null)
-  const alertHeight = useGlobalSettingsStore((state) => state.alertHeight)
-  const setAlertHeight = useGlobalSettingsStore((state) => state.setAlertHeight)
-  const setAlertIsOpen = useGlobalSettingsStore((state) => state.setAlertIsOpen)
+  const globalAlertHeight = useGlobalSettingsStore(
+    (state) => state.globalAlertHeight,
+  )
+  const setGlobalAlertHeight = useGlobalSettingsStore(
+    (state) => state.setGlobalAlertHeight,
+  )
+  const setGlobalAlertIsOpen = useGlobalSettingsStore(
+    (state) => state.setGlobalAlertIsOpen,
+  )
+  const globalAlertIsOpen = useGlobalSettingsStore(
+    (state) => state.globalAlertIsOpen,
+  )
+
   const alertIsOpen = useGlobalSettingsStore((state) => state.alertIsOpen)
   const { width } = useWindowSize()
 
   useEffect(() => {
     if (contentRef.current) {
-      setAlertHeight(contentRef.current.scrollHeight)
-      setAlertHeight(contentRef.current.scrollHeight)
-      setAlertIsOpen(true)
+      setGlobalAlertHeight(contentRef.current.scrollHeight)
+      setGlobalAlertIsOpen(true)
       window.scrollTo(0, 0)
     }
     return () => {
-      setAlertIsOpen(false)
-      setAlertHeight(0)
+      setGlobalAlertIsOpen(false)
+      setGlobalAlertHeight(0)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     if (alertIsOpen) {
-      setAlertHeight(alertHeight + contentRef.current.scrollHeight)
-      setAlertHeight(contentRef.current.scrollHeight)
+      setGlobalAlertHeight(contentRef.current.scrollHeight)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width, setAlertHeight, setAlertHeight])
+  }, [width, setGlobalAlertHeight, alertIsOpen])
 
   return (
     <section
-      style={{ maxHeight: alertHeight || 'unset' }}
+      style={{ maxHeight: globalAlertHeight || 'unset' }}
       className={clsx(
-        ' bg-alertRed px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
+        ' bg-[#3C1053] px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
         isClosed && '!max-h-[0px] !bg-transparent',
       )}
@@ -72,8 +80,8 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
       <button
         onClick={() => {
           setIsClosed(true)
-          setAlertIsOpen(false)
-          setAlertHeight(0)
+          setGlobalAlertIsOpen(false)
+          setGlobalAlertHeight(0)
         }}
         className={clsx(
           'transition-opacity duration-150 py-[24px]',
@@ -97,4 +105,4 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
   )
 }
 
-export default SiteAlert
+export default GlobalSiteAlert

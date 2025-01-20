@@ -16,6 +16,17 @@ export default defineType({
   ],
   fields: [
     defineField({
+      name: 'globalAlerts',
+      title: 'Global Alerts',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'globalAlert' }],
+        },
+      ],
+    }),
+    defineField({
       name: 'navigation',
       title: 'Navigation',
       description: 'This powers the site wide navigation and menu.',

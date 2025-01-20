@@ -134,7 +134,7 @@ const SubPageHero = ({
             >
               <button
                 className={clsx(
-                  'flex gap-x-[6px] py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:!opacity-80 transition-opacity duration-200',
+                  'flex gap-x-[6px]  py-[8px] px-[16px] rounded-full items-center bg-[#2C0A3D] hover:!opacity-80 transition-opacity duration-200 text-left',
                 )}
               >
                 <svg

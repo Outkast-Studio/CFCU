@@ -26,6 +26,7 @@ import wysiwyg from '../documents/modules/wysiwyg'
 import teamGrid from '../documents/modules/teamGrid'
 import embed from '../documents/modules/embed'
 import blockContentMin from '../objects/blockContentMin'
+import globalAlert from '../documents/modules/globalAlert'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -56,5 +57,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     wysiwyg,
     teamGrid,
     embed,
+    globalAlert,
   ],
 }

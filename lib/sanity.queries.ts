@@ -6,6 +6,9 @@ import {
 } from 'lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
+  globalAlerts[]->{
+    ...,
+  },
   navigation{
     ...,
     topLevelNavigation[]{

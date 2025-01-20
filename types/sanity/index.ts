@@ -345,6 +345,7 @@ export interface WysiwygType {
 
 //Singleton Types --------------------------------------------------------------------------
 export interface GlobalSettingsType {
+  globalAlerts: GlobalAlertType[]
   navigation: {
     headerBarLinks: Array<{
       title: string
