@@ -28,7 +28,7 @@ const SubPage = ({
           {renderModule(module)}
         </React.Fragment>
       ))}
-      <SubPageHero data={data?.pageHero} />
+      <SubPageHero data={data?.pageHero} parent={data?.parent} />
       <div className="flex flex-col">
         {childrenPages.length > 0 && <SubpageLinkList data={childrenPages} />}
       </div>

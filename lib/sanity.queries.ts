@@ -89,6 +89,9 @@ export const dynamicPageSlugsQuery = groq`
 export const subPageBySlugQuery = groq`
 *[_type == "subPage" && slug.current == $slug][0]{
   ...,
+  parent->{
+    ...,
+  },
   childrenPages[]->{
     ...,
   },
