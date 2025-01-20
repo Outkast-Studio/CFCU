@@ -83,6 +83,7 @@ export const settingsStructure = (
       'embed',
       '404',
       'redirects',
+      'externalLink',
     ]
 
     const globalSettingsListItem = S.listItem()
