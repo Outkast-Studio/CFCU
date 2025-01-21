@@ -1,6 +1,7 @@
 import { GlobalAlertType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 import { useState, useRef, useEffect, use } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useWindowSize } from '@/hooks/useWindowSize'
@@ -68,14 +69,17 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
         >
           {data?.tabName}
         </h6>
-        <p
+        <div
           className={clsx(
-            'max-w-[1075px] w-paragraph-s-desktop text-white',
+            'max-w-[1075px] w-paragraph-s-desktop text-white flex flex-col gap-y-[16px]',
             'lg:w-[90%]',
           )}
         >
-          {data?.content}
-        </p>
+          <PortableText
+            value={data?.content}
+            components={WysiwygComopentsMin as any}
+          />
+        </div>
       </div>
       <button
         onClick={() => {

@@ -21,8 +21,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
-      rows: 3,
+      type: 'blockContentMin',
       description: 'Optional description text for the column split section',
     }),
     defineField({

@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { getThemeClasses } from 'lib/themeConfig'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import PageLink from '../ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
@@ -117,11 +117,14 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
           <div
             style={{ color: theme?.monotoneCopy }}
             className={clsx(
-              'font-codec-regular w-paragraph-s-desktop text-center',
+              'font-codec-regular w-paragraph-s-desktop text-center flex flex-col gap-y-[16px]',
               'lg:text-left lg:w-paragraph-l-desktop',
             )}
           >
-            <PortableText value={data?.description} />
+            <PortableText
+              value={data?.description}
+              components={WysiwygComopentsMin as any}
+            />
           </div>
           <nav
             style={{ color: theme?.monotoneCopy }}

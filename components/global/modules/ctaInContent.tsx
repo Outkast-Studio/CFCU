@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 import { getThemeClasses } from 'lib/themeConfig'
 import MediaComponent from '../ui/Media'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import PageLink from '../ui/PageLink'
 import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
@@ -207,11 +207,14 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               <div
                 style={{ color: theme?.heading }}
                 className={clsx(
-                  'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle opacity-0',
+                  'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle opacity-0 flex flex-col gap-y-[16px] descriptionContent ',
                   'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
                 )}
               >
-                <PortableText value={data?.ctaCard?.description} />
+                <PortableText
+                  value={data?.ctaCard?.description}
+                  components={WysiwygComopentsMin as any}
+                />
               </div>
             ) : (
               <div

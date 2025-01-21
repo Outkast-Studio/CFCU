@@ -97,3 +97,7 @@ button:focus {
   outline: none !important;
   box-shadow: 0 0 3px 1px #3b105387;
 } */
+
+.descriptionContent li {
+  color: inherit !important;
+}

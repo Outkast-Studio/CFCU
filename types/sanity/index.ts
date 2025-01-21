@@ -156,7 +156,6 @@ export interface CtaCardGridType {
 
 export interface PageLinkType {
   title: string
-  linkType: 'internal' | 'external'
   link?: {
     _id: string
     _type: string
@@ -302,7 +301,7 @@ export interface RelatedStoriesType {
 }
 
 export interface AccordionItem {
-  title: string
+  title: PortableTextBlock
   content: PortableTextBlock[]
 }
 
@@ -314,7 +313,7 @@ export interface AccordionType {
 }
 
 interface TabItem {
-  title: string
+  title: PortableTextBlock
   icon?: ImageAsset
   content: PortableTextBlock[]
 }
@@ -322,7 +321,7 @@ interface TabItem {
 export interface TabsType {
   title: string
   subtitle?: string
-  description?: string
+  description?: PortableTextBlock
   tabs: TabItem[]
 }
 
@@ -333,17 +332,13 @@ interface Column {
 export interface ColumnSplitType {
   title: string
   subtitle?: string
-  description?: string
+  description?: PortableTextBlock
   columns: Column[]
 }
 
 export interface GlobalAlertType {
   tabName: string
-  content: string
-  theme: {
-    value: string
-    label: string
-  }
+  content: PortableTextBlock
 }
 
 export interface EmbedType {

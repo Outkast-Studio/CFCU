@@ -3,7 +3,7 @@ import { clsx } from 'clsx'
 import { getThemeClasses } from 'lib/themeConfig'
 
 import { PortableText } from '@portabletext/react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
 import { useRef } from 'react'
@@ -78,11 +78,14 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
           <div
             style={{ color: theme?.monotoneCopy }}
             className={clsx(
-              ' w-paragraph text-center mt-[20px] animateContent opacity-0',
+              ' w-paragraph text-center mt-[20px] animateContent opacity-0 flex flex-col gap-y-[16px]',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
             )}
           >
-            <PortableText value={data?.description} />
+            <PortableText
+              value={data?.description}
+              components={WysiwygComopentsMin as any}
+            />
           </div>
         )}
         {/* {data?.ctas?.length title && (

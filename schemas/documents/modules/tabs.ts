@@ -21,8 +21,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'text',
-      rows: 3,
+      type: 'blockContentMin',
       description: 'Main description text below the title',
     }),
     defineField({
@@ -36,7 +35,7 @@ export default defineType({
             defineField({
               name: 'title',
               title: 'Title',
-              type: 'string',
+              type: 'blockContentMin',
               description: 'The title for the tab',
               validation: (Rule) => Rule.required(),
             }),
@@ -53,6 +52,24 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              subtitle: 'title',
+            },
+            prepare(selection) {
+              const { subtitle } = selection
+              return {
+                title: 'Tab',
+                subtitle:
+                  subtitle && subtitle[0]?.children
+                    ? subtitle[0].children
+                        .filter((child) => child._type === 'span')
+                        .map((span) => span.text)
+                        .join('')
+                    : 'No preview available',
+              }
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.required().max(5),

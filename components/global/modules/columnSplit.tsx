@@ -1,7 +1,10 @@
 import { ColumnSplitType } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import {
+  WysiwygComponentsWithoutPadding,
+  WysiwygComopentsMin,
+} from 'lib/portabletTextComponents'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   return (
@@ -25,14 +28,17 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
         {data?.title}
       </h3>
       {data?.description && (
-        <p
+        <div
           className={clsx(
-            'mt-[15px] text-black/75 w-paragraph-s-desktop block',
+            'mt-[15px] text-black/75 w-paragraph-s-desktop  flex flex-col gap-y-[16px]',
             'lg:mt-[11px] lg:w-paragraph-l-desktop',
           )}
         >
-          {data?.description}
-        </p>
+          <PortableText
+            value={data?.description}
+            components={WysiwygComopentsMin as any}
+          />
+        </div>
       )}
       <div
         className={clsx(

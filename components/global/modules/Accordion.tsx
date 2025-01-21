@@ -2,7 +2,10 @@ import { AccordionType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import {
+  WysiwygComponentsWithoutPadding,
+  WysiwygComopentsMin,
+} from 'lib/portabletTextComponents'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (
@@ -29,13 +32,13 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
         {data.description && (
           <div
             className={clsx(
-              'w-paragraph-s-desktop mt-[9px]',
+              'w-paragraph-s-desktop mt-[9px] flex flex-col gap-y-[16px]',
               'lg:max-w-[400px] lg:w-paragraph-l-desktop lg:mt-[13px]',
             )}
           >
             <PortableText
               value={data?.description}
-              components={WysiwygComponentsWithoutPadding as any}
+              components={WysiwygComopentsMin as any}
             />
           </div>
         )}
@@ -50,7 +53,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
         <Accordion.Root type="single" collapsible className={clsx('w-full ')}>
           {data?.accordionItems?.map((item, index) => (
             <Accordion.Item
-              value={item?.title + index}
+              value={'accordion' + index}
               key={index}
               className={clsx('group')}
             >
@@ -62,14 +65,17 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
                     'group-data-[state=open]:border-t-orange',
                   )}
                 >
-                  <h4
+                  <div
                     className={clsx(
-                      'w-h6 text-left text-lavender',
+                      'w-h6 text-left text-lavender flex flex-col gap-y-[16px]',
                       'lg:w-h6-desktop',
                     )}
                   >
-                    {item.title}
-                  </h4>
+                    <PortableText
+                      value={item.title}
+                      components={WysiwygComopentsMin as any}
+                    />
+                  </div>
                   <svg
                     width="24"
                     height="24"

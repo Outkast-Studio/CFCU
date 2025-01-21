@@ -85,7 +85,7 @@ export default defineField({
           name: 'description',
           title: 'Description',
           description: 'The optional description of the card.',
-          type: 'blockContent',
+          type: 'blockContentMin',
         }),
         defineField({
           name: 'cta',

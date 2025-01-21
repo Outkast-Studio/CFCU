@@ -5,7 +5,10 @@ import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { useState, useRef } from 'react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import {
+  WysiwygComponentsWithoutPadding,
+  WysiwygComopentsMin,
+} from 'lib/portabletTextComponents'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useWindowSize } from '@/hooks/useWindowSize'
@@ -15,7 +18,6 @@ const Tabs = ({ data }: { data: TabsType }) => {
   const [contentTab, setContentTab] = useState(0)
   const contentRef = useRef(null)
   const { width } = useWindowSize()
-
   useIsomorphicLayoutEffect(() => {
     if (!contentRef.current) return
     if (width < 1024) return
@@ -71,24 +73,27 @@ const Tabs = ({ data }: { data: TabsType }) => {
         {data?.title}
       </h3>
       {data?.description && (
-        <p
+        <div
           className={clsx(
-            'w-paragraph-s-desktop mt-[15px] text-black/75',
+            'w-paragraph-s-desktop mt-[15px] text-black/75 flex flex-col gap-y-[16px]',
             'lg:w-paragraph-l-desktop lg:mt-[22px]',
           )}
         >
-          {data?.description}
-        </p>
+          <PortableText
+            value={data?.description}
+            components={WysiwygComopentsMin as any}
+          />
+        </div>
       )}
       <div className={clsx('mt-[26px]', 'lg:hidden')}>
         <Accordion.Root
-          defaultValue={data?.tabs?.[activeTab].title}
+          defaultValue={activeTab + 'tab'}
           type="single"
           className={clsx('w-full')}
         >
           {data?.tabs?.map((item, index) => (
             <Accordion.Item
-              value={item?.title}
+              value={index + 'tab'}
               key={index}
               className={clsx('group')}
             >
@@ -108,14 +113,17 @@ const Tabs = ({ data }: { data: TabsType }) => {
                       className={clsx('object-contain ')}
                     />
                   )}
-                  <h4
+                  <div
                     className={clsx(
-                      'w-h6 text-lavender text-left transition-colors duration-200',
+                      'w-h6 text-lavender text-left transition-colors duration-200 flex flex-col gap-y-[16px]',
                       'group-data-[state=closed]:text-[#777777]',
                     )}
                   >
-                    {item?.title}
-                  </h4>
+                    <PortableText
+                      value={item?.title}
+                      components={WysiwygComopentsMin as any}
+                    />
+                  </div>
                 </Accordion.Trigger>
               </Accordion.Header>
               <Accordion.Content
@@ -165,14 +173,17 @@ const Tabs = ({ data }: { data: TabsType }) => {
                     className={clsx('object-contain')}
                   />
                 )}
-                <h4
+                <div
                   className={clsx(
-                    'w-h6-desktop transition-colors duration-200 text-left group-hover:text-lavender',
+                    'w-h6-desktop transition-colors duration-200 text-left group-hover:text-lavender flex flex-col gap-y-[16px]',
                     activeTab === index ? 'text-lavender' : 'text-[#777777]',
                   )}
                 >
-                  {item?.title}
-                </h4>
+                  <PortableText
+                    value={item?.title}
+                    components={WysiwygComopentsMin as any}
+                  />
+                </div>
               </div>
               <svg
                 width="24"

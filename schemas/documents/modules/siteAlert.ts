@@ -15,8 +15,7 @@ export default defineType({
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'text',
-      rows: 6,
+      type: 'blockContentMin',
       validation: (Rule) => Rule.required(),
       description: 'The main alert message content',
     }),
@@ -29,7 +28,7 @@ export default defineType({
     prepare({ title, content }) {
       return {
         title: title,
-        subtitle: content,
+        subtitle: 'Global Alert',
       }
     },
   },

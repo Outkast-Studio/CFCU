@@ -21,8 +21,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
-
+      type: 'blockContentMin',
       description: 'Introduction text above the accordion items',
     }),
     defineField({
@@ -36,7 +35,7 @@ export default defineType({
             defineField({
               name: 'title',
               title: 'Title',
-              type: 'string',
+              type: 'blockContentMin',
               description:
                 'The title for the accordion item. This needs to be unique from the other accordion items.',
               validation: (Rule) => Rule.required(),
@@ -50,6 +49,24 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              subtitle: 'title',
+            },
+            prepare(selection) {
+              const { subtitle } = selection
+              return {
+                title: 'Accordion Item',
+                subtitle:
+                  subtitle && subtitle[0]?.children
+                    ? subtitle[0].children
+                        .filter((child) => child._type === 'span')
+                        .map((span) => span.text)
+                        .join('')
+                    : 'No preview available',
+              }
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.required(),

@@ -219,6 +219,167 @@ export const WysiwygComponentsWithoutPadding = {
   },
 }
 
+export const WysiwygComopentsMin = {
+  types: {},
+  marks: {
+    strong: ({ children }) => (
+      <strong className={clsx('font-codec-heavy')}>{children}</strong>
+    ),
+    link: ({ children, value }) => (
+      <a
+        href={value.href}
+        className={clsx('underline font-codec-heavy text-current')}
+      >
+        {children}
+      </a>
+    ),
+    telEmailLink: ({ children, value }) => (
+      <a
+        href={value.href}
+        className={clsx('underline font-codec-heavy text-current')}
+      >
+        {children}
+      </a>
+    ),
+
+    leftAligned: ({ children }) => (
+      <div className={clsx('text-left')}>{children}</div>
+    ),
+    centerAligned: ({ children }) => (
+      <div className={clsx('text-center')}>{children}</div>
+    ),
+    rightAligned: ({ children }) => (
+      <div className={clsx('text-right')}>{children}</div>
+    ),
+    sub: ({ children }) => <sub>{children}</sub>,
+    sup: ({ children }) => <sup>{children}</sup>,
+  },
+
+  block: {
+    h1: ({ children }) => (
+      <h1
+        className={clsx(
+          'w-h1 text-lavender w-full',
+          'lg:w-h1-desktop lg:px-[0px]',
+        )}
+      >
+        {children}
+      </h1>
+    ),
+    h2: ({ children }) => (
+      <h2
+        className={clsx(
+          'w-h2 text-lavender w-full ',
+          'lg:w-h2-desktop lg:px-[0px]',
+        )}
+      >
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className={clsx(' w-h3 text-current', 'lg:w-h3-desktop lg:px-[0px]')}>
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className={clsx('w-h4 text-current ', 'lg:w-h4-desktop lg:px-[0px]')}>
+        {children}
+      </h4>
+    ),
+    h5: ({ children }) => (
+      <h5 className={clsx(' w-h5 text-current ', 'lg:w-h5-desktop')}>
+        {children}
+      </h5>
+    ),
+    h6: ({ children }) => (
+      <h6 className={clsx('w-h6 text-current ', 'lg:w-h6-desktop lg:px-[0px]')}>
+        {children}
+      </h6>
+    ),
+    normal: ({ children }) => (
+      <p
+        className={clsx(
+          'w-full w-paragraph-s-desktop  text-current ',
+          'lg:px-[0px] lg:w-paragraph-l-desktop',
+        )}
+      >
+        {children}
+      </p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote
+        className={clsx(
+          '  text-current border-t-orange border-t-[4px] pt-[24px] text-[24px] leading-[30px]',
+          'lg:text-[36px] lg:leading-[46.08px] font-codec-heavy lg:border-t-[4px]  lg:mx-auto',
+        )}
+      >
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => (
+      <ul
+        className={clsx(
+          'list-disc list-inside w-full flex flex-col gap-y-[16px] w-paragraph-s-desktop text-current',
+          'lg:px-[0px] lg:w-paragraph-l-desktop',
+        )}
+      >
+        {children}
+      </ul>
+    ),
+    number: ({ children }) => (
+      <ol
+        className={clsx(
+          'list-none list-inside  w-full flex flex-col gap-y-[16px] lg:w-paragraph-l-desktop text-current',
+          'lg:px-[0px]',
+        )}
+      >
+        {children}
+      </ol>
+    ),
+  },
+
+  listItem: {
+    bullet: ({ children }) => (
+      <li className={clsx('flex gap-x-[16px] items-center')}>
+        <span
+          className={clsx(
+            'inline-block w-[6px] h-[6px] rounded-full bg-current flex-shrink-0',
+          )}
+        ></span>
+        <span
+          className={clsx(
+            'inline-block w-paragraph-s-desktop',
+            'lg:text-[21px] lg:leading-[31.5px]',
+          )}
+        >
+          {children}
+        </span>
+      </li>
+    ),
+    number: ({ children, index }) => (
+      <li className={clsx('flex gap-x-[12px] items-start')}>
+        <span
+          className={clsx(
+            'inline-block w-[19px] h-[32px] text-[21px] leading-[31.5px] font-codec-heavy text-current',
+          )}
+        >
+          {index + 1}.
+        </span>
+        <span
+          className={clsx(
+            'inline-block w-paragraph-s-desktop text-current',
+            'lg:text-[21px] lg:leading-[31.5px]',
+          )}
+        >
+          {children}
+        </span>
+      </li>
+    ),
+  },
+}
+
 export const WysiwygComponents = {
   types: {
     image: ({ value }) => (
