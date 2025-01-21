@@ -25,6 +25,8 @@ export default defineType({
           to: [{ type: 'globalAlert' }],
         },
       ],
+      validation: (Rule) =>
+        Rule.max(1).error('You can only add 1 global alert'),
     }),
     defineField({
       name: 'globalEmbeds',
