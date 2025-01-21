@@ -116,7 +116,7 @@ export default defineType({
             name: 'telEmailLink',
             title: 'Tel/Email Link',
             type: 'object',
-            icon: UserIcon,
+            icon: PhoneList,
             fields: [
               {
                 title: 'URL',
@@ -124,7 +124,7 @@ export default defineType({
                 description:
                   'For telephone please use this format tel:123456 . Replace 12345 with your number. For email please use this format mailto:email@email.com',
                 type: 'string',
-                icon: Phone,
+                icon: PhoneList,
               },
             ],
           },
