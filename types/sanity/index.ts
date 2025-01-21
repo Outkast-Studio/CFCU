@@ -356,6 +356,7 @@ export interface WysiwygType {
 
 //Singleton Types --------------------------------------------------------------------------
 export interface GlobalSettingsType {
+  globalEmbeds: EmbedType[]
   globalAlerts: GlobalAlertType[]
   navigation: {
     headerBarLinks: Array<{

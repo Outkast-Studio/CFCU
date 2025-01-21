@@ -27,6 +27,17 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'globalEmbeds',
+      title: 'Global Embeds',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'embed' }],
+        },
+      ],
+    }),
+    defineField({
       name: 'navigation',
       title: 'Navigation',
       description: 'This powers the site wide navigation and menu.',

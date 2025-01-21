@@ -29,7 +29,14 @@ function extractScriptContent(content) {
   }
 }
 
-export default function SanitizedEmbed({ embed }: { embed: EmbedType }) {
+export default function SanitizedEmbed({
+  embed,
+  isGlobal = false,
+}: {
+  embed: EmbedType
+  isGlobal?: boolean
+}) {
+  ;``
   DOMPurify.setConfig({
     ADD_TAGS: ['iframe', 'script'],
     ADD_ATTR: ['src', 'class', 'frameborder', 'allowfullscreen', 'id'],
@@ -37,7 +44,7 @@ export default function SanitizedEmbed({ embed }: { embed: EmbedType }) {
   })
 
   return (
-    <div className={clsx('py-[24px]')}>
+    <div className={clsx(!isGlobal && 'py-[24px]')}>
       {embed?.scriptsForBody?.map((script, index) => (
         <div
           key={`embed-body-${index}`}

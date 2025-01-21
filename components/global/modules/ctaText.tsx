@@ -41,7 +41,6 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
     }
   }, [inView])
 
-  console.log(data)
   return (
     <div
       ref={ref}

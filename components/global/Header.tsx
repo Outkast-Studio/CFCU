@@ -13,6 +13,7 @@ import FastExitButton from './modules/QuickExit'
 import SiteAlert from './modules/siteAlert'
 import GlobalSiteAlert from './modules/GlobalSiteAlert'
 import globalAlert from '@/schemas/documents/modules/globalAlert'
+import SanitizedEmbed from './modules/Embed'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -72,6 +73,9 @@ const Header = () => {
       )}
       {globalSettings?.globalAlerts?.map((alert, index) => (
         <GlobalSiteAlert key={index} data={alert} />
+      ))}
+      {globalSettings?.globalEmbeds?.map((embed, index) => (
+        <SanitizedEmbed key={index} embed={embed} isGlobal={true} />
       ))}
       <header
         ref={headerRef}

@@ -84,6 +84,7 @@ export const settingsStructure = (
       '404',
       'redirects',
       'externalLink',
+      'globalAlert',
     ]
 
     const globalSettingsListItem = S.listItem()

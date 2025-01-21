@@ -207,8 +207,6 @@ async function getAllPostHomePageSlugs(
     (_, i) => `/posts/page/${String(i + 1)}`,
   )
 
-  console.log(postHomepageSlgus)
-
   const topicIds = await client.fetch(groq`*[_type == "topic"]{"_id":_id}`)
   console.log(topicIds)
   const topicSlugs = await Promise.all(
