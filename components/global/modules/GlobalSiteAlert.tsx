@@ -40,7 +40,7 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
   }, [])
 
   useEffect(() => {
-    if (alertIsOpen) {
+    if (globalAlertIsOpen) {
       setGlobalAlertHeight(contentRef.current.scrollHeight)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
