@@ -64,7 +64,7 @@ const SiteAlert = ({ data }: { data: GlobalAlertType }) => {
         <div
           className={clsx(
             'w-paragraph-s-desktop text-white flex flex-col gap-y-[16px]',
-            'lg:w-[90%]',
+            'lg:w-[90%] lg:mt-[4px]',
           )}
         >
           <PortableText
