@@ -13,7 +13,7 @@ export default defineField({
     }),
     defineField({
       name: 'subtitle',
-      title: 'Subtitle',
+      title: 'Eyebrow',
       type: 'string',
     }),
     defineField({

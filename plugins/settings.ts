@@ -250,8 +250,6 @@ export const settingsStructure = (
       .items([
         globalSettingsListItem,
         S.divider(),
-        redirectsListItem,
-        S.divider(),
         homepageListItem,
         S.divider(),
         subpagesListItem,
@@ -261,6 +259,8 @@ export const settingsStructure = (
         locationsListItem,
         S.divider(),
         fourOhFourListItem,
+        S.divider(),
+        redirectsListItem,
         S.divider(),
         ...defaultListItems,
       ])

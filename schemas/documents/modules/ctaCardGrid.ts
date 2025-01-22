@@ -7,9 +7,9 @@ export default defineField({
   fields: [
     defineField({
       name: 'subTitle',
-      title: 'Subtitle',
+      title: 'Eyebrow',
       type: 'string',
-      description: 'The subtitle for the card grid section',
+      description: 'Short label above the title',
     }),
     defineField({
       name: 'title',

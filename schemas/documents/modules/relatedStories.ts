@@ -21,9 +21,9 @@ export default defineType({
     }),
     defineField({
       name: 'subTitle',
-      title: 'Sub Title',
+      title: 'Eyebrow',
       type: 'string',
-      description: 'The sub title for the related stories section',
+      description: 'Short label above the title',
     }),
     defineField({
       name: 'title',

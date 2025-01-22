@@ -34,8 +34,9 @@ export default defineField({
         }),
         defineField({
           name: 'subtitle',
-          title: 'Subtitle',
-          description: 'The subtitle at the top of the card.',
+          title: 'Text or SVG',
+          description:
+            'Display a text label or SVG asset at the top of the card.',
           type: 'object',
           fields: [
             defineField({

@@ -7,6 +7,10 @@ export default function Document() {
       <body className="bg-white text-black">
         <Main />
         <NextScript />
+        <script
+          src="https://api.glia.com/salemove_integration.js"
+          async
+        ></script>
       </body>
     </Html>
   )

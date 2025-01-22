@@ -7,9 +7,9 @@ export default defineType({
   fields: [
     defineField({
       name: 'subtitle',
-      title: 'Subtitle',
+      title: 'Eyebrow',
       type: 'string',
-      description: 'Optional subtitle for the column split section',
+      description: 'Short optional label above each column split section',
     }),
     defineField({
       name: 'title',

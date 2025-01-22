@@ -24,15 +24,36 @@ export default defineType({
               name: 'source',
               title: 'Source Path',
               type: 'string',
-              description: 'The path to redirect from',
-              validation: (Rule) => Rule.required(),
+              description:
+                'The path to redirect from. Format: /path/to/page (e.g., /about/team)',
+              validation: (Rule) =>
+                Rule.required()
+                  .custom((source) => {
+                    if (typeof source === 'string' && source.startsWith('/')) {
+                      return true
+                    }
+                    return 'Source path must start with /'
+                  })
+                  .error('Source path is required and must start with /'),
             },
             {
               name: 'destination',
               title: 'Destination Path',
               type: 'string',
-              description: 'The path to redirect to',
-              validation: (Rule) => Rule.required(),
+              description:
+                'The path to redirect to. Format: /path/to/page (e.g., /new-about/our-team)',
+              validation: (Rule) =>
+                Rule.required()
+                  .custom((destination) => {
+                    if (
+                      typeof destination === 'string' &&
+                      destination.startsWith('/')
+                    ) {
+                      return true
+                    }
+                    return 'Destination path must start with /'
+                  })
+                  .error('Destination path is required and must start with /'),
             },
             {
               name: 'permanent',

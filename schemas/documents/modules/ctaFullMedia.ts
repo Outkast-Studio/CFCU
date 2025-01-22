@@ -42,7 +42,9 @@ export default defineField({
       fields: [
         defineField({
           name: 'title',
-          title: 'Title',
+          title: 'Text or SVG',
+          description:
+            'Display a text label or SVG asset at the top of the card.',
           type: 'object',
           fields: [
             defineField({

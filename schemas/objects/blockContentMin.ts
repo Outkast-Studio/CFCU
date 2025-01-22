@@ -6,7 +6,11 @@ import {
   TextAlignLeft,
   TextAlignCenter,
 } from '@phosphor-icons/react'
-import { SubScript, SuperScript } from '@/components/global/ui/TextDecorators'
+import {
+  SubScript,
+  SuperScript,
+  Small,
+} from '@/components/global/ui/TextDecorators'
 import { PhoneList } from '@phosphor-icons/react'
 import { Phone } from 'lucide-react'
 import { UserIcon } from '@sanity/icons'
@@ -51,6 +55,7 @@ export default defineType({
         { title: 'H4', value: 'h4' },
         { title: 'H5', value: 'h5' },
         { title: 'H6', value: 'h6' },
+        { title: 'Small', value: 'small', component: Small },
         { title: 'Quote', value: 'blockquote' },
       ],
       lists: [

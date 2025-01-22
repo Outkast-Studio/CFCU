@@ -7,9 +7,9 @@ export default defineType({
   fields: [
     defineField({
       name: 'subtitle',
-      title: 'Subtitle',
+      title: 'Eyebrow',
       type: 'string',
-      description: 'Optional subtitle for the image grid section',
+      description: 'Short optional label above the title',
     }),
     defineField({
       name: 'title',

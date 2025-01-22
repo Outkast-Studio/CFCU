@@ -76,8 +76,8 @@ export const modules = defineField({
     {
       type: 'reference',
       name: 'siteAlert',
-      title: 'Site Alert',
-      to: [{ type: 'siteAlert', title: 'Site Alert' }],
+      title: 'Page Alert',
+      to: [{ type: 'siteAlert', title: 'Page Alert' }],
     },
     {
       type: 'reference',

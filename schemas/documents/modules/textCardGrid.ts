@@ -7,9 +7,9 @@ export default defineType({
   fields: [
     defineField({
       name: 'subtitle',
-      title: 'Subtitle',
+      title: 'Eyebrow',
       type: 'string',
-      description: 'The subtitle displayed above the title',
+      description: 'Short label above the title',
       validation: (Rule) => Rule.required(),
     }),
     defineField({

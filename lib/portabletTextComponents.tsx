@@ -89,6 +89,9 @@ export const WysiwygComponentsWithoutPadding = {
   },
 
   block: {
+    small: ({ children }) => (
+      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+    ),
     h1: ({ children }) => (
       <h1
         className={clsx(
@@ -256,6 +259,9 @@ export const WysiwygComopentsMin = {
   },
 
   block: {
+    small: ({ children }) => (
+      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+    ),
     h1: ({ children }) => (
       <h1
         className={clsx(
@@ -464,6 +470,9 @@ export const WysiwygComponents = {
   },
 
   block: {
+    small: ({ children }) => (
+      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+    ),
     h1: ({ children }) => (
       <h1
         className={clsx(
