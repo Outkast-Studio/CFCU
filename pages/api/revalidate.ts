@@ -56,7 +56,7 @@ async function queryStaleRoutes(
   // If the type is not a module -> return the appropriate route for that type.
   if (moduleTypes.includes(body._type)) {
     return await moduleHandler(client, body)
-  } else if (body._type === 'externalLink') {
+  } else if (body._type === 'externalLink' || body._type === 'globalAlert') {
     return await queryAllRoutes(client)
   } else {
     switch (body._type) {
