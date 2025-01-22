@@ -39,7 +39,7 @@ export default function SanitizedEmbed({
   ;``
   DOMPurify.setConfig({
     ADD_TAGS: ['iframe', 'script'],
-    ADD_ATTR: ['src', 'class', 'frameborder', 'allowfullscreen', 'id'],
+    ADD_ATTR: ['src', 'class', 'frameborder', 'allowfullscreen', 'id', 'async'],
     FORCE_BODY: true,
   })
 
