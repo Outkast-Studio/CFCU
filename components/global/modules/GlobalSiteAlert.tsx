@@ -50,7 +50,7 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
     <section
       style={{ maxHeight: globalAlertHeight || 'unset' }}
       className={clsx(
-        ' bg-[#3C1053] px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
+        ' bg-[#B40303] px-[24px] w-full z-[10] flex  justify-between transition-all h-fit ease-in duration-300 overflow-hidden items-start',
         'lg:px-[48px]',
         isClosed && '!max-h-[0px] !bg-transparent',
       )}
@@ -58,8 +58,8 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
       <div
         ref={contentRef}
         className={clsx(
-          'flex flex-col gap-[20px] py-[24px]',
-          'lg:flex-row lg:items-center',
+          'flex flex-col gap-[20px] py-[16px]',
+          'lg:flex-row lg:items-start lg:gap-x-[40px]',
         )}
       >
         <h6
@@ -71,7 +71,7 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
         </h6>
         <div
           className={clsx(
-            'max-w-[1075px] w-paragraph-s-desktop text-white flex flex-col gap-y-[16px]',
+            'w-paragraph-s-desktop text-white flex flex-col gap-y-[16px]',
             'lg:w-[90%]',
           )}
         >
@@ -88,7 +88,7 @@ const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
           setGlobalAlertHeight(0)
         }}
         className={clsx(
-          'transition-opacity duration-150 py-[24px]',
+          'transition-opacity duration-150 py-[16px]',
           isClosed && 'opacity-0',
         )}
       >
