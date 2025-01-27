@@ -1,6 +1,10 @@
 import { defineField, defineType, validation } from 'sanity'
 import { Browser } from '@phosphor-icons/react'
 import { modules } from 'schemas/schemaTypes/modules'
+import { ChildrenOrderInput } from '@/components/Sanity/ChildrenOrderInput'
+import { useClient } from 'sanity'
+import { createClient } from 'next-sanity'
+import { getClient } from '@/lib/sanity.client'
 
 export default defineType({
   name: 'subPage',
@@ -15,6 +19,18 @@ export default defineType({
       title: 'SEO',
     },
   ],
+  initialValue: async () => {
+    const client = getClient()
+    const query = `*[_type == "subPage" && parent._ref == $parentId]{_id, title} | order(title asc)`
+    const results = await client.fetch(query, { parentId: null })
+    console.log(results, 'results')
+    return {
+      childrenOrder: results.map((child) => ({
+        _type: 'reference',
+        _ref: child._id,
+      })),
+    }
+  },
   fields: [
     defineField({
       name: 'title',
@@ -87,6 +103,14 @@ export default defineType({
       type: 'reference',
       to: [{ type: 'subPage' }],
     }),
+    {
+      name: 'childrenOrder',
+      title: 'Children Order',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'subPage' }] }],
+      description:
+        'The order of child pages. This is automatically populated and can be reordered.',
+    },
     defineField({
       name: 'pageHero',
       title: 'Page Hero',

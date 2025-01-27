@@ -38,7 +38,10 @@ const Pagination = ({
     >
       <Link
         href={prevUrl}
-        className={clsx(currentPage == 1 && 'opacity-50 pointer-events-none')}
+        className={clsx(
+          currentPage == 1 && 'opacity-50 pointer-events-none',
+          'hidden md:block',
+        )}
       >
         <ReversedButton
           label="Prev"
@@ -61,8 +64,7 @@ const Pagination = ({
       </div> */}
       <div
         className={clsx(
-          'hidden',
-          'lg:flex text-black/75 text-[18px] leading-[27px] font-codec-pro items-center',
+          'flex text-black/75 text-[18px] leading-[27px] font-codec-pro items-center justify-center w-full',
         )}
       >
         <span className={clsx('inline-block mr-[12px]')}>Page</span>
@@ -117,6 +119,7 @@ const Pagination = ({
         href={nextUrl}
         className={clsx(
           currentPage == totalPages && 'opacity-50 pointer-events-none',
+          'hidden md:block',
         )}
       >
         <Button label="next" className={clsx('!bg-lavender !text-white')} />

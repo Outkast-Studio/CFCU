@@ -38,7 +38,6 @@ export default defineField({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: 'description',
       title: 'Description',
@@ -49,7 +48,7 @@ export default defineField({
       name: 'links',
       title: 'Links',
       type: 'array',
-      validation: (Rule) => Rule.required(),
+      // validation: (Rule) => Rule.required(),
       of: [
         {
           type: 'pageLink',
