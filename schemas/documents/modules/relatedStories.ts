@@ -89,11 +89,10 @@ export default defineType({
       to: [{ type: 'topic' }],
       validation: (Rule) =>
         Rule.custom((field, context) => {
-          if (context.document?.useTopic) {
-            return 'You must select a topic'
-          } else {
-            return true
+          if (context.document?.useTopic && !field) {
+            return 'You must select a topic when "Use Topic" is enabled'
           }
+          return true
         }),
       description:
         'Select a topic to display related stories. The first 3 posts will be displayed based on the date they were created.',
