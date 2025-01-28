@@ -15,7 +15,7 @@ import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 import { PageHierarchyView } from '@/components/Sanity/PageHierarchyView'
 import { TreeView } from '@phosphor-icons/react'
 import redirects from '@/schemas/singletons/redirects'
-
+import { CustomDocumentView } from '@/plugins/subpageOrder'
 export const settingsPlugin = definePlugin<{ type: string }>(({ type }) => {
   return {
     name: 'settings',
@@ -221,7 +221,25 @@ export const settingsStructure = (
           .items([
             S.listItem()
               .title('Subpages')
-              .child(S.documentTypeList('subPage').title('Sub Pages')),
+              .child(
+                S.documentTypeList('subPage')
+                  .title('Sub Pages')
+                  .child((documentId) =>
+                    S.document()
+                      .documentId(documentId)
+                      .schemaType('subPage')
+                      .views([
+                        S.view.form(),
+                        S.view
+                          .component(Iframe)
+                          .options(iframeOptions)
+                          .title('Preview'),
+                        S.view
+                          .component(CustomDocumentView)
+                          .title('Children Navigation'),
+                      ]),
+                  ),
+              ),
             S.listItem()
               .title('Page Hierarchy')
               .icon(TreeView)

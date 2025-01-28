@@ -38,6 +38,7 @@ export default defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -104,13 +105,26 @@ export default defineType({
       to: [{ type: 'subPage' }],
     }),
     {
-      name: 'childrenOrder',
-      title: 'Children Order',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'subPage' }] }],
-      description:
-        'The order of child pages. This is automatically populated and can be reordered.',
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      hidden: true,
+      initialValue: 0,
     },
+    {
+      name: 'lastOrderUpdate',
+      title: 'Last Order Update',
+      type: 'datetime',
+      hidden: true,
+    },
+    // {
+    //   name: 'childrenOrder',
+    //   title: 'Children Order',
+    //   type: 'array',
+    //   of: [{ type: 'reference', to: [{ type: 'subPage' }] }],
+    //   description:
+    //     'The order of child pages. This is automatically populated and can be reordered.',
+    // },
     defineField({
       name: 'pageHero',
       title: 'Page Hero',

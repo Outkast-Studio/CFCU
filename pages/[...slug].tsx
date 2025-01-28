@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
   pageData = await getSubPageBySlug(client, params.slug.join('/'))
   childrenPages = await client.fetch(
     `
-    *[_type == "subPage" && parent->slug.current == $slug]
+    *[_type == "subPage" && parent->slug.current == $slug] | order(order asc)
   `, //@ts-ignore
     { slug: params.slug.join('/') },
   )
