@@ -8,6 +8,7 @@ export function CustomDocumentView(props) {
   const { displayed } = props.document
   const [childDocuments, setChildDocuments] = useState([])
   const [enabled, setEnabled] = useState(false)
+  const [isPending, setIsPending] = useState(false) // Update 1: Added pending state
   const client = useClient({ apiVersion: '2021-03-25' })
 
   const fetchChildDocuments = useCallback(() => {
@@ -63,6 +64,7 @@ export function CustomDocumentView(props) {
       transaction.patch(item._id, (patch) => patch.set({ order: index }))
     })
 
+    setIsPending(true) // Update 2: Set pending state to true before transaction
     try {
       await transaction.commit()
       console.log('Order updated successfully')
@@ -75,7 +77,9 @@ export function CustomDocumentView(props) {
 
       console.log('Parent document updated for revalidation')
       fetchChildDocuments() // Refresh the list to get the updated order
+      setIsPending(false) // Update 2: Set pending state to false after successful transaction
     } catch (err) {
+      setIsPending(false) // Update 2: Set pending state to false after failed transaction
       console.error('Error updating order:', err)
     }
   }
@@ -92,13 +96,9 @@ export function CustomDocumentView(props) {
   }
 
   return (
-    <div className="p-4">
-      <h3 className="text-[16px] font-medium mb-4">
-        Children subpage navigation
-      </h3>
-
+    <div className="p-4 relative">
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-        {enabled && childDocuments.length > 0 ? (
+        {enabled ? (
           <Droppable droppableId="list">
             {(provided) => (
               <ul
@@ -111,16 +111,22 @@ export function CustomDocumentView(props) {
                     key={childDoc._id}
                     draggableId={childDoc._id}
                     index={index}
+                    isDragDisabled={isPending} // Update 3: Disable dragging when pending
                   >
                     {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className={`mb-2 p-2 border-gray-300 border-[1px] rounded cursor-move ${snapshot.isDragging ? 'shadow-lg' : ''}`}
+                        className={`mb-2 p-2 border-gray-300 border-[1px] rounded cursor-move ${
+                          snapshot.isDragging ? 'shadow-lg' : ''
+                        } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`} // Update 3: Add styles for pending state
                       >
                         <div className={'flex items-center gap-x-[8px]'}>
-                          <GripVertical color="gray" size={20} />
+                          <GripVertical
+                            color={isPending ? 'lightgray' : 'gray'}
+                            size={20}
+                          />
                           <span className={'text-[16px]'}>
                             {childDoc.order + 1}. {childDoc.title}
                           </span>
@@ -134,11 +140,12 @@ export function CustomDocumentView(props) {
             )}
           </Droppable>
         ) : (
-          <div className={'text-[16px]'}>
-            {enabled ? 'No child pages found.' : 'Loading...'}
-          </div>
+          <div>Loading...</div>
         )}
       </DragDropContext>
+      {isPending && ( // Update 4: Add loading indicator
+        <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50 cursor-wait"></div>
+      )}
     </div>
   )
 }
