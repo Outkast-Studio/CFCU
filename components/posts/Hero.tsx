@@ -74,7 +74,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
       <div
         className={clsx(
           'mt-[47px] flex flex-col-reverse gap-y-[35px]',
-          'lg:mt-[99px] lg:grid lg:grid-cols-2 gap-x-[24px] items-center',
+          'lg:mt-[99px] lg:grid lg:grid-cols-2 lg:gap-x-[100px] items-center',
         )}
       >
         <article className={clsx('w-full')}>
@@ -134,7 +134,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
             <p
               className={clsx(
                 'font-codec-news text-black/75 mt-[8px] w-paragraph-m-desktop subItem opacity-0',
-                'md:max-w-[542px]',
+                '',
                 'lg:text-[26px] lg:leading-[39px]  l:mt-[17px]',
               )}
             >
