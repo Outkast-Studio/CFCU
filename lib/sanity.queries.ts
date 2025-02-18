@@ -33,6 +33,9 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
           _type,
           title,
           "slug": slug.current
+        },
+        externalLink->{
+          ...,
         }
       }
     },
@@ -45,7 +48,10 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
             _type,
             title,
             "slug": slug.current
-          }
+          },
+          externalLink->{
+          ...,
+        }
       }
     },
     bottomLevelNavigation[]{
@@ -57,6 +63,9 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
           _type,
           title,
           "slug": slug.current
+        },
+        externalLink->{
+          ...,
         }
       }
     }
@@ -70,7 +79,10 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
         _type,
         title,
         "slug": slug.current
-      }
+      },
+      externalLink->{
+          ...,
+        }
     },
     resourceLinks[]{
       ...,
@@ -79,7 +91,10 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
         _type,
         title,
         "slug": slug.current
-      }
+      },
+      externalLink->{
+          ...,
+        }
     }   
   }
   
