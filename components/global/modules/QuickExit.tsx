@@ -1,18 +1,31 @@
 import { QuickExitType } from 'types/sanity'
 import { clsx } from 'clsx'
+import { use, useEffect, useRef } from 'react'
 export default function FastExitButton({ url }: { url: string }) {
+  const buttonRef = useRef<HTMLButtonElement>(null)
   const handleFastExit = () => {
     window.open(url, '_blank')
     window.location.href = 'https://www.google.com'
   }
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      const chatWidget = document.querySelector('.sm-visitor-app')
+      if (chatWidget) {
+        buttonRef.current.style.transform = 'translateY(-75px)'
+      }
+    }
+  }, [])
+
   return (
     <button
+      ref={buttonRef}
       onClick={handleFastExit}
       className={clsx(
         'font-codec-extra-bold text-white bg-alertRed flex gap-x-[6px] rounded-full py-[10.5px] px-[20px] fixed  items-center z-[5] bottom-[24px] right-[24px] group',
         'lg:bottom-[31px] lg:right-[36px]',
       )}
     >
+      <div className={clsx('sm-visitor-app')}></div>
       <span>Fast Exit</span>
       <div className={clsx('relative w-[16px] h-[16px]')}>
         <svg

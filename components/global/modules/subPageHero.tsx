@@ -98,6 +98,7 @@ const SubPageHero = ({
                 media={data?.backgroundMedia}
                 isPlaying={isPlaying}
                 priority={true}
+                isSubHero
               />
             </div>
           </div>

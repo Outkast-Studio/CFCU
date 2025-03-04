@@ -66,13 +66,8 @@ export default defineType({
             return 'Slug is required'
           }
 
-          if (
-            slugValue.startsWith('posts/') ||
-            slugValue.startsWith('locations/') ||
-            slugValue.startsWith('rates/') ||
-            slugValue.startsWith('/')
-          ) {
-            return 'Slug must not start with "posts/", "locations/", "rates/", or "/"'
+          if (slugValue.startsWith('/')) {
+            return 'Slug must not start with "/"'
           }
 
           // Check if the slug is valid (lowercase letters, numbers, and hyphens only)

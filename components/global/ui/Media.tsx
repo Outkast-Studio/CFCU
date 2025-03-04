@@ -15,12 +15,14 @@ interface MediaComponentProps {
   media: Media
   isPlaying?: boolean
   priority?: boolean
+  isSubHero?: boolean
 }
 
 export default function MediaComponent({
   media,
   isPlaying,
   priority,
+  isSubHero,
 }: MediaComponentProps) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
@@ -54,7 +56,8 @@ export default function MediaComponent({
             onLoadingComplete={(image) => image.classList.remove('opacity-0')}
             className={clsx(
               'object-cover w-full h-full hidden',
-              'opacity-0 transition-all duration-300 ease-in-out-cubic lg:block',
+              'opacity-0 transition-all duration-300 ease-in-out-cubic ',
+              isSubHero ? 'min-[500px]:block' : 'lg:block',
             )}
           />
           <Image
@@ -73,7 +76,8 @@ export default function MediaComponent({
             onLoadingComplete={(image) => image.classList.remove('opacity-0')}
             className={clsx(
               'object-cover w-full h-full ',
-              'opacity-0 transition-all duration-300 ease-in-out-cubic lg:hidden',
+              'opacity-0 transition-all duration-300 ease-in-out-cubic ',
+              isSubHero ? 'min-[500px]:hidden' : 'lg:hidden',
             )}
           />
         </>
