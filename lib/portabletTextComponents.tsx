@@ -395,17 +395,20 @@ export const WysiwygComponents = {
           'lg:items-end lg:gap-y-[9px] lg:px-[0px]',
         )}
       >
-        <Image
-          src={urlForImage(value).width(2440).quality(100).url()}
-          alt={String(value.alt)}
-          width={getImageDimensions(value).width}
-          height={getImageDimensions(value).height}
-          quality={100}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
-          className={clsx(
-            'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
-          )}
-        />
+        {value._asset && (
+          <Image
+            src={urlForImage(value).width(2440).quality(100).url()}
+            alt={String(value.alt)}
+            width={getImageDimensions(value).width}
+            height={getImageDimensions(value).height}
+            quality={100}
+            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            className={clsx(
+              'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+            )}
+          />
+        )}
+
         <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
           {value.caption}
         </figcaption>
