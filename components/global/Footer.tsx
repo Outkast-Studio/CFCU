@@ -47,6 +47,7 @@ const Footer = () => {
             >
               {data?.socials.map((social, index) => (
                 <a
+                  target="_blank"
                   key={index}
                   href={social.url}
                   className={clsx(
