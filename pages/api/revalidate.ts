@@ -62,8 +62,8 @@ async function queryStaleRoutes(
     switch (body._type) {
       case 'globalSettings':
         return await queryAllRoutes(client)
-      case 'blogHomePage':
-        return await getAllPostHomePageSlugs(client)
+      // case 'blogHomePage':
+      //   return await getAllPostHomePageSlugs(client)
       case 'homepage':
         return ['/']
       case 'location':
@@ -72,14 +72,14 @@ async function queryStaleRoutes(
         return ['/locations']
       case 'post':
         return await getIndividualPostSlugs(client, body._id)
-      case 'topic':
-        return await getTopicPostPageSlugs(client, body._id)
+      // case 'topic':
+      //   return await getTopicPostPageSlugs(client, body._id)
       case 'subPage':
         return await querySubPageRoutes(client, body._id)
       case '404':
         return ['/404']
       default:
-        console.log(body, 'this is not running then.')
+        console.log(body, 'Unknown type sent')
         return []
     }
   }
@@ -93,24 +93,24 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
   const routes = await client.fetch(
     groq`*[_type in ["post", "location", "subPage"]].slug.current`,
   )
-  const allTopics = await client.fetch(groq`*[_type == "topic"]`)
+  // const allTopics = await client.fetch(groq`*[_type == "topic"]`)
 
-  const topicPagesThatNeedToBeRevalidated = await Promise.all(
-    allTopics.map(async (topic) => {
-      const slugs = await getTopicPostPageSlugs(client, topic._id, true)
-      return slugs
-    }),
-  ).then((slugArrays) => slugArrays.flat())
+  // const topicPagesThatNeedToBeRevalidated = await Promise.all(
+  //   allTopics.map(async (topic) => {
+  //     const slugs = await getTopicPostPageSlugs(client, topic._id, true)
+  //     return slugs
+  //   }),
+  // ).then((slugArrays) => slugArrays.flat())
 
-  const postHomeRoutes = await getAllPostHomePageSlugs(client)
+  // const postHomeRoutes = await getAllPostHomePageSlugs(client)
 
   return [
     '/',
     '/locations',
     '/test-modules',
     ...routes.map((slug) => `/${slug}`),
-    ...topicPagesThatNeedToBeRevalidated,
-    ...postHomeRoutes,
+    // ...topicPagesThatNeedToBeRevalidated,
+    // ...postHomeRoutes,
   ]
 }
 
@@ -224,7 +224,7 @@ async function getIndividualPostSlugs(
   client: SanityClient,
   postId: string,
 ): Promise<string[]> {
-  const allPostPages = await getAllPostHomePageSlugs(client)
+  // const allPostPages = await getAllPostHomePageSlugs(client)
   //FOR each of the topic pages we have to revalidate all pages.
   const post = await client.fetch(
     groq`*[_type == "post" && _id == $postId][0]{
@@ -240,12 +240,12 @@ async function getIndividualPostSlugs(
 
   //Revalidate every topic here.
 
-  const topicPagesThatNeedToBeRevalidated = await Promise.all(
-    post.topics.map(async (topic) => {
-      const slugs = await getTopicPostPageSlugs(client, topic._id, true)
-      return slugs
-    }),
-  ).then((slugArrays) => slugArrays.flat())
+  // const topicPagesThatNeedToBeRevalidated = await Promise.all(
+  //   post.topics.map(async (topic) => {
+  //     const slugs = await getTopicPostPageSlugs(client, topic._id, true)
+  //     return slugs
+  //   }),
+  // ).then((slugArrays) => slugArrays.flat())
 
   // Find modules that reference this post
   const referencingModules = await client.fetch(
@@ -262,13 +262,7 @@ async function getIndividualPostSlugs(
 
   const allOtherSlugs = await getAllRefercingSlugs(client, postId, moduleTypes)
 
-  return [
-    ...allPostPages,
-    `/${post.slug.current}`,
-    ...topicPagesThatNeedToBeRevalidated,
-    ...moduleRevalidationSlugs,
-    ...allOtherSlugs,
-  ]
+  return [`/${post.slug.current}`, ...moduleRevalidationSlugs, ...allOtherSlugs]
 }
 
 async function getAllRefercingSlugs(
@@ -277,7 +271,7 @@ async function getAllRefercingSlugs(
   modules: string[],
 ): Promise<string[]> {
   const referencingPages = await client.fetch(
-    groq`*[references($id) && _type in ["subPage", "post", "topic", 'homepage', 'locationHomePage', 'blogHomePage', 'globalSettings']]{
+    groq`*[references($id) && _type in ["subPage", "post", 'homepage', 'locationHomePage', 'globalSettings']]{
       _type,
       "slug": slug.current
     }`,

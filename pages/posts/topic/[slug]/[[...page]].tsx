@@ -137,6 +137,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
       },
       seo,
     },
+    revalidate: 60,
   }
 }
 

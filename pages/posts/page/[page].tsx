@@ -141,7 +141,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
         totalCount,
       },
     },
-    revalidate: 60 * 60, // Revalidate every hour
+    revalidate: 300,
   }
 }
 
