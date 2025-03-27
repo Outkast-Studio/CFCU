@@ -3,6 +3,7 @@ import { urlForImage } from '../lib/sanity.image'
 import clsx from 'clsx'
 import WTable from '@/components/global/ui/wTable'
 import { getImageDimensions } from '@sanity/asset-utils'
+import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
@@ -31,6 +32,7 @@ export const WysiwygComponentsWithoutPadding = {
         </figcaption>
       </figure>
     ),
+
     fullBleedImage: ({ value }) => (
       <figure
         className={clsx(
@@ -248,7 +250,16 @@ export const WysiwygComopentsMin = {
         {children}
       </a>
     ),
-
+    wysiwygPageLink: (props) => {
+      return (
+        <WysiwygPageLink
+          title={props.text}
+          link={props.value.link}
+          externalLink={props.value.externalLink}
+          externalLinkOneOff={props.value.externalLinkOneOff}
+        />
+      )
+    },
     leftAligned: ({ children }) => (
       <div className={clsx('text-left')}>{children}</div>
     ),
@@ -446,7 +457,6 @@ export const WysiwygComponents = {
     ),
     table: ({ value }) => <WTable data={value} />,
   },
-
   marks: {
     strong: ({ children }) => (
       <strong className={clsx('font-codec-heavy')}>{children}</strong>
@@ -459,6 +469,16 @@ export const WysiwygComponents = {
         {children}
       </a>
     ),
+    wysiwygPageLink: (props) => {
+      return (
+        <WysiwygPageLink
+          title={props.text}
+          link={props.value.link}
+          externalLink={props.value.externalLink}
+          externalLinkOneOff={props.value.externalLinkOneOff}
+        />
+      )
+    },
     telEmailLink: ({ children, value }) => (
       <a
         href={value.href}

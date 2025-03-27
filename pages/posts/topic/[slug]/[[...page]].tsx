@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE)
 
   const seo = {
-    title: topicData?.metaTitle || `${topicData.title}`,
+    title: `Get Inspired | CFCU`,
     description: topicData?.metaDescription || '',
     image: typeof topicData?.ogImage === 'string' ? topicData.ogImage : '',
     keywords: '',

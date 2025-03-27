@@ -5,6 +5,7 @@ import {
   TextAlignRight,
   TextAlignLeft,
   TextAlignCenter,
+  Link,
 } from '@phosphor-icons/react'
 import {
   SubScript,
@@ -106,7 +107,58 @@ export default defineType({
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
-            title: 'URL',
+            title: 'Link',
+            name: 'wysiwygPageLink',
+            type: 'object',
+            icon: Link,
+            fields: [
+              {
+                name: 'link',
+                title: 'Internal Link',
+                type: 'reference',
+                to: [
+                  { type: 'post' },
+                  { type: 'topic' },
+                  { type: 'homepage' },
+                  { type: 'location' },
+                  { type: 'subPage' },
+                  { type: 'blogHomePage' },
+                  { type: 'locationHomePage' },
+                  // Add any other document types that can be linked
+                ],
+                description:
+                  'Please only enter one link. If multiple entered, the internal link will be prioritised.',
+              },
+              {
+                name: 'externalLink',
+                title: 'External Link (referenced external link)',
+                type: 'reference',
+                to: [{ type: 'externalLink' }],
+              },
+              {
+                name: 'externalLinkOneOff',
+                title: 'External Link (One off)',
+                type: 'object',
+                fields: [
+                  {
+                    name: 'link',
+                    title: 'Link',
+                    type: 'url',
+                    validation: (Rule) =>
+                      Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'] }),
+                  },
+                  {
+                    name: 'openInNewTab',
+                    title: 'Open in new tab',
+                    type: 'boolean',
+                    description: 'Open the link in a new tab',
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            title: 'URL (Legacy)',
             name: 'link',
             type: 'object',
             fields: [
@@ -118,7 +170,7 @@ export default defineType({
             ],
           },
           {
-            name: 'telEmailLink',
+            name: 'telEmailLink (Legacy)',
             title: 'Tel/Email Link',
             type: 'object',
             icon: PhoneList,

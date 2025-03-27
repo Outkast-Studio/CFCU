@@ -3,6 +3,25 @@ import { groq } from 'next-sanity'
 export const modulesFragment = groq`
   "modules": modules[]->{
     ...,
+    _type == "wysiwyg" => {
+      ...,
+      content[]{
+    ...,
+      markDefs[]{
+        ...,
+      _type == "wysiwygPageLink" => {
+        ...,
+        externalLink->{
+          openInNewTab,
+          "link": externalLink
+        },
+        link->{
+          _type,
+          "link": slug.current
+        }
+      }
+    }
+  }},
     _type == "ctaText" => {
       ...,
       ctas[]{
