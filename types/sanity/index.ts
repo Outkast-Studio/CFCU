@@ -169,6 +169,11 @@ export interface PageLinkType {
     _type: string
     title: string
     externalLink: string
+    openInNewTab: boolean
+  }
+  externalLinkOneOff?: {
+    link: string
+    openInNewTab: boolean
   }
 }
 

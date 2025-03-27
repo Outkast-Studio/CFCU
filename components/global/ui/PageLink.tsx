@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PageLinkType } from 'types/sanity'
 import Link from 'next/link'
 import { clsx } from 'clsx'
+import { set } from 'sanity'
 const PageLink = ({
   data,
   className,
@@ -14,8 +15,9 @@ const PageLink = ({
   onClick?: () => void
 }) => {
   const [href, setHref] = useState<string>('')
+  const [target, setTarget] = useState('_self')
   useEffect(() => {
-    if (!data?.externalLink) {
+    if (!data?.externalLink && !data?.externalLinkOneOff) {
       switch (data?.link?._type) {
         case 'post':
           setHref(`/${data?.link?.slug}`)
@@ -42,6 +44,18 @@ const PageLink = ({
           setHref('/')
           break
       }
+    } else {
+      if (data?.externalLinkOneOff?.link) {
+        setHref(data?.externalLinkOneOff?.link)
+        if (data?.externalLinkOneOff?.openInNewTab) {
+          setTarget('_blank')
+        }
+      } else {
+        setHref(data?.externalLink?.externalLink)
+        if (data?.externalLink?.openInNewTab) {
+          setTarget('_blank')
+        }
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.link?._type])
@@ -52,7 +66,7 @@ const PageLink = ({
   ) : (
     <a
       href={data?.externalLink?.externalLink}
-      target="_blank"
+      target={target}
       className={clsx(className, 'w-fit')}
     >
       {children}

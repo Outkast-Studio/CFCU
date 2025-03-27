@@ -51,6 +51,26 @@ export default defineType({
 
       // hidden: ({ parent }) => parent?.linkType !== 'external',
     }),
+    defineField({
+      name: 'externalLinkOneOff',
+      title: 'External Link (One off)',
+      type: 'object',
+      fields: [
+        {
+          name: 'link',
+          title: 'Link',
+          type: 'url',
+          validation: (Rule) =>
+            Rule.uri({ scheme: ['http', 'https', 'mailto', 'tel'] }),
+        },
+        {
+          name: 'openInNewTab',
+          title: 'Open in new tab',
+          type: 'boolean',
+          description: 'Open the link in a new tab',
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

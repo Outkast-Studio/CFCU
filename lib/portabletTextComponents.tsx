@@ -32,7 +32,6 @@ export const WysiwygComponentsWithoutPadding = {
         </figcaption>
       </figure>
     ),
-
     fullBleedImage: ({ value }) => (
       <figure
         className={clsx(
