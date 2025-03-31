@@ -2,6 +2,7 @@ import { RateTableType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { formatDate } from 'utils'
 import { PortableText } from '@portabletext/react'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
 const WTable = ({
   data,
@@ -78,7 +79,20 @@ const WTable = ({
                       'lg:pl-[31px] lg:pb-[20px] lg:pt-[16px] lg:w-paragraph-l-desktop',
                     )}
                   >
-                    <p>{column?.columnValues[rowIndex] || '\u00A0'}</p>
+                    <p>
+                      {
+                        //@ts-ignore
+                        column?.columnValues[rowIndex]?.value ? (
+                          <PortableText
+                            //@ts-ignore
+                            value={column?.columnValues[rowIndex]?.value}
+                            components={WysiwygComponentsWithoutPadding as any}
+                          />
+                        ) : (
+                          '\u00A0'
+                        )
+                      }
+                    </p>
                   </td>
                 ))}
               </tr>

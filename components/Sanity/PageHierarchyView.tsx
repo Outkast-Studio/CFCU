@@ -70,6 +70,7 @@ export const PageHierarchyView = () => {
       setPages(result)
     }
     fetchPages()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const buildTree = (pages) => {

@@ -1,7 +1,6 @@
 import { defineField, defineType, validation } from 'sanity'
 import { Browser } from '@phosphor-icons/react'
 import { modules } from 'schemas/schemaTypes/modules'
-import { ChildrenOrderInput } from '@/components/Sanity/ChildrenOrderInput'
 import { useClient } from 'sanity'
 import { createClient } from 'next-sanity'
 import { getClient } from '@/lib/sanity.client'

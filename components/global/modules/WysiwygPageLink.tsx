@@ -68,6 +68,7 @@ const WysiwygPageLink = ({
         setTarget('_blank')
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return link?._type ? (
