@@ -162,7 +162,7 @@ export const WysiwygComponentsWithoutPadding = {
     normal: ({ children }) => (
       <p
         className={clsx(
-          'w-full w-paragraph-s-desktop  text-black/75 ',
+          'w-full w-paragraph-s-desktop',
           'lg:px-[0px] lg:w-paragraph-l-desktop',
         )}
       >

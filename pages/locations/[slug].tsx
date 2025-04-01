@@ -60,7 +60,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     getLocationBySlug(client, slug),
   ])
 
-  console.log(locationPage)
   if (!locationPage?.title) {
     return {
       notFound: true,
