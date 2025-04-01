@@ -4,6 +4,7 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -37,11 +38,14 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
         {data?.description && (
           <div
             className={clsx(
-              'w-paragraph-s-desktop mt-[9px] text-black/75',
+              'w-paragraph-s-desktop mt-[9px] text-black/75 flex flex-col gap-y-[16px]',
               'lg:mt-[26px] lg:w-paragraph-l-desktop',
             )}
           >
-            <PortableText value={data?.description} />
+            <PortableText
+              value={data?.description}
+              components={WysiwygComponentsWithoutPadding as any}
+            />
           </div>
         )}
         <div>

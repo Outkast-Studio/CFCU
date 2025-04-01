@@ -8,6 +8,7 @@ interface Props {
   value: {
     links: Array<ButtonProps>
   }
+  isWithoutPadding?: boolean
 }
 
 interface ButtonProps {
@@ -26,11 +27,12 @@ interface ButtonProps {
   }
 }
 
-const WysiwygButtonGroup = ({ value }: Props) => {
+const WysiwygButtonGroup = ({ value, isWithoutPadding }: Props) => {
   return (
     <div
       className={clsx(
         'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 flex gap-x-[16px]  lg:px-[0px] lg:w-paragraph-l-desktop',
+        isWithoutPadding && '!max-w-[unset] !mx-[unset] !px-[0px]',
       )}
     >
       {value?.links?.map((link, index) => (

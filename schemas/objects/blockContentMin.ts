@@ -158,7 +158,7 @@ export default defineType({
             ],
           },
           {
-            title: 'URL (Legacy)',
+            title: 'URL (Legacy. Please use the new link selector)',
             name: 'link',
             type: 'object',
             fields: [
@@ -170,8 +170,8 @@ export default defineType({
             ],
           },
           {
-            name: 'telEmailLink (Legacy)',
-            title: 'Tel/Email Link',
+            name: 'telEmailLink',
+            title: 'Tel/Email Link (Legacy. Please use the new link selector)',
             type: 'object',
             icon: PhoneList,
             fields: [

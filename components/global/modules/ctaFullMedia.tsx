@@ -135,11 +135,14 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
             {data.lowerContent?.description && (
               <div
                 className={clsx(
-                  'w-paragraph mt-[14px] max-w-[330px] text-white animateContent',
+                  'w-paragraph mt-[14px] max-w-[330px] text-white animateContent flex flex-col gap-y-[16px]',
                   'lg:max-w-[454px] lg:w-paragraph-l-desktop lg:!leading-[28px]',
                 )}
               >
-                <PortableText value={data.lowerContent.description} />
+                <PortableText
+                  value={data.lowerContent.description}
+                  components={WysiwygComponentsWithoutPadding as any}
+                />
               </div>
             )}
             <PageLink

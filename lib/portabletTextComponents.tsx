@@ -8,9 +8,8 @@ import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
-    buttonLinkGroup: ({ children }) => {
-      console.log(children)
-      return <div className={clsx('flex flex-col')}></div>
+    buttonLinkGroup: (props) => {
+      return <WysiwygButtonGroup value={props.value} isWithoutPadding />
     },
     image: ({ value }) => (
       <figure
@@ -96,6 +95,16 @@ export const WysiwygComponentsWithoutPadding = {
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
+    wysiwygPageLink: (props) => {
+      return (
+        <WysiwygPageLink
+          title={props.text}
+          link={props.value.link}
+          externalLink={props.value.externalLink}
+          externalLinkOneOff={props.value.externalLinkOneOff}
+        />
+      )
+    },
   },
 
   block: {
@@ -465,7 +474,6 @@ export const WysiwygComponents = {
     ),
     table: ({ value }) => <WTable data={value} />,
     buttonLinkGroup: (props) => {
-      console.log(props)
       return <WysiwygButtonGroup value={props.value} />
     },
   },

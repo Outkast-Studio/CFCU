@@ -1,44 +1,84 @@
 import { groq } from 'next-sanity'
 
-export const modulesFragment = groq`
-  "modules": modules[]->{
+// Create fragments for the common query patterns
+export const linkFragment = groq`
+  _type,
+  "link": slug.current
+`
+
+export const externalLinkFragment = groq`
+  openInNewTab,
+  "link": externalLink
+`
+
+export const wysiwygPageLinkFragment = groq`
+  ...,
+  externalLink->{
+    ${externalLinkFragment}
+  },
+  link->{
+    ${linkFragment}
+  }
+`
+
+export const buttonLinkGroupFragment = groq`
+  ...,
+  links[]{
     ...,
-    _type == "wysiwyg" => {
+    link->{
+      ${linkFragment}
+    },
+    externalLink->{
+      ${externalLinkFragment}
+    }
+  }
+`
+
+export const markDefsFragment = groq`
+  markDefs[]{
+    ...,
+    _type == "wysiwygPageLink" => {
+      ${wysiwygPageLinkFragment}
+    }
+  }
+`
+
+// Main wysiwyg fragment
+export const wysiwygFragment = groq`
   ...,
   content[]{
     ...,
     _type == "buttonLinkGroup" => {
-      ...,
-      links[]{
-        ...,
-        link->{
-          _type,
-          "link": slug.current
-        },
-        externalLink->{
-          openInNewTab,
-          "link": externalLink
-        }
-    }
+      ${buttonLinkGroupFragment}
     },
-    markDefs[]{
-      ...,
-      _type == "wysiwygPageLink" => {
-        ...,
-        externalLink->{
-          openInNewTab,
-          "link": externalLink
-        },
-        link->{
-          _type,
-          "link": slug.current
-        }
-      }
-    }    
+    ${markDefsFragment}
   }
+`
+
+export const wysiwygFragmentDescription = groq`
+  ...,
+  description[]{
+    ...,
+    _type == "buttonLinkGroup" => {
+      ${buttonLinkGroupFragment}
+    },
+    ${markDefsFragment}
+  }
+`
+
+export const modulesFragment = groq`
+  "modules": modules[]->{
+    ...,
+    _type == "wysiwyg" => {
+      ...,
+    ${wysiwygFragment}
 },
     _type == "ctaText" => {
       ...,
+      description[]{
+        ...,
+      ${markDefsFragment},
+      },
       ctas[]{
         ...,
         link->{
@@ -88,6 +128,10 @@ export const modulesFragment = groq`
     },
     _type == "ctaTopicRow" => {
       ...,
+      description[]{
+        ...,
+        ${markDefsFragment}
+      },
       links[]{
         ...,
         link->{
@@ -156,12 +200,20 @@ export const modulesFragment = groq`
             _type, 
             externalLink,
           }
+      },
+      lowerContent{
+        ...,
+       ${wysiwygFragmentDescription} 
       }
     },
     _type == "ctaInContent" => {
       ...,
       ctaCard{
         ...,
+        description[]{
+          ...,
+          ${markDefsFragment}
+        },
         cta{
           ...,
           link->{
@@ -227,6 +279,68 @@ export const modulesFragment = groq`
             externalLink,
           }
       }
+    },
+    _type == "accordion" => {
+      ...,
+      description[]{
+        ...,
+        ${markDefsFragment}
+      },
+      accordionItems[]{
+        ...,
+        title[]{
+          ...,
+          ${markDefsFragment}
+        },
+        content[]{
+          ...,
+          ${markDefsFragment}
+        }
+      }
+    },
+    _type == "columnSplit" => {
+      ...,
+      description[]{
+        ...,
+        ${markDefsFragment}
+      },
+      columns[]{
+        ...,
+        ${wysiwygFragment}
+        }
+      },
+    _type == 'globalAlert'  => {
+        ...,
+        content[]{
+          ...,
+          ${markDefsFragment}
+        }
+    },
+    _type == 'siteAlert'  => {
+        ...,
+        content[]{
+          ...,
+          ${markDefsFragment}
+        }
+    },
+    _type == "imageGrid" => {
+      ...,
+      ${wysiwygFragmentDescription}
+    },
+    _type == "tabs" => {
+      ...,
+      description[]{
+        ...,
+        ${markDefsFragment}
+      },
+      tabs[]{
+        ...,
+        title[]{
+          ...,
+          ${markDefsFragment}
+        },
+        ${wysiwygFragment}
+      }
     }
   }
 `
@@ -240,9 +354,17 @@ export const ratesModulesFragment = groq`
 export const homepageModulesFragment = groq`
   "homepageModules": homepageModules[]->{
     ...,
+    _type == "wysiwyg" => {
+      ...,
+    ${wysiwygFragment}
+},
     _type == "ctaText" => {
       ...,
-      cta{
+      description[]{
+        ...,
+      ${markDefsFragment},
+      },
+      ctas[]{
         ...,
         link->{
           _id,
@@ -250,11 +372,11 @@ export const homepageModulesFragment = groq`
           title,
           "slug": slug.current
         },
-          externalLink->{
-            _id,
-            _type, 
-            externalLink,
-          }
+        externalLink->{
+          _id,
+          _type,
+          externalLink,
+        }
       }
     },
     _type == "getInspired" => {
@@ -291,6 +413,10 @@ export const homepageModulesFragment = groq`
     },
     _type == "ctaTopicRow" => {
       ...,
+      description[]{
+        ...,
+        ${markDefsFragment}
+      },
       links[]{
         ...,
         link->{
@@ -376,12 +502,20 @@ export const homepageModulesFragment = groq`
             _type, 
             externalLink,
           }
+      },
+      lowerContent{
+        ...,
+       ${wysiwygFragmentDescription} 
       }
     },
     _type == "ctaInContent" => {
       ...,
       ctaCard{
         ...,
+        description[]{
+          ...,
+          ${markDefsFragment}
+        },
         cta{
           ...,
           link->{
@@ -447,6 +581,38 @@ export const homepageModulesFragment = groq`
             externalLink,
           }
       }
+    },
+    _type == "accordion" => {
+      ...,
+      description[]{
+        ...,
+        ${markDefsFragment}
+      },
+      accordionItems[]{
+        ...,
+        title[]{
+          ...,
+          ${markDefsFragment}
+        },
+        content[]{
+          ...,
+          ${markDefsFragment}
+        }
+      }
+    },
+    _type == 'globalAlert'  => {
+        ...,
+        content[]{
+          ...,
+          ${markDefsFragment}
+        }
+    },
+    _type == 'siteAlert'  => {
+        ...,
+        content[]{
+          ...,
+          ${markDefsFragment}
+        }
     }
   }
 `

@@ -3,11 +3,17 @@ import {
   modulesFragment,
   ratesModulesFragment,
   homepageModulesFragment,
+  wysiwygFragment,
+  markDefsFragment,
 } from 'lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
   globalAlerts[]->{
     ...,
+    content[]{
+      ...,
+      ${markDefsFragment}
+    }
   },
   globalEmbeds[]->{
     ...,
@@ -135,6 +141,10 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
 ...,
 hero{
   ...,
+  testimonial{
+    ...,
+    ${wysiwygFragment}
+  },
   cta{
   ...,
     link->{
