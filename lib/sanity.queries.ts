@@ -235,7 +235,7 @@ export const locationHomepageQuery = groq`*[_type == "locationHomePage"][0]{
 // }`
 
 export const allPostsQuery = groq`
-*[_type == "post"] | order(publishedAt desc) {
+*[_type == "post"] | order(date desc) {
   ...,
   ${modulesFragment}
 }[$start...$end]

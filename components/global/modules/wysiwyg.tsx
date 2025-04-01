@@ -4,6 +4,7 @@ import { PortableText } from '@portabletext/react'
 import { WysiwygComponents } from 'lib/portabletTextComponents'
 
 const Wysiwyg = ({ data }: { data: WysiwygType }) => {
+  console.log(data)
   return (
     <section
       className={clsx(

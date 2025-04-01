@@ -83,7 +83,7 @@ export const WysiwygComponentsWithoutPadding = {
         {children}
       </a>
     ),
-
+    em: ({ children }) => <em className={clsx('italic')}>{children}</em>,
     leftAligned: ({ children }) => (
       <div className={clsx('text-left')}>{children}</div>
     ),
@@ -109,7 +109,9 @@ export const WysiwygComponentsWithoutPadding = {
 
   block: {
     small: ({ children }) => (
-      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+      <p className={clsx('text-[16px] leading-[21px] font-codec-regular')}>
+        {children}
+      </p>
     ),
     h1: ({ children }) => (
       <h1
@@ -292,7 +294,9 @@ export const WysiwygComopentsMin = {
 
   block: {
     small: ({ children }) => (
-      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+      <p className={clsx('text-[16px] leading-[21px] font-codec-regular')}>
+        {children}
+      </p>
     ),
     h1: ({ children }) => (
       <h1
@@ -512,6 +516,7 @@ export const WysiwygComponents = {
         {children}
       </a>
     ),
+    em: ({ children }) => <em className={clsx('')}>{children}</em>,
     leftAligned: ({ children }) => (
       <span className={clsx('text-left block')}>{children}</span>
     ),
@@ -527,7 +532,14 @@ export const WysiwygComponents = {
 
   block: {
     small: ({ children }) => (
-      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+      <p
+        className={clsx(
+          'text-[16px] leading-[21px] font-codec-regular  max-w-[888px] mx-auto w-full px-[24px]',
+          'lg:px-[0px]',
+        )}
+      >
+        {children}
+      </p>
     ),
     h1: ({ children }) => (
       <h1
