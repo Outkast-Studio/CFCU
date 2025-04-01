@@ -31,7 +31,7 @@ const WysiwygButtonGroup = ({ value, isWithoutPadding }: Props) => {
   return (
     <div
       className={clsx(
-        'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 flex gap-x-[16px]  lg:px-[0px] lg:w-paragraph-l-desktop',
+        'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 flex gap-[16px]  lg:px-[0px] lg:w-paragraph-l-desktop flex-wrap',
         isWithoutPadding && '!max-w-[unset] !mx-[unset] !px-[0px]',
       )}
     >
