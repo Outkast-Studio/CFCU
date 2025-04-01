@@ -15,7 +15,6 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
   const contentRef = useRef(null)
 
-  console.log(data)
   const { ref, inView } = useInView({
     threshold: 0.4,
     triggerOnce: true,

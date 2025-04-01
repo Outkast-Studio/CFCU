@@ -1,8 +1,16 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
+import PageLink from 'components/global/ui/PageLink'
+import { clsx } from 'clsx'
+import Button from 'components/global/ui/Button'
 import Link from 'next/link'
-import clsx from 'clsx'
-
+import { useState, useEffect } from 'react'
 interface Props {
+  value: {
+    links: Array<ButtonProps>
+  }
+}
+
+interface ButtonProps {
   title: string
   externalLink?: {
     link: string
@@ -18,12 +26,32 @@ interface Props {
   }
 }
 
-const WysiwygPageLink = ({
+const WysiwygButtonGroup = ({ value }: Props) => {
+  return (
+    <div
+      className={clsx(
+        'max-w-[888px] mx-auto w-full w-paragraph-s-desktop  px-[24px] text-black/75 flex gap-x-[16px]  lg:px-[0px] lg:w-paragraph-l-desktop',
+      )}
+    >
+      {value?.links?.map((link, index) => (
+        <ButtonLink
+          key={index}
+          title={link?.title}
+          link={link.link}
+          externalLink={link.externalLink}
+          externalLinkOneOff={link.externalLinkOneOff}
+        />
+      ))}
+    </div>
+  )
+}
+
+const ButtonLink = ({
   title,
   externalLink,
   link,
   externalLinkOneOff,
-}: Props) => {
+}: ButtonProps) => {
   const [href, setHref] = useState('')
   const [target, setTarget] = useState('_self')
   useEffect(() => {
@@ -71,25 +99,14 @@ const WysiwygPageLink = ({
   }, [])
 
   return link?._type ? (
-    <Link
-      href={href}
-      className={clsx(
-        'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
-      )}
-    >
-      {title}
+    <Link href={href} className={clsx('')}>
+      <Button label={title} className="!bg-lavender text-white" />
     </Link>
   ) : (
-    <a
-      href={href}
-      target={target}
-      className={clsx(
-        'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
-      )}
-    >
-      {title}
+    <a href={href} target={target}>
+      <Button label={title} className="!bg-lavender text-white" />
     </a>
   )
 }
 
-export default WysiwygPageLink
+export default WysiwygButtonGroup

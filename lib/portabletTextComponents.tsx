@@ -3,10 +3,15 @@ import { urlForImage } from '../lib/sanity.image'
 import clsx from 'clsx'
 import WTable from '@/components/global/ui/wTable'
 import { getImageDimensions } from '@sanity/asset-utils'
+import WysiwygButtonGroup from '@/components/global/modules/WysiwygButtonGroup'
 import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
+    buttonLinkGroup: ({ children }) => {
+      console.log(children)
+      return <div className={clsx('flex flex-col')}></div>
+    },
     image: ({ value }) => (
       <figure
         className={clsx(
@@ -236,7 +241,9 @@ export const WysiwygComopentsMin = {
     link: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-current')}
+        className={clsx(
+          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
@@ -244,7 +251,9 @@ export const WysiwygComopentsMin = {
     telEmailLink: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-current')}
+        className={clsx(
+          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
@@ -455,6 +464,10 @@ export const WysiwygComponents = {
       </figure>
     ),
     table: ({ value }) => <WTable data={value} />,
+    buttonLinkGroup: (props) => {
+      console.log(props)
+      return <WysiwygButtonGroup value={props.value} />
+    },
   },
   marks: {
     strong: ({ children }) => (
@@ -463,7 +476,9 @@ export const WysiwygComponents = {
     link: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-lavender')}
+        className={clsx(
+          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
@@ -478,10 +493,13 @@ export const WysiwygComponents = {
         />
       )
     },
+
     telEmailLink: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-lavender')}
+        className={clsx(
+          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>

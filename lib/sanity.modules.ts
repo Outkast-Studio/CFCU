@@ -4,11 +4,25 @@ export const modulesFragment = groq`
   "modules": modules[]->{
     ...,
     _type == "wysiwyg" => {
-      ...,
-      content[]{
+  ...,
+  content[]{
     ...,
-      markDefs[]{
+    _type == "buttonLinkGroup" => {
+      ...,
+      links[]{
         ...,
+        link->{
+          _type,
+          "link": slug.current
+        },
+        externalLink->{
+          openInNewTab,
+          "link": externalLink
+        }
+    }
+    },
+    markDefs[]{
+      ...,
       _type == "wysiwygPageLink" => {
         ...,
         externalLink->{
@@ -20,8 +34,9 @@ export const modulesFragment = groq`
           "link": slug.current
         }
       }
-    }
-  }},
+    }    
+  }
+},
     _type == "ctaText" => {
       ...,
       ctas[]{

@@ -186,6 +186,37 @@ export default defineType({
         ],
       },
     }),
+    defineField({
+      name: 'buttonLinkGroup',
+      title: 'Button Link Group',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'links',
+          title: 'Links',
+          type: 'array',
+          of: [
+            {
+              name: 'link',
+              title: 'Link',
+              type: 'pageLink',
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        }),
+      ],
+      preview: {
+        select: {
+          links: 'links',
+        },
+        prepare({ links }) {
+          return {
+            title: 'Button Link Group',
+            subtitle: links.map((link) => link.title).join(', '),
+          }
+        },
+      },
+    }),
     {
       name: 'table',
       title: 'Table',
