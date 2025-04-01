@@ -17,6 +17,7 @@ import React from 'react'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
+  console.log(data)
   const heroRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
   const [lineAmount, setLineAmount] = useState(0)

@@ -33,7 +33,6 @@ export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
       },
       links[]{
         ...,
- 
         link->{
           _id,
           _type,
@@ -197,6 +196,20 @@ export const ratePageSlugsQuery = groq`
 export const locationBySlugQuery = groq`
 *[_type == "location" && slug.current == $slug][0]{
   ...,
+  appointmentLink{
+    ...,
+    link->{
+      _id,
+      _type,
+      title,
+      "slug": slug.current
+    },
+    externalLink->{
+      _id,
+      _type, 
+      externalLink,
+    }
+  },
   ${modulesFragment}
 }`
 
