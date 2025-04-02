@@ -46,6 +46,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
     }
   }, [inView])
 
+  console.log(theme)
   return (
     <section
       ref={ref}
@@ -129,10 +130,20 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                   : theme?.monotoneCopy,
             }}
             className={clsx(
-              'font-codec-regular w-paragraph-s-desktop text-center flex flex-col gap-y-[16px]',
+              'font-codec-regular w-paragraph-s-desktop text-center flex flex-col gap-y-[16px] topicRow',
               'lg:text-left lg:w-paragraph-l-desktop',
             )}
           >
+            <style jsx>{`
+              div :global(h1),
+              div :global(h2),
+              div :global(h3),
+              div :global(h4),
+              div :global(h5),
+              div :global(h6) {
+                color: ${theme?.heading};
+              }
+            `}</style>
             <PortableText
               value={data?.description}
               components={WysiwygComopentsMin as any}

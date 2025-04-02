@@ -62,7 +62,10 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
         )}
       >
         {data?.columns?.map((column, index) => (
-          <div key={index} className={clsx('flex flex-col gap-y-[8px]')}>
+          <div
+            key={index}
+            className={clsx('flex flex-col gap-y-[8px] balanceText')}
+          >
             <PortableText
               value={column?.content}
               components={WysiwygComponentsWithoutPadding as any}

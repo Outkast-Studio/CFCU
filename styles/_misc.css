@@ -101,3 +101,6 @@ button:focus {
 .descriptionContent li {
   color: inherit !important;
 }
+.balanceText p {
+  text-wrap: balance;
+}

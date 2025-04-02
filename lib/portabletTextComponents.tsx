@@ -89,13 +89,13 @@ export const WysiwygComponentsWithoutPadding = {
     ),
     em: ({ children }) => <em className={clsx('italic')}>{children}</em>,
     leftAligned: ({ children }) => (
-      <span className={clsx('text-left')}>{children}</span>
+      <span className={clsx('text-left block')}>{children}</span>
     ),
     centerAligned: ({ children }) => (
-      <span className={clsx('text-center')}>{children}</span>
+      <span className={clsx('text-center block')}>{children}</span>
     ),
     rightAligned: ({ children }) => (
-      <span className={clsx('text-right')}>{children}</span>
+      <span className={clsx('text-right block')}>{children}</span>
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
@@ -284,13 +284,13 @@ export const WysiwygComopentsMin = {
       )
     },
     leftAligned: ({ children }) => (
-      <span className={clsx('text-left')}>{children}</span>
+      <span className={clsx('text-left block')}>{children}</span>
     ),
     centerAligned: ({ children }) => (
-      <span className={clsx('text-center')}>{children}</span>
+      <span className={clsx('text-center block')}>{children}</span>
     ),
     rightAligned: ({ children }) => (
-      <span className={clsx('text-right')}>{children}</span>
+      <span className={clsx('text-right block')}>{children}</span>
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
