@@ -62,7 +62,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         ref={containerRef}
         className={clsx(
           'px-[24px] py-[26px] ',
-          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-start',
+          'lg:py-[96px] lg:flex lg:gap-x-[59px] lg:px-[0px] lg:max-w-[1800px] xl:px-[0px] lg:mx-auto lg:items-center',
           stegaClean(data?.imagePosition) === 'left'
             ? 'lg:flex-row'
             : 'lg:flex-row-reverse',
@@ -100,7 +100,12 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
         >
           {data?.subtitle && (
             <h2
-              style={{ color: theme?.subtitle }}
+              style={{
+                color:
+                  theme?.monotoneCopy == '#000'
+                    ? '#000000BF'
+                    : theme?.monotoneCopy,
+              }}
               className={clsx(
                 'subtitle-m  text-center ',
                 'lg:subtitle-l lg:text-left',

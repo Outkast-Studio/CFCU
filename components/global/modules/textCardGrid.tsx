@@ -104,7 +104,12 @@ const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
             <CardGridItem card={card} key={index} />
           ))}
         </div>
-        <div className={clsx('flex flex-col gap-y-[48px]', 'lg:gap-y-[54px]')}>
+        <div
+          className={clsx(
+            'flex flex-col gap-y-[48px]',
+            'lg:gap-y-[54px] lg:mt-[54px]',
+          )}
+        >
           {rightGridItems?.map((card, index) => (
             <CardGridItem card={card} key={index} />
           ))}

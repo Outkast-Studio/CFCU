@@ -311,7 +311,7 @@ module.exports = {
         '.title-m-desktop': {
           'font-family': 'var(--font-codec-heavy)',
           'font-size': '62px',
-          'line-height': '58px',
+          'line-height': '64px',
           'letter-spacing': '-0.32px',
         },
         '.title-l-desktop': {

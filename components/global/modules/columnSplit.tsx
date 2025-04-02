@@ -43,11 +43,11 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
       <div
         className={clsx(
           'mt-[41px] flex flex-col gap-y-[24px]',
-          'lg:grid lg:mt-[57px] lg:gap-x-[24px]',
-          data?.columns?.length == 2 && 'lg:grid-cols-2',
-          data?.columns?.length == 3 && 'lg:grid-cols-3',
-          data?.columns?.length == 4 && 'lg:grid-cols-4',
-          data?.columns?.length == 5 && 'lg:grid-cols-5',
+          'lg:grid lg:mt-[57px]',
+          data?.columns?.length == 2 && 'lg:grid-cols-2 lg:gap-x-[64px]',
+          data?.columns?.length == 3 && 'lg:grid-cols-3 lg:gap-x-[48px]',
+          data?.columns?.length == 4 && 'lg:grid-cols-4 lg:gap-x-[36px]',
+          data?.columns?.length == 5 && 'lg:grid-cols-5 lg:gap-x-[24px]',
         )}
       >
         {data?.columns?.map((column, index) => (

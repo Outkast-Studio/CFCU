@@ -89,13 +89,13 @@ export const WysiwygComponentsWithoutPadding = {
     ),
     em: ({ children }) => <em className={clsx('italic')}>{children}</em>,
     leftAligned: ({ children }) => (
-      <div className={clsx('text-left')}>{children}</div>
+      <span className={clsx('text-left')}>{children}</span>
     ),
     centerAligned: ({ children }) => (
-      <div className={clsx('text-center')}>{children}</div>
+      <span className={clsx('text-center')}>{children}</span>
     ),
     rightAligned: ({ children }) => (
-      <div className={clsx('text-right')}>{children}</div>
+      <span className={clsx('text-right')}>{children}</span>
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
@@ -284,13 +284,13 @@ export const WysiwygComopentsMin = {
       )
     },
     leftAligned: ({ children }) => (
-      <div className={clsx('text-left')}>{children}</div>
+      <span className={clsx('text-left')}>{children}</span>
     ),
     centerAligned: ({ children }) => (
-      <div className={clsx('text-center')}>{children}</div>
+      <span className={clsx('text-center')}>{children}</span>
     ),
     rightAligned: ({ children }) => (
-      <div className={clsx('text-right')}>{children}</div>
+      <span className={clsx('text-right')}>{children}</span>
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
@@ -323,22 +323,39 @@ export const WysiwygComopentsMin = {
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className={clsx(' w-h3 text-current', 'lg:w-h3-desktop lg:px-[0px]')}>
+      <h3
+        className={clsx(
+          ' w-h3 text-current text-lavender',
+          'lg:w-h3-desktop lg:px-[0px]',
+        )}
+      >
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className={clsx('w-h4 text-current ', 'lg:w-h4-desktop lg:px-[0px]')}>
+      <h4
+        className={clsx(
+          'w-h4 text-current text-lavender',
+          'lg:w-h4-desktop lg:px-[0px]',
+        )}
+      >
         {children}
       </h4>
     ),
     h5: ({ children }) => (
-      <h5 className={clsx(' w-h5 text-current ', 'lg:w-h5-desktop')}>
+      <h5
+        className={clsx(' w-h5 text-current text-lavender', 'lg:w-h5-desktop')}
+      >
         {children}
       </h5>
     ),
     h6: ({ children }) => (
-      <h6 className={clsx('w-h6 text-current ', 'lg:w-h6-desktop lg:px-[0px]')}>
+      <h6
+        className={clsx(
+          'w-h6 text-current text-lavender',
+          'lg:w-h6-desktop lg:px-[0px]',
+        )}
+      >
         {children}
       </h6>
     ),
@@ -388,10 +405,10 @@ export const WysiwygComopentsMin = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className={clsx('flex gap-x-[16px] items-center')}>
+      <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-current flex-shrink-0',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[12px]',
           )}
         ></span>
         <span
@@ -651,10 +668,10 @@ export const WysiwygComponents = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className={clsx('flex gap-x-[16px] items-center')}>
+      <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 ',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[12px]',
           )}
         ></span>
         <span

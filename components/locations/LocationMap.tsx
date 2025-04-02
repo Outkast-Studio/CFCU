@@ -39,7 +39,7 @@ interface PopupPosition {
 export default function MapView({
   locations,
   initialCenter = [-84.5, 43.5],
-  initialZoom = 5,
+  initialZoom = 6.5,
   atmLocations,
 }: MapViewProps) {
   const [mapLoaded, setMapLoaded] = useState(false)
