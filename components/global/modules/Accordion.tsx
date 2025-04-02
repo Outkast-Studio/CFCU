@@ -32,7 +32,7 @@ const AccordionComponent = ({ data }: { data: AccordionType }) => {
         {data.description && (
           <div
             className={clsx(
-              'w-paragraph-s-desktop mt-[9px] flex flex-col gap-y-[16px]',
+              'w-paragraph-s-desktop mt-[9px] flex flex-col gap-y-[16px] text-black/75',
               'lg:max-w-[400px] lg:w-paragraph-l-desktop lg:mt-[13px]',
             )}
           >

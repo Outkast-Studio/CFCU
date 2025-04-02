@@ -5,6 +5,7 @@ import * as Accordion from '@radix-ui/react-accordion'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { useState, useRef } from 'react'
+import { stegaClean } from '@sanity/client/stega'
 import {
   WysiwygComponentsWithoutPadding,
   WysiwygComopentsMin,
@@ -69,7 +70,17 @@ const Tabs = ({ data }: { data: TabsType }) => {
           {data?.subtitle}
         </h2>
       )}
-      <h3 className={clsx('title-xl text-lavender', 'lg:title-xl-desktop')}>
+      <h3
+        className={clsx(
+          stegaClean(data?.titleSize) === 'large'
+            ? 'title-l lg:title-l-desktop'
+            : 'title-xl lg:title-xl-desktop',
+
+          stegaClean(data?.titleColor) === 'orange'
+            ? 'text-orange'
+            : 'text-lavender',
+        )}
+      >
         {data?.title}
       </h3>
       {data?.description && (

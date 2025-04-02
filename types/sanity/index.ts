@@ -288,6 +288,8 @@ export interface TextCardGridCard {
 
 export interface TextCardGridType {
   title: string
+  titleSize?: string
+  titleColor?: string
   subtitle: string
   description: string
   cards: TextCardGridCard[]
@@ -325,6 +327,8 @@ interface TabItem {
 
 export interface TabsType {
   title: string
+  titleSize?: string
+  titleColor?: string
   subtitle?: string
   description?: PortableTextBlock
   tabs: TabItem[]
@@ -336,6 +340,8 @@ interface Column {
 
 export interface ColumnSplitType {
   title: string
+  titleColor?: string
+  titleSize?: string
   subtitle?: string
   description?: PortableTextBlock
   columns: Column[]

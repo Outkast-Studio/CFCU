@@ -46,7 +46,6 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
     }
   }, [inView])
 
-  console.log(theme)
   return (
     <section
       ref={ref}

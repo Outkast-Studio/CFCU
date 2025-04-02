@@ -19,6 +19,30 @@ export default defineType({
       description: 'Main heading for the tabs section',
     }),
     defineField({
+      name: 'titleSize',
+      title: 'Title Size',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'XL', value: 'xl' },
+          { title: 'Large', value: 'large' },
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
+      name: 'titleColor',
+      title: 'Title Color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Orange', value: 'orange' },
+          { title: 'Purple', value: 'purple' },
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContentMin',
@@ -76,6 +100,10 @@ export default defineType({
       description: 'Add up to 5 tab items',
     }),
   ],
+  initialValue: {
+    titleSize: 'xl',
+    titleColor: 'purple',
+  },
   preview: {
     select: {
       title: 'title',

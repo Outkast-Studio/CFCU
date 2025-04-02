@@ -1,3 +1,4 @@
+import { title } from '@/lib/demo.data'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -17,6 +18,30 @@ export default defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
       description: 'Main heading for the column split section',
+    }),
+    defineField({
+      name: 'titleSize',
+      title: 'Title Size',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'XL', value: 'xl' },
+          { title: 'Large', value: 'large' },
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
+      name: 'titleColor',
+      title: 'Title Color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Orange', value: 'orange' },
+          { title: 'Purple', value: 'purple' },
+        ],
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'description',
@@ -54,6 +79,10 @@ export default defineType({
       description: 'Add between 2 and 5 columns',
     }),
   ],
+  initialValue: {
+    titleSize: 'xl',
+    titleColor: 'purple',
+  },
   preview: {
     select: {
       title: 'title',

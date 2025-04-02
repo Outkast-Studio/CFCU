@@ -20,6 +20,30 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'titleSize',
+      title: 'Title Size',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'XL', value: 'xl' },
+          { title: 'Large', value: 'large' },
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
+      name: 'titleColor',
+      title: 'Title Color',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Orange', value: 'orange' },
+          { title: 'Purple', value: 'purple' },
+        ],
+        layout: 'radio',
+      },
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       rows: 3,
@@ -59,6 +83,10 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
+  initialValue: {
+    titleSize: 'large',
+    titleColor: 'purple',
+  },
   preview: {
     select: {
       title: 'title',

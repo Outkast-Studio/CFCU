@@ -5,6 +5,7 @@ import {
   WysiwygComponentsWithoutPadding,
   WysiwygComopentsMin,
 } from 'lib/portabletTextComponents'
+import { stegaClean } from '@sanity/client/stega'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   return (
@@ -24,7 +25,17 @@ const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
           {data?.subtitle}
         </h2>
       )}
-      <h3 className={clsx('title-xl text-orange', 'lg:title-xl-desktop')}>
+      <h3
+        className={clsx(
+          stegaClean(data?.titleSize) === 'large'
+            ? 'title-l lg:title-l-desktop'
+            : 'title-xl lg:title-xl-desktop',
+
+          stegaClean(data?.titleColor) === 'orange'
+            ? 'text-orange'
+            : 'text-lavender',
+        )}
+      >
         {data?.title}
       </h3>
       {data?.description && (
