@@ -70,7 +70,9 @@ export const WysiwygComponentsWithoutPadding = {
     link: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-lavender')}
+        className={clsx(
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
@@ -78,7 +80,9 @@ export const WysiwygComponentsWithoutPadding = {
     telEmailLink: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-lavender')}
+        className={clsx(
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
@@ -253,7 +257,7 @@ export const WysiwygComopentsMin = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -263,7 +267,7 @@ export const WysiwygComopentsMin = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -489,7 +493,7 @@ export const WysiwygComponents = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -510,7 +514,7 @@ export const WysiwygComponents = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}

@@ -341,7 +341,31 @@ export const modulesFragment = groq`
         },
         ${wysiwygFragment}
       }
+    },
+    _type == "rateTable" => {
+      ...,
+      columns[]{
+        ...,
+        columnTitle[]{
+          ...,
+          ${markDefsFragment}
+        },
+        columnValues[]{
+          ...,
+          value[]{
+            ...,
+            ${markDefsFragment}
+          }
+        }
+      },
+      tableNotes[]{
+        ...,
+      _type == "buttonLinkGroup" => {
+        ${buttonLinkGroupFragment}
+      },
+      ${markDefsFragment}
     }
+  }
   }
 `
 
