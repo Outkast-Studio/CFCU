@@ -71,7 +71,7 @@ const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {
                 label={data?.pageLink?.title}
                 className={clsx(
                   stegaClean(data?.backgroundColor) === 'white'
-                    ? '!p-[0px]'
+                    ? ''
                     : '!bg-lightGrey',
                 )}
               />

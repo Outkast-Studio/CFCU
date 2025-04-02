@@ -14,7 +14,7 @@ const Button = ({ label, className, arrowPosition, cb }: ButtonProps) => {
         cb && cb()
       }}
       className={clsx(
-        'px-[20px] py-[10.5px] rounded-full flex items-center gap-x-[6px] bg-white text-black group relative overflow-hidden w-fit',
+        'px-[20px] py-[10.5px] rounded-full flex items-center gap-x-[6px] bg-white text-lavender group relative overflow-hidden w-fit',
         className,
       )}
     >

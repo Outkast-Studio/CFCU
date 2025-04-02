@@ -45,6 +45,8 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
       ctx.revert()
     }
   }, [inView])
+
+  console.log(theme)
   return (
     <section
       ref={ref}
@@ -116,7 +118,12 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
             {data?.title}
           </h3>
           <div
-            style={{ color: theme?.monotoneCopy }}
+            style={{
+              color:
+                theme?.monotoneCopy == '#000'
+                  ? '#000000BF'
+                  : theme?.monotoneCopy,
+            }}
             className={clsx(
               'font-codec-regular w-paragraph-s-desktop text-center flex flex-col gap-y-[16px]',
               'lg:text-left lg:w-paragraph-l-desktop',
@@ -128,7 +135,9 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
             />
           </div>
           <nav
-            style={{ color: theme?.monotoneCopy }}
+            style={{
+              color: theme?.monotoneCopy,
+            }}
             className={clsx(
               'flex flex-col gap-y-[12px]  items-center',
               'lg:items-start',
