@@ -13,7 +13,11 @@ export function formatPhoneNumber(phoneNumber: string): string {
   return `tel:${digitsOnly}`
 }
 
-export function getGoogleMapsLink(address: string): string {
-  const encodedAddress = encodeURIComponent(address)
-  return `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
+export function getGoogleMapsLink(coordinates: {
+  longitude: number
+  latitude: number
+}): string {
+  // const encodedAddress = encodeURIComponent(address)
+  return `https://www.google.com/maps?q=${coordinates.latitude},${coordinates.longitude}`
+  // return `https://www.google.com/maps/search/businesses/@${coordinates.latitude},${coordinates.longitude}`
 }

@@ -8,6 +8,8 @@ import { ATMLocation, LocationPage } from 'types/sanity'
 import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
+import { PortableText } from '@portabletext/react'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 
 export default function LocationCard({
   data,
@@ -111,8 +113,13 @@ export default function LocationCard({
             fill="#F56600"
           />
         </svg>
-        <a href={getGoogleMapsLink(data?.address)} target={'_blank'}>
-          {data?.address}
+        <a href={getGoogleMapsLink(data?.coordinates)} target={'_blank'}>
+          <div>
+            <PortableText
+              value={data?.address}
+              components={WysiwygComopentsMin as any}
+            />
+          </div>
         </a>
       </div>
       <div

@@ -6,6 +6,8 @@ import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
 import Button from 'components/global/ui/Button'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
+import { PortableText } from '@portabletext/react'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
@@ -25,6 +27,7 @@ const LocationGrid = ({ data }: { data: LocationPage[] }) => {
 export default LocationGrid
 
 const LocationCard = ({ data }: { data: LocationPage }) => {
+  console.log(data)
   return (
     <article>
       <Link href={data?.slug.current}>
@@ -71,8 +74,13 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             fill="#F56600"
           />
         </svg>
-        <a href={getGoogleMapsLink(data?.address)} target={'_blank'}>
-          {data?.address}
+        <a href={getGoogleMapsLink(data?.coordinates)} target={'_blank'}>
+          <div>
+            <PortableText
+              value={data?.address}
+              components={WysiwygComopentsMin as any}
+            />
+          </div>
         </a>
       </div>
       <div

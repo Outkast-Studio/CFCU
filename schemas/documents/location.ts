@@ -109,7 +109,7 @@ export default defineType({
     defineField({
       name: 'address',
       title: 'Address',
-      type: 'string',
+      type: 'blockContentMin',
       group: 'locationSettings',
       validation: (Rule: any) => Rule.required(),
     }),
@@ -129,7 +129,7 @@ export default defineType({
     defineField({
       name: 'mailingAddress',
       title: 'Mailing Address',
-      type: 'string',
+      type: 'blockContentMin',
       group: 'locationSettings',
     }),
     defineField({

@@ -580,7 +580,7 @@ export interface LocationPage {
     isClosed: boolean
   }[]
   thumbnailImage: ImageAsset
-  address: string
+  address: PortableTextBlock[]
   phoneNumber: string
   faxNumber?: string
   mailingAddress?: string

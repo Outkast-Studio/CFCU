@@ -14,6 +14,8 @@ import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import LocationCard from './map/LocationCard'
 import ATMCard from './map/AtmCard'
+import { PortableText } from '@portabletext/react'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 
 // Replace with your Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN

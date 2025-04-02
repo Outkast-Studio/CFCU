@@ -15,7 +15,9 @@ import { gsap } from 'gsap'
 import ModuleFactory, { renderModule } from '../global/modules/ModuleFactory'
 import React from 'react'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
-
+import { PortableText } from '@portabletext/react'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { PortableTextBlock } from '@portabletext/types'
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
@@ -156,6 +158,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
                 <DetailCard
                   subtitle="Address"
                   content={data?.address}
+                  coordinates={data?.coordinates}
                   isAddress={true}
                 />
               )}
@@ -197,6 +200,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
                   <DetailCard
                     subtitle="Mailing Address"
                     content={data?.mailingAddress}
+                    isMailingAddress={true}
                   />
                 )}
               </div>
@@ -243,14 +247,21 @@ function DetailCard({
   content,
   isAddress,
   isPhoneNumber,
+  coordinates,
+  isMailingAddress,
 }: {
   subtitle: string
-  content: string
+  content: any
   isAddress?: boolean
   isPhoneNumber?: boolean
+  isMailingAddress?: boolean
+  coordinates?: {
+    latitude: number
+    longitude: number
+  }
 }) {
   return (
-    <div className={clsx('max-w-[200px] flex flex-col gap-y-[6px] ')}>
+    <div className={clsx('flex flex-col gap-y-[6px] ')}>
       <h6
         className={clsx(
           'subtitle-s text-white/70 font-codec-news uppercase',
@@ -260,7 +271,7 @@ function DetailCard({
         {subtitle}
       </h6>
 
-      <p
+      <div
         className={clsx(
           'w-paragraph-s-desktop text-white font-codec-news',
           'lg:text-[18px] lg:leading-[27px]',
@@ -277,13 +288,25 @@ function DetailCard({
             {content}
           </a>
         ) : isAddress ? (
-          <a href={getGoogleMapsLink(content)} target={'_blank'}>
-            {content}
+          <a href={getGoogleMapsLink(coordinates)} target={'_blank'}>
+            <div>
+              <PortableText
+                value={content}
+                components={WysiwygComopentsMin as any}
+              />
+            </div>
           </a>
+        ) : isMailingAddress ? (
+          <div>
+            <PortableText
+              value={content}
+              components={WysiwygComopentsMin as any}
+            />
+          </div>
         ) : (
-          content
+          <p>{content}</p>
         )}
-      </p>
+      </div>
     </div>
   )
 }
