@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
   const slug = `posts/${params?.slug}`
   const postData = await getIndividualPostBySlug(client, slug)
 
-  if (!postData) {
+  if (!postData?.slug?.current) {
     return { notFound: true }
   }
 

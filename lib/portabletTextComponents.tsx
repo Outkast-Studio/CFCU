@@ -70,7 +70,9 @@ export const WysiwygComponentsWithoutPadding = {
     link: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-lavender')}
+        className={clsx(
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
@@ -78,12 +80,14 @@ export const WysiwygComponentsWithoutPadding = {
     telEmailLink: ({ children, value }) => (
       <a
         href={value.href}
-        className={clsx('underline font-codec-heavy text-lavender')}
+        className={clsx(
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+        )}
       >
         {children}
       </a>
     ),
-
+    em: ({ children }) => <em className={clsx('italic')}>{children}</em>,
     leftAligned: ({ children }) => (
       <div className={clsx('text-left')}>{children}</div>
     ),
@@ -109,7 +113,9 @@ export const WysiwygComponentsWithoutPadding = {
 
   block: {
     small: ({ children }) => (
-      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+      <p className={clsx('text-[16px] leading-[21px] font-codec-regular')}>
+        {children}
+      </p>
     ),
     h1: ({ children }) => (
       <h1
@@ -160,7 +166,7 @@ export const WysiwygComponentsWithoutPadding = {
     normal: ({ children }) => (
       <p
         className={clsx(
-          'w-full w-paragraph-s-desktop  text-black/75 ',
+          'w-full w-paragraph-s-desktop',
           'lg:px-[0px] lg:w-paragraph-l-desktop',
         )}
       >
@@ -251,7 +257,7 @@ export const WysiwygComopentsMin = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -261,7 +267,7 @@ export const WysiwygComopentsMin = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -292,7 +298,9 @@ export const WysiwygComopentsMin = {
 
   block: {
     small: ({ children }) => (
-      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+      <p className={clsx('text-[16px] leading-[21px] font-codec-regular')}>
+        {children}
+      </p>
     ),
     h1: ({ children }) => (
       <h1
@@ -485,7 +493,7 @@ export const WysiwygComponents = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -506,12 +514,13 @@ export const WysiwygComponents = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
       </a>
     ),
+    em: ({ children }) => <em className={clsx('')}>{children}</em>,
     leftAligned: ({ children }) => (
       <span className={clsx('text-left block')}>{children}</span>
     ),
@@ -527,7 +536,14 @@ export const WysiwygComponents = {
 
   block: {
     small: ({ children }) => (
-      <p className={clsx('text-[16px] leading-[21px]')}>{children}</p>
+      <p
+        className={clsx(
+          'text-[16px] leading-[21px] font-codec-regular  max-w-[888px] mx-auto w-full px-[24px]',
+          'lg:px-[0px]',
+        )}
+      >
+        {children}
+      </p>
     ),
     h1: ({ children }) => (
       <h1

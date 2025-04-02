@@ -114,7 +114,7 @@ export const modulesFragment = groq`
         _id,
         title,
         "slug": slug.current,
-        "relatedPosts": *[_type == 'post' && references(^._id)] | order(createdAt desc)[0...3]{
+        "relatedPosts": *[_type == 'post' && references(^._id)] | order(createdAt desc)[0...5]{
       ...,
           // Add any other fields you need from the post
         }
@@ -341,7 +341,31 @@ export const modulesFragment = groq`
         },
         ${wysiwygFragment}
       }
+    },
+    _type == "rateTable" => {
+      ...,
+      columns[]{
+        ...,
+        columnTitle[]{
+          ...,
+          ${markDefsFragment}
+        },
+        columnValues[]{
+          ...,
+          value[]{
+            ...,
+            ${markDefsFragment}
+          }
+        }
+      },
+      tableNotes[]{
+        ...,
+      _type == "buttonLinkGroup" => {
+        ${buttonLinkGroupFragment}
+      },
+      ${markDefsFragment}
     }
+  }
   }
 `
 
@@ -399,7 +423,7 @@ export const homepageModulesFragment = groq`
         _id,
         title,
         "slug": slug.current,
-        "relatedPosts": *[_type == 'post' && references(^._id)] | order(createdAt desc)[0...3]{
+        "relatedPosts": *[_type == 'post' && references(^._id)] | order(createdAt desc)[0...5]{
       ...,
           // Add any other fields you need from the post
         }

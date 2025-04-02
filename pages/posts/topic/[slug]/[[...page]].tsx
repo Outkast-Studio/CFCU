@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
   )
   const blogHomepage = await getBlogHomepage(client)
 
-  if (!topicData) {
+  if (!topicData?.title) {
     return { notFound: true }
   }
 

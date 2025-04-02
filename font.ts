@@ -15,6 +15,7 @@ export const CodecRegular = localFont({
   preload: true,
   fallback: ['system-ui', 'arial'],
 })
+
 export const CodecProBold = localFont({
   src: './public/fonts/Codec-Pro-Bold.woff2',
   variable: '--font-codec-pro-bold',

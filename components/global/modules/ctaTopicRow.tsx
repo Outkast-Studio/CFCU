@@ -186,7 +186,13 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               ))
             ) : (
               <PageLink data={data?.links?.[0]}>
-                <Button label={data?.links?.[0]?.title} />
+                <Button
+                  label={data?.links?.[0]?.title}
+                  className={clsx(
+                    stegaClean(data?.theme?.label) === 'White' &&
+                      '!bg-lavender text-white',
+                  )}
+                />
               </PageLink>
             )}
           </nav>

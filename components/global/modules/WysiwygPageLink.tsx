@@ -74,7 +74,7 @@ const WysiwygPageLink = ({
     <Link
       href={href}
       className={clsx(
-        'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+        'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
       )}
     >
       {title}
@@ -84,7 +84,7 @@ const WysiwygPageLink = ({
       href={href}
       target={target}
       className={clsx(
-        'underline font-codec-bold text-lavender hover:text-black hover:no-underline transition-colors duration-200',
+        'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
       )}
     >
       {title}

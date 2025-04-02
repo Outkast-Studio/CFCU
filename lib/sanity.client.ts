@@ -222,7 +222,7 @@ export async function getTopicBySlug(
     client.fetch<TopicPageType>(topicBySlugQuery, { slug }),
     client.fetch<PostPageType[]>(
       `
-      *[_type == "post" && $slug in topics[]->slug.current] | order(publishedAt desc) [$start...$end] {
+      *[_type == "post" && $slug in topics[]->slug.current] | order(date desc) [$start...$end] {
       ...,
       }
     `,

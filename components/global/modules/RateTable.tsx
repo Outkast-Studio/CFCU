@@ -118,12 +118,15 @@ const RateTable = ({ data }: { data: RateTableType }) => {
       {data?.tableNotes && (
         <div
           className={clsx(
-            'px-[24px] pt-[28px] text-black w-paragraph-s-desktop rateTableBlock',
+            'px-[24px] pt-[28px] text-black w-paragraph-s-desktop rateTableBlock text-[16px] leading-[24px]',
             'lg:px-[48px] lg:pt-[12px]',
             'xl:px-[0px]',
           )}
         >
-          <PortableText value={data?.tableNotes} />
+          <PortableText
+            value={data?.tableNotes}
+            components={WysiwygComponentsWithoutPadding as any}
+          />
         </div>
       )}
     </section>
