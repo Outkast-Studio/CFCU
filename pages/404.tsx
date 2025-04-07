@@ -39,7 +39,7 @@ export default function Page(props: PageProps) {
   }, [data, setGlobalSettings])
   return (
     <Layout>
-      <FourOhFourPage data={fourOhFour} />
+      <FourOhFourPage data={props.fourOhFour} />
     </Layout>
   )
 }
@@ -58,5 +58,6 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       draftMode,
       token: draftMode ? readToken : '',
     },
+    revalidate: 300,
   }
 }
