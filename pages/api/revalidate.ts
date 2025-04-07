@@ -30,7 +30,7 @@ export default async function revalidate(
     }
     // res.status(200).json({ body })
     const staleRoutes = await queryStaleRoutes(body as any)
-
+    console.log(staleRoutes)
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`
@@ -77,7 +77,7 @@ async function queryStaleRoutes(
       case 'subPage':
         return await querySubPageRoutes(client, body._id)
       case '404':
-        return ['/404']
+        return ['/404.html']
       default:
         console.log(body, 'Unknown type sent')
         return []
