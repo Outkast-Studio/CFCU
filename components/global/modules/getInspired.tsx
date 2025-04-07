@@ -59,7 +59,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           },
         })
         .to(leftGridItemsRef.current, { yPercent: -10 })
-        .to(rightGridItemsRef.current, { yPercent: 8 }, '<+=0')
+        .to(rightGridItemsRef.current, { yPercent: 6 }, '<+=0')
     })
     return () => {
       ctx.revert()
@@ -101,7 +101,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
       <div
         className={clsx(
           'mt-[28.5px]',
-          'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative',
+          'lg:grid-cols-2 lg:grid lg:gap-x-[24px] lg:mt-[78px] lg:relative lg:pb-[32px]',
         )}
       >
         <PostCard data={featuredArticle} isFeatured={true} />
