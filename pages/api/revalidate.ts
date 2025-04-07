@@ -54,6 +54,13 @@ async function queryStaleRoutes(
 
   //Check if type is a module -> If it is, run the moduleHandler to find all slugs that reference that module. Then return them.
   // If the type is not a module -> return the appropriate route for that type.
+
+  if (body._type === '404') {
+    await fetch(
+      'https://api.vercel.com/v1/integrations/deploy/prj_Sw6MzqeDhOP6iX7Jr8cmAMvoln22/tXvPMSS6uV',
+    )
+    return ['/404.html']
+  }
   if (moduleTypes.includes(body._type)) {
     return await moduleHandler(client, body)
   } else if (body._type === 'externalLink' || body._type === 'globalAlert') {
