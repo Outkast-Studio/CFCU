@@ -22,7 +22,6 @@ export default defineType({
     const client = getClient()
     const query = `*[_type == "subPage" && parent._ref == $parentId]{_id, title} | order(title asc)`
     const results = await client.fetch(query, { parentId: null })
-    console.log(results, 'results')
     return {
       childrenOrder: results.map((child) => ({
         _type: 'reference',

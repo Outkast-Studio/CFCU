@@ -27,7 +27,6 @@ const LocationGrid = ({ data }: { data: LocationPage[] }) => {
 export default LocationGrid
 
 const LocationCard = ({ data }: { data: LocationPage }) => {
-  console.log(data)
   return (
     <article>
       <Link href={data?.slug.current}>
