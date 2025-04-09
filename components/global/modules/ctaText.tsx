@@ -10,6 +10,7 @@ import { useRef } from 'react'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
+import { stegaClean } from '@sanity/client/stega'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)
@@ -80,6 +81,7 @@ const CtaText = ({ data }: { data: CtaTextType }) => {
             className={clsx(
               ' w-paragraph text-center mt-[20px] animateContent opacity-0 flex flex-col gap-y-[16px]',
               'lg:max-w-[1000px] lg:w-paragraph-xl-desktop lg:mt-[24px]',
+              stegaClean(data?.theme?.label) !== 'White' && 'currentColorLinks',
             )}
           >
             <PortableText

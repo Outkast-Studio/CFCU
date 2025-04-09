@@ -71,7 +71,7 @@ export const WysiwygComponentsWithoutPadding = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -81,7 +81,7 @@ export const WysiwygComponentsWithoutPadding = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -257,7 +257,7 @@ export const WysiwygComopentsMin = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -267,7 +267,7 @@ export const WysiwygComopentsMin = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -510,7 +510,7 @@ export const WysiwygComponents = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
         )}
       >
         {children}
@@ -531,7 +531,7 @@ export const WysiwygComponents = {
       <a
         href={value.href}
         className={clsx(
-          'underline font-codec-bold text-current-color hover:no-underline transition-colors duration-200',
+          'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
         )}
       >
         {children}

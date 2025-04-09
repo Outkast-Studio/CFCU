@@ -46,6 +46,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
     }
   }, [inView])
 
+  console.log(theme?.background)
   return (
     <section
       ref={ref}
@@ -131,6 +132,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
             className={clsx(
               'font-codec-regular w-paragraph-s-desktop text-center flex flex-col gap-y-[16px] topicRow',
               'lg:text-left lg:w-paragraph-l-desktop',
+              stegaClean(data?.theme?.label) !== 'White' && 'currentColorLinks',
             )}
           >
             <style jsx>{`

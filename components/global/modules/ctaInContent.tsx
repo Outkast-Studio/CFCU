@@ -207,8 +207,11 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
               <div
                 style={{ color: theme?.heading }}
                 className={clsx(
-                  'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle opacity-0 flex flex-col gap-y-[16px] descriptionContent ',
+                  'font-codec-news text-[18px] leading-[27px] mt-[14px] animateArticle opacity-0 flex flex-col gap-y-[16px] descriptionContent',
+
                   'lg:text-[21px] lg:leading-[31.5px] lg:mt-[16px]',
+                  stegaClean(data?.theme?.label) !== 'White' &&
+                    'currentColorLinks',
                 )}
               >
                 <PortableText

@@ -136,7 +136,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
               <div
                 className={clsx(
                   'w-paragraph mt-[14px] max-w-[330px] text-white animateContent flex flex-col gap-y-[16px]',
-                  'lg:max-w-[454px] lg:w-paragraph-l-desktop lg:!leading-[28px]',
+                  'lg:max-w-[454px] lg:w-paragraph-l-desktop lg:!leading-[28px] currentColorLinks',
                 )}
               >
                 <PortableText
