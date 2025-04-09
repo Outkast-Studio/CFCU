@@ -198,7 +198,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                   </svg>
                 </PageLink>
               ))
-            ) : (
+            ) : data?.links?.length === 1 ? (
               <PageLink data={data?.links?.[0]}>
                 <Button
                   label={data?.links?.[0]?.title}
@@ -208,7 +208,7 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
                   )}
                 />
               </PageLink>
-            )}
+            ) : null}
           </nav>
         </div>
       </div>
