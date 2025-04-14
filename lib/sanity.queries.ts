@@ -294,4 +294,13 @@ export const relatedPostsQuery = groq`
 
 export const fourOhFourQuery = groq`*[_type == "404"][0]{
   ...,
+  links[]{
+    ...,
+    link->{
+        _id,
+        _type,
+        title,
+        "slug": slug.current
+      }
+  }
 }`
