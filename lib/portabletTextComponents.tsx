@@ -215,7 +215,7 @@ export const WysiwygComponentsWithoutPadding = {
       <li className={clsx('flex gap-x-[16px] items-center')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
@@ -414,7 +414,7 @@ export const WysiwygComopentsMin = {
       <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[12px]',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
@@ -680,7 +680,7 @@ export const WysiwygComponents = {
       <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[12px]',
+            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
