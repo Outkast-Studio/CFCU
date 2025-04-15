@@ -5,6 +5,7 @@ import {
   TextAlignRight,
   TextAlignLeft,
   TextAlignCenter,
+  OrangeSlice,
 } from '@phosphor-icons/react'
 import {
   SubScript,
@@ -17,6 +18,7 @@ import {
   RightAlignedText,
 } from '@/components/global/ui/TextAlignment'
 import { PhoneList, Link } from '@phosphor-icons/react'
+import { Highlight } from '@/components/Sanity/Highlight'
 
 // Define the horizontalRule type
 export const horizontalRule = defineType({
@@ -99,6 +101,12 @@ export default defineType({
             value: 'rightAligned',
             icon: TextAlignRight,
             component: RightAlignedText,
+          },
+          {
+            title: 'Orange Text',
+            value: 'orangeText',
+            icon: OrangeSlice as any,
+            component: Highlight,
           },
         ],
 

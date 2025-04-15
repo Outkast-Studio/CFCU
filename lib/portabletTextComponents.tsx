@@ -99,6 +99,9 @@ export const WysiwygComponentsWithoutPadding = {
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
+    orangeText: ({ children }) => (
+      <span className={clsx('!text-[#F56600]')}>{children}</span>
+    ),
     wysiwygPageLink: (props) => {
       return (
         <WysiwygPageLink
@@ -294,6 +297,9 @@ export const WysiwygComopentsMin = {
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
+    orangeText: ({ children }) => (
+      <span className={clsx('!text-[#F56600]')}>{children}</span>
+    ),
   },
 
   block: {
@@ -549,6 +555,9 @@ export const WysiwygComponents = {
     ),
     sub: ({ children }) => <sub>{children}</sub>,
     sup: ({ children }) => <sup>{children}</sup>,
+    orangeText: ({ children }) => (
+      <span className={clsx('!text-orange')}>{children}</span>
+    ),
   },
 
   block: {
