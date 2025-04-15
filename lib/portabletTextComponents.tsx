@@ -188,16 +188,31 @@ export const WysiwygComponentsWithoutPadding = {
     ),
   },
   list: {
-    bullet: ({ children }) => (
-      <ul
-        className={clsx(
-          'list-disc list-inside w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop text-black/75',
-          'lg:px-[0px] lg:w-paragraph-l-desktop',
-        )}
-      >
-        {children}
-      </ul>
-    ),
+    bullet: ({ children }) => {
+      const childrenLists = children?.filter((item) => {
+        const hasInnerChildrenLists = item?.props?.children?.filter(
+          (innerItem) => innerItem?.props?.value?._type === '@list',
+        )
+        console.log(item)
+        if (hasInnerChildrenLists?.length > 0) {
+          return true
+        }
+        return false
+      })
+      return (
+        <ul
+          className={clsx(
+            'list-disc list-inside w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop text-black/75',
+            'lg:px-[0px] lg:w-paragraph-l-desktop',
+            childrenLists?.length > 0
+              ? 'gap-y-[32px] px-[24px]'
+              : 'gap-y-[16px] px-[0px] pt-[16px]',
+          )}
+        >
+          {children}
+        </ul>
+      )
+    },
     number: ({ children }) => (
       <ol
         className={clsx(
@@ -387,16 +402,31 @@ export const WysiwygComopentsMin = {
     ),
   },
   list: {
-    bullet: ({ children }) => (
-      <ul
-        className={clsx(
-          'list-disc list-inside w-full flex flex-col gap-y-[16px] w-paragraph-s-desktop text-current',
-          'lg:px-[0px] lg:w-paragraph-l-desktop',
-        )}
-      >
-        {children}
-      </ul>
-    ),
+    bullet: ({ children }) => {
+      const childrenLists = children?.filter((item) => {
+        const hasInnerChildrenLists = item?.props?.children?.filter(
+          (innerItem) => innerItem?.props?.value?._type === '@list',
+        )
+        console.log(item)
+        if (hasInnerChildrenLists?.length > 0) {
+          return true
+        }
+        return false
+      })
+      return (
+        <ul
+          className={clsx(
+            'list-disc list-inside w-full flex flex-col  w-paragraph-s-desktop text-black/75',
+            'lg:px-[0px] lg:w-paragraph-l-desktop',
+            childrenLists?.length > 0
+              ? 'gap-y-[32px] px-[0px]'
+              : 'gap-y-[16px] px-[0px] pt-[16px]',
+          )}
+        >
+          {children}
+        </ul>
+      )
+    },
     number: ({ children }) => (
       <ol
         className={clsx(
@@ -653,16 +683,32 @@ export const WysiwygComponents = {
     ),
   },
   list: {
-    bullet: ({ children }) => (
-      <ul
-        className={clsx(
-          'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col gap-y-[21px] w-paragraph-s-desktop px-[24px] text-black/75',
-          'lg:px-[0px] lg:w-paragraph-l-desktop',
-        )}
-      >
-        {children}
-      </ul>
-    ),
+    bullet: ({ children }) => {
+      const childrenLists = children?.filter((item) => {
+        const hasInnerChildrenLists = item?.props?.children?.filter(
+          (innerItem) => innerItem?.props?.value?._type === '@list',
+        )
+        console.log(item)
+        if (hasInnerChildrenLists?.length > 0) {
+          return true
+        }
+        return false
+      })
+
+      return (
+        <ul
+          className={clsx(
+            'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col w-paragraph-s-desktop  text-black/75',
+            'lg:px-[0px] lg:w-paragraph-l-desktop',
+            childrenLists?.length > 0
+              ? 'gap-y-[32px] px-[24px]'
+              : 'gap-y-[16px] px-[0px] pt-[16px]',
+          )}
+        >
+          {children}
+        </ul>
+      )
+    },
     number: ({ children }) => (
       <ol
         className={clsx(
