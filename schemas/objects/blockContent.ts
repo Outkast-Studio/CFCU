@@ -284,6 +284,9 @@ export default defineType({
       },
     },
     {
+      type: 'embed',
+    },
+    {
       type: 'image',
       fields: [
         {

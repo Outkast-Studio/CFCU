@@ -51,7 +51,7 @@ export function CustomDocumentView(props) {
           client.patch(item._id).set({ order: index }).commit(),
         ),
       )
-      console.log('Order updated successfully')
+
       fetchChildDocuments() // Refresh the list to get the updated order
     } catch (err) {
       console.error('Error updating order:', err)

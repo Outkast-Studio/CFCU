@@ -5,6 +5,7 @@ import WTable from '@/components/global/ui/wTable'
 import { getImageDimensions } from '@sanity/asset-utils'
 import WysiwygButtonGroup from '@/components/global/modules/WysiwygButtonGroup'
 import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
+import SanitizedEmbed from '@/components/global/modules/Embed'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
@@ -36,6 +37,10 @@ export const WysiwygComponentsWithoutPadding = {
         </figcaption>
       </figure>
     ),
+    embed: ({ value }) => {
+      console.log(value)
+      return <SanitizedEmbed embed={value} />
+    },
     fullBleedImage: ({ value }) => (
       <figure
         className={clsx(
@@ -193,7 +198,6 @@ export const WysiwygComponentsWithoutPadding = {
         const hasInnerChildrenLists = item?.props?.children?.filter(
           (innerItem) => innerItem?.props?.value?._type === '@list',
         )
-        console.log(item)
         if (hasInnerChildrenLists?.length > 0) {
           return true
         }
@@ -407,7 +411,6 @@ export const WysiwygComopentsMin = {
         const hasInnerChildrenLists = item?.props?.children?.filter(
           (innerItem) => innerItem?.props?.value?._type === '@list',
         )
-        console.log(item)
         if (hasInnerChildrenLists?.length > 0) {
           return true
         }
@@ -481,6 +484,10 @@ export const WysiwygComopentsMin = {
 
 export const WysiwygComponents = {
   types: {
+    embed: ({ value }) => {
+      console.log(value)
+      return <SanitizedEmbed embed={value} />
+    },
     image: ({ value }) => {
       return (
         <figure
@@ -688,7 +695,7 @@ export const WysiwygComponents = {
         const hasInnerChildrenLists = item?.props?.children?.filter(
           (innerItem) => innerItem?.props?.value?._type === '@list',
         )
-        console.log(item)
+
         if (hasInnerChildrenLists?.length > 0) {
           return true
         }

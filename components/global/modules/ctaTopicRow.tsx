@@ -45,8 +45,6 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
       ctx.revert()
     }
   }, [inView])
-
-  console.log(theme?.background)
   return (
     <section
       ref={ref}
