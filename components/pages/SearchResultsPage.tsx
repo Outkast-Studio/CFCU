@@ -25,6 +25,7 @@ const SearchResultsPage = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState(initialQuery)
   const router = useRouter()
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     router.push(`/search?q=${encodeURIComponent(searchQuery)}`)

@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  const ITEMS_PER_PAGE = 1 // You can adjust this value as needed
+  const ITEMS_PER_PAGE = 10 // You can adjust this value as needed
 
   // Calculate start and end for pagination
   const start = (page - 1) * ITEMS_PER_PAGE
@@ -76,9 +76,6 @@ export default function SearchResults({
     (state) => state.setGlobalSettings,
   )
 
-  const prevUrl = `/search?q=${searchQuery}&page=${Math.max(1, currentPage - 1)}`
-  const nextUrl = `/search?q=${searchQuery}&page=${Math.min(totalPages, currentPage + 1)}`
-
   const generateButtonUrl = (page: number) => {
     return `/search?q=${searchQuery}&page=${page}`
   }
@@ -110,8 +107,7 @@ export default function SearchResults({
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}
-            prevUrl={prevUrl}
-            nextUrl={nextUrl}
+            searchQuery={searchQuery}
             generateButtonUrl={generateButtonUrl}
           />
         )}

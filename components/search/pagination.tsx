@@ -8,16 +8,16 @@ import { useEffect } from 'react'
 interface PaginationProps {
   totalPages: number
   currentPage: number
-  prevUrl: string
-  nextUrl: string
+
   generateButtonUrl: (page: number) => string
+  searchQuery: string
 }
 
 const Pagination = ({
   totalPages,
   currentPage,
-  prevUrl,
-  nextUrl,
+
+  searchQuery,
   generateButtonUrl,
 }: PaginationProps) => {
   const [selectedPage, setSelectedPage] = useState(currentPage)
@@ -26,8 +26,20 @@ const Pagination = ({
     selectRef.current?.focus()
     selectRef.current?.click()
   }
+
+  const [prevUrl, setPrevUrl] = useState(
+    `/search?q=${searchQuery}&page=${Math.max(1, currentPage - 1)}`,
+  )
+  const [nextUrl, setNextUrl] = useState(
+    `/search?q=${searchQuery}&page=${Math.min(totalPages, currentPage + 1)}`,
+  )
+
   useEffect(() => {
     setSelectedPage(currentPage)
+    setPrevUrl(`/search?q=${searchQuery}&page=${Math.max(1, currentPage - 1)}`)
+    setNextUrl(
+      `/search?q=${searchQuery}&page=${Math.min(totalPages, currentPage + 1)}`,
+    )
   }, [currentPage])
   return (
     <div
