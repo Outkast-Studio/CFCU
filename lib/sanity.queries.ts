@@ -274,7 +274,7 @@ export const topicSlugsQuery = groq`
 `
 
 export const allTopicsQuery = groq`
-*[_type == "topic"]{
+*[_type == "topic"] | order(name asc){
   ...,
   "relatedPosts": *[_type == "post" && references(^._id)]{
 ...,

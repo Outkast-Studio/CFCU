@@ -16,6 +16,7 @@ interface MediaComponentProps {
   isPlaying?: boolean
   priority?: boolean
   isSubHero?: boolean
+  isCtaContent?: boolean
 }
 
 export default function MediaComponent({
@@ -23,6 +24,7 @@ export default function MediaComponent({
   isPlaying,
   priority,
   isSubHero,
+  isCtaContent,
 }: MediaComponentProps) {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoPlayerRef = useRef<HTMLVideoElement>(null)
@@ -62,15 +64,11 @@ export default function MediaComponent({
           />
           <Image
             //@ts-ignore
-            src={urlForImage(media?.mobileImage)
-              .height(1948)
-              .width(1080)
-              .quality(100)
-              .url()}
+            src={urlForImage(media?.mobileImage).quality(100).url()}
             //@ts-ignore
             alt={media?.mobileImage?.alt}
             width={1948}
-            height={1080}
+            height={isCtaContent ? 1948 : 1080}
             quality={100}
             priority={priority}
             onLoadingComplete={(image) => image.classList.remove('opacity-0')}

@@ -148,6 +148,7 @@ const CtaInContent = ({ data }: { data: CtaInContentType }) => {
             <MediaComponent
               media={data?.backgroundImage}
               isPlaying={isPlaying}
+              isCtaContent
             />
 
             {stegaClean(data?.backgroundImage?.mediaType) === 'video' && (
