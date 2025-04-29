@@ -288,6 +288,47 @@ export default defineType({
     },
     {
       type: 'image',
+      title: 'Contained Image - Large',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Optional caption for the image',
+        },
+      ],
+    },
+    {
+      type: 'image',
+      name: 'containedMedium',
+      title: 'Contained Image - Medium',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Optional caption for the image',
+        },
+      ],
+    },
+    {
+      type: 'image',
+      name: 'containedSmall',
+      title: 'Contained Image - Small',
       fields: [
         {
           name: 'alt',

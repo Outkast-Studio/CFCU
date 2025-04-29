@@ -37,6 +37,61 @@ export const WysiwygComponentsWithoutPadding = {
         </figcaption>
       </figure>
     ),
+    containedSmall: ({ value }) => {
+      return (
+        <figure
+          className={clsx(
+            'flex flex-col gap-y-[17px] px-[24px] w-full',
+            'lg:gap-y-[9px] lg:px-[0px]',
+          )}
+        >
+          {value.asset && (
+            <Image
+              src={urlForImage(value).width(2440).quality(100).url()}
+              alt={String(value.alt)}
+              width={getImageDimensions(value).width}
+              height={getImageDimensions(value).height}
+              quality={100}
+              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              className={clsx(
+                'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[340px]',
+              )}
+            />
+          )}
+          <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
+            {value.caption}
+          </figcaption>
+        </figure>
+      )
+    },
+    containedMedium: ({ value }) => {
+      return (
+        <figure
+          className={clsx(
+            'flex flex-col gap-y-[17px] px-[24px] w-full',
+            'lg:gap-y-[9px] lg:px-[0px]',
+          )}
+        >
+          {value.asset && (
+            <Image
+              src={urlForImage(value).width(2440).quality(100).url()}
+              alt={String(value.alt)}
+              width={getImageDimensions(value).width}
+              height={getImageDimensions(value).height}
+              quality={100}
+              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              className={clsx(
+                'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[560px]',
+              )}
+            />
+          )}
+
+          <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
+            {value.caption}
+          </figcaption>
+        </figure>
+      )
+    },
     embed: ({ value }) => {
       console.log(value)
       return <SanitizedEmbed embed={value} />
@@ -506,6 +561,61 @@ export const WysiwygComponents = {
               onLoadingComplete={(image) => image.classList.remove('opacity-0')}
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
+              )}
+            />
+          )}
+
+          <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
+            {value.caption}
+          </figcaption>
+        </figure>
+      )
+    },
+    containedSmall: ({ value }) => {
+      return (
+        <figure
+          className={clsx(
+            'flex flex-col gap-y-[17px] px-[24px] max-w-[888px] mx-auto w-full',
+            'lg:gap-y-[9px] lg:px-[0px]',
+          )}
+        >
+          {value.asset && (
+            <Image
+              src={urlForImage(value).width(2440).quality(100).url()}
+              alt={String(value.alt)}
+              width={getImageDimensions(value).width}
+              height={getImageDimensions(value).height}
+              quality={100}
+              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              className={clsx(
+                'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[340px]',
+              )}
+            />
+          )}
+          <figcaption className={clsx('w-paragraph-s-desktop text-black/75')}>
+            {value.caption}
+          </figcaption>
+        </figure>
+      )
+    },
+    containedMedium: ({ value }) => {
+      return (
+        <figure
+          className={clsx(
+            'flex flex-col gap-y-[17px] px-[24px] max-w-[888px] mx-auto w-full',
+            'lg:gap-y-[9px] lg:px-[0px]',
+          )}
+        >
+          {value.asset && (
+            <Image
+              src={urlForImage(value).width(2440).quality(100).url()}
+              alt={String(value.alt)}
+              width={getImageDimensions(value).width}
+              height={getImageDimensions(value).height}
+              quality={100}
+              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              className={clsx(
+                'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[560px]',
               )}
             />
           )}
