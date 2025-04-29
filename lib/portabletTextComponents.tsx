@@ -286,7 +286,7 @@ export const WysiwygComponentsWithoutPadding = {
 
   listItem: {
     bullet: ({ children }) => (
-      <li className={clsx('flex gap-x-[16px] items-center')}>
+      <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
             'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
