@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import { SearchResult } from 'types/sanity'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -67,6 +67,11 @@ const SearchResultsPage = ({
   function generateExcerpt(SearchResult: any) {
     let excerpt = ''
   }
+
+  useEffect(() => {
+    setSearchQuery(initialQuery)
+  }, [initialQuery])
+
   return (
     <div>
       <section

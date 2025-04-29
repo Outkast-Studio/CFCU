@@ -86,6 +86,10 @@ export default function SearchResults({
     keywords: '',
   }
 
+  useEffect(() => {
+    setSearchQuery(router.query.q as string)
+  }, [router.query])
+
   return (
     <Layout seo={seo}>
       <SearchResultsPage
