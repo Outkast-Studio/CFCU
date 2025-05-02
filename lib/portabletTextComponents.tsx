@@ -812,14 +812,15 @@ export const WysiwygComponents = {
         return false
       })
 
+      console.log(children)
       return (
         <ul
           className={clsx(
             'list-disc list-inside max-w-[888px] mx-auto w-full flex flex-col w-paragraph-s-desktop  text-black/75',
             'lg:px-[0px] lg:w-paragraph-l-desktop',
             childrenLists?.length > 0
-              ? 'gap-y-[32px] px-[24px]'
-              : 'gap-y-[16px] px-[0px] pt-[16px]',
+              ? 'gap-y-[32px] px-[24px] innerContainer'
+              : 'gap-y-[16px] px-[24px] pt-[16px]',
           )}
         >
           {children}

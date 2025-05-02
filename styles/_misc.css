@@ -108,3 +108,9 @@ button:focus {
 .currentColorLinks a {
   color: inherit !important;
 }
+
+.innerContainer ol,
+.innerContainer ul {
+  padding-left: 0px;
+  padding-right: 0px;
+}
