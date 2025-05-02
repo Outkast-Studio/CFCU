@@ -474,7 +474,7 @@ export const WysiwygComopentsMin = {
       return (
         <ul
           className={clsx(
-            'list-disc list-inside w-full flex flex-col  w-paragraph-s-desktop text-black/75',
+            'list-disc list-inside w-full flex flex-col  w-paragraph-s-desktop text-current',
             'lg:px-[0px] lg:w-paragraph-l-desktop',
             childrenLists?.length > 0
               ? 'gap-y-[32px] px-[0px]'
@@ -502,7 +502,7 @@ export const WysiwygComopentsMin = {
       <li className={clsx('flex gap-x-[16px] items-start')}>
         <span
           className={clsx(
-            'inline-block w-[6px] h-[6px] rounded-full bg-lavender flex-shrink-0 mt-[9px] lg:mt-[12px]',
+            'inline-block w-[6px] h-[6px] rounded-full bg-current flex-shrink-0 mt-[9px] lg:mt-[12px]',
           )}
         ></span>
         <span
