@@ -112,7 +112,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
           )}
         >
           <div
-            className={clsx('flex flex-col gap-y-[30px]')}
+            className={clsx('flex flex-col gap-y-[54px]')}
             ref={leftGridItemsRef}
           >
             {leftGridItems?.map((article, index) => (
@@ -120,7 +120,7 @@ const GetInspired = ({ data }: { data: GetInspiredType }) => {
             ))}
           </div>
           <div
-            className={clsx('flex flex-col gap-y-[30px]')}
+            className={clsx('flex flex-col gap-y-[54px]')}
             ref={rightGridItemsRef}
           >
             {rightGridItems?.map((article, index) => (
@@ -163,7 +163,7 @@ const PostCard = ({
             'flex flex-col',
             isFeatured
               ? 'gap-y-[8px] mt-[24px] lg:max-w-[582px]  lg:gap-y-[13px] lg:mt-[31px]'
-              : 'mt-[16px] lg:max-w-[298px] gap-y-[10px]  lg:gap-y-[0px] lg:mt-[25px]',
+              : 'mt-[16px] lg:max-w-[92%] gap-y-[10px]  lg:gap-y-[0px] lg:mt-[25px]',
           )}
         >
           <h4
