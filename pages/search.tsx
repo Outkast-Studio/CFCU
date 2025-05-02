@@ -26,26 +26,38 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const ITEMS_PER_PAGE = 10 // You can adjust this value as needed
 
-  // Calculate start and end for pagination
-  const start = (page - 1) * ITEMS_PER_PAGE
-  const end = start + ITEMS_PER_PAGE
-  // Perform the Sanity query with pagination
-  const [results, totalResults] = await Promise.all([
+  // Fetch ALL results without pagination
+  const [allResults, totalResults] = await Promise.all([
     client.fetch<SearchResult[]>(`
       *[_type in ["subPage", "location", "homepage", 'post', 'topic', 'blogHomePage', 'locationHomePage'] && (metaTitle match "${searchQuery}*" || metaDescription match "${searchQuery}*")]{
         ...,
-      } | order(_createdAt desc) [${start}...${end}]
+      } | order(_createdAt desc)
     `),
     client.fetch<number>(`
       count(*[_type in ["subPage", "location", "homepage", 'post', 'topic', 'blogHomePage', 'locationHomePage'] && (metaTitle match "${searchQuery}*" || metaDescription match "${searchQuery}*")])
     `),
   ])
 
+  // Sort all results to ensure subpages appear first
+  const sortedResults = [...allResults].sort((a, b) => {
+    // If a is a subPage and b is not, a comes first
+    if (a._type === 'subPage' && b._type !== 'subPage') return -1
+    // If b is a subPage and a is not, b comes first
+    if (b._type === 'subPage' && a._type !== 'subPage') return 1
+    // Otherwise, maintain the original order (by creation date)
+    return 0
+  })
+
+  // Apply pagination to the sorted results
+  const start = (page - 1) * ITEMS_PER_PAGE
+  const end = start + ITEMS_PER_PAGE
+  const paginatedResults = sortedResults.slice(start, end)
+
   const totalPages = Math.ceil(totalResults / ITEMS_PER_PAGE)
 
   return {
     props: {
-      results,
+      results: paginatedResults,
       globalSettings,
       initialQuery: searchQuery,
       totalPages,

@@ -168,7 +168,7 @@ const SearchResultsPage = ({
         >
           Showing{' '}
           <span className={clsx('text-lavender font-codec-heavy')}>
-            {results.length}
+            {totalResults}
           </span>{' '}
           results for{' '}
           <span className={clsx('text-lavender font-codec-heavy')}>
