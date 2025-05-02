@@ -153,7 +153,7 @@ const CtaFullMedia = ({ data, moduleIndex, modulesLength }: Props) => {
                 label={data?.cta?.title}
                 className={clsx(
                   stegaClean(data?.theme?.label) === 'Lavender' &&
-                    '!bg-lavender text-black',
+                    '!bg-lavender !text-white',
                 )}
               />
             </PageLink>
