@@ -11,6 +11,7 @@ import {
   SubScript,
   SuperScript,
   Small,
+  Eyebrow,
 } from '@/components/global/ui/TextDecorators'
 import {
   LeftAlignedText,
@@ -57,6 +58,7 @@ export default defineType({
         { title: 'H6', value: 'h6' },
         { title: 'Small', value: 'small', component: Small },
         { title: 'Quote', value: 'blockquote' },
+        { title: 'Eyebrow', value: 'eyebrow', component: Eyebrow },
       ],
       lists: [
         { title: 'Bullet', value: 'bullet' },

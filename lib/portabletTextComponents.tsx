@@ -6,6 +6,7 @@ import { getImageDimensions } from '@sanity/asset-utils'
 import WysiwygButtonGroup from '@/components/global/modules/WysiwygButtonGroup'
 import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
 import SanitizedEmbed from '@/components/global/modules/Embed'
+import { Eyebrow } from '@/components/global/ui/TextDecorators'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
@@ -195,6 +196,16 @@ export const WysiwygComponentsWithoutPadding = {
         className={clsx(
           'w-h2 text-lavender w-full ',
           'lg:w-h2-desktop lg:px-[0px]',
+        )}
+      >
+        {children}
+      </h2>
+    ),
+    eyebrow: ({ children }) => (
+      <h2
+        className={clsx(
+          'subtitle-m text-black/75 mb-[9px]',
+          'lg:mb-[11px] lg:subtitle-l',
         )}
       >
         {children}
@@ -397,6 +408,16 @@ export const WysiwygComopentsMin = {
         className={clsx(
           'w-h2 text-lavender w-full ',
           'lg:w-h2-desktop lg:px-[0px]',
+        )}
+      >
+        {children}
+      </h2>
+    ),
+    eyebrow: ({ children }) => (
+      <h2
+        className={clsx(
+          'subtitle-m text-black/75 mb-[9px]',
+          'lg:mb-[11px] lg:subtitle-l',
         )}
       >
         {children}
@@ -733,6 +754,16 @@ export const WysiwygComponents = {
         className={clsx(
           'w-h2 text-lavender max-w-[888px] mx-auto w-full px-[24px]',
           'lg:w-h2-desktop lg:px-[0px]',
+        )}
+      >
+        {children}
+      </h2>
+    ),
+    eyebrow: ({ children }) => (
+      <h2
+        className={clsx(
+          'subtitle-m text-black/75 mb-[9px] max-w-[888px] mx-auto px-[24px] w-full',
+          'lg:mb-[11px] lg:subtitle-l lg:px-[0px]',
         )}
       >
         {children}
