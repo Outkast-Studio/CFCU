@@ -294,8 +294,11 @@ export const modulesFragment = groq`
         },
         content[]{
           ...,
-          ${markDefsFragment}
-        }
+            _type == "buttonLinkGroup" => {
+      ${buttonLinkGroupFragment}
+    },
+    ${markDefsFragment}
+              }
       }
     },
     _type == "columnSplit" => {

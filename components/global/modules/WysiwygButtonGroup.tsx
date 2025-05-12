@@ -101,11 +101,11 @@ const ButtonLink = ({
   }, [])
 
   return link?._type ? (
-    <Link href={href} className={clsx('')}>
+    <Link href={href} className={clsx('w-fit')}>
       <Button label={title} className="!bg-lavender text-white" />
     </Link>
   ) : (
-    <a href={href} target={target}>
+    <a href={href} target={target} className={clsx('w-fit')}>
       <Button label={title} className="!bg-lavender text-white" />
     </a>
   )
