@@ -68,9 +68,9 @@ const PostCard = ({
           </h5>
           <p
             className={clsx(
-              'font-codec-news mt-[4px] max-w-[152px] text-[14px] leading-[19.6px] text-black/75',
-              'md:max-w-[300px]',
-              'lg:w-paragraph-m-desktop lg:max-w-[92%] lg:w-full',
+              'font-codec-news mt-[4px] max-w-[92%] w-full text-[14px] leading-[19.6px] text-black/75',
+
+              'lg:w-paragraph-m-desktop',
             )}
           >
             {data?.excerpt}
