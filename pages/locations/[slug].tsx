@@ -22,7 +22,7 @@ interface PageProps extends SharedPageProps {
   locationPage: LocationPage
   globalSettings: GlobalSettingsType
   params: QueryParams
-  seo: Seo
+  seo: Seo & { jsonLD: any }
 }
 
 interface Query {
@@ -71,6 +71,10 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     description: locationPage?.metaDescription || '',
     image: locationPage?.ogImage || '',
     keywords: locationPage?.keywords || '',
+    jsonLD:
+      typeof locationPage?.jsonLd === 'string'
+        ? JSON.parse(locationPage?.jsonLd)
+        : '',
   }
 
   return {

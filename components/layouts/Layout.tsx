@@ -8,6 +8,7 @@ export function Layout({
     description: '',
     image: '',
     keywords: '',
+    jsonLD: '',
   },
 }) {
   return (

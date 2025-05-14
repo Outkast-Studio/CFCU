@@ -228,12 +228,6 @@ export const locationHomepageQuery = groq`*[_type == "locationHomePage"][0]{
   ${modulesFragment}
 }`
 
-// export const allPostsQuery = groq`
-// *[_type == "post"]{
-//   ...,
-//   ${modulesFragment}
-// }`
-
 export const allPostsQuery = groq`
 *[_type == "post"] | order(date desc) {
   ...,
@@ -260,14 +254,6 @@ export const individualPostBySlugQuery = groq`
 export const individualPostSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
 `
-
-// export const topicBySlugQuery = groq`
-// *[_type == "topic" && slug.current == $slug][0]{
-//   ...,
-//  "relatedPosts": *[_type == "post" && references(^._id)]{
-// ...,
-//   }
-// }`
 
 export const topicSlugsQuery = groq`
 *[_type == "topic" && defined(slug.current)][].slug.current

@@ -13,6 +13,7 @@ export function CustomHead({
   description,
   image,
   keywords,
+  jsonLD,
   twitter = { handle: '@**Business' },
 }) {
   //Replace with the default OG image
@@ -83,6 +84,12 @@ export function CustomHead({
         {/* END FAVICON */}
 
         <title>{title}</title>
+        {jsonLD && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLD) }}
+          />
+        )}
       </NextHead>
       <NextSeo
         title={title}
