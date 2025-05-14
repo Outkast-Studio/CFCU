@@ -30,7 +30,7 @@ interface PageProps extends SharedPageProps {
   pageData: PageData
   pageType: 'subPage' | 'post'
   params: QueryParams
-  seo: Seo
+  seo: Seo & { jsonLD: any }
   childrenPages?: SubPageType[]
 }
 
@@ -98,8 +98,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     description: pageData?.metaDescription || '',
     image: pageData?.ogImage || '',
     keywords: pageData?.keywords || '',
+    jsonLD:
+      typeof pageData?.jsonLd === 'string' ? JSON.parse(pageData?.jsonLd) : '',
   }
-
   return {
     props: {
       pageData,

@@ -490,6 +490,7 @@ export interface HomepageType {
       }>
     }>
   }
+  jsonLd?: any
   ctaText: CtaTextType
 }
 
@@ -542,6 +543,7 @@ export interface SubPageType {
   parent?: SubPageType
   modules: Modules
   metaTitle?: string
+  jsonLd?: any
   metaDescription?: string
   ogImage?: {
     asset: ImageAsset

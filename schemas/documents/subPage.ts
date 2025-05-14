@@ -163,5 +163,25 @@ export default defineType({
         },
       ],
     }),
+    {
+      name: 'jsonLd',
+      title: 'JSON-LD Data',
+      type: 'text',
+      group: 'seo',
+      description: 'Paste your JSON-LD structured data here',
+      validation: (Rule) =>
+        Rule.custom((jsonString) => {
+          // Allow empty or undefined values
+          if (jsonString === undefined || jsonString === '') return true
+
+          // Validate JSON if there's content
+          try {
+            JSON.parse(jsonString as string)
+            return true
+          } catch (e) {
+            return 'Please enter valid JSON'
+          }
+        }),
+    },
   ],
 })
