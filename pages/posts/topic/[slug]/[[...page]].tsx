@@ -33,6 +33,7 @@ interface PageProps extends SharedPageProps {
     currentPage: number
     totalPages: number
   }
+  totalPosts?: number
   seo: Seo
 }
 
@@ -50,6 +51,7 @@ export default function TopicSlugRoute({
   seo,
   params,
   blogHomepage,
+  totalPosts,
 }: PageProps) {
   const prevUrl = `/${topicData.slug.current}/${Math.max(1, pagination.currentPage - 1)}`
   const nextUrl = `/${topicData.slug.current}/${Math.min(pagination.totalPages, pagination.currentPage + 1)}`
@@ -83,6 +85,7 @@ export default function TopicSlugRoute({
         data={blogHomepage}
         allPosts={relatedPosts}
         topic={data}
+        totalPosts={totalPosts}
         pagination={extendedPagination}
       />
     </Layout>
@@ -125,6 +128,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
       relatedPosts,
       globalSettings,
       blogHomepage,
+      totalPosts,
       params: {
         ...params,
         slug,

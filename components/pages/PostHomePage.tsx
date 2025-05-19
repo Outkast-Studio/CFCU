@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
 import PostCard from '../global/ui/PostCard'
-import Pagination from 'components/search/pagination'
+import Pagination from 'components/posts/paginationPosts'
 import Link from 'next/link'
 import FilterButton from '../global/ui/FilterButton'
 import { useState, useRef } from 'react'
@@ -22,6 +22,7 @@ type Props = {
   allTopics?: TopicWithRelatedPosts[]
   isBlogHome?: boolean
   topic?: TopicPageType
+  totalPosts?: number
   pagination: {
     currentPage: number
     totalPages: number
@@ -39,6 +40,7 @@ const PostHomePage = ({
   isBlogHome,
   pagination,
   topic,
+  totalPosts,
 }: Props) => {
   const [lineAmount, setLineAmount] = useState(0)
   const heroRef = useRef<HTMLDivElement>(null)
@@ -183,7 +185,7 @@ const PostHomePage = ({
             )}
           >
             Showing{' '}
-            <span className={clsx('font-codec-heavy')}>{allPosts.length}</span>{' '}
+            <span className={clsx('font-codec-heavy')}>{totalPosts}</span>{' '}
             results for{' '}
             <span className={clsx('font-codec-heavy')}>{topic?.name}</span>
           </div>
