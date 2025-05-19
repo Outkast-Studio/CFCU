@@ -80,6 +80,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async (context) => {
       draftMode,
       token: draftMode ? readToken : '',
     },
+    revalidate: 60,
   }
 }
 

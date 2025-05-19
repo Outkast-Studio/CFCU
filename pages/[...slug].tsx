@@ -116,6 +116,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       seo,
       childrenPages, // Include the page type in the props
     },
+    revalidate: 3600,
   }
 }
 

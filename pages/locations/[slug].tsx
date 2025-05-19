@@ -89,6 +89,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
       seo,
       token: draftMode ? readToken : '',
     },
+    revalidate: 3600,
   }
 }
 
