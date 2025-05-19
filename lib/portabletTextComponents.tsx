@@ -880,7 +880,7 @@ export const WysiwygComponents = {
         ></span>
         <span
           className={clsx(
-            'inline-block w-paragraph-s-desktop',
+            'inline-block w-paragraph-s-desktop flex-1 min-w-0',
             'lg:text-[21px] lg:leading-[31.5px]',
           )}
         >
@@ -899,7 +899,7 @@ export const WysiwygComponents = {
         </span>
         <span
           className={clsx(
-            'inline-block w-paragraph-s-desktop',
+            'inline-block w-paragraph-s-desktop flex-1 min-w-0',
             'lg:text-[21px] lg:leading-[31.5px]',
           )}
         >
