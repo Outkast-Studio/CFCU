@@ -16,6 +16,7 @@ const PageLink = ({
 }) => {
   const [href, setHref] = useState<string>('')
   const [target, setTarget] = useState('_self')
+
   useEffect(() => {
     if (!data?.externalLink && !data?.externalLinkOneOff) {
       switch (data?.link?._type) {
@@ -59,10 +60,18 @@ const PageLink = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.link?._type])
-  return !data?.externalLink ? (
+  return !data?.externalLink && !data?.externalLinkOneOff?.link ? (
     <Link href={href} className={clsx(className, 'w-fit')} onClick={onClick}>
       {children}
     </Link>
+  ) : data?.externalLinkOneOff?.link ? (
+    <a
+      href={data?.externalLinkOneOff?.link}
+      target={target}
+      className={clsx(className, 'w-fit')}
+    >
+      {children}
+    </a>
   ) : (
     <a
       href={data?.externalLink?.externalLink}

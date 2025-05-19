@@ -14,6 +14,7 @@ export const externalLinkFragment = groq`
 export const wysiwygPageLinkFragment = groq`
   ...,
   externalLink->{
+...,
     ${externalLinkFragment}
   },
   link->{
@@ -29,6 +30,7 @@ export const buttonLinkGroupFragment = groq`
       ${linkFragment}
     },
     externalLink->{
+...,
       ${externalLinkFragment}
     }
   }
@@ -88,6 +90,7 @@ export const modulesFragment = groq`
           "slug": slug.current
         },
         externalLink->{
+...,
           _id,
           _type,
           externalLink,
@@ -105,6 +108,7 @@ export const modulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -141,6 +145,8 @@ export const modulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+
+            ...,
             _id,
             _type, 
             externalLink,
@@ -158,6 +164,7 @@ export const modulesFragment = groq`
           "slug": slug.current,
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -178,6 +185,7 @@ export const modulesFragment = groq`
             externalLink
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -196,6 +204,7 @@ export const modulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,...,
             _id,
             _type, 
             externalLink,
@@ -223,6 +232,7 @@ export const modulesFragment = groq`
             "slug": slug.current
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -243,6 +253,7 @@ export const modulesFragment = groq`
             "slug": slug.current
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -274,6 +285,7 @@ export const modulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -400,6 +412,7 @@ export const homepageModulesFragment = groq`
           "slug": slug.current
         },
         externalLink->{
+...,
           _id,
           _type,
           externalLink,
@@ -417,6 +430,7 @@ export const homepageModulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -453,6 +467,8 @@ export const homepageModulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,
+          ...,
             _id,
             _type, 
             externalLink,
@@ -472,6 +488,7 @@ export const homepageModulesFragment = groq`
             "slug": slug.current,
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -487,6 +504,7 @@ export const homepageModulesFragment = groq`
           "slug": slug.current,
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -507,6 +525,7 @@ export const homepageModulesFragment = groq`
             externalLink
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -525,6 +544,7 @@ export const homepageModulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -552,6 +572,7 @@ export const homepageModulesFragment = groq`
             "slug": slug.current
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -572,6 +593,7 @@ export const homepageModulesFragment = groq`
             "slug": slug.current
           },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
@@ -603,6 +625,7 @@ export const homepageModulesFragment = groq`
           "slug": slug.current
         },
           externalLink->{
+...,
             _id,
             _type, 
             externalLink,
