@@ -15,6 +15,15 @@ export function CustomHead({
   keywords,
   jsonLD,
   twitter = { handle: '@**Business' },
+  noIndex,
+}: {
+  title: string
+  description: string
+  image: string
+  keywords: string
+  jsonLD?: string
+  twitter?: { handle: string }
+  noIndex?: boolean
 }) {
   //Replace with the default OG image
   const defaultOGImage =
@@ -30,18 +39,22 @@ export function CustomHead({
     //TODO MUST CHANGE THIS TO COMMMENTED OUT CODE
     // setIsProduction(process.env.NEXT_PUBLIC_VERCEL_ENV === 'production')
   }, [])
-
+  console.log(noIndex)
   return (
     <>
       <NextHead>
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
           name="robots"
-          content={isProduction ? 'index,follow' : 'noindex,nofollow'}
+          content={
+            isProduction && !noIndex ? 'index,follow' : 'noindex,nofollow'
+          }
         />
         <meta
           name="googlebot"
-          content={isProduction ? 'index,follow' : 'noindex,nofollow'}
+          content={
+            isProduction && !noIndex ? 'index,follow' : 'noindex,nofollow'
+          }
         />
         <meta
           name="keywords"
@@ -94,6 +107,7 @@ export function CustomHead({
       <NextSeo
         title={title}
         description={description || defaultDescription}
+        noindex={noIndex}
         openGraph={{
           title,
           description: description || defaultDescription,
@@ -111,6 +125,7 @@ export function CustomHead({
           defaultImageHeight: 630,
           site_name: 'cfcu',
         }}
+        robotsProps={{}}
         twitter={{
           handle: twitter.handle,
           cardType: 'summary_large_image',

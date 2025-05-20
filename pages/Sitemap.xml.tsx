@@ -87,20 +87,19 @@ export async function getServerSideProps({ res }) {
   `,
   )
 
-  const allTopicIds = await client.fetch<{ _id: string }[]>(
+  const allTopicIds = await client.fetch(
     `
     *[_type == "topic"]{
-      _id
+    ...,
+      _id,
+      name
     }
   `,
   )
 
-  const topicSlugs = await Promise.all(
-    allTopicIds.map(async (topicId) => {
-      const slugs = await getTopicPostPageSlugs(client, topicId._id)
-      return slugs
-    }),
-  )
+  const topicSlugs = allTopicIds.map((topicId) => {
+    return topicId.slug.current
+  })
 
   const allPostsPageSlugs = await getAllPostHomePageSlugs(client)
   // Combine all slugs into one array
@@ -161,19 +160,8 @@ async function getTopicPostPageSlugs(
   ]
 }
 
-async function getAllPostHomePageSlugs(
-  client: SanityClient,
-): Promise<string[]> {
+async function getAllPostHomePageSlugs(client: SanityClient) {
   // Fetch the total number of blog posts
-  const totalPosts = await client.fetch(groq`count(*[_type == "post"])`)
-  const postsPerPage = 10 // Adjust this based on your pagination setup
-
-  // Calculate the number of pages
-  const totalPages = Math.ceil(totalPosts / postsPerPage)
-
   // Generate routes for each page
-  return Array.from(
-    { length: totalPages },
-    (_, i) => `posts/page/${String(i + 1)}`,
-  )
+  return ['posts']
 }
