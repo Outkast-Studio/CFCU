@@ -28,6 +28,8 @@ import {
   topicSlugsQuery,
   allTopicsQuery,
   fourOhFourQuery,
+  allSubpagesQuery,
+  allPostsWithouPagination,
 } from 'lib/sanity.queries'
 import { createClient, type SanityClient } from 'next-sanity'
 
@@ -80,6 +82,9 @@ export async function getTestModules(client: SanityClient) {
   return (await client.fetch(testModulesQuery)) || {}
 }
 
+export async function getAllSubpages(client: SanityClient) {
+  return (await client.fetch(allSubpagesQuery)) || []
+}
 export async function getSubPageBySlug(client: SanityClient, slug: string) {
   return (await client.fetch(subPageBySlugQuery, { slug })) || ({} as any)
 }
@@ -153,9 +158,9 @@ export async function getATMLocations(
   })
 }
 
-// export async function getAllPosts(client: SanityClient) {
-//   return (await client.fetch(allPostsQuery)) || []
-// }
+export async function getAllPostsWithoutPagination(client: SanityClient) {
+  return (await client.fetch(allPostsWithouPagination)) || []
+}
 
 export async function getAllPosts(
   client: SanityClient,

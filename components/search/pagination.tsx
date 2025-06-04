@@ -3,6 +3,7 @@ import { clsx } from 'clsx'
 import Button from '../global/ui/Button'
 import ReversedButton from '../global/ui/ReverseArrowButton'
 import Link from 'next/link'
+
 import { useEffect } from 'react'
 
 interface PaginationProps {

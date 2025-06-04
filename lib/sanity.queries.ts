@@ -189,6 +189,8 @@ export const ratePageBySlugQuery = groq`
 }
 `
 
+export const allSubpagesQuery = groq`*[_type == "subPage"]{..., ${modulesFragment}}`
+
 export const ratePageSlugsQuery = groq`
 *[_type == "rates" && defined(slug.current)][].slug.current
 `
@@ -224,6 +226,11 @@ export const locationsQuery = groq`
 }`
 
 export const locationHomepageQuery = groq`*[_type == "locationHomePage"][0]{
+  ...,
+  ${modulesFragment}
+}`
+
+export const allPostsWithouPagination = groq`*[_type == "post"]{
   ...,
   ${modulesFragment}
 }`
