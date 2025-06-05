@@ -41,7 +41,7 @@
     "date-fns": "2.30.0",
     "dompurify": "^3.2.2",
     "framer-motion": "^11.11.15",
-    "gsap": "npm:@gsap/shockingly",
+    "gsap": "^3.13.0",
     "intl-segmenter-polyfill": "0.4.4",
     "isomorphic-dompurify": "^2.18.0",
     "just-debounce-it": "^3.2.0",

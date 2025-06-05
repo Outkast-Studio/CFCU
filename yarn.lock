@@ -8108,10 +8108,10 @@ groq@3.91.0, groq@^3.0.0, groq@^3.19:
   resolved "https://registry.yarnpkg.com/groq/-/groq-3.91.0.tgz#44ad0498da78525b3722cebcb7d6412d445f5964"
   integrity sha512-CyskRvpuaPJIe8GDbjyO3SG8LP2FkEJo693XN57wybt+i8/7PJLEDpA41RjzD3RB/MZCR3awcGImTlzVq42aWw==
 
-"gsap@npm:@gsap/shockingly":
+gsap@^3.13.0:
   version "3.13.0"
-  resolved "https://npm.greensock.com/@gsap%2fshockingly/-/shockingly-3.13.0.tgz#3d31e41dc21aa6d969f43c55a0745031969c2c31"
-  integrity sha512-4AgtKV8q2A+fIwIXMFW72fJDdH4I5/bdq3PT2hfj4DghWGfkQvu/sw2lUPWHMGZzPJQame+TvoEcpbnmNgzTmQ==
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.13.0.tgz#597d4e019a2bb487785387d91296adebf92db9dd"
+  integrity sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==
 
 gunzip-maybe@^1.4.1, gunzip-maybe@^1.4.2:
   version "1.4.2"
