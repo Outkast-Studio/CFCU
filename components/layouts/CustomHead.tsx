@@ -56,10 +56,6 @@ export function CustomHead({
             isProduction && !noIndex ? 'index,follow' : 'noindex,nofollow'
           }
         />
-        <meta
-          name="keywords"
-          content={keywords && keywords.length ? keywords.join(',') : keywords}
-        />
         <meta name="author" content="Community Financial" />
         <meta name="referrer" content="no-referrer" />
         <meta name="format-detection" content="telephone=no" />
