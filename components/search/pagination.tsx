@@ -41,7 +41,7 @@ const Pagination = ({
     setNextUrl(
       `/search?q=${searchQuery}&page=${Math.min(totalPages, currentPage + 1)}`,
     )
-  }, [currentPage])
+  }, [currentPage, searchQuery, totalPages])
   return (
     <div
       key={currentPage}

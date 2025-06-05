@@ -59,11 +59,12 @@ export function Search() {
           },
         ],
       })
-
       const searchResult = results[0]
-      console.log(searchResult)
+      //@ts-ignore
       setResults(searchResult?.hits || [])
+      //@ts-ignore
       setTotalResults(searchResult?.nbHits || 0)
+      //@ts-ignore
       setTotalPages(Math.ceil((searchResult?.nbHits || 0) / resultsPerPage))
     } catch (error) {
       console.error('Search error:', error)
@@ -74,7 +75,6 @@ export function Search() {
       setIsLoading(false)
     }
   }
-
   // Handle form submission
   const handleSearch = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
@@ -108,6 +108,7 @@ export function Search() {
         performSearch(urlQuery, urlPage)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady, router.query.q, router.query.page])
 
   function createSlug(_type: string, slug?: string) {
@@ -288,7 +289,8 @@ export function Search() {
                 </ul>
               ) : (
                 <p className="text-gray-600 mt-[16px] text-center py-8">
-                  No results found for "{searchTerm}". Try different keywords.
+                  No results found for &quot;{searchTerm}&quot;. Try different
+                  keywords.
                 </p>
               )}
             </>
