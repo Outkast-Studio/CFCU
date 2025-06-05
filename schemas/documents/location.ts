@@ -197,6 +197,12 @@ export default defineType({
 
     modules,
     defineField({
+      name: 'searchData',
+      title: 'Search Data',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
       name: 'metaTitle',
       title: 'Meta Title',
       type: 'string',

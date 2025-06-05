@@ -19,23 +19,11 @@ function transformLocationData(doc: any) {
     objectID: doc._id,
     title: doc.title,
     slug: doc.slug?.current,
-    coordinates: doc.coordinates,
-    thumbnailImage: doc.thumbnailImage,
-    thumbnailImageAlt: doc.thumbnailImageAlt,
-    address: doc.address,
-    phoneNumber: doc.phoneNumber,
-    faxNumber: doc.faxNumber,
-    mailingAddress: doc.mailingAddress,
     services: doc.services || [],
-    hours: doc.hours || [],
     appointmentLink: doc.appointmentLink,
     metaTitle: doc.metaTitle,
     metaDescription: doc.metaDescription,
-    ogImage: doc.ogImage,
-    _type: doc._type,
-    _createdAt: doc._createdAt,
-    _updatedAt: doc._updatedAt,
-    orderRank: doc.orderRank,
+    searchData: doc.searchData,
     // Create searchable text field combining key information
     searchableText: [
       doc.title,
@@ -44,6 +32,7 @@ function transformLocationData(doc: any) {
       ...(doc.services || []),
       doc.metaTitle,
       doc.metaDescription,
+      doc.searchData,
     ]
       .filter(Boolean)
       .join(' '),
@@ -56,15 +45,10 @@ function transformSubpageData(doc: any) {
     objectID: doc._id,
     title: doc.title,
     slug: doc.slug?.current,
-    parent: doc.parent,
-    order: doc.order,
     pageHero: doc.pageHero,
     metaTitle: doc.metaTitle,
     metaDescription: doc.metaDescription,
-    ogImage: doc.ogImage,
-    _type: doc._type,
-    _createdAt: doc._createdAt,
-    _updatedAt: doc._updatedAt,
+    searchData: doc.searchData,
     // Create searchable text field
     searchableText: [
       doc.title,
@@ -72,6 +56,7 @@ function transformSubpageData(doc: any) {
       doc.metaDescription,
       doc.pageHero?.title,
       doc.pageHero?.subtitle,
+      doc.searchData,
     ]
       .filter(Boolean)
       .join(' '),
@@ -85,19 +70,13 @@ function transformPostData(doc: any) {
     title: doc.title,
     slug: doc.slug?.current,
     type: doc.type,
-    author: doc.author,
     date: doc.date,
     excerpt: doc.excerpt,
-    thumbnailImage: doc.thumbnailImage,
-    thumbnailImageAlt: doc.thumbnailImage?.alt,
     topics: doc.topics || [],
-    shareLinks: doc.shareLinks || [],
     metaTitle: doc.metaTitle,
     metaDescription: doc.metaDescription,
-    ogImage: doc.ogImage,
-    _type: doc._type,
-    _createdAt: doc._createdAt,
-    _updatedAt: doc._updatedAt,
+    searchData: doc.searchData,
+
     // Create searchable text field
     searchableText: [
       doc.title,
@@ -105,6 +84,7 @@ function transformPostData(doc: any) {
       doc.type,
       doc.metaTitle,
       doc.metaDescription,
+      doc.searchData,
       ...(doc.topics?.map((topic: any) => topic.title) || []),
     ]
       .filter(Boolean)

@@ -143,6 +143,12 @@ export default defineType({
         'Description for search engines. If left blank, the description for this page will be set to the default description.',
     }),
     defineField({
+      name: 'searchData',
+      title: 'Search Data',
+      type: 'text',
+      rows: 5,
+    }),
+    defineField({
       name: 'ogImage',
       title: 'OG image',
       type: 'image',
