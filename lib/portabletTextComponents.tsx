@@ -94,7 +94,6 @@ export const WysiwygComponentsWithoutPadding = {
       )
     },
     embed: ({ value }) => {
-      console.log(value)
       return <SanitizedEmbed embed={value} />
     },
     fullBleedImage: ({ value }) => (
@@ -561,7 +560,6 @@ export const WysiwygComopentsMin = {
 export const WysiwygComponents = {
   types: {
     embed: ({ value }) => {
-      console.log(value)
       return <SanitizedEmbed embed={value} />
     },
     image: ({ value }) => {
@@ -843,7 +841,6 @@ export const WysiwygComponents = {
         return false
       })
 
-      console.log(children)
       return (
         <ul
           className={clsx(

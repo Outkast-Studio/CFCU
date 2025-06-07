@@ -39,7 +39,6 @@ export function CustomHead({
     //TODO MUST CHANGE THIS TO COMMMENTED OUT CODE
     // setIsProduction(process.env.NEXT_PUBLIC_VERCEL_ENV === 'production')
   }, [])
-  console.log(noIndex)
   return (
     <>
       <NextHead>
