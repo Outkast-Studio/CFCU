@@ -39,7 +39,6 @@ export function CustomHead({
     //TODO MUST CHANGE THIS TO COMMMENTED OUT CODE
     // setIsProduction(process.env.NEXT_PUBLIC_VERCEL_ENV === 'production')
   }, [])
-  console.log(noIndex)
   return (
     <>
       <NextHead>
@@ -56,10 +55,10 @@ export function CustomHead({
             isProduction && !noIndex ? 'index,follow' : 'noindex,nofollow'
           }
         />
-        <meta
+        {/* <meta
           name="keywords"
           content={keywords && keywords.length ? keywords.join(',') : keywords}
-        />
+        /> */}
         <meta name="author" content="Community Financial" />
         <meta name="referrer" content="no-referrer" />
         <meta name="format-detection" content="telephone=no" />

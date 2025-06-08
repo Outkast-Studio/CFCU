@@ -14,7 +14,7 @@ export function Layout({
   noIndex,
 }: {
   children: React.ReactNode
-  seo: {
+  seo?: {
     title: string
     description: string
     image: string

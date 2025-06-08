@@ -40,6 +40,7 @@ const Pagination = ({
     setNextUrl(
       `/search?q=${searchQuery}&page=${Math.min(totalPages, currentPage + 1)}`,
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage])
   return (
     <div

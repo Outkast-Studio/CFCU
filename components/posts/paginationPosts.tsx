@@ -10,7 +10,6 @@ interface PaginationProps {
   currentPage: number
   isSearchPage?: boolean
   generateButtonUrl: (page: number) => string
-  searchQuery: string
   nextUrl: string
   prevUrl: string
 }
@@ -18,8 +17,6 @@ interface PaginationProps {
 const Pagination = ({
   totalPages,
   currentPage,
-  isSearchPage,
-  searchQuery,
   nextUrl,
   prevUrl,
   generateButtonUrl,
