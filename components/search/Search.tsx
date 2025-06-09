@@ -62,6 +62,7 @@ export function Search() {
       const searchResult = results[0]
       //@ts-ignore
       setResults(searchResult?.hits || [])
+
       //@ts-ignore
       setTotalResults(searchResult?.nbHits || 0)
       //@ts-ignore
@@ -75,6 +76,7 @@ export function Search() {
       setIsLoading(false)
     }
   }
+
   // Handle form submission
   const handleSearch = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
@@ -261,7 +263,7 @@ export function Search() {
                       )}
                     >
                       <Link
-                        href={createSlug(result._type, result?.slug)}
+                        href={createSlug(result.type, result?.slug)}
                         className={clsx('group')}
                       >
                         <h3
