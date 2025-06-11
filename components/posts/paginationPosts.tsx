@@ -16,7 +16,6 @@ interface PaginationProps {
 const Pagination = ({
   totalPages,
   currentPage,
-
   nextUrl,
   prevUrl,
   generateButtonUrl,

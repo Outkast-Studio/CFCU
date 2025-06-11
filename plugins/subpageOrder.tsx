@@ -47,7 +47,6 @@ export function CustomDocumentView(props) {
   }, [fetchChildDocuments])
 
   const onDragEnd = async (result) => {
-    console.log('Drag ended:', result)
     if (!result.destination) {
       return
     }
@@ -67,7 +66,6 @@ export function CustomDocumentView(props) {
     setIsPending(true) // Update 2: Set pending state to true before transaction
     try {
       await transaction.commit()
-      console.log('Order updated successfully')
 
       // Update only the current (parent) document to trigger revalidation
       await client

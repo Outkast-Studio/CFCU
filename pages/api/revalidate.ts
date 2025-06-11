@@ -30,7 +30,6 @@ export default async function revalidate(
     }
     // res.status(200).json({ body })
     const staleRoutes = await queryStaleRoutes(body as any)
-    console.log(staleRoutes)
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)))
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`
@@ -215,14 +214,13 @@ async function getAllPostHomePageSlugs(
   )
 
   const topicIds = await client.fetch(groq`*[_type == "topic"]{"_id":_id}`)
-  console.log(topicIds)
   const topicSlugs = await Promise.all(
     topicIds.map(async (topic) => {
       const slugs = await getTopicPostPageSlugs(client, topic._id, true, true)
       return slugs
     }),
   )
-  console.log(topicSlugs)
+
   // Generate routes for each page
   return [...postHomepageSlgus, ...topicSlugs.flat()]
 }
