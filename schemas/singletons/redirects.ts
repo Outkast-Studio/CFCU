@@ -41,19 +41,28 @@ export default defineType({
               title: 'Destination Path',
               type: 'string',
               description:
-                'The path to redirect to. Format: /path/to/page (e.g., /new-about/our-team)',
+                'The path to redirect to. Format: /path/to/page (e.g., /new-about/our-team) or full URL for external redirects (e.g., https://example.com)',
               validation: (Rule) =>
                 Rule.required()
                   .custom((destination) => {
-                    if (
-                      typeof destination === 'string' &&
-                      destination.startsWith('/')
-                    ) {
-                      return true
+                    if (typeof destination === 'string') {
+                      // Allow internal paths starting with /
+                      if (destination.startsWith('/')) {
+                        return true
+                      }
+                      // Allow external URLs starting with http:// or https://
+                      if (
+                        destination.startsWith('http://') ||
+                        destination.startsWith('https://')
+                      ) {
+                        return true
+                      }
                     }
-                    return 'Destination path must start with /'
+                    return 'Destination must start with / for internal redirects or http(s):// for external redirects'
                   })
-                  .error('Destination path is required and must start with /'),
+                  .error(
+                    'Destination is required and must be a valid path or URL',
+                  ),
             },
             {
               name: 'permanent',
