@@ -26,7 +26,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(heroRef.current)
       const tl = gsap
-        .timeline({ delay: lineAmount * 0.2 })
+        .timeline({ delay: lineAmount * 0.3 })
         .fromTo(
           q('.subItem'),
           { opacity: 0, y: 30 },
