@@ -222,7 +222,7 @@ export default async function handler(
       const algoliaRecord = transformWebhookData(_id, body)
 
       if (!algoliaRecord) {
-        return res.status(400).json({
+        return res.status(200).json({
           error: `Unsupported document type: ${body._type}`,
         })
       }
