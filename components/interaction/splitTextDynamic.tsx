@@ -84,7 +84,10 @@ const SplitTextDynamic = ({
     tlRef.current.play()
   }, [paused])
   return (
-    <span ref={headingRef} className={clsx(classNames, 'opacity-0')}>
+    <span
+      ref={headingRef}
+      className={clsx(classNames, 'opacity-0 w-max unbalance')}
+    >
       {stegaClean(value)}
     </span>
   )

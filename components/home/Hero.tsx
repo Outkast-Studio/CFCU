@@ -122,7 +122,7 @@ const Hero = ({ data }: { data: HomepageType['hero'] }) => {
         >
           <h1
             className={clsx(
-              'text-white font-codec-heavy text-[56px] leading-[53.76px] pr-[14px]',
+              'text-white font-codec-heavy text-[56px] leading-[53.76px] pr-[14px] unbalance',
               'lg:page-title-desktop',
             )}
           >

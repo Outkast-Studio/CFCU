@@ -134,7 +134,7 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
             <h1
               className={clsx(
                 'mt-[11px] title-m',
-                'text-white lg:text-[90px] lg:leading-[99px] font-codec-heavy lg:mt-[26px]',
+                'text-white lg:text-[90px] lg:leading-[99px] font-codec-heavy lg:mt-[26px] unbalance',
               )}
             >
               <SplitTextDynamic

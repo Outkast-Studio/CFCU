@@ -162,7 +162,7 @@ const SubPageHero = ({
           <h1
             className={clsx(
               'w-h1 text-white',
-              'lg:page-title-desktop lg:!leading-[85px]',
+              'lg:page-title-desktop lg:!leading-[85px] unbalance',
             )}
           >
             <SplitTextDynamic

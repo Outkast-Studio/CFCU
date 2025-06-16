@@ -116,7 +116,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
           <h1
             className={clsx(
               'text-lavender title-m mt-[11px]',
-              'lg:text-[80px] lg:leading-[75.2px] lg:tracking-[-0.32px] lg:font-codec-extra-bold lg:mt-[29px]',
+              'lg:text-[80px] lg:leading-[75.2px] lg:tracking-[-0.32px] lg:font-codec-extra-bold lg:mt-[29px] unbalance',
             )}
           >
             <SplitTextDynamic

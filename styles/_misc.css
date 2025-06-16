@@ -114,3 +114,7 @@ button:focus {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.unbalance {
+  text-wrap: unset !important;
+}
