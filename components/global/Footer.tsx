@@ -182,7 +182,7 @@ const Footer = () => {
         </div>
         <div
           className={clsx(
-            'lg:border-t-[1px] lg:border-t-white/20 lg:flex  lg:flex-row-reverse lg:mt-[129px] lg:justify-between lg:pt-[33px] lg:items-center',
+            'lg:border-t-[1px] lg:border-t-white/20 lg:flex  lg:flex-row lg:mt-[129px] lg:justify-start lg:pt-[33px] lg:items-center lg:gap-x-[32px]',
           )}
         >
           <div

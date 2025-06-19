@@ -308,7 +308,7 @@ export default function MapView({
         onClick={() => setShowATMs((prev) => !prev)}
         className={clsx(
           'bottom-[72px] right-[8px]',
-          'absolute lg:bottom-[64px] z-[10] bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px]',
+          'absolute lg:bottom-[64px] z-[10] bg-green text-white font-codec-extra-bold rounded-[6px] px-[16px] py-[8px] hidden',
         )}
       >
         Toggle Co-op Network ATM
