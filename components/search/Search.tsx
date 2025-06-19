@@ -1,3 +1,7 @@
+'use client'
+
+import type React from 'react'
+
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -25,7 +29,7 @@ export function Search() {
   const searchClient = algoliasearch(algoliaAppId, algoliaApiKey)
 
   // Function to perform the actual search
-  const performSearch = async (searchQuery: string, page: number = 1) => {
+  const performSearch = async (searchQuery: string, page = 1) => {
     if (!searchQuery.trim()) return
 
     setIsLoading(true)
@@ -81,11 +85,10 @@ export function Search() {
   const handleSearch = async (e?: React.FormEvent) => {
     if (e) e.preventDefault()
 
-    // Reset to page 1 for new searches
     const newPage = 1
 
-    // Update URL with new query and reset page
-    router.push(
+    // Use replace instead of push to avoid navigation issues
+    router.replace(
       `/search?q=${encodeURIComponent(query)}&page=${newPage}`,
       undefined,
       { shallow: true },
@@ -103,7 +106,7 @@ export function Search() {
   useEffect(() => {
     if (router.isReady) {
       const urlQuery = router.query.q as string
-      const urlPage = parseInt(router.query.page as string) || 1
+      const urlPage = Number.parseInt(router.query.page as string) || 1
 
       if (urlQuery) {
         setQuery(urlQuery)
