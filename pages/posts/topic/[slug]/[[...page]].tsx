@@ -79,7 +79,7 @@ export default function TopicSlugRoute({
   }, [globalSettings, setGlobalSettings])
 
   return (
-    <Layout seo={seo} noIndex={true}>
+    <Layout seo={seo} noIndex={pagination.currentPage > 1}>
       <PostHomePage
         key={data?.slug?.current}
         data={blogHomepage}

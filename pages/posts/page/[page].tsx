@@ -88,7 +88,7 @@ export default function Page(props: PageProps) {
     generateButtonUrl,
   }
   return (
-    <Layout seo={props.seo} noIndex={true}>
+    <Layout seo={props.seo} noIndex={props.pagination.currentPage > 1}>
       <PostHomePage
         allPosts={allPosts}
         data={blogHomepage}

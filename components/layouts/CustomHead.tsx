@@ -45,15 +45,11 @@ export function CustomHead({
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
           name="robots"
-          content={
-            isProduction && !noIndex ? 'index,follow' : 'noindex,nofollow'
-          }
+          content={!noIndex ? 'index, follow' : 'noindex, nofollow'}
         />
         <meta
           name="googlebot"
-          content={
-            isProduction && !noIndex ? 'index,follow' : 'noindex,nofollow'
-          }
+          content={!noIndex ? 'index, follow' : 'noindex, nofollow'}
         />
         {/* <meta
           name="keywords"
@@ -124,7 +120,6 @@ export function CustomHead({
           defaultImageHeight: 630,
           site_name: 'cfcu',
         }}
-        robotsProps={{}}
         twitter={{
           handle: twitter.handle,
           cardType: 'summary_large_image',
