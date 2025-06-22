@@ -32,13 +32,6 @@ export function CustomHead({
   const defaultDescription =
     'At Community Financial, we value belonging over banking. How better to create belonging than by investing in the communities where we live, play, and serve?'
 
-  const [isProduction, setIsProduction] = useState(false)
-  useEffect(() => {
-    // VERCEL_ENV is 'production' for production deployments
-    // and 'preview' for preview deployments
-    //TODO MUST CHANGE THIS TO COMMMENTED OUT CODE
-    // setIsProduction(process.env.NEXT_PUBLIC_VERCEL_ENV === 'production')
-  }, [])
   return (
     <>
       <NextHead>
