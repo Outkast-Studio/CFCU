@@ -31,19 +31,13 @@ export function CustomHead({
 
   const defaultDescription =
     'At Community Financial, we value belonging over banking. How better to create belonging than by investing in the communities where we live, play, and serve?'
-
+  console.log('staging')
   return (
     <>
       <NextHead>
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <meta
-          name="robots"
-          content={!noIndex ? 'index, follow' : 'noindex, nofollow'}
-        />
-        <meta
-          name="googlebot"
-          content={!noIndex ? 'index, follow' : 'noindex, nofollow'}
-        />
+        <meta name="robots" content={'noindex, nofollow'} />
+        <meta name="googlebot" content={'noindex, nofollow'} />
         {/* <meta
           name="keywords"
           content={keywords && keywords.length ? keywords.join(',') : keywords}
@@ -95,7 +89,7 @@ export function CustomHead({
       <NextSeo
         title={title}
         description={description || defaultDescription}
-        noindex={noIndex}
+        noindex={true}
         openGraph={{
           title,
           description: description || defaultDescription,
