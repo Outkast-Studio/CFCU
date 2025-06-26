@@ -29,8 +29,7 @@ const config = {
     const sanityRedirects = await client.fetch(`*[_type == "redirects"]{
     ...,
   }`)
-
-    return sanityRedirects[0].redirects
+    const sanitySortedRedirects = sanityRedirects[0].redirects
       .filter((redirect) => {
         // Filter out /go.php?bid= redirects (handled by middleware)
         const isGoPhpBidRedirect = redirect.source.startsWith('/go.php?bid=')
@@ -62,6 +61,14 @@ const config = {
           permanent: redirect.permanent,
         }
       })
+    return [
+      {
+        source: '/posts/topic/:slug/1',
+        destination: '/posts/topic/:slug',
+        permanent: true,
+      },
+      ...sanitySortedRedirects,
+    ]
   },
 }
 export default config

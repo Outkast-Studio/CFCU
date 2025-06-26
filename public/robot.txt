@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /_next/
+Disallow: /api/
+Disallow: /studio/
+
+Sitemap: https://www.cfcu.org/sitemap.xml

@@ -53,7 +53,10 @@ export default function TopicSlugRoute({
   blogHomepage,
   totalPosts,
 }: PageProps) {
-  const prevUrl = `/${topicData.slug.current}/${Math.max(1, pagination.currentPage - 1)}`
+  const prevUrl =
+    pagination.currentPage - 1 == 1
+      ? `/${topicData.slug.current}`
+      : `/${topicData.slug.current}/${Math.max(1, pagination.currentPage - 1)}`
   const nextUrl = `/${topicData.slug.current}/${Math.min(pagination.totalPages, pagination.currentPage + 1)}`
 
   const generateButtonUrl = (page: number) => {
@@ -99,6 +102,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const slug = `posts/topic/${params?.slug}`
   const page = params?.page ? parseInt(params.page[0], 10) : 1
+
   const { topicData, relatedPosts, totalPosts } = await getTopicBySlug(
     client,
     slug,

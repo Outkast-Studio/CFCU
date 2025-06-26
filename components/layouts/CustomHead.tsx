@@ -2,6 +2,7 @@ import { NextSeo } from 'next-seo'
 import NextHead from 'next/head'
 import { urlForImage } from 'lib/sanity.image'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 //SETUP GUIDE:
 //Replace **Business with the correct detials.
 //Ensure NODE_ENV is set to development during the build.
@@ -32,6 +33,9 @@ export function CustomHead({
   const defaultDescription =
     'At Community Financial, we value belonging over banking. How better to create belonging than by investing in the communities where we live, play, and serve?'
 
+  const router = useRouter()
+  const canonicalUrl = `https://www.cfcu.org${router.asPath}`
+
   return (
     <>
       <NextHead>
@@ -61,7 +65,7 @@ export function CustomHead({
           name="twitter:image"
           content={image ? urlForImage(image).url() : defaultOGImage}
         />
-
+        <link rel="canonical" href={canonicalUrl} />
         {/* START FAVICON */}
         <link
           rel="apple-touch-icon"
