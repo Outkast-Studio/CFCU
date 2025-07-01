@@ -16,6 +16,7 @@ import { LocationPage, GlobalSettingsType } from 'types/sanity'
 import { locationBySlugQuery } from 'lib/sanity.queries'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { stegaClean } from '@sanity/client/stega'
 
 import LocationPageComponent from 'components/pages/LocationPage'
 interface PageProps extends SharedPageProps {
@@ -73,7 +74,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     keywords: locationPage?.keywords || '',
     jsonLD:
       typeof locationPage?.jsonLd === 'string'
-        ? JSON.parse(locationPage?.jsonLd)
+        ? JSON.parse(stegaClean(locationPage?.jsonLd))
         : '',
   }
 

@@ -12,6 +12,7 @@ import { Layout } from 'components/layouts/Layout'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useEffect } from 'react'
 import { Seo } from 'pages/_app'
+import { stegaClean } from '@sanity/client/stega'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
@@ -56,7 +57,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     image: homepage?.ogImage || '',
     keywords: homepage?.keywords || '',
     jsonLD:
-      typeof homepage?.jsonLd === 'string' ? JSON.parse(homepage?.jsonLd) : '',
+      typeof homepage?.jsonLd === 'string'
+        ? JSON.parse(stegaClean(homepage?.jsonLd))
+        : '',
   }
 
   return {

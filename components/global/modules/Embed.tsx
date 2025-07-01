@@ -1,11 +1,10 @@
-'use client'
-
 import { useRef, useEffect, useState } from 'react'
 import { clsx } from 'clsx'
 import DOMPurify from 'isomorphic-dompurify'
 import Script from 'next/script'
 import ErrorBoundary from './ErrorBoundary'
 import { EmbedType } from 'types/sanity'
+import { stegaClean } from '@sanity/client/stega'
 
 function extractScriptContent(content) {
   const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi
@@ -63,7 +62,7 @@ export default function SanitizedEmbed({
 
     // Process each script
     embed.scriptsForBody.forEach((scriptContent, index) => {
-      const sanitized = DOMPurify.sanitize(scriptContent.trim())
+      const sanitized = DOMPurify.sanitize(stegaClean(scriptContent.trim()))
 
       // Create a div to hold the sanitized content
       const scriptContainer = document.createElement('div')

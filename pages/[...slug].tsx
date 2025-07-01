@@ -99,7 +99,9 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
     image: pageData?.ogImage || '',
     keywords: pageData?.keywords || '',
     jsonLD:
-      typeof pageData?.jsonLd === 'string' ? JSON.parse(pageData?.jsonLd) : '',
+      typeof pageData?.jsonLd === 'string'
+        ? JSON.parse(stegaClean(pageData?.jsonLd))
+        : '',
   }
   return {
     props: {

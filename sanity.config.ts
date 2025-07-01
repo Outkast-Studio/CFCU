@@ -52,6 +52,7 @@ export default defineConfig({
     }),
     inlineSvgInput(),
     unsplashImageAsset(),
+    visionTool(),
   ],
   icon: Logo,
 })
