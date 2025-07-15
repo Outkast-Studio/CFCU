@@ -55,3 +55,17 @@ export async function copyToClipboard(text: string): Promise<boolean> {
     }
   }
 }
+
+export function externalOnClick(e, href: string) {
+  // Skip alert for cfcu. URLs
+  if (href && href.includes('cfcu.')) {
+    return
+  }
+
+  const confirmed = confirm(
+    'You will be linking to another website not owned or operated by Community Financial Credit Union. Community Financial Credit Union has no responsibility, and neither endorses the information, content, presentation, or accuracy nor makes any warranty, express or implied, regarding any external site. We encourage you to review the privacy and security policies of the external site, which may differ from those at Community Financial Credit Union.\n\nDo you want to continue?',
+  )
+  if (!confirmed) {
+    e.preventDefault() // Prevent navigation if user cancels
+  }
+}

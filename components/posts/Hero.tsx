@@ -10,6 +10,7 @@ import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef } from 'react'
 import { useWindowSize } from '@/hooks/useWindowSize'
+import { externalOnClick } from 'utils'
 
 const Hero = ({ post }: { post: PostPageType }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -231,6 +232,7 @@ const Hero = ({ post }: { post: PostPageType }) => {
                 >
                   {post?.shareLinks?.map((link, index) => (
                     <a
+                      onClick={(e) => externalOnClick(e, link.link)}
                       key={index}
                       href={link.link}
                       target="_blank"

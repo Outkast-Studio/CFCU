@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CardLinkType, PageLinkType } from 'types/sanity'
 import Link from 'next/link'
 import { clsx } from 'clsx'
+import { externalOnClick } from '@/utils'
 const CardLink = ({
   data,
   className,
@@ -48,6 +49,7 @@ const CardLink = ({
       href={data?.externalLink?.externalLink}
       target="_blank"
       className={clsx(className)}
+      onClick={(e) => externalOnClick(e, data?.externalLink?.externalLink)}
     >
       {children}
     </a>

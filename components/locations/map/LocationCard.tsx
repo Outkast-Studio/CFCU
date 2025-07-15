@@ -10,6 +10,7 @@ import { urlForImage } from 'lib/sanity.image'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { externalOnClick } from 'utils'
 
 export default function LocationCard({
   data,
@@ -37,6 +38,7 @@ export default function LocationCard({
       ctx.revert()
     }
   }, [])
+
   return (
     <article
       onClick={(e) => e.stopPropagation()}
@@ -113,7 +115,11 @@ export default function LocationCard({
             fill="#F56600"
           />
         </svg>
-        <a href={getGoogleMapsLink(data?.coordinates)} target={'_blank'}>
+        <a
+          href={getGoogleMapsLink(data?.coordinates)}
+          target={'_blank'}
+          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+        >
           <div>
             <PortableText
               value={data?.address}

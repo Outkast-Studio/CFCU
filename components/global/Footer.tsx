@@ -8,6 +8,7 @@ import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { useClickToCopy } from 'hooks/useClickToCopy'
 import { useRef } from 'react'
 import Link from 'next/link'
+import { externalOnClick } from 'utils'
 const Footer = () => {
   const data = useGlobalSettingsStore((state) => state.globalSettings?.footer)
   const { isCopied, handleCopy } = useClickToCopy(
@@ -15,6 +16,7 @@ const Footer = () => {
     2000,
   )
   const copiedRef = useRef<HTMLParagraphElement>(null)
+
   return (
     <div
       className={clsx(
@@ -49,6 +51,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   key={index}
+                  onClick={(e) => externalOnClick(e, social.url)}
                   href={social.url}
                   className={clsx(
                     'lg:hover:opacity-60 transition-opacity duration-150',

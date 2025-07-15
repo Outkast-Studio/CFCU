@@ -114,6 +114,7 @@ async function queryAllRoutes(client: SanityClient): Promise<StaleRoute[]> {
     '/',
     '/locations',
     '/test-modules',
+    '/search',
     ...routes.map((slug) => `/${slug}`),
     // ...topicPagesThatNeedToBeRevalidated,
     // ...postHomeRoutes,

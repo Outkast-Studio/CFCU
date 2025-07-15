@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { externalOnClick } from 'utils'
 
 interface Props {
   title: string
@@ -83,6 +84,7 @@ const WysiwygPageLink = ({
     <a
       href={href}
       target={target}
+      onClick={(e) => externalOnClick(e, href)}
       className={clsx(
         'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
       )}

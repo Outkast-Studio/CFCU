@@ -4,6 +4,7 @@ import { clsx } from 'clsx'
 import Button from 'components/global/ui/Button'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import { externalOnClick } from 'utils'
 interface Props {
   value: {
     links: Array<ButtonProps>
@@ -105,7 +106,12 @@ const ButtonLink = ({
       <Button label={title} className="!bg-lavender text-white" />
     </Link>
   ) : (
-    <a href={href} target={target} className={clsx('w-fit')}>
+    <a
+      href={href}
+      target={target}
+      className={clsx('w-fit')}
+      onClick={(e) => externalOnClick(e, href)}
+    >
       <Button label={title} className="!bg-lavender text-white" />
     </a>
   )

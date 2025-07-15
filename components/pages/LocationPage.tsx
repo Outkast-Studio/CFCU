@@ -18,6 +18,7 @@ import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { PortableTextBlock } from '@portabletext/types'
+import { externalOnClick } from 'utils'
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
@@ -288,7 +289,11 @@ function DetailCard({
             {content}
           </a>
         ) : isAddress ? (
-          <a href={getGoogleMapsLink(coordinates)} target={'_blank'}>
+          <a
+            href={getGoogleMapsLink(coordinates)}
+            target={'_blank'}
+            onClick={(e) => externalOnClick(e, getGoogleMapsLink(coordinates))}
+          >
             <div>
               <PortableText
                 value={content}

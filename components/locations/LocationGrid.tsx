@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Button from 'components/global/ui/Button'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
+import { externalOnClick } from 'utils'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
@@ -73,7 +74,11 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             fill="#F56600"
           />
         </svg>
-        <a href={getGoogleMapsLink(data?.coordinates)} target={'_blank'}>
+        <a
+          href={getGoogleMapsLink(data?.coordinates)}
+          target={'_blank'}
+          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+        >
           <div>
             <PortableText
               value={data?.address}

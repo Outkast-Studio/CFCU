@@ -3,6 +3,7 @@ import { PageLinkType } from 'types/sanity'
 import Link from 'next/link'
 import { clsx } from 'clsx'
 import { set } from 'sanity'
+import { externalOnClick } from 'utils'
 const PageLink = ({
   data,
   className,
@@ -60,6 +61,7 @@ const PageLink = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.link?._type])
+
   return !data?.externalLink && !data?.externalLinkOneOff?.link ? (
     <Link href={href} className={clsx(className, 'w-fit')} onClick={onClick}>
       {children}
@@ -69,6 +71,7 @@ const PageLink = ({
       href={data?.externalLinkOneOff?.link}
       target={target}
       className={clsx(className, 'w-fit')}
+      onClick={(e) => externalOnClick(e, data?.externalLinkOneOff?.link)}
     >
       {children}
     </a>
@@ -77,6 +80,7 @@ const PageLink = ({
       href={data?.externalLink?.externalLink}
       target={target}
       className={clsx(className, 'w-fit')}
+      onClick={(e) => externalOnClick(e, data?.externalLink?.externalLink)}
     >
       {children}
     </a>
