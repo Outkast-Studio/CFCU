@@ -57,8 +57,8 @@ export async function copyToClipboard(text: string): Promise<boolean> {
 }
 
 export function externalOnClick(e, href: string) {
-  // Skip alert for cfcu. URLs
-  if (href && href.includes('cfcu.')) {
+  // Skip alert for cfcu. URLs and Sanity CDN URLs
+  if (href && (href.includes('cfcu.') || href.includes('cdn.sanity'))) {
     return
   }
 
