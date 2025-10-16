@@ -62,6 +62,7 @@ const PageLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.link?._type])
 
+
   return !data?.externalLink && !data?.externalLinkOneOff?.link ? (
     <Link href={href} className={clsx(className, 'w-fit')} onClick={onClick}>
       {children}
@@ -71,7 +72,7 @@ const PageLink = ({
       href={data?.externalLinkOneOff?.link}
       target={target}
       className={clsx(className, 'w-fit')}
-      onClick={(e) => externalOnClick(e, data?.externalLinkOneOff?.link)}
+      onClick={(e) => externalOnClick(e, data?.externalLinkOneOff?.link, data?.externalLinkOneOff?.showPdfPageLeaveAlert)}
     >
       {children}
     </a>
@@ -80,7 +81,7 @@ const PageLink = ({
       href={data?.externalLink?.externalLink}
       target={target}
       className={clsx(className, 'w-fit')}
-      onClick={(e) => externalOnClick(e, data?.externalLink?.externalLink)}
+      onClick={(e) => externalOnClick(e, data?.externalLink?.externalLink, data?.externalLink?.showPdfPageLeaveAlert)}
     >
       {children}
     </a>

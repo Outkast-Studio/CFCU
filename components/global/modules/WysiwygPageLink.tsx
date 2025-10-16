@@ -8,6 +8,7 @@ interface Props {
   externalLink?: {
     link: string
     openInNewTab: boolean
+    showPdfPageLeaveAlert?: boolean
   }
   link?: {
     _type: string
@@ -16,6 +17,7 @@ interface Props {
   externalLinkOneOff?: {
     link: string
     openInNewTab: boolean
+    showPdfPageLeaveAlert?: boolean
   }
 }
 
@@ -27,6 +29,8 @@ const WysiwygPageLink = ({
 }: Props) => {
   const [href, setHref] = useState('')
   const [target, setTarget] = useState('_self')
+  const [showAlert, setShowAlert] = useState(true)
+
   useEffect(() => {
     if (link?._type) {
       switch (link?._type) {
@@ -61,12 +65,14 @@ const WysiwygPageLink = ({
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
+      setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
     }
     if (externalLink?.link) {
       setHref(externalLink.link)
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
+      setShowAlert(externalLink?.showPdfPageLeaveAlert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -84,7 +90,7 @@ const WysiwygPageLink = ({
     <a
       href={href}
       target={target}
-      onClick={(e) => externalOnClick(e, href)}
+      onClick={(e) => externalOnClick(e, href, showAlert)}
       className={clsx(
         'underline font-codec-bold text-lavender hover:no-underline transition-colors duration-200',
       )}

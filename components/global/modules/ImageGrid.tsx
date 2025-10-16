@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
+import { externalOnClick } from 'utils'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -83,6 +84,7 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                   logo?.link ? (
                     <a
                       href={logo?.link}
+                      onClick={(e) => externalOnClick(e, logo?.link)}
                       className={clsx('lg:block w-full')}
                       key={(String(index) + logo?.logo?.alt) as string}
                     >

@@ -170,10 +170,12 @@ export interface PageLinkType {
     title: string
     externalLink: string
     openInNewTab: boolean
+    showPdfPageLeaveAlert?: boolean
   }
   externalLinkOneOff?: {
     link: string
     openInNewTab: boolean
+    showPdfPageLeaveAlert?: boolean
   }
 }
 
@@ -190,6 +192,7 @@ export interface CardLinkType {
     _id: string
     _type: string
     externalLink: string
+    showPdfPageLeaveAlert?: boolean
   }
 }
 export interface CtaTextType {

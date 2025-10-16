@@ -49,7 +49,7 @@ const CardLink = ({
       href={data?.externalLink?.externalLink}
       target="_blank"
       className={clsx(className)}
-      onClick={(e) => externalOnClick(e, data?.externalLink?.externalLink)}
+      onClick={(e) => externalOnClick(e, data?.externalLink?.externalLink, data?.externalLink?.showPdfPageLeaveAlert)}
     >
       {children}
     </a>

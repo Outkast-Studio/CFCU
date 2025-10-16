@@ -17,6 +17,7 @@ interface ButtonProps {
   externalLink?: {
     link: string
     openInNewTab: boolean
+    showPdfPageLeaveAlert?: boolean
   }
   link?: {
     _type: string
@@ -25,6 +26,7 @@ interface ButtonProps {
   externalLinkOneOff?: {
     link: string
     openInNewTab: boolean
+    showPdfPageLeaveAlert?: boolean
   }
 }
 
@@ -57,6 +59,8 @@ const ButtonLink = ({
 }: ButtonProps) => {
   const [href, setHref] = useState('')
   const [target, setTarget] = useState('_self')
+  const [showAlert, setShowAlert] = useState(true)
+
   useEffect(() => {
     if (link?._type) {
       switch (link?._type) {
@@ -91,12 +95,14 @@ const ButtonLink = ({
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
+      setShowAlert(externalLinkOneOff?.showPdfPageLeaveAlert)
     }
     if (externalLink?.link) {
       setHref(externalLink.link)
       if (externalLink?.openInNewTab) {
         setTarget('_blank')
       }
+      setShowAlert(externalLink?.showPdfPageLeaveAlert)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -110,7 +116,7 @@ const ButtonLink = ({
       href={href}
       target={target}
       className={clsx('w-fit')}
-      onClick={(e) => externalOnClick(e, href)}
+      onClick={(e) => externalOnClick(e, href, showAlert)}
     >
       <Button label={title} className="!bg-lavender text-white" />
     </a>
