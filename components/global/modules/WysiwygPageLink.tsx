@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { externalOnClick } from 'utils'
-
 interface Props {
   title: string
   externalLink?: {
@@ -60,7 +59,7 @@ const WysiwygPageLink = ({
           break
       }
     }
-    if (externalLinkOneOff) {
+    if (externalLinkOneOff?.link) {
       setHref(externalLinkOneOff?.link)
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
