@@ -62,7 +62,6 @@ const PageLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.link?._type])
 
-console.log(data)
   return !data?.externalLink && !data?.externalLinkOneOff?.link ? (
     <Link href={href} className={clsx(className, 'w-fit')} onClick={onClick}>
       {children}
