@@ -19,7 +19,7 @@ const PageLink = ({
   const [target, setTarget] = useState('_self')
 
   useEffect(() => {
-    if (!data?.externalLink && !data?.externalLinkOneOff) {
+    if (!data?.externalLink && !data?.externalLinkOneOff?.link) {
       switch (data?.link?._type) {
         case 'post':
           setHref(`/${data?.link?.slug}`)
@@ -62,7 +62,7 @@ const PageLink = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.link?._type])
 
-
+console.log(data)
   return !data?.externalLink && !data?.externalLinkOneOff?.link ? (
     <Link href={href} className={clsx(className, 'w-fit')} onClick={onClick}>
       {children}
