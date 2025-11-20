@@ -1,5 +1,5 @@
-import { ThemeLabel } from 'types/sanity'
 import { stegaClean } from '@sanity/client/stega'
+import { ThemeLabel } from 'types/sanity'
 
 export const themeConfig = {
   Lavender: {

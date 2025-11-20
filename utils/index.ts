@@ -56,32 +56,40 @@ export async function copyToClipboard(text: string): Promise<boolean> {
   }
 }
 
-export function externalOnClick(e, href: string, showPdfPageLeaveAlert: boolean = false) {
+export function externalOnClick(
+  e,
+  href: string,
+  showPdfPageLeaveAlert: boolean = false,
+) {
   // If showPdfPageLeaveAlert is false, skip all alerts
 
-      if (showPdfPageLeaveAlert) {
-      const confirmed = confirm(
-        'You will be linking to another website not owned or operated by Community Financial Credit Union. Community Financial Credit Union has no responsibility, and neither endorses the information, content, presentation, or accuracy nor makes any warranty, express or implied, regarding any external site. We encourage you to review the privacy and security policies of the external site, which may differ from those at Community Financial Credit Union.\n\nDo you want to continue?',
-      )
-        if (!confirmed) {
-          e.preventDefault()
-          return// Prevent navigation if user cancels
-        }
-      }
-  
+  if (showPdfPageLeaveAlert) {
+    const confirmed = confirm(
+      'You will be linking to another website not owned or operated by Community Financial Credit Union. Community Financial Credit Union has no responsibility, and neither endorses the information, content, presentation, or accuracy nor makes any warranty, express or implied, regarding any external site. We encourage you to review the privacy and security policies of the external site, which may differ from those at Community Financial Credit Union.\n\nDo you want to continue?',
+    )
+    if (!confirmed) {
+      e.preventDefault()
+      return // Prevent navigation if user cancels
+    }
+  }
+
   // Skip alert for cfcu. URLs (except mailto) and Sanity CDN URLs
-  if (href && ((href.includes('cfcu.') && !href.includes('mailto:')) || href.includes('cdn.sanity'))) {
+  if (
+    href &&
+    ((href.includes('cfcu.') && !href.includes('mailto:')) ||
+      href.includes('cdn.sanity'))
+  ) {
     return
   }
 
   if (href.includes('mailto:')) {
-      const confirmed = confirm(
-    'Email is not a secure form of communication. Please do not email us sensitive information such as your account number, tax identification number,  or card information.',
-  )
-  if (!confirmed) {
-    e.preventDefault()
-    return// Prevent navigation if user cancels
-  }
+    const confirmed = confirm(
+      'Email is not a secure form of communication. Please do not email us sensitive information such as your account number, tax identification number,  or card information.',
+    )
+    if (!confirmed) {
+      e.preventDefault()
+      return // Prevent navigation if user cancels
+    }
     return
   }
 

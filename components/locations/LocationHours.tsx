@@ -1,6 +1,6 @@
+import { clsx } from 'clsx'
 import React from 'react'
 import { LocationPage } from 'types/sanity'
-import { clsx } from 'clsx'
 
 const LocationHours = ({ data }: { data: LocationPage['hours'] }) => {
   return (

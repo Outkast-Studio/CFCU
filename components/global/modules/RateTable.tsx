@@ -1,8 +1,9 @@
-import { RateTableType } from 'types/sanity'
-import { clsx } from 'clsx'
-import { formatDate } from 'utils'
 import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
 import { useEffect, useRef } from 'react'
+import { RateTableType } from 'types/sanity'
+import { formatDate } from 'utils'
+
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
