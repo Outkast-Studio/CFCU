@@ -1,7 +1,8 @@
 import { clsx } from 'clsx'
-import Image from 'next/image'
 import { urlForImage } from 'lib/sanity.image'
+import Image from 'next/image'
 import Link from 'next/link'
+
 import { PostPageType } from '@/types/sanity'
 
 const PostCard = ({
@@ -41,7 +42,9 @@ const PostCard = ({
             alt={data?.thumbnailImage?.alt as string}
             width={1000}
             height={1000}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
               fixSize && '!h-full',

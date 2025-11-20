@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { externalOnClick } from 'utils'
 interface Props {
   title: string

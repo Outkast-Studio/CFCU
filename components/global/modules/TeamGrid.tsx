@@ -1,11 +1,13 @@
-import { TeamGridType, GroupMember } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
+import { GroupMember, TeamGridType } from 'types/sanity'
+
 import { urlForImage } from '@/lib/sanity.image'
-import PageLink from '../ui/PageLink'
-import Button from '../ui/Button'
 import { formatPhoneNumber } from '@/lib/utils'
+
+import Button from '../ui/Button'
+import PageLink from '../ui/PageLink'
 
 const TeamGrid = ({ data }: { data: TeamGridType }) => {
   return (
@@ -93,7 +95,7 @@ function TeamCard({ data }: { data: GroupMember }) {
           className={clsx(
             'object-cover w-full h-full opacity-0 transition-all duration-300 ease-in-out-cubic',
           )}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          onLoad={(event) => event.currentTarget.classList.remove('opacity-0')}
         />
       </div>
       <h5 className={clsx('w-h5-desktop text-lavender mt-[16px] text-center')}>

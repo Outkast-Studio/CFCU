@@ -1,10 +1,12 @@
-import { CtaCardGridHomeType } from 'types/sanity'
-import { clsx } from 'clsx'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import CardGridCard from '../ui/CardGridCard'
-import { useWindowSize } from 'hooks/useWindowSize'
+
 import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
+import { useWindowSize } from 'hooks/useWindowSize'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { CtaCardGridHomeType } from 'types/sanity'
+
+import CardGridCard from '../ui/CardGridCard'
 
 const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()

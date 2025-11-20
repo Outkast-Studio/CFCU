@@ -1,21 +1,22 @@
-import { CtaFullMediaType, ThemeLabel } from 'types/sanity'
-import { clsx } from 'clsx'
-import MediaComponent from '../ui/Media'
-import { getThemeClasses } from 'lib/themeConfig'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
-import PageLink from '../ui/PageLink'
-import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
-import PlayPause from '../ui/PlayPause'
-import { useState } from 'react'
-
-import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { useInView } from 'react-intersection-observer'
-import { urlForImage } from '@/lib/sanity.image'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { getThemeClasses } from 'lib/themeConfig'
 import Image from 'next/image'
+import { useState } from 'react'
+import { useRef } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { CtaFullMediaType, ThemeLabel } from 'types/sanity'
+
+import { urlForImage } from '@/lib/sanity.image'
+
+import Button from '../ui/Button'
+import MediaComponent from '../ui/Media'
+import PageLink from '../ui/PageLink'
+import PlayPause from '../ui/PlayPause'
 
 interface Props {
   data: CtaFullMediaType

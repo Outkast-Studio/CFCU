@@ -1,14 +1,15 @@
+import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
+import Button from 'components/global/ui/Button'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { urlForImage } from 'lib/sanity.image'
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { LocationPage } from 'types/sanity'
-import { clsx } from 'clsx'
-import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import Link from 'next/link'
-import Button from 'components/global/ui/Button'
-import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
-import { PortableText } from '@portabletext/react'
 import { externalOnClick } from 'utils'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (
@@ -42,7 +43,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
             )}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
           />
         </div>
       </Link>
@@ -77,7 +80,9 @@ const LocationCard = ({ data }: { data: LocationPage }) => {
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText

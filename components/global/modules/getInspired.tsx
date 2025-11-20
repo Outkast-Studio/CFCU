@@ -1,19 +1,21 @@
-import { GetInspiredType } from 'types/sanity'
-import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
-import Button from '../ui/Button'
-import { PostPageType } from 'types/sanity'
-import Link from 'next/link'
-import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import PageLink from '../ui/PageLink'
-import { useRef } from 'react'
+import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
-import { useInView } from 'react-intersection-observer'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { urlForImage } from 'lib/sanity.image'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRef } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { GetInspiredType } from 'types/sanity'
+import { PostPageType } from 'types/sanity'
+
 import { useWindowSize } from '@/hooks/useWindowSize'
+
+import Button from '../ui/Button'
+import PageLink from '../ui/PageLink'
 
 const GetInspired = ({ data }: { data: GetInspiredType }) => {
   const posts = data?.useTopic
@@ -152,7 +154,9 @@ const PostCard = ({
             alt={data?.thumbnailImage?.alt as string}
             width={888}
             height={888}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-auto lg:group-hover:scale-[1.03]  tranisiton-all duration-300 ease-in-out-cubic opacity-0',
             )}
