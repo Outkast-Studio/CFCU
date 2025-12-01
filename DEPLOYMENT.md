@@ -58,13 +58,13 @@ sudo dnf install -y libatomic
 
 # Verify installation
 node --version
-npm --version
+yarn --version
 ```
 
 ### 2. Install PM2 globally
 
 ```bash
-npm install -g pm2
+yarn global add pm2@latest
 
 # Verify installation
 pm2 --version
@@ -126,8 +126,8 @@ sudo ufw enable
 
 ```bash
 # Install Nginx
-sudo apt update
-sudo apt install nginx
+sudo dnf update
+sudo dnf install nginx
 
 # Create Nginx configuration
 sudo nano /etc/nginx/sites-available/cfcu-nextjs
@@ -171,7 +171,9 @@ sudo systemctl restart nginx
 
 ```bash
 # Install Certbot
-sudo apt install certbot python3-certbot-nginx
+sudo dnf install -y epel-release
+sudo dnf install -y certbot python3-certbot-nginx
+certbot --version
 
 # Obtain SSL certificate
 sudo certbot --nginx -d your-domain.com -d www.your-domain.com
@@ -277,7 +279,7 @@ To skip linting during deployment, comment out or remove the lint step in `.gith
 
 ```yaml
 # - name: Lint code
-#   run: npm run lint
+#   run: yarn lint
 #   continue-on-error: false
 ```
 
@@ -291,7 +293,7 @@ To skip linting during deployment, comment out or remove the lint step in `.gith
 
 ### PM2 command not found
 
-- Install PM2 globally: `npm install -g pm2`
+- Install PM2 globally: `yarn global add pm2`
 - Ensure PM2 is in PATH: `which pm2`
 
 ### Port already in use
@@ -309,7 +311,7 @@ To skip linting during deployment, comment out or remove the lint step in `.gith
 
 - Check if all environment variables needed for build are set
 - Verify dependencies in package.json
-- Try building locally first: `npm run build`
+- Try building locally first: `yarn build`
 
 ## Environment Variables for Build
 
@@ -319,7 +321,7 @@ Edit `.github/workflows/deploy.yml`, in the "Build application" step:
 
 ```yaml
 - name: Build application
-  run: npm run build
+  run: yarn build
   env:
     NODE_ENV: production
     NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
@@ -334,7 +336,7 @@ Then create corresponding GitHub secrets for these values.
 1. **Never commit sensitive data** - Use GitHub secrets for all credentials
 2. **Limit SSH key scope** - Create a dedicated deploy user with minimal permissions
 3. **Use strong SSH keys** - Prefer Ed25519 over RSA
-4. **Keep dependencies updated** - Run `npm audit` regularly
+4. **Keep dependencies updated** - Run `yarn audit` regularly
 5. **Use HTTPS** - Always configure SSL/TLS with Certbot
 6. **Monitor logs** - Regularly check PM2 and Nginx logs
 7. **Backup regularly** - Automate database and file backups

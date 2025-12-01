@@ -46,22 +46,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: 'yarn'
 
       # Step 3: Install dependencies
-      # Using npm ci for clean, reproducible installs based on package-lock.json
+      # Using yarn install --frozen-lockfile for clean, reproducible installs based on yarn.lock
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: yarn install --frozen-lockfile
 
       # Step 4: Run linting (optional - can be commented out)
       # Remove or comment this step if you want to skip linting
       - name: Lint code
-        run: npm run lint
+        run: yarn lint
         continue-on-error: false
 
       # Step 5: Build the Next.js application
       - name: Build application
-        run: npm run build
+        run: yarn build
         env:
           # Add any environment variables needed for build
           NODE_ENV: production
@@ -74,7 +74,7 @@ jobs:
             .next \
             public \
             package.json \
-            package-lock.json \
+            yarn.lock \
             next.config.mjs \
             ecosystem.config.js \
             --exclude=node_modules
@@ -116,7 +116,7 @@ jobs:
             
             # Install production dependencies only
             echo "Installing production dependencies..."
-            npm ci --omit=dev --ignore-scripts
+            yarn install --frozen-lockfile --production --ignore-scripts
             
             # Check if PM2 process exists and reload/start accordingly
             echo "Managing PM2 process..."
