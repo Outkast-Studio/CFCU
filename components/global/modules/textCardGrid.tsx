@@ -1,14 +1,16 @@
-import { TextCardGridType } from 'types/sanity'
-import { clsx } from 'clsx'
 import { PortableText } from '@portabletext/react'
-import PageLink from '../ui/PageLink'
-import Button from '../ui/Button'
 import { stegaClean } from '@sanity/client/stega'
-import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { clsx } from 'clsx'
 import { gsap } from 'gsap'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
+import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { TextCardGridType } from 'types/sanity'
+
 import { useWindowSize } from '@/hooks/useWindowSize'
+
+import Button from '../ui/Button'
+import PageLink from '../ui/PageLink'
 
 const TextCardGrid = ({ data }: { data: TextCardGridType }) => {
   const leftGridItems = data?.cards?.filter((article, index) => index % 2 === 0)

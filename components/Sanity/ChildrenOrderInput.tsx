@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useClient } from 'sanity'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 export function CustomDocumentView(props) {
   const { document } = props

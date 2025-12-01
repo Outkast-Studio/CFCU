@@ -1,13 +1,11 @@
+import { clsx } from 'clsx'
+import ModuleFactory from 'components/global/modules/ModuleFactory'
+import { renderModule } from 'components/global/modules/ModuleFactory'
+import SubPageHero from 'components/global/modules/subPageHero'
+import SubpageLinkList from 'components/global/ui/SubpageLinkList'
+import Link from 'next/link'
 import React from 'react'
 import { SubPageType } from 'types/sanity'
-import { clsx } from 'clsx'
-
-import Link from 'next/link'
-import ModuleFactory from 'components/global/modules/ModuleFactory'
-import SubpageLinkList from 'components/global/ui/SubpageLinkList'
-import SubPageHero from 'components/global/modules/subPageHero'
-
-import { renderModule } from 'components/global/modules/ModuleFactory'
 
 const SubPage = ({
   data,

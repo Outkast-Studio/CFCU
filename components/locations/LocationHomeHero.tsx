@@ -1,15 +1,16 @@
-import { SubPageHeroType } from 'types/sanity'
 import { clsx } from 'clsx'
-import Image from 'next/image'
-import defualtSubPageHero from 'public/images/defaultSubPage.png'
 import MediaComponent from 'components/global/ui/Media'
-import { LocationHomepageType } from 'types/sanity'
-import Link from 'next/link'
-import { gsap } from 'gsap'
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { useRef } from 'react'
-import { useWindowSize } from '@/hooks/useWindowSize'
 import SplitTextDynamic from 'components/interaction/splitTextDynamic'
+import { gsap } from 'gsap'
+import Image from 'next/image'
+import Link from 'next/link'
+import defualtSubPageHero from 'public/images/defaultSubPage.png'
+import { useRef } from 'react'
+import { SubPageHeroType } from 'types/sanity'
+import { LocationHomepageType } from 'types/sanity'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 const LocationHomeHero = ({
   data,

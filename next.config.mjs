@@ -67,7 +67,7 @@ const config = {
         destination: '/posts/topic/:slug',
         permanent: true,
       },
-      ...sanitySortedRedirects || [],
+      ...(sanitySortedRedirects || []),
     ]
   },
 }

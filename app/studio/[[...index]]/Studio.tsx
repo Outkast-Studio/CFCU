@@ -1,8 +1,8 @@
 'use client'
 
 import { NextStudio } from 'next-sanity/studio'
+import { StudioLayout, StudioProvider } from 'sanity'
 import config from 'sanity.config'
-import { StudioProvider, StudioLayout } from 'sanity'
 import { createGlobalStyle } from 'styled-components'
 
 export default function Studio() {

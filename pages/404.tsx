@@ -1,15 +1,16 @@
+import { Layout } from 'components/layouts/Layout'
+import FourOhFourPage from 'components/pages/404Page'
 import { readToken } from 'lib/sanity.api'
-import { getGlobalSettings, getClient, get404Page } from 'lib/sanity.client'
+import { get404Page, getClient, getGlobalSettings } from 'lib/sanity.client'
 import { fourOhFourQuery, globalSettingsQuery } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { draftMode } from 'next/headers'
 import { QueryParams } from 'next-sanity'
-import type { SharedPageProps } from 'pages/_app'
 import { useLiveQuery } from 'next-sanity/preview'
-import { Layout } from 'components/layouts/Layout'
-import { GlobalSettingsType, FourOhFour } from 'types/sanity'
-import FourOhFourPage from 'components/pages/404Page'
+import type { SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
+import { FourOhFour, GlobalSettingsType } from 'types/sanity'
+
 import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 
 interface PageProps extends SharedPageProps {

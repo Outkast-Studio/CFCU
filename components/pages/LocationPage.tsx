@@ -1,24 +1,26 @@
-import { LocationPage } from 'types/sanity'
+import { PortableText } from '@portabletext/react'
+import { PortableTextBlock } from '@portabletext/types'
 import { clsx } from 'clsx'
-import Link from 'next/link'
-import Button from '../global/ui/Button'
+import PageLink from 'components/global/ui/PageLink'
+import LocationHours from 'components/locations/LocationHours'
+import { gsap } from 'gsap'
+import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
+import Link from 'next/link'
 import defaultSubPage from 'public/images/defaultSubPage.png'
-import LocationHours from 'components/locations/LocationHours'
-import PageLink from 'components/global/ui/PageLink'
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useRef, useState } from 'react'
-import SplitTextDynamic from '../interaction/splitTextDynamic'
-import { useWindowSize } from '@/hooks/useWindowSize'
-import { gsap } from 'gsap'
-import ModuleFactory, { renderModule } from '../global/modules/ModuleFactory'
 import React from 'react'
-import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
-import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import { PortableTextBlock } from '@portabletext/types'
+import { LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
+
+import ModuleFactory, { renderModule } from '../global/modules/ModuleFactory'
+import Button from '../global/ui/Button'
+import SplitTextDynamic from '../interaction/splitTextDynamic'
 const LocationPageComponent = ({ data }: { data: LocationPage }) => {
   const heroRef = useRef<HTMLDivElement>(null)
   const { width } = useWindowSize()
@@ -225,7 +227,9 @@ const LocationPageComponent = ({ data }: { data: LocationPage }) => {
               quality={100}
               fill
               priority
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'object-cover w-full h-full opacity-0 transition-opacity duration-200 ease-linear',
               )}
