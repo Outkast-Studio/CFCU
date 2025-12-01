@@ -91,7 +91,9 @@ const ButtonLink = ({
       }
     }
     if (externalLinkOneOff) {
-      setHref(externalLinkOneOff?.link)
+      if (externalLinkOneOff?.link) {
+        setHref(externalLinkOneOff.link)
+      }
       if (externalLinkOneOff?.openInNewTab) {
         setTarget('_blank')
       }
