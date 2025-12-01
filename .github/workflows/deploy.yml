@@ -1,0 +1,152 @@
+name: Deploy to Liquid Web
+
+# Trigger deployment on push to main or proven branch
+on:
+  push:
+    branches:
+      - main
+      - proven
+      - test
+
+# Set environment variables available to all jobs
+env:
+  NODE_VERSION: '20'
+  NODE_ENV: production
+
+  # NEXT_PUBLIC_SANITY_PROJECT_ID: {{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+  # NEXT_PUBLIC_SANITY_DATASET: {{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+  # NEXT_PUBLIC_SANITY_API_VERSION: {{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+  # SANITY_API_READ_TOKEN: {{ secrets.SANITY_API_READ_TOKEN }}
+  # NEXT_PUBLIC_SANITY_PROJECT_TITLE: {{ secrets.NEXT_PUBLIC_SANITY_PROJECT_TITLE }}
+  # SANITY_REVALIDATE_SECRET: {{ secrets.SANITY_REVALIDATE_SECRET }}
+  # NEXT_PUBLIC_VERCEL_ENV: {{ secrets.NEXT_PUBLIC_VERCEL_ENV }}
+  # NEXT_PUBLIC_URL: {{ secrets.NEXT_PUBLIC_URL }}
+  # NEXT_PUBLIC_MAPBOX_TOKEN: {{ secrets.NEXT_PUBLIC_MAPBOX_TOKEN }}
+  # NEXT_PUBLIC_ALGOLIA_APP_ID: {{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
+  # ALGOLIA_API_KEY: {{ secrets.ALGOLIA_API_KEY }}
+  # ALGOLIA_INDEX_NAME: {{ secrets.ALGOLIA_INDEX_NAME }}
+  # ALGOLIA_SEARCH_API: {{ secrets.ALGOLIA_SEARCH_API }}
+  # NEXT_PUBLIC_ALGOLIA_API_KEY: {{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }}
+  # NEXT_PUBLIC_ALGOLIA_INDEX_NAME: {{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
+  # INIT_INDEX_KEY: {{ secrets.INIT_INDEX_KEY }}
+  # DEPLOY_HOOK: {{ secrets.DEPLOY_HOOK }}
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js with specified version
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # Step 3: Install dependencies
+      # Using npm ci for clean, reproducible installs based on package-lock.json
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Run linting (optional - can be commented out)
+      # Remove or comment this step if you want to skip linting
+      - name: Lint code
+        run: npm run lint
+        continue-on-error: false
+
+      # Step 5: Build the Next.js application
+      - name: Build application
+        run: npm run build
+        env:
+          # Add any environment variables needed for build
+          NODE_ENV: production
+
+      # Step 6: Create deployment package
+      # Archive all necessary files for production deployment
+      - name: Create deployment archive
+        run: |
+          tar -czf deploy.tar.gz \
+            .next \
+            public \
+            package.json \
+            package-lock.json \
+            next.config.mjs \
+            ecosystem.config.js \
+            --exclude=node_modules
+
+      # Step 7: Setup SSH key for secure server access
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # Step 8: Upload deployment archive to server
+      - name: Upload to server
+        run: |
+          scp -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            deploy.tar.gz \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
+
+      # Step 9: Deploy on server
+      # Extract archive, install production dependencies, and restart with PM2
+      - name: Deploy and restart application
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
+            set -e
+            
+            # Navigate to deployment directory
+            cd ${{ secrets.DEPLOY_PATH }}
+            
+            # Extract the deployment archive
+            echo "Extracting deployment files..."
+            tar -xzf deploy.tar.gz
+            
+            # Remove the archive
+            rm deploy.tar.gz
+            
+            # Install production dependencies only
+            echo "Installing production dependencies..."
+            npm ci --omit=dev --ignore-scripts
+            
+            # Check if PM2 process exists and reload/start accordingly
+            echo "Managing PM2 process..."
+            if pm2 list | grep -q "cfcu-nextjs"; then
+              echo "Reloading existing PM2 process..."
+              pm2 reload ecosystem.config.js --update-env
+            else
+              echo "Starting new PM2 process..."
+              pm2 start ecosystem.config.js
+            fi
+            
+            # Save PM2 process list
+            pm2 save
+            
+            echo "Deployment completed successfully!"
+          ENDSSH
+
+      # Step 10: Verify deployment
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
+            cd ${{ secrets.DEPLOY_PATH }}
+            pm2 list
+            pm2 info cfcu-nextjs
+          ENDSSH
+
+      # Step 11: Cleanup SSH key
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f ~/.ssh/deploy_key
