@@ -12,8 +12,8 @@ on:
 env:
   NODE_VERSION: '25'
   NODE_ENV: production
-
   NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+
   # NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
   # NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
   # SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
@@ -59,24 +59,22 @@ jobs:
         run: yarn lint
         continue-on-error: false
 
-      - name: Test 123
-        run: echo "NEXT_PUBLIC_SANITY_PROJECT_ID = ${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}"
-
-      - name: Debug presence 1
-        run: |
-          [ -z "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
-
-      - name: Debug presence 2
-        run: |
-          [ -z "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
-
+      # - name: Debug presence 1
+      #   run: |
+      #     [ -z "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
+      # - name: Debug presence 2
+      #   run: |
+      #     [ -z "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
+      # - name: Debug presence 3
+      #   run: |
+      #     [ -z "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
       # Step 5: Build the Next.js application
       - name: Build application
         run: yarn build
-        env:
-          # Add any environment variables needed for build
-          NODE_ENV: production
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+        # env:
+        # Add any environment variables needed for build
+        # NODE_ENV: production
+        # NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}
 
       # Step 6: Create deployment package
       # Archive all necessary files for production deployment
