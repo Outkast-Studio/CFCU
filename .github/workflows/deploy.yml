@@ -59,6 +59,9 @@ jobs:
         run: yarn lint
         continue-on-error: false
 
+      - name: Test 123
+        run: echo ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID}}
+
       # Step 5: Build the Next.js application
       - name: Build application
         run: yarn build
