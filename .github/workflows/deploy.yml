@@ -60,7 +60,7 @@ jobs:
         continue-on-error: false
 
       - name: Test 123
-        run: echo ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID}}
+        run: echo "NEXT_PUBLIC_SANITY_PROJECT_ID = ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID}}"
 
       # Step 5: Build the Next.js application
       - name: Build application
@@ -68,7 +68,7 @@ jobs:
         env:
           # Add any environment variables needed for build
           NODE_ENV: production
-          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
 
       # Step 6: Create deployment package
       # Archive all necessary files for production deployment
