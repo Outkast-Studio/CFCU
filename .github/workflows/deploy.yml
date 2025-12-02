@@ -60,7 +60,15 @@ jobs:
         continue-on-error: false
 
       - name: Test 123
-        run: echo "NEXT_PUBLIC_SANITY_PROJECT_ID = ${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID}}"
+        run: echo "NEXT_PUBLIC_SANITY_PROJECT_ID = ${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}"
+
+      - name: Debug presence 1
+        run: |
+          [ -z "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
+
+      - name: Debug presence 2
+        run: |
+          [ -z "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
 
       # Step 5: Build the Next.js application
       - name: Build application
