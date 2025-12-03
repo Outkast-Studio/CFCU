@@ -179,22 +179,24 @@ jobs:
             # Save PM2 process list
             pm2 save
             
+            # Give the process a moment to start
+            echo "Waiting for process to initialize..."
+            sleep 3
+            
+            # Verify the process started
+            if pm2 list | grep -q "cfcu-nextjs"; then
+              echo "✓ Process started successfully"
+              pm2 info cfcu-nextjs
+            else
+              echo "✗ Process failed to start"
+              pm2 logs --err --lines 50 --nostream
+              exit 1
+            fi
+            
             echo "Deployment completed successfully!"
           ENDSSH
 
-      # Step 10: Verify deployment
-      - name: Verify deployment
-        run: |
-          ssh -i ~/.ssh/deploy_key \
-            -p ${{ secrets.SSH_PORT }} \
-            -o StrictHostKeyChecking=no \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
-            cd ${{ secrets.DEPLOY_PATH }}
-            pm2 list
-            pm2 info cfcu-nextjs
-          ENDSSH
-
-      # Step 11: Cleanup SSH key
+      # Step 10: Cleanup SSH key
       - name: Cleanup
         if: always()
         run: |
