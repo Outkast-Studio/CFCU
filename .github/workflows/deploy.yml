@@ -59,15 +59,17 @@ jobs:
         run: yarn lint
         continue-on-error: false
 
-      # - name: Debug presence 1
-      #   run: |
-      #     [ -z "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
-      # - name: Debug presence 2
-      #   run: |
-      #     [ -z "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
-      # - name: Debug presence 3
-      #   run: |
-      #     [ -z "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] && echo "Var empty" || echo "Var set"
+      # Step 4.5: Check if NEXT_PUBLIC_SANITY_PROJECT_ID is set
+      - name: Check NEXT_PUBLIC_SANITY_PROJECT_ID
+        run: |
+          if [ -n "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] || \
+          [ -n "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] || \
+          [ -n "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ]; then
+            echo "yes"
+          else
+            echo "no"
+          fi
+
       # Step 5: Build the Next.js application
       - name: Build application
         run: yarn build
