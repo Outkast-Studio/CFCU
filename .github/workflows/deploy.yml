@@ -59,7 +59,16 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
             ${{ runner.os }}-nextjs-
 
-      # Step 3: Install dependencies
+      # Step 3: Configure private registry authentication
+      - name: Configure GSAP registry auth
+        run: |
+          cat > .npmrc <<'NPMRC'
+          always-auth=true
+          @gsap:registry=https://npm.greensock.com
+          //npm.greensock.com/:_authToken=${{ secrets.GREENSOCK_TOKEN }}
+          NPMRC
+
+      # Step 3.5: Install dependencies
       # Using yarn install --frozen-lockfile for clean, reproducible installs based on yarn.lock
       - name: Install dependencies
         env:
@@ -101,7 +110,8 @@ jobs:
             package.json \
             yarn.lock \
             next.config.mjs \
-            ecosystem.config.js
+            ecosystem.config.js \
+            .npmrc
 
       # Step 7: Setup SSH key for secure server access
       - name: Setup SSH key
@@ -143,6 +153,14 @@ jobs:
             
             # Remove the archive
             rm deploy.tar.gz
+            
+            # Configure GSAP registry authentication
+            echo "Configuring GSAP registry auth..."
+            cat > .npmrc <<'NPMRC'
+            always-auth=true
+            @gsap:registry=https://npm.greensock.com
+            //npm.greensock.com/:_authToken=${{ secrets.GREENSOCK_TOKEN }}
+            NPMRC
             
             # Install production dependencies only
             echo "Installing production dependencies..."
