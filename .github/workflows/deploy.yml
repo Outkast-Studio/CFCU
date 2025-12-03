@@ -4,8 +4,6 @@ name: Deploy to Liquid Web
 on:
   push:
     branches:
-      - main
-      - proven
       - test
 
 # Set environment variables available to all jobs
@@ -35,6 +33,7 @@ jobs:
   deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
+    environment: Test
 
     steps:
       # Step 1: Checkout the repository code
