@@ -156,11 +156,9 @@ jobs:
             
             # Configure GSAP registry authentication
             echo "Configuring GSAP registry auth..."
-            cat > .npmrc <<'NPMRC'
-            always-auth=true
-            @gsap:registry=https://npm.greensock.com
-            //npm.greensock.com/:_authToken=${{ secrets.GREENSOCK_TOKEN }}
-            NPMRC
+            echo "always-auth=true" > .npmrc
+            echo "@gsap:registry=https://npm.greensock.com" >> .npmrc
+            echo "//npm.greensock.com/:_authToken=${{ secrets.GREENSOCK_TOKEN }}" >> .npmrc
             
             # Install production dependencies only
             echo "Installing production dependencies..."
