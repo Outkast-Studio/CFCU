@@ -113,6 +113,7 @@ jobs:
 
       # Step 8: Upload deployment archive to server
       - name: Upload to server
+      - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
