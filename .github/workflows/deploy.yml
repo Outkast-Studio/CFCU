@@ -64,6 +64,8 @@ jobs:
       # Step 3: Install dependencies
       # Using yarn install --frozen-lockfile for clean, reproducible installs based on yarn.lock
       - name: Install dependencies
+        env:
+          NODE_ENV: development
         run: yarn install --frozen-lockfile
 
       # Step 4: Run linting (optional - can be commented out)
@@ -73,16 +75,15 @@ jobs:
         continue-on-error: false
 
       # Step 4.5: Check if NEXT_PUBLIC_SANITY_PROJECT_ID is set
-      - name: Check NEXT_PUBLIC_SANITY_PROJECT_ID
-        run: |
-          if [ -n "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] || \
-          [ -n "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] || \
-          [ -n "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ]; then
-            echo "yes"
-          else
-            echo "no"
-          fi
-
+      # - name: Check NEXT_PUBLIC_SANITY_PROJECT_ID
+      #   run: |
+      #     if [ -n "${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] || \
+      #     [ -n "${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ] || \
+      #     [ -n "${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}" ]; then
+      #       echo "yes"
+      #     else
+      #       echo "no"
+      #     fi
       # Step 5: Build the Next.js application
       - name: Build application
         run: yarn build
