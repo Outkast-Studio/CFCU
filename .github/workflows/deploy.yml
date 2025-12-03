@@ -113,6 +113,8 @@ jobs:
 
       # Step 8: Upload deployment archive to server
       - name: Upload to server
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           scp -i ~/.ssh/deploy_key \
             -P ${{ secrets.SSH_PORT }} \
