@@ -109,12 +109,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       # Step 8: Upload deployment archive to server
       - name: Upload to server
         run: |
           scp -i ~/.ssh/deploy_key \
+            -P ${{ secrets.SSH_PORT }} \
             -o StrictHostKeyChecking=no \
             deploy.tar.gz \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
@@ -124,6 +125,7 @@ jobs:
       - name: Deploy and restart application
         run: |
           ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT }} \
             -o StrictHostKeyChecking=no \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
             set -e
@@ -162,6 +164,7 @@ jobs:
       - name: Verify deployment
         run: |
           ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT }} \
             -o StrictHostKeyChecking=no \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
             cd ${{ secrets.DEPLOY_PATH }}
