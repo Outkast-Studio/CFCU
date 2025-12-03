@@ -10,26 +10,24 @@ on:
 env:
   NODE_VERSION: '25'
   NODE_ENV: production
-  NEXT_TELEMETRY_DISABLED: 1
-  NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+  ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+  ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
+  ALGOLIA_SEARCH_API: ${{ secrets.ALGOLIA_SEARCH_API }}
+  DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK }}
+  INIT_INDEX_KEY: ${{ secrets.INIT_INDEX_KEY }}
+  NEXT_PUBLIC_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_ALGOLIA_API_KEY }}
+  NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ vars.NEXT_PUBLIC_ALGOLIA_APP_ID }}
+  NEXT_PUBLIC_ALGOLIA_INDEX_NAME: ${{ vars.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
+  NEXT_PUBLIC_MAPBOX_TOKEN: ${{ vars.NEXT_PUBLIC_MAPBOX_TOKEN }}
+  NEXT_PUBLIC_SANITY_API_VERSION: ${{ vars.NEXT_PUBLIC_SANITY_API_VERSION }}
   NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
-
-  # NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
-  # NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
-  # SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
-  # NEXT_PUBLIC_SANITY_PROJECT_TITLE: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_TITLE }}
-  # SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
-  # NEXT_PUBLIC_VERCEL_ENV: ${{ secrets.NEXT_PUBLIC_VERCEL_ENV }}
-  # NEXT_PUBLIC_URL: ${{ secrets.NEXT_PUBLIC_URL }}
-  # NEXT_PUBLIC_MAPBOX_TOKEN: ${{ secrets.NEXT_PUBLIC_MAPBOX_TOKEN }}
-  # NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
-  # ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-  # ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
-  # ALGOLIA_SEARCH_API: ${{ secrets.ALGOLIA_SEARCH_API }}
-  # NEXT_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }}
-  # NEXT_PUBLIC_ALGOLIA_INDEX_NAME: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
-  # INIT_INDEX_KEY: ${{ secrets.INIT_INDEX_KEY }}
-  # DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK }}
+  NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+  NEXT_PUBLIC_SANITY_PROJECT_TITLE: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_TITLE }}
+  NEXT_PUBLIC_URL: ${{ vars.NEXT_PUBLIC_URL }}
+  NEXT_PUBLIC_VERCEL_ENV: ${{ vars.NEXT_PUBLIC_VERCEL_ENV }}
+  NEXT_TELEMETRY_DISABLED: 1
+  SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+  SANITY_REVALIDATE_SECRET: ${{ secrets.SANITY_REVALIDATE_SECRET }}
 
 jobs:
   deploy:
@@ -48,18 +46,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'yarn'
-
-      # Step 2.5: Cache Next.js build output
-      - name: Cache Next.js build
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.npm
-            ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
-            ${{ runner.os }}-nextjs-
 
       # Step 3: Install dependencies
       # Using yarn install --frozen-lockfile for clean, reproducible installs based on yarn.lock
@@ -91,6 +77,18 @@ jobs:
         # Add any environment variables needed for build
         # NODE_ENV: production
         # NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ env.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+
+      # Step 5.5: Cache Next.js build output
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+            ${{ runner.os }}-nextjs-
 
       # Step 6: Create deployment package
       # Archive all necessary files for production deployment
