@@ -1,9 +1,9 @@
+import { stegaClean } from '@sanity/client/stega'
+import { clsx } from 'clsx'
+import { gsap } from 'gsap'
+import { SplitText } from 'gsap/dist/SplitText'
 import React from 'react'
 import { useEffect, useRef } from 'react'
-import { SplitText } from 'gsap/dist/SplitText'
-import { gsap } from 'gsap'
-import { clsx } from 'clsx'
-import { stegaClean } from '@sanity/client/stega'
 import { useState } from 'react'
 
 type Props = {

@@ -1,11 +1,11 @@
-import { useState, useEffect, use } from 'react'
-import { SearchResult } from 'types/sanity'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { clsx } from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import defualtSubPageHero from 'public/images/defaultSubPage.png'
+import { use,useEffect, useState } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { SearchResult } from 'types/sanity'
 import { GlobalSettingsType } from 'types/sanity'
 
 const SearchResultsPage = ({

@@ -1,10 +1,10 @@
-import { useState, useRef, use } from 'react'
 import { clsx } from 'clsx'
+import Link from 'next/link'
+import { use,useRef, useState } from 'react'
+import { useEffect } from 'react'
+
 import Button from '../global/ui/Button'
 import ReversedButton from '../global/ui/ReverseArrowButton'
-import Link from 'next/link'
-
-import { useEffect } from 'react'
 
 interface PaginationProps {
   totalPages: number

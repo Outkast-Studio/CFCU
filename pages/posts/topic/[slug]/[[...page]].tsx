@@ -1,26 +1,27 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
 import { Layout } from 'components/layouts/Layout'
 import PostHomePage from 'components/pages/PostHomePage'
-import {
-  getClient,
-  getAllTopicSlugs,
-  getTopicBySlug,
-  getGlobalSettings,
-  getBlogHomepage,
-} from 'lib/sanity.client'
-import {
-  TopicPageType,
-  PostPageType,
-  GlobalSettingsType,
-  BlogHomepageType,
-} from 'types/sanity'
-import { QueryParams } from 'next-sanity'
 import { readToken } from 'lib/sanity.api'
-import { Seo, SharedPageProps } from '@/pages/_app'
+import {
+  getAllTopicSlugs,
+  getBlogHomepage,
+  getClient,
+  getGlobalSettings,
+  getTopicBySlug,
+} from 'lib/sanity.client'
+import { GetStaticPaths,GetStaticProps } from 'next'
+import { QueryParams } from 'next-sanity'
+import { useLiveQuery } from 'next-sanity/preview'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useLiveQuery } from 'next-sanity/preview'
+import {
+  BlogHomepageType,
+  GlobalSettingsType,
+  PostPageType,
+  TopicPageType,
+} from 'types/sanity'
+
 import { topicBySlugQuery } from '@/lib/sanity.queries'
+import { Seo, SharedPageProps } from '@/pages/_app'
 import blogHomePage from '@/schemas/singletons/blogHomePage'
 
 interface PageProps extends SharedPageProps {

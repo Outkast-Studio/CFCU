@@ -1,11 +1,11 @@
-import { ColumnSplitType } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
+import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import {
-  WysiwygComponentsWithoutPadding,
   WysiwygComopentsMin,
+  WysiwygComponentsWithoutPadding,
 } from 'lib/portabletTextComponents'
-import { stegaClean } from '@sanity/client/stega'
+import { ColumnSplitType } from 'types/sanity'
 
 const ColumnSplit = ({ data }: { data: ColumnSplitType }) => {
   return (

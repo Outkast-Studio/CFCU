@@ -1,14 +1,15 @@
 //@ts-nocheck
 
-import Image from 'next/image'
-import { useState, useRef, useEffect } from 'react'
-import type { Media } from 'types/sanity'
-import { urlForImage } from 'lib/sanity.image'
-import { urlForFile } from 'lib/sanity.file'
-import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
-import { SanityImage } from 'sanity-image'
+import { clsx } from 'clsx'
+import { urlForFile } from 'lib/sanity.file'
+import { urlForImage } from 'lib/sanity.image'
+import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
+import { useEffect,useRef, useState } from 'react'
+import { SanityImage } from 'sanity-image'
+import type { Media } from 'types/sanity'
+
 import { getClient } from '@/lib/sanity.client'
 
 interface MediaComponentProps {

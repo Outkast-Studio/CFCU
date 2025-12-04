@@ -1,12 +1,14 @@
-import Image from 'next/image'
-import { urlForImage } from '../lib/sanity.image'
-import clsx from 'clsx'
-import WTable from '@/components/global/ui/wTable'
 import { getImageDimensions } from '@sanity/asset-utils'
+import clsx from 'clsx'
+import Image from 'next/image'
+
+import SanitizedEmbed from '@/components/global/modules/Embed'
 import WysiwygButtonGroup from '@/components/global/modules/WysiwygButtonGroup'
 import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
-import SanitizedEmbed from '@/components/global/modules/Embed'
 import { Eyebrow } from '@/components/global/ui/TextDecorators'
+import WTable from '@/components/global/ui/wTable'
+
+import { urlForImage } from '../lib/sanity.image'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {

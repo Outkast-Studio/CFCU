@@ -1,19 +1,20 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
 import { Layout } from 'components/layouts/Layout'
 import PostPage from 'components/pages/PostPage'
-import {
-  getClient,
-  getAllIndividualPostSlugs,
-  getIndividualPostBySlug,
-  getGlobalSettings,
-} from 'lib/sanity.client'
-import { PostPageType, GlobalSettingsType } from 'types/sanity'
 import { readToken } from 'lib/sanity.api'
-import { useLiveQuery } from 'next-sanity/preview'
-import { postBySlugQuery } from '@/lib/sanity.queries'
+import {
+  getAllIndividualPostSlugs,
+  getClient,
+  getGlobalSettings,
+  getIndividualPostBySlug,
+} from 'lib/sanity.client'
+import { GetStaticPaths,GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
+import { useLiveQuery } from 'next-sanity/preview'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { GlobalSettingsType,PostPageType } from 'types/sanity'
+
+import { postBySlugQuery } from '@/lib/sanity.queries'
 
 interface PageProps {
   postData: PostPageType

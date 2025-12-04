@@ -1,22 +1,23 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { stegaClean } from '@sanity/client/stega'
+import { Layout } from 'components/layouts/Layout'
+import { readToken } from 'lib/sanity.api'
 import {
   getClient,
-  getSubPageBySlug,
-  getPostBySlug,
   getGlobalSettings,
+  getPostBySlug,
+  getSubPageBySlug,
 } from 'lib/sanity.client'
-import { readToken } from 'lib/sanity.api'
-import PostPage from '../components/pages/PostPage'
-import SubPage from '../components/pages/SubPage'
-import { SubPageType, PostPageType, GlobalSettingsType } from 'types/sanity'
-import type { SharedPageProps, Seo } from 'pages/_app'
+import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
+import { GetStaticPaths,GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
-import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
+import type { Seo,SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { Layout } from 'components/layouts/Layout'
-import { stegaClean } from '@sanity/client/stega'
+import { GlobalSettingsType,PostPageType, SubPageType } from 'types/sanity'
+
+import PostPage from '../components/pages/PostPage'
+import SubPage from '../components/pages/SubPage'
 
 //TODO; Fix the type isues in this file.
 type PageData = SubPageType | PostPageType

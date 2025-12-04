@@ -1,13 +1,13 @@
 'use client'
 
-import type React from 'react'
-
 import { liteClient as algoliasearch } from 'algoliasearch/lite'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { clsx } from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import type React from 'react'
+import { useEffect,useState } from 'react'
+
 import Pagination from './pagination' // Adjust the import path as needed
 
 export function Search() {

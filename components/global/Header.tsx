@@ -1,19 +1,21 @@
-import Image from 'next/image'
 import { clsx } from 'clsx'
-import Menu from './Menu'
-import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { gsap } from 'gsap'
+import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { useScrollPastPoint } from 'hooks/useScrollPastPoint'
 import { useWindowSize } from 'hooks/useWindowSize'
+import Image from 'next/image'
+import { useEffect,useState } from 'react'
 import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
-import { gsap } from 'gsap'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+
+import globalAlert from '@/schemas/documents/modules/globalAlert'
+
+import Menu from './Menu'
+import SanitizedEmbed from './modules/Embed'
+import GlobalSiteAlert from './modules/GlobalSiteAlert'
 import FastExitButton from './modules/QuickExit'
 import SiteAlert from './modules/siteAlert'
-import GlobalSiteAlert from './modules/GlobalSiteAlert'
-import globalAlert from '@/schemas/documents/modules/globalAlert'
-import SanitizedEmbed from './modules/Embed'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

@@ -1,16 +1,17 @@
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { gsap } from 'gsap'
-import { useRef, useState } from 'react'
-import Link from 'next/link'
-import Button from 'components/global/ui/Button'
-import { clsx } from 'clsx'
-import { ATMLocation, LocationPage } from 'types/sanity'
-import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
+import Button from 'components/global/ui/Button'
+import { gsap } from 'gsap'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { urlForImage } from 'lib/sanity.image'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRef, useState } from 'react'
+import { ATMLocation, LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 export default function LocationCard({
   data,
@@ -118,7 +119,9 @@ export default function LocationCard({
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText

@@ -1,10 +1,13 @@
+import { Layout } from 'components/layouts/Layout'
+import IndexPage from 'components/pages/IndexPage'
+import LocationHomePage from 'components/pages/LocationHomePage'
 import { readToken } from 'lib/sanity.api'
 import {
-  getGlobalSettings,
-  getClient,
-  getLocationHomepage,
   getAllLocations,
   getATMLocations,
+  getClient,
+  getGlobalSettings,
+  getLocationHomepage,
 } from 'lib/sanity.client'
 import {
   globalSettingsQuery,
@@ -12,23 +15,20 @@ import {
   locationHomepageQuery,
   locationsQuery,
 } from 'lib/sanity.queries'
-import {
-  LocationHomepageType,
-  GlobalSettingsType,
-  LocationPage,
-  ATMLocation,
-} from 'types/sanity'
 import { GetStaticProps } from 'next'
 import { draftMode } from 'next/headers'
 import { QueryParams, SanityDocument } from 'next-sanity'
-import type { SharedPageProps } from 'pages/_app'
 import { useLiveQuery } from 'next-sanity/preview'
-import IndexPage from 'components/pages/IndexPage'
-import { Layout } from 'components/layouts/Layout'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useEffect } from 'react'
-import LocationHomePage from 'components/pages/LocationHomePage'
+import type { SharedPageProps } from 'pages/_app'
 import { Seo } from 'pages/_app'
+import { useEffect } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import {
+  ATMLocation,
+  GlobalSettingsType,
+  LocationHomepageType,
+  LocationPage,
+} from 'types/sanity'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
