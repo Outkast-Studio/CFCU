@@ -28,15 +28,9 @@ applications:
       '/.npm':
         source: 'storage'
         source_path: 'npm'
-      # '/.next/cache':
-      #   source: 'storage'
-      #   source_path: 'next-cache'
-      '/.next':
-        source: local
-        source_path: 'next'
-      '/.pm2':
-        source: storage
-        source_path: 'pm2'
+      '/.next/cache':
+        source: 'storage'
+        source_path: 'next-cache'
 
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/app/reference/web/
@@ -46,10 +40,7 @@ applications:
       commands:
         # The command to launch your app. If it terminates, it's restarted immediately.
         # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-        start: |
-          export PM2_HOME=$PLATFORM_APP_DIR/.pm2
-          pm2 delete all || true
-          pm2 start ecosystem.config.js --no-daemon
+        start: 'node_modules/.bin/next start -p $PORT'
       # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
       # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
       # More information: https://docs.upsun.com/app/reference/web/upstream/socket-family/
@@ -118,7 +109,6 @@ applications:
     dependencies:
       nodejs:
         yarn: '^1.22.22'
-        pm2: '^5.4.2'
 
     # Hooks allow you to customize your code/environment as the project moves through the build and deploy stages
     # More information: https://docs.upsun.com/app/reference/hooks/
