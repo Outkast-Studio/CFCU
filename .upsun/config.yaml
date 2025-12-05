@@ -46,7 +46,7 @@ applications:
       commands:
         # The command to launch your app. If it terminates, it's restarted immediately.
         # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-        start: 'PM2_HOME=$PLATFORM_APP_DIR/run pm2 start ecosystem.config.js --no-daemon'
+        start: 'PM2_HOME=$PLATFORM_APP_DIR/.pm2 pm2 start ecosystem.config.js --no-daemon'
       # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
       # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
       # More information: https://docs.upsun.com/app/reference/web/upstream/socket-family/
