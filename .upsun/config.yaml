@@ -7,7 +7,7 @@ applications:
 
     # The runtime the application uses.
     # Complete list of available runtimes: https://docs.upsun.com/app/reference/type/
-    type: 'nodejs:22'
+    type: 'nodejs:24'
 
     # Choose which container profile (ratio CPU+RAM) your app will use. Default value comes from the image itself.
     # More information: https://docs.upsun.com/anchors/resources/manage/configuration/profiles/adjust/
@@ -25,15 +25,15 @@ applications:
     # Mounts define directories that are writable after the build is complete.
     # More information: https://docs.upsun.com/app/reference/mounts/
     mounts:
-      # '/.npm':
-      #   source: 'storage'
-      #   source_path: 'npm'
+      '/.npm':
+        source: 'storage'
+        source_path: 'npm'
       # '/.next/cache':
       #   source: 'storage'
       #   source_path: 'next-cache'
-      '/.next':
-        source: local
-        source_path: 'next'
+      # '/.next':
+      #   source: local
+      #   source_path: 'next'
 
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/app/reference/web/
@@ -43,7 +43,7 @@ applications:
       commands:
         # The command to launch your app. If it terminates, it's restarted immediately.
         # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-        start: 'node_modules/.bin/next start -p $PORT'
+        start: 'npx next start -p $PORT'
       # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
       # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
       # More information: https://docs.upsun.com/app/reference/web/upstream/socket-family/
@@ -54,13 +54,13 @@ applications:
       # Each key in locations is a path on your site with a leading /.
       # More information: https://docs.upsun.com/app/reference/web/locations/
       locations:
-        # '/':
-        #   passthru: true
+        '/':
+          passthru: true
         #   allow: true
-        '/_next/static':
-          passthru: false
-          allow: true
-          expires: 1y
+        # '/_next/static':
+        #   passthru: false
+        #   allow: true
+        #   expires: 1y
       # '/fonts':
       #   passthru: false
       #   allow: true
@@ -103,8 +103,8 @@ applications:
 
     # Specifies a default set of build tasks to run. Flavors are language-specific.
     # More information: https://docs.upsun.com/app/reference/build/
-    build:
-      flavor: none
+    # build:
+    #   flavor: none
 
     # Installs global dependencies as part of the build process. They're independent of your app's dependencies and are available in the PATH during the build process and in the runtime environment. They're installed before
     # the build hook runs using a package manager for the language.
@@ -122,17 +122,12 @@ applications:
         set -eux
         yarn install --frozen-lockfile
         yarn build
-        # Move committed files in soon-to-be mounts into temp directory.
-        chmod +x handle_mounts.sh
-        ./handle_mounts.sh
 
       # The deploy hook is run after the app container has been started, but before it has started accepting requests.
       # More information: https://docs.upsun.com/app/hooks/compare/compare/deploy/
-      deploy: |
-        set -eux
-        # echo 'Put your deploy command here'
-        # Move committed files from temp directory back into mounts.
-        ./handle_mounts.sh
+      # deploy: |
+      #   set -eux
+      #   # echo 'Put your deploy command here'
 
       # The post_deploy hook is run after the app container has been started and after it has started accepting requests.
       # More information: https://docs.upsun.com/app/hooks/compare/compare/post-deploy/
