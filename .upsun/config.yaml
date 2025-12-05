@@ -25,12 +25,12 @@ applications:
     # Mounts define directories that are writable after the build is complete.
     # More information: https://docs.upsun.com/app/reference/mounts/
     mounts:
-      '/.npm':
-        source: 'storage'
-        source_path: 'npm'
-      '/.next/cache':
-        source: 'storage'
-        source_path: 'next-cache'
+      # '/.npm':
+      #   source: 'storage'
+      #   source_path: 'npm'
+      # '/.next/cache':
+      #   source: 'storage'
+      #   source_path: 'next-cache'
       '/.next':
         source: local
         source_path: 'next'
@@ -53,26 +53,26 @@ applications:
         socket_family: tcp
       # Each key in locations is a path on your site with a leading /.
       # More information: https://docs.upsun.com/app/reference/web/locations/
-      locations:
-        '/':
-          passthru: true
-          allow: true
-        '/_next/static':
-          passthru: false
-          allow: true
-          expires: 1y
-        '/fonts':
-          passthru: false
-          allow: true
-          expires: 1y
-        '/icons':
-          passthru: false
-          allow: true
-          expires: 1y
-        '/images':
-          passthru: false
-          allow: true
-          expires: 1y
+      # locations:
+      # '/':
+      #   passthru: true
+      #   allow: true
+      # '/_next/static':
+      #   passthru: false
+      #   allow: true
+      #   expires: 1y
+      # '/fonts':
+      #   passthru: false
+      #   allow: true
+      #   expires: 1y
+      # '/icons':
+      #   passthru: false
+      #   allow: true
+      #   expires: 1y
+      # '/images':
+      #   passthru: false
+      #   allow: true
+      #   expires: 1y
 
     # Alternate copies of the application to run as background processes.
     # More information: https://docs.upsun.com/app/reference/workers/
@@ -120,7 +120,6 @@ applications:
       # More information: https://docs.upsun.com/app/hooks/compare/compare/build/
       build: |
         set -eux
-        touch .env
         yarn install --frozen-lockfile
         yarn build
         # Move committed files in soon-to-be mounts into temp directory.
