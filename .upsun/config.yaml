@@ -34,6 +34,9 @@ applications:
       '/.next':
         source: local
         source_path: 'next'
+      '/.pm2':
+        source: storage
+        source_path: 'pm2'
 
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/app/reference/web/
