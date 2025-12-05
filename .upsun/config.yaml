@@ -53,14 +53,14 @@ applications:
         socket_family: tcp
       # Each key in locations is a path on your site with a leading /.
       # More information: https://docs.upsun.com/app/reference/web/locations/
-      # locations:
-      # '/':
-      #   passthru: true
-      #   allow: true
-      # '/_next/static':
-      #   passthru: false
-      #   allow: true
-      #   expires: 1y
+      locations:
+        # '/':
+        #   passthru: true
+        #   allow: true
+        '/_next/static':
+          passthru: false
+          allow: true
+          expires: 1y
       # '/fonts':
       #   passthru: false
       #   allow: true
