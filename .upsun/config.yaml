@@ -121,6 +121,8 @@ applications:
       # More information: https://docs.upsun.com/app/hooks/compare/compare/build/
       build: |
         set -eux
+        touch .env
+        echo "NEXT_PUBLIC_SANITY_PROJECT_ID: $NEXT_PUBLIC_SANITY_PROJECT_ID"
         yarn install --frozen-lockfile
         yarn build
         # Move committed files in soon-to-be mounts into temp directory.
