@@ -6,8 +6,7 @@ import { SubPageType } from 'types/sanity'
 import ModuleFactory from '@/components/global/modules/ModuleFactory'
 import { renderModule } from '@/components/global/modules/ModuleFactory'
 import SubPageHero from '@/components/global/modules/subPageHero'
-
-import SubpageLinkList from './../../components/global/ui/SubpageLinkList'
+import SubpageLinkList from '@/components/global/ui/SubpageLinkList'
 
 const SubPage = ({
   data,
