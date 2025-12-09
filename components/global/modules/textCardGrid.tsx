@@ -1,5 +1,3 @@
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
-import { useWindowSize } from '@hooks/useWindowSize'
 import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
@@ -7,6 +5,9 @@ import { gsap } from 'gsap'
 import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TextCardGridType } from 'types/sanity'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'

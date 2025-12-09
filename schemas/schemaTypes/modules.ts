@@ -1,5 +1,5 @@
 import { defineField, InputProps } from 'sanity'
-import { ArrayMembersWithoutActions } from '@components/Sanity/ArrayMembersWithoutActions'
+import { ArrayMembersWithoutActions } from '@/components/Sanity/ArrayMembersWithoutActions'
 
 export const modules = defineField({
   name: 'modules',

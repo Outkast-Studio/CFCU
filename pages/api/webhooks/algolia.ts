@@ -1,12 +1,13 @@
 import { algoliasearch } from 'algoliasearch'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { parseBody, type ParsedBody } from 'next-sanity/webhook'
+
 import {
   getAllLocations,
   getAllPostsWithoutPagination,
   getAllSubpages,
   getClient,
-} from 'lib/sanity.client'
-import { NextApiRequest, NextApiResponse } from 'next'
-import { parseBody, type ParsedBody } from 'next-sanity/webhook'
+} from '@/lib/sanity.client'
 export { config } from 'next-sanity/webhook'
 
 const algoliaAppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!

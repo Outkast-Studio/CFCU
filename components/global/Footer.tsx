@@ -1,6 +1,4 @@
-import { useClickToCopy } from '@hooks/useClickToCopy'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
@@ -9,6 +7,8 @@ import { GlobalSettingsType } from 'types/sanity'
 import { externalOnClick } from 'utils'
 
 import LogoFull from '/public/icons/LogoFull.png'
+import { useClickToCopy } from '@/hooks/useClickToCopy'
+import { urlForImage } from '@/lib/sanity.image'
 
 import PageLink from './ui/PageLink'
 const Footer = () => {

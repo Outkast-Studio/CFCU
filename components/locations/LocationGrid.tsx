@@ -1,14 +1,15 @@
-import Button from '@components/global/ui/Button'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import { urlForImage } from 'lib/sanity.image'
-import { formatPhoneNumber, getGoogleMapsLink } from 'lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
+
+import Button from '@/components/global/ui/Button'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {
   return (

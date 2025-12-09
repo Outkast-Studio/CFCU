@@ -1,8 +1,5 @@
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
-import { useWindowSize } from '@hooks/useWindowSize'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -10,6 +7,10 @@ import { useRef } from 'react'
 import { PostPageType } from 'types/sanity'
 import { formatDate } from 'utils'
 import { externalOnClick } from 'utils'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import { urlForImage } from '@/lib/sanity.image'
 
 import SplitTextDynamic from '../interaction/splitTextDynamic'
 

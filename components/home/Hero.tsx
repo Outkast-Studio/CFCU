@@ -1,18 +1,19 @@
-import Button from '@components/global/ui/Button'
-import MediaComponent from '@components/global/ui/Media'
-import PageLink from '@components/global/ui/PageLink'
-import PlayPause from '@components/global/ui/PlayPause'
-import SplitTextDynamic from '@components/interaction/splitTextDynamic'
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
 import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { HomepageType } from 'types/sanity'
+
+import Button from '@/components/global/ui/Button'
+import MediaComponent from '@/components/global/ui/Media'
+import PageLink from '@/components/global/ui/PageLink'
+import PlayPause from '@/components/global/ui/PlayPause'
+import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
 const Hero = ({ data }: { data: HomepageType['hero'] }) => {
   const heroRef = useRef<HTMLDivElement>(null)

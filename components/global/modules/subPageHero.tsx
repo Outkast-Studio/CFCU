@@ -1,14 +1,15 @@
-import MediaComponent from '@components/global/ui/Media'
-import PlayPause from '@components/global/ui/PlayPause'
-import SplitTextDynamic from '@components/interaction/splitTextDynamic'
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
-import { useWindowSize } from '@hooks/useWindowSize'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
+
+import MediaComponent from '@/components/global/ui/Media'
+import PlayPause from '@/components/global/ui/PlayPause'
+import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 import { SubPageHeroType, SubPageType } from './../../../types/sanity'
 

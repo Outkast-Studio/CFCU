@@ -1,6 +1,4 @@
-import { Layout } from '@components/layouts/Layout'
 import { stegaClean } from '@sanity/client/stega'
-import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -8,6 +6,9 @@ import type { Seo, SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, PostPageType, SubPageType } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import { postBySlugQuery, subPageBySlugQuery } from '@/lib/sanity.queries'
 
 import PostPage from '../components/pages/PostPage'
 import SubPage from '../components/pages/SubPage'

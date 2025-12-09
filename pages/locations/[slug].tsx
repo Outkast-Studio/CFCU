@@ -1,16 +1,4 @@
-import { Layout } from '@components/layouts/Layout'
-import LocationPageComponent from '@components/pages/LocationPage'
 import { stegaClean } from '@sanity/client/stega'
-import { readToken } from 'lib/sanity.api'
-import {
-  getAllLocationSlugs,
-  getAllRatePageSlugs,
-  getClient,
-  getGlobalSettings,
-  getLocationBySlug,
-  getRatePageBySlug,
-} from 'lib/sanity.client'
-import { locationBySlugQuery } from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -18,6 +6,19 @@ import type { Seo, SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, LocationPage } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import LocationPageComponent from '@/components/pages/LocationPage'
+import { readToken } from '@/lib/sanity.api'
+import {
+  getAllLocationSlugs,
+  getAllRatePageSlugs,
+  getClient,
+  getGlobalSettings,
+  getLocationBySlug,
+  getRatePageBySlug,
+} from '@/lib/sanity.client'
+import { locationBySlugQuery } from '@/lib/sanity.queries'
 interface PageProps extends SharedPageProps {
   locationPage: LocationPage
   globalSettings: GlobalSettingsType

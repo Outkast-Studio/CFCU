@@ -1,10 +1,14 @@
+import { createClient, type SanityClient } from 'next-sanity'
+import Papa from 'papaparse'
+import { ATMLocation, PostPageType, TopicPageType } from 'types/sanity'
+
 import {
   apiVersion,
   dataset,
   projectId,
   studioUrl,
   useCdn,
-} from 'lib/sanity.api'
+} from '@/lib/sanity.api'
 import {
   allPostsQuery,
   allPostsWithouPagination,
@@ -29,10 +33,7 @@ import {
   testModulesQuery,
   topicBySlugQuery,
   topicSlugsQuery,
-} from 'lib/sanity.queries'
-import { createClient, type SanityClient } from 'next-sanity'
-import Papa from 'papaparse'
-import { ATMLocation, PostPageType, TopicPageType } from 'types/sanity'
+} from '@/lib/sanity.queries'
 export function getClient(preview?: { token: string }): SanityClient {
   const client = createClient({
     projectId,

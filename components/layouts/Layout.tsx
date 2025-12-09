@@ -1,5 +1,6 @@
-import Footer from '@components/global/Footer'
 import { clsx } from 'clsx'
+
+import Footer from '@/components/global/Footer'
 
 import { CustomHead } from './CustomHead'
 

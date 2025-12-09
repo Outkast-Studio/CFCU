@@ -1,20 +1,3 @@
-import { Layout } from '@components/layouts/Layout'
-import IndexPage from '@components/pages/IndexPage'
-import LocationHomePage from '@components/pages/LocationHomePage'
-import { readToken } from 'lib/sanity.api'
-import {
-  getAllLocations,
-  getATMLocations,
-  getClient,
-  getGlobalSettings,
-  getLocationHomepage,
-} from 'lib/sanity.client'
-import {
-  globalSettingsQuery,
-  homepageQuery,
-  locationHomepageQuery,
-  locationsQuery,
-} from 'lib/sanity.queries'
 import { GetStaticProps } from 'next'
 import { draftMode } from 'next/headers'
 import { QueryParams, SanityDocument } from 'next-sanity'
@@ -29,6 +12,24 @@ import {
   LocationHomepageType,
   LocationPage,
 } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import IndexPage from '@/components/pages/IndexPage'
+import LocationHomePage from '@/components/pages/LocationHomePage'
+import { readToken } from '@/lib/sanity.api'
+import {
+  getAllLocations,
+  getATMLocations,
+  getClient,
+  getGlobalSettings,
+  getLocationHomepage,
+} from '@/lib/sanity.client'
+import {
+  globalSettingsQuery,
+  homepageQuery,
+  locationHomepageQuery,
+  locationsQuery,
+} from '@/lib/sanity.queries'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

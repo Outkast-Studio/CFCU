@@ -2,19 +2,20 @@
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import Button from '@components/global/ui/Button'
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import { urlForImage } from 'lib/sanity.image'
 import mapboxgl from 'mapbox-gl'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { ATMLocation, LocationPage } from 'types/sanity'
+
+import Button from '@/components/global/ui/Button'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
 
 import ATMCard from './map/AtmCard'
 import LocationCard from './map/LocationCard'

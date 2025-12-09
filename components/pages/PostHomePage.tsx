@@ -1,6 +1,3 @@
-import Pagination from '@components/posts/paginationPosts'
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
-import { useWindowSize } from '@hooks/useWindowSize'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
@@ -13,6 +10,10 @@ import {
   TopicPageType,
   TopicWithRelatedPosts,
 } from 'types/sanity'
+
+import Pagination from '@/components/posts/paginationPosts'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
 import FilterButton from '../global/ui/FilterButton'
 import PostCard from '../global/ui/PostCard'

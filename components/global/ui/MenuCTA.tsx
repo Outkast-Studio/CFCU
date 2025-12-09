@@ -1,10 +1,11 @@
-import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { getThemeClasses, Theme } from 'lib/themeConfig'
 import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { GlobalSettingsType } from 'types/sanity'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { getThemeClasses, Theme } from '@/lib/themeConfig'
 
 import Button from './Button'
 import PageLink from './PageLink'

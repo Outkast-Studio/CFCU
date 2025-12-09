@@ -1,7 +1,8 @@
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { urlForImage } from '@/lib/sanity.image'
 
 import { PostPageType } from './../../../types/sanity'
 

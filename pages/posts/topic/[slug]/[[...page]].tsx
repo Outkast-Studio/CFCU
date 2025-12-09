@@ -1,15 +1,3 @@
-import { Layout } from '@components/layouts/Layout'
-import PostHomePage from '@components/pages/PostHomePage'
-import blogHomePage from '@schemas/singletons/blogHomePage'
-import { readToken } from 'lib/sanity.api'
-import {
-  getAllTopicSlugs,
-  getBlogHomepage,
-  getClient,
-  getGlobalSettings,
-  getTopicBySlug,
-} from 'lib/sanity.client'
-import { topicBySlugQuery } from 'lib/sanity.queries'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -22,7 +10,19 @@ import {
   TopicPageType,
 } from 'types/sanity'
 
+import { Layout } from '@/components/layouts/Layout'
+import PostHomePage from '@/components/pages/PostHomePage'
+import { readToken } from '@/lib/sanity.api'
+import {
+  getAllTopicSlugs,
+  getBlogHomepage,
+  getClient,
+  getGlobalSettings,
+  getTopicBySlug,
+} from '@/lib/sanity.client'
+import { topicBySlugQuery } from '@/lib/sanity.queries'
 import { Seo, SharedPageProps } from '@/pages/_app'
+import blogHomePage from '@/schemas/singletons/blogHomePage'
 
 interface PageProps extends SharedPageProps {
   topicData: TopicPageType
