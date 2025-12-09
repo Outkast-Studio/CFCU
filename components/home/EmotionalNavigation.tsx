@@ -1,7 +1,6 @@
 import * as Accordion from '@radix-ui/react-accordion'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
-import PageLink from 'components/global/ui/PageLink'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
@@ -12,6 +11,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
 import { HomepageType } from 'types/sanity'
+
+import PageLink from '@/components/global/ui/PageLink'
 
 const EmotionalNavigation = ({
   data,

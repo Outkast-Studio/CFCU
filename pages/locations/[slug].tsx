@@ -1,6 +1,4 @@
 import { stegaClean } from '@sanity/client/stega'
-import { Layout } from 'components/layouts/Layout'
-import LocationPageComponent from 'components/pages/LocationPage'
 import { readToken } from 'lib/sanity.api'
 import {
   getAllLocationSlugs,
@@ -18,6 +16,9 @@ import type { Seo, SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, LocationPage } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import LocationPageComponent from '@/components/pages/LocationPage'
 interface PageProps extends SharedPageProps {
   locationPage: LocationPage
   globalSettings: GlobalSettingsType

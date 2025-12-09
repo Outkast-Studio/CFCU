@@ -1,5 +1,4 @@
 import { stegaClean } from '@sanity/client/stega'
-import { Layout } from 'components/layouts/Layout'
 import { readToken } from 'lib/sanity.api'
 import {
   getClient,
@@ -15,6 +14,8 @@ import type { Seo, SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, PostPageType, SubPageType } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
 
 import PostPage from '../components/pages/PostPage'
 import SubPage from '../components/pages/SubPage'

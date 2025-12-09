@@ -1,8 +1,4 @@
 import { clsx } from 'clsx'
-import { Layout } from 'components/layouts/Layout'
-import SearchResultsPage from 'components/pages/SearchResultsPage'
-import Pagination from 'components/search/pagination'
-import { Search } from 'components/search/Search'
 import { readToken } from 'lib/sanity.api'
 import { getClient, getGlobalSettings } from 'lib/sanity.client'
 import { GetServerSideProps } from 'next'
@@ -15,6 +11,11 @@ import { useEffect, useState } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType } from 'types/sanity'
 import { SearchResult } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import SearchResultsPage from '@/components/pages/SearchResultsPage'
+import Pagination from '@/components/search/pagination'
+import { Search } from '@/components/search/Search'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

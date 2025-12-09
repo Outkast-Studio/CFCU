@@ -1,6 +1,4 @@
 import { stegaClean } from '@sanity/client/stega'
-import { Layout } from 'components/layouts/Layout'
-import IndexPage from 'components/pages/IndexPage'
 import { readToken } from 'lib/sanity.api'
 import { getClient, getGlobalSettings, getHomepage } from 'lib/sanity.client'
 import { globalSettingsQuery, homepageQuery } from 'lib/sanity.queries'
@@ -13,6 +11,9 @@ import { Seo } from 'pages/_app'
 import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, HomepageType } from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import IndexPage from '@/components/pages/IndexPage'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

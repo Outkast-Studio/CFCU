@@ -1,6 +1,5 @@
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import Button from 'components/global/ui/Button'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
@@ -9,6 +8,7 @@ import React from 'react'
 import { LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
 
+import Button from '@/components/global/ui/Button'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {

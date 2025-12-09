@@ -1,7 +1,6 @@
 import 'styles/global.css'
 
 import { clsx } from 'clsx'
-import Header from 'components/global/Header'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { SplitText } from 'gsap/dist/SplitText'
@@ -9,6 +8,8 @@ import { urlForImage } from 'lib/sanity.image'
 import { AppProps } from 'next/app'
 import Image from 'next/image'
 import { lazy, Suspense } from 'react'
+
+import Header from '@/components/global/Header'
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 import {

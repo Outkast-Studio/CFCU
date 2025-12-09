@@ -1,11 +1,12 @@
 import { clsx } from 'clsx'
-import Footer from 'components/global/Footer'
-import ModuleFactory from 'components/global/modules/ModuleFactory'
-import { renderModule } from 'components/global/modules/ModuleFactory'
-import EmotionalNavigation from 'components/home/EmotionalNavigation'
-import Hero from 'components/home/Hero'
 import React from 'react'
 import { GlobalSettingsType, HomepageType } from 'types/sanity'
+
+import Footer from '@/components/global/Footer'
+import ModuleFactory from '@/components/global/modules/ModuleFactory'
+import { renderModule } from '@/components/global/modules/ModuleFactory'
+import EmotionalNavigation from '@/components/home/EmotionalNavigation'
+import Hero from '@/components/home/Hero'
 export default function Page({
   globalSettings,
   homepage,

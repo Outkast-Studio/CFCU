@@ -1,11 +1,6 @@
 import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
-import Button from 'components/global/ui/Button'
-import MediaComponent from 'components/global/ui/Media'
-import PageLink from 'components/global/ui/PageLink'
-import PlayPause from 'components/global/ui/PlayPause'
-import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { gsap } from 'gsap'
 import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
@@ -13,6 +8,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { FourOhFour, HomepageType } from 'types/sanity'
+
+import Button from '@/components/global/ui/Button'
+import MediaComponent from '@/components/global/ui/Media'
+import PageLink from '@/components/global/ui/PageLink'
+import PlayPause from '@/components/global/ui/PlayPause'
+import SplitTextDynamic from '@/components/interaction/splitTextDynamic'
 
 const Hero = ({ data }: { data: FourOhFour }) => {
   const heroRef = useRef<HTMLDivElement>(null)

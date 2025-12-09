@@ -1,10 +1,10 @@
 import { clsx } from 'clsx'
-import Button from 'components/global/ui/Button'
 import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { ATMLocation, LocationPage } from 'types/sanity'
 
+import Button from '@/components/global/ui/Button'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 
 export default function ATMCard({
