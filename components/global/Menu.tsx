@@ -1,17 +1,19 @@
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import SearchBar from './SearchBar'
-import { clsx } from 'clsx'
 import * as Accordion from '@radix-ui/react-accordion'
-import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import Link from 'next/link'
-import MenuCTA from './ui/MenuCTA'
-import { useWindowSize } from 'hooks/useWindowSize'
-import PageLink from './ui/PageLink'
+import { clsx } from 'clsx'
 import { animate, motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import { urlForImage } from '@/lib/sanity.image'
+
+import SearchBar from './SearchBar'
+import MenuCTA from './ui/MenuCTA'
+import PageLink from './ui/PageLink'
 
 const Menu = ({
   menuOpen,

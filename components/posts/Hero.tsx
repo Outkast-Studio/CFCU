@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
-import { PostPageType } from 'types/sanity'
-import Image from 'next/image'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
-import Link from 'next/link'
-import { formatDate } from 'utils'
-import SplitTextDynamic from '../interaction/splitTextDynamic'
 import { gsap } from 'gsap'
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useState } from 'react'
 import { useRef } from 'react'
-import { useWindowSize } from '@/hooks/useWindowSize'
+import { PostPageType } from 'types/sanity'
+import { formatDate } from 'utils'
 import { externalOnClick } from 'utils'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import { urlForImage } from '@/lib/sanity.image'
+
+import SplitTextDynamic from '../interaction/splitTextDynamic'
 
 const Hero = ({ post }: { post: PostPageType }) => {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -261,7 +263,9 @@ const Hero = ({ post }: { post: PostPageType }) => {
               .url()}
             alt=""
             fill
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-opacity duration-300 ease-linear',
             )}

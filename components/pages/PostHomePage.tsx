@@ -1,21 +1,23 @@
+import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
+import { gsap } from 'gsap'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRef, useState } from 'react'
 import {
   BlogHomepageType,
   PostPageType,
   TopicPageType,
   TopicWithRelatedPosts,
 } from 'types/sanity'
-import Image from 'next/image'
-import { clsx } from 'clsx'
-import { PortableText } from '@portabletext/react'
-import PostCard from '../global/ui/PostCard'
-import Pagination from 'components/posts/paginationPosts'
-import Link from 'next/link'
-import FilterButton from '../global/ui/FilterButton'
-import { useState, useRef } from 'react'
+
+import Pagination from '@/components/posts/paginationPosts'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { gsap } from 'gsap'
-import SplitTextDynamic from '../interaction/splitTextDynamic'
 import { useWindowSize } from '@/hooks/useWindowSize'
+
+import FilterButton from '../global/ui/FilterButton'
+import PostCard from '../global/ui/PostCard'
+import SplitTextDynamic from '../interaction/splitTextDynamic'
 type Props = {
   allPosts: PostPageType[]
   data: BlogHomepageType

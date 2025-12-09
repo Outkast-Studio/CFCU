@@ -1,7 +1,8 @@
-import { RateTableType } from 'types/sanity'
-import { clsx } from 'clsx'
-import { formatDate } from 'utils'
 import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
+import { RateTableType } from 'types/sanity'
+import { formatDate } from 'utils'
+
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
 const WTable = ({

@@ -1,14 +1,16 @@
-import { GlobalSettingsType } from 'types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import LogoFull from '/public/icons/LogoFull.png'
-import { urlForImage } from 'lib/sanity.image'
-import PageLink from './ui/PageLink'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useClickToCopy } from 'hooks/useClickToCopy'
-import { useRef } from 'react'
 import Link from 'next/link'
+import { useRef } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
+import { GlobalSettingsType } from 'types/sanity'
 import { externalOnClick } from 'utils'
+
+import LogoFull from '/public/icons/LogoFull.png'
+import { useClickToCopy } from '@/hooks/useClickToCopy'
+import { urlForImage } from '@/lib/sanity.image'
+
+import PageLink from './ui/PageLink'
 const Footer = () => {
   const data = useGlobalSettingsStore((state) => state.globalSettings?.footer)
   const { isCopied, handleCopy } = useClickToCopy(

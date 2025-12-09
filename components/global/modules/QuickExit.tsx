@@ -1,6 +1,7 @@
-import { QuickExitType } from 'types/sanity'
 import { clsx } from 'clsx'
 import { use, useEffect, useRef } from 'react'
+import { QuickExitType } from 'types/sanity'
+
 import { useWindowSize } from '@/hooks/useWindowSize'
 export default function FastExitButton({ url }: { url: string }) {
   const buttonRef = useRef<HTMLButtonElement>(null)

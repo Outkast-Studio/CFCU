@@ -1,16 +1,17 @@
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { gsap } from 'gsap'
-import { useRef, useState } from 'react'
-import Link from 'next/link'
-import Button from 'components/global/ui/Button'
-import { clsx } from 'clsx'
-import { ATMLocation, LocationPage } from 'types/sanity'
-import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { clsx } from 'clsx'
+import { gsap } from 'gsap'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRef, useState } from 'react'
+import { ATMLocation, LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
+
+import Button from '@/components/global/ui/Button'
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
+import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 export default function LocationCard({
   data,
@@ -80,7 +81,9 @@ export default function LocationCard({
             alt={data?.thumbnailImage?.alt as string}
             fill
             quality={100}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full opacity-0 transition-all duration-200 ease-linear',
             )}
@@ -118,7 +121,9 @@ export default function LocationCard({
         <a
           href={getGoogleMapsLink(data?.coordinates)}
           target={'_blank'}
-          onClick={(e) => externalOnClick(e, getGoogleMapsLink(data?.coordinates))}
+          onClick={(e) =>
+            externalOnClick(e, getGoogleMapsLink(data?.coordinates))
+          }
         >
           <div>
             <PortableText

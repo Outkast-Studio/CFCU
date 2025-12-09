@@ -1,27 +1,29 @@
 import 'styles/global.css'
 
-import { AppProps } from 'next/app'
-import { lazy, Suspense } from 'react'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
-import Image from 'next/image'
-import Header from 'components/global/Header'
-import { SplitText } from 'gsap/dist/SplitText'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { SplitText } from 'gsap/dist/SplitText'
+import { AppProps } from 'next/app'
+import Image from 'next/image'
+import { lazy, Suspense } from 'react'
+
+import Header from '@/components/global/Header'
+import { urlForImage } from '@/lib/sanity.image'
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 import {
-  CodecPro,
-  CodecProBold,
   CodecExtraBold,
-  CodecNews,
   CodecFat,
   CodecHeavy,
+  CodecLight,
+  CodecNews,
+  CodecPro,
+  CodecProBold,
   CodecRegular,
   CodecUltra,
-  CodecLight,
 } from 'font'
+
 import GlobalErrorBoundary from '@/components/global/GlobalErrorBoundary'
 export interface SharedPageProps {
   draftMode: boolean

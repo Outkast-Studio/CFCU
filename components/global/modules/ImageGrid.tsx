@@ -1,11 +1,12 @@
-import { LogoGridType } from 'types/sanity'
 import { PortableText } from '@portabletext/react'
+import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import { stegaClean } from '@sanity/client/stega'
-import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
-import { externalOnClick } from 'utils'
+import { LogoGridType } from 'types/sanity'
+
+import { WysiwygComponentsWithoutPadding } from './../../../lib/portabletTextComponents'
+import { urlForImage } from './../../../lib/sanity.image'
+import { externalOnClick } from './../../../utils'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (
@@ -97,8 +98,8 @@ const ImageGrid = ({ data }: { data: LogoGridType }) => {
                         width={1000}
                         height={1000}
                         quality={100}
-                        onLoadingComplete={(image) =>
-                          image.classList.remove('opacity-0')
+                        onLoad={(event) =>
+                          event.currentTarget.classList.remove('opacity-0')
                         }
                         className={clsx(
                           'object-cover w-full h-auto lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',

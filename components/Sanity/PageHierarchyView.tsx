@@ -1,10 +1,10 @@
 'use client'
 
+import { ChevronDownIcon, ChevronRightIcon, LinkIcon } from '@sanity/icons'
+import { Box, Card, Flex, Stack, Text } from '@sanity/ui'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useClient } from 'sanity'
-import { Box, Card, Stack, Text, Flex } from '@sanity/ui'
-import { ChevronDownIcon, ChevronRightIcon, LinkIcon } from '@sanity/icons'
-import { useRouter } from 'next/navigation'
 const TreeItem = ({ node, level = 0 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()

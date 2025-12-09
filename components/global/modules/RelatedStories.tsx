@@ -1,15 +1,18 @@
-import { RelatedStoriesType } from 'types/sanity'
-import { clsx } from 'clsx'
+import 'swiper/css'
+
 import { PortableText } from '@portabletext/react'
+import { stegaClean } from '@sanity/client/stega'
+import { clsx } from 'clsx'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react'
+import { RelatedStoriesType } from 'types/sanity'
+import { PostPageType } from 'types/sanity'
+
+import { urlForImage } from '@/lib/sanity.image'
+
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
-import { Swiper, SwiperSlide, type SwiperClass } from 'swiper/react'
-import 'swiper/css'
-import Link from 'next/link'
-import Image from 'next/image'
-import { PostPageType } from 'types/sanity'
-import { urlForImage } from 'lib/sanity.image'
-import { stegaClean } from '@sanity/client/stega'
 import PostCard from '../ui/PostCard'
 
 const RelatedStories = ({ data }: { data: RelatedStoriesType }) => {

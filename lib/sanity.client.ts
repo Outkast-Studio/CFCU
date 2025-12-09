@@ -1,39 +1,39 @@
+import { createClient, type SanityClient } from 'next-sanity'
+import Papa from 'papaparse'
+import { ATMLocation, PostPageType, TopicPageType } from 'types/sanity'
+
 import {
   apiVersion,
   dataset,
   projectId,
   studioUrl,
   useCdn,
-} from 'lib/sanity.api'
-import { ATMLocation, TopicPageType, PostPageType } from 'types/sanity'
+} from '@/lib/sanity.api'
 import {
-  globalSettingsQuery,
-  dynamicPageSlugsQuery,
-  dynamicPageBySlugQuery,
-  homepageQuery,
-  subPageBySlugQuery,
-  postBySlugQuery,
-  testModulesQuery,
-  ratePageBySlugQuery,
-  ratePageSlugsQuery,
-  locationBySlugQuery,
-  locationSlugsQuery,
-  locationsQuery,
-  locationHomepageQuery,
   allPostsQuery,
+  allPostsWithouPagination,
+  allSubpagesQuery,
+  allTopicsQuery,
   blogHomepageQuery,
+  dynamicPageBySlugQuery,
+  dynamicPageSlugsQuery,
+  fourOhFourQuery,
+  globalSettingsQuery,
+  homepageQuery,
   individualPostBySlugQuery,
   individualPostSlugsQuery,
+  locationBySlugQuery,
+  locationHomepageQuery,
+  locationSlugsQuery,
+  locationsQuery,
+  postBySlugQuery,
+  ratePageBySlugQuery,
+  ratePageSlugsQuery,
+  subPageBySlugQuery,
+  testModulesQuery,
   topicBySlugQuery,
   topicSlugsQuery,
-  allTopicsQuery,
-  fourOhFourQuery,
-  allSubpagesQuery,
-  allPostsWithouPagination,
-} from 'lib/sanity.queries'
-import { createClient, type SanityClient } from 'next-sanity'
-
-import Papa from 'papaparse'
+} from '@/lib/sanity.queries'
 export function getClient(preview?: { token: string }): SanityClient {
   const client = createClient({
     projectId,

@@ -1,9 +1,11 @@
-import { CtaCardGridHomeType } from 'types/sanity'
+import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import { PortableText } from '@portabletext/react'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { CtaCardGridHomeType } from 'types/sanity'
+
+import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
+
 import CardLink from '../ui/CardLink'
 
 export default function CardGridCard({
@@ -26,7 +28,9 @@ export default function CardGridCard({
             alt={data?.image?.alt as string}
             width={888}
             height={888}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
             )}
@@ -81,7 +85,7 @@ export default function CardGridCard({
           alt={data?.image?.alt as string}
           width={888}
           height={888}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          onLoad={(event) => event.currentTarget.classList.remove('opacity-0')}
           className={clsx(
             'object-cover w-full h-full lg:group-hover:scale-[1.03] tranisiton-all duration-300 ease-in-out-cubic opacity-0',
           )}

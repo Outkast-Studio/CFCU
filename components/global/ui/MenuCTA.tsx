@@ -1,13 +1,14 @@
 import { clsx } from 'clsx'
-import { getThemeClasses, Theme } from 'lib/themeConfig'
-import { GlobalSettingsType } from 'types/sanity'
-import PageLink from './PageLink'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { useEffect, useState } from 'react'
-
 import { useRef } from 'react'
+import { GlobalSettingsType } from 'types/sanity'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { getThemeClasses, Theme } from '@/lib/themeConfig'
+
 import Button from './Button'
+import PageLink from './PageLink'
 const MenuCTA = ({
   data,
   menuOpen,
