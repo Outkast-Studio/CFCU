@@ -8,6 +8,7 @@ import {
   getGlobalSettings,
   getTopicBySlug,
 } from '@lib/sanity.client'
+import { topicBySlugQuery } from '@lib/sanity.queries'
 import blogHomePage from '@schemas/singletons/blogHomePage'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
@@ -21,7 +22,6 @@ import {
   TopicPageType,
 } from 'types/sanity'
 
-import { topicBySlugQuery } from '@/lib/sanity.queries'
 import { Seo, SharedPageProps } from '@/pages/_app'
 
 interface PageProps extends SharedPageProps {

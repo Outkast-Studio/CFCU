@@ -1,5 +1,6 @@
 //@ts-nocheck
 
+import { getClient } from '@lib/sanity.client'
 import { urlForFile } from '@lib/sanity.file'
 import { urlForImage } from '@lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
@@ -9,8 +10,6 @@ import { useNextSanityImage } from 'next-sanity-image'
 import { useEffect, useRef, useState } from 'react'
 import { SanityImage } from 'sanity-image'
 import type { Media } from 'types/sanity'
-
-import { getClient } from '@/lib/sanity.client'
 
 interface MediaComponentProps {
   media: Media

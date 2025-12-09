@@ -1,9 +1,8 @@
+import { WysiwygComponentsWithoutPadding } from '@lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import { RateTableType } from 'types/sanity'
 import { formatDate } from 'utils'
-
-import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
 const WTable = ({
   data,

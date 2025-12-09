@@ -1,4 +1,4 @@
-import { title } from '@/lib/demo.data'
+import { title } from '@lib/demo.data'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({

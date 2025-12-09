@@ -1,3 +1,4 @@
+import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
 import { WysiwygComopentsMin } from '@lib/portabletTextComponents'
 import { urlForImage } from '@lib/sanity.image'
 import { getThemeClasses } from '@lib/themeConfig'
@@ -9,8 +10,6 @@ import Image from 'next/image'
 import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { CtaTopicRowType } from 'types/sanity'
-
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'

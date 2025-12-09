@@ -1,4 +1,5 @@
 import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@hooks/useWindowSize'
 import { WysiwygComponentsWithoutPadding } from '@lib/portabletTextComponents'
 import { urlForImage } from '@lib/sanity.image'
 import { PortableText } from '@portabletext/react'
@@ -11,8 +12,6 @@ import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { GetInspiredType } from 'types/sanity'
 import { PostPageType } from 'types/sanity'
-
-import { useWindowSize } from '@/hooks/useWindowSize'
 
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'

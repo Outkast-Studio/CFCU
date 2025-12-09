@@ -1,5 +1,7 @@
 import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from '@hooks/useWindowSize'
 import { WysiwygComopentsMin } from '@lib/portabletTextComponents'
+import { urlForImage } from '@lib/sanity.image'
 import { getThemeClasses } from '@lib/themeConfig'
 import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
@@ -10,9 +12,6 @@ import React from 'react'
 import { useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { CtaInContentType } from 'types/sanity'
-
-import { useWindowSize } from '@/hooks/useWindowSize'
-import { urlForImage } from '@/lib/sanity.image'
 
 import Button from '../ui/Button'
 import MediaComponent from '../ui/Media'

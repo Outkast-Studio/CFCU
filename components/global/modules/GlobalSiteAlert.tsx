@@ -1,11 +1,10 @@
+import { useWindowSize } from '@hooks/useWindowSize'
+import { WysiwygComopentsMin } from '@lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import { use, useEffect, useRef, useState } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalAlertType } from 'types/sanity'
-
-import { useWindowSize } from '@/hooks/useWindowSize'
-import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
 
 const GlobalSiteAlert = ({ data }: { data: GlobalAlertType }) => {
   const [isClosed, setIsClosed] = useState(false)

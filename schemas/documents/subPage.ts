@@ -3,7 +3,7 @@ import { Browser } from '@phosphor-icons/react'
 import { modules } from '@schemas/schemaTypes/modules'
 import { useClient } from 'sanity'
 import { createClient } from 'next-sanity'
-import { getClient } from '@/lib/sanity.client'
+import { getClient } from '@lib/sanity.client'
 
 export default defineType({
   name: 'subPage',
