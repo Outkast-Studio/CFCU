@@ -2,11 +2,11 @@ import { getImageDimensions } from '@sanity/asset-utils'
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import SanitizedEmbed from '@/components/global/modules/Embed'
-import WysiwygButtonGroup from '@/components/global/modules/WysiwygButtonGroup'
-import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
-import { Eyebrow } from '@/components/global/ui/TextDecorators'
-import WTable from '@/components/global/ui/wTable'
+import SanitizedEmbed from 'components/global/modules/Embed'
+import WysiwygButtonGroup from 'components/global/modules/WysiwygButtonGroup'
+import WysiwygPageLink from 'components/global/modules/WysiwygPageLink'
+import { Eyebrow } from 'components/global/ui/TextDecorators'
+import WTable from 'components/global/ui/wTable'
 
 import { urlForImage } from '../lib/sanity.image'
 

@@ -14,7 +14,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { ATMLocation, LocationPage } from 'types/sanity'
 
-import Button from '@/components/global/ui/Button'
+import Button from 'components/global/ui/Button'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 
 import ATMCard from './map/AtmCard'

@@ -4,8 +4,8 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { externalOnClick } from 'utils'
 
-import Button from '@/components/global/ui/Button'
-import PageLink from '@/components/global/ui/PageLink'
+import Button from 'components/global/ui/Button'
+import PageLink from 'components/global/ui/PageLink'
 interface Props {
   value: {
     links: Array<ButtonProps>

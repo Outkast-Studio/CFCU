@@ -9,7 +9,7 @@ import { useRef, useState } from 'react'
 import { ATMLocation, LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
 
-import Button from '@/components/global/ui/Button'
+import Button from 'components/global/ui/Button'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 

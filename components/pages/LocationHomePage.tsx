@@ -7,9 +7,9 @@ import {
   LocationPage,
 } from 'types/sanity'
 
-import LocationGrid from '@/components/locations/LocationGrid'
-import LocationHomeHero from '@/components/locations/LocationHomeHero'
-import LocationMap from '@/components/locations/LocationMap'
+import LocationGrid from 'components/locations/LocationGrid'
+import LocationHomeHero from 'components/locations/LocationHomeHero'
+import LocationMap from 'components/locations/LocationMap'
 
 import ModuleFactory from '../global/modules/ModuleFactory'
 import { renderModule } from '../global/modules/ModuleFactory'

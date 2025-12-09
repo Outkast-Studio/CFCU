@@ -12,8 +12,8 @@ import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, HomepageType } from 'types/sanity'
 
-import { Layout } from '@/components/layouts/Layout'
-import IndexPage from '@/components/pages/IndexPage'
+import { Layout } from 'components/layouts/Layout'
+import IndexPage from 'components/pages/IndexPage'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

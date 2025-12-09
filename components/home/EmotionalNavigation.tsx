@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import { HomepageType } from 'types/sanity'
 
-import PageLink from '@/components/global/ui/PageLink'
+import PageLink from 'components/global/ui/PageLink'
 
 const EmotionalNavigation = ({
   data,

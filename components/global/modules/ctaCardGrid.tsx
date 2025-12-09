@@ -2,11 +2,11 @@ import 'swiper/css'
 
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import { useWindowSize } from 'hooks/useWindowSize'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { CtaCardGridHomeType } from 'types/sanity'
 
 import CardGridCard from '../ui/CardGridCard'
+import { useWindowSize } from './../../../hooks/useWindowSize'
 
 const CtaCardGrid = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()

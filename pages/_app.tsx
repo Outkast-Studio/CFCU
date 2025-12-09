@@ -9,7 +9,7 @@ import { AppProps } from 'next/app'
 import Image from 'next/image'
 import { lazy, Suspense } from 'react'
 
-import Header from '@/components/global/Header'
+import Header from 'components/global/Header'
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 import {
@@ -24,7 +24,7 @@ import {
   CodecUltra,
 } from 'font'
 
-import GlobalErrorBoundary from '@/components/global/GlobalErrorBoundary'
+import GlobalErrorBoundary from 'components/global/GlobalErrorBoundary'
 export interface SharedPageProps {
   draftMode: boolean
   token: string

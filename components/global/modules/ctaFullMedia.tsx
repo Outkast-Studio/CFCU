@@ -2,8 +2,6 @@ import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
-import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import { getThemeClasses } from 'lib/themeConfig'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -11,12 +9,13 @@ import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { CtaFullMediaType, ThemeLabel } from 'types/sanity'
 
-import { urlForImage } from '@/lib/sanity.image'
-
 import Button from '../ui/Button'
 import MediaComponent from '../ui/Media'
 import PageLink from '../ui/PageLink'
 import PlayPause from '../ui/PlayPause'
+import { useIsomorphicLayoutEffect } from './../../../hooks/useIsomorphicLayoutEffect'
+import { WysiwygComponentsWithoutPadding } from './../../../lib/portabletTextComponents'
+import { urlForImage } from './../../../lib/sanity.image'
 
 interface Props {
   data: CtaFullMediaType

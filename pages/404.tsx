@@ -9,8 +9,8 @@ import type { SharedPageProps } from 'pages/_app'
 import { useEffect } from 'react'
 import { FourOhFour, GlobalSettingsType } from 'types/sanity'
 
-import { Layout } from '@/components/layouts/Layout'
-import FourOhFourPage from '@/components/pages/404Page'
+import { Layout } from 'components/layouts/Layout'
+import FourOhFourPage from 'components/pages/404Page'
 import { useGlobalSettingsStore } from '@/stores/globalSettingsStore'
 
 interface PageProps extends SharedPageProps {

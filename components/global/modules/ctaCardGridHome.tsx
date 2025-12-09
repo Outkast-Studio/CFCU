@@ -2,8 +2,6 @@ import 'swiper/css'
 
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
-import { useWindowSize } from 'hooks/useWindowSize'
 import { useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react'
@@ -11,6 +9,8 @@ import { CtaCardGridHomeType } from 'types/sanity'
 
 import CardGridCard from '../ui/CardGridCard'
 import PageLink from '../ui/PageLink'
+import { useIsomorphicLayoutEffect } from './../../../hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from './../../../hooks/useWindowSize'
 
 const CtaCardGridHome = ({ data }: { data: CtaCardGridHomeType }) => {
   const { width } = useWindowSize()

@@ -11,7 +11,7 @@ import {
   TopicWithRelatedPosts,
 } from 'types/sanity'
 
-import Pagination from '@/components/posts/paginationPosts'
+import Pagination from 'components/posts/paginationPosts'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useWindowSize } from '@/hooks/useWindowSize'
 

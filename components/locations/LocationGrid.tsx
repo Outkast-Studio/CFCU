@@ -8,7 +8,7 @@ import React from 'react'
 import { LocationPage } from 'types/sanity'
 import { externalOnClick } from 'utils'
 
-import Button from '@/components/global/ui/Button'
+import Button from 'components/global/ui/Button'
 import { formatPhoneNumber, getGoogleMapsLink } from '@/lib/utils'
 
 const LocationGrid = ({ data }: { data: LocationPage[] }) => {

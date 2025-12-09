@@ -13,7 +13,7 @@ import {
   SuperScript,
   Small,
   Eyebrow,
-} from '@/components/global/ui/TextDecorators'
+} from 'components/global/ui/TextDecorators'
 import { PhoneList } from '@phosphor-icons/react'
 import { Phone } from 'lucide-react'
 import { UserIcon } from '@sanity/icons'
@@ -21,9 +21,9 @@ import {
   LeftAlignedText,
   CenterAlignedText,
   RightAlignedText,
-} from '@/components/global/ui/TextAlignment'
+} from 'components/global/ui/TextAlignment'
 
-import { Highlight } from '@/components/Sanity/Highlight'
+import { Highlight } from 'components/Sanity/Highlight'
 
 // Define the horizontalRule type
 export const horizontalRule = defineType({

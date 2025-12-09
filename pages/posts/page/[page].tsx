@@ -28,8 +28,8 @@ import {
   TopicWithRelatedPosts,
 } from 'types/sanity'
 
-import { Layout } from '@/components/layouts/Layout'
-import PostHomePage from '@/components/pages/PostHomePage'
+import { Layout } from 'components/layouts/Layout'
+import PostHomePage from 'components/pages/PostHomePage'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
