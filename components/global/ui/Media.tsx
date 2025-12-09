@@ -1,9 +1,9 @@
 //@ts-nocheck
 
+import { urlForFile } from '@lib/sanity.file'
+import { urlForImage } from '@lib/sanity.image'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
-import { urlForFile } from 'lib/sanity.file'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
 import { useEffect, useRef, useState } from 'react'

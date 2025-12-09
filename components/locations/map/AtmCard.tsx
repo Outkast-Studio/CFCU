@@ -1,5 +1,5 @@
+import Button from '@components/global/ui/Button'
 import { clsx } from 'clsx'
-import Button from 'components/global/ui/Button'
 import { gsap } from 'gsap'
 import Link from 'next/link'
 import { useRef, useState } from 'react'

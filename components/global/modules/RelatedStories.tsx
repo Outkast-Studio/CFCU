@@ -1,9 +1,9 @@
 import 'swiper/css'
 
+import { urlForImage } from '@lib/sanity.image'
 import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Swiper, type SwiperClass, SwiperSlide } from 'swiper/react'

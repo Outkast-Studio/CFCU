@@ -1,6 +1,6 @@
+import { useWindowSize } from '@hooks/useWindowSize'
 import * as Accordion from '@radix-ui/react-accordion'
 import { clsx } from 'clsx'
-import { useWindowSize } from 'hooks/useWindowSize'
 import Link from 'next/link'
 import { SubPageType } from 'types/sanity'
 

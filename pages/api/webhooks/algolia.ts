@@ -1,10 +1,10 @@
-import { algoliasearch } from 'algoliasearch'
 import {
   getAllLocations,
   getAllPostsWithoutPagination,
   getAllSubpages,
   getClient,
-} from 'lib/sanity.client'
+} from '@lib/sanity.client'
+import { algoliasearch } from 'algoliasearch'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { parseBody, type ParsedBody } from 'next-sanity/webhook'
 export { config } from 'next-sanity/webhook'

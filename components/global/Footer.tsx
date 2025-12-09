@@ -1,6 +1,6 @@
+import { useClickToCopy } from '@hooks/useClickToCopy'
+import { urlForImage } from '@lib/sanity.image'
 import { clsx } from 'clsx'
-import { useClickToCopy } from 'hooks/useClickToCopy'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'

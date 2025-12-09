@@ -1,7 +1,6 @@
-import { stegaClean } from '@sanity/client/stega'
-import { Layout } from 'components/layouts/Layout'
-import LocationPageComponent from 'components/pages/LocationPage'
-import { readToken } from 'lib/sanity.api'
+import { Layout } from '@components/layouts/Layout'
+import LocationPageComponent from '@components/pages/LocationPage'
+import { readToken } from '@lib/sanity.api'
 import {
   getAllLocationSlugs,
   getAllRatePageSlugs,
@@ -9,8 +8,9 @@ import {
   getGlobalSettings,
   getLocationBySlug,
   getRatePageBySlug,
-} from 'lib/sanity.client'
-import { locationBySlugQuery } from 'lib/sanity.queries'
+} from '@lib/sanity.client'
+import { locationBySlugQuery } from '@lib/sanity.queries'
+import { stegaClean } from '@sanity/client/stega'
 import { GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'

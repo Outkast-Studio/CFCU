@@ -1,4 +1,4 @@
-import { urlForImage } from 'lib/sanity.image'
+import { urlForImage } from '@lib/sanity.image'
 import NextHead from 'next/head'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'

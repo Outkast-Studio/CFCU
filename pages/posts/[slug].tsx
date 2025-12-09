@@ -1,12 +1,12 @@
-import { Layout } from 'components/layouts/Layout'
-import PostPage from 'components/pages/PostPage'
-import { readToken } from 'lib/sanity.api'
+import { Layout } from '@components/layouts/Layout'
+import PostPage from '@components/pages/PostPage'
+import { readToken } from '@lib/sanity.api'
 import {
   getAllIndividualPostSlugs,
   getClient,
   getGlobalSettings,
   getIndividualPostBySlug,
-} from 'lib/sanity.client'
+} from '@lib/sanity.client'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'

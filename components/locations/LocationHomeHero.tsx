@@ -1,6 +1,6 @@
+import MediaComponent from '@components/global/ui/Media'
+import SplitTextDynamic from '@components/interaction/splitTextDynamic'
 import { clsx } from 'clsx'
-import MediaComponent from 'components/global/ui/Media'
-import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import Link from 'next/link'

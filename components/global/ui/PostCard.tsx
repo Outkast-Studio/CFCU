@@ -1,9 +1,9 @@
+import { urlForImage } from '@lib/sanity.image'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { PostPageType } from '@/types/sanity'
+import { PostPageType } from './../../../types/sanity'
 
 const PostCard = ({
   data,

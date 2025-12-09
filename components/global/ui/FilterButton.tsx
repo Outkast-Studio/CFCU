@@ -4,7 +4,7 @@ import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 
-import { TopicWithRelatedPosts } from '@/types/sanity'
+import { TopicWithRelatedPosts } from './../../../types/sanity'
 
 interface Props {
   title: string

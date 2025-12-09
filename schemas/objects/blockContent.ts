@@ -12,14 +12,14 @@ import {
   SuperScript,
   Small,
   Eyebrow,
-} from 'components/global/ui/TextDecorators'
+} from '@components/global/ui/TextDecorators'
 import {
   LeftAlignedText,
   CenterAlignedText,
   RightAlignedText,
-} from 'components/global/ui/TextAlignment'
+} from '@components/global/ui/TextAlignment'
 import { PhoneList, Link } from '@phosphor-icons/react'
-import { Highlight } from 'components/Sanity/Highlight'
+import { Highlight } from '@components/Sanity/Highlight'
 
 // Define the horizontalRule type
 export const horizontalRule = defineType({

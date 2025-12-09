@@ -1,7 +1,7 @@
+import LocationGrid from '@components/locations/LocationGrid'
+import LocationHomeHero from '@components/locations/LocationHomeHero'
+import LocationMap from '@components/locations/LocationMap'
 import { clsx } from 'clsx'
-import LocationGrid from 'components/locations/LocationGrid'
-import LocationHomeHero from 'components/locations/LocationHomeHero'
-import LocationMap from 'components/locations/LocationMap'
 import React from 'react'
 import {
   ATMLocation,

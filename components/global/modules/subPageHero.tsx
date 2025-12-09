@@ -1,17 +1,17 @@
+import MediaComponent from '@components/global/ui/Media'
+import PlayPause from '@components/global/ui/PlayPause'
+import SplitTextDynamic from '@components/interaction/splitTextDynamic'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
-import MediaComponent from 'components/global/ui/Media'
-import PlayPause from 'components/global/ui/PlayPause'
-import SplitTextDynamic from 'components/interaction/splitTextDynamic'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { SubPageHeroType } from 'types/sanity'
 
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useWindowSize } from '@/hooks/useWindowSize'
-import { SubPageType } from '@/types/sanity'
+
+import { SubPageHeroType, SubPageType } from './../../../types/sanity'
 
 const SubPageHero = ({
   data,

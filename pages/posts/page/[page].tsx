@@ -1,21 +1,21 @@
 // pages/posts/[page].tsx
 
-import { Layout } from 'components/layouts/Layout'
-import PostHomePage from 'components/pages/PostHomePage'
-import { readToken } from 'lib/sanity.api'
+import { Layout } from '@components/layouts/Layout'
+import PostHomePage from '@components/pages/PostHomePage'
+import { readToken } from '@lib/sanity.api'
 import {
   getAllPosts,
   getAllTopics,
   getBlogHomepage,
   getClient,
   getGlobalSettings,
-} from 'lib/sanity.client'
+} from '@lib/sanity.client'
 import {
   allPostsQuery,
   allTopicsQuery,
   blogHomepageQuery,
   globalSettingsQuery,
-} from 'lib/sanity.queries'
+} from '@lib/sanity.queries'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { CardLinkType, PageLinkType } from 'types/sanity'
 
-import { externalOnClick } from '@/utils'
+import { externalOnClick } from './../../../utils'
 const CardLink = ({
   data,
   className,

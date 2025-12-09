@@ -1,6 +1,6 @@
+import { Layout } from '@components/layouts/Layout'
+import { postBySlugQuery, subPageBySlugQuery } from '@lib/sanity.queries'
 import { stegaClean } from '@sanity/client/stega'
-import { Layout } from 'components/layouts/Layout'
-import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
 import { useLiveQuery } from 'next-sanity/preview'

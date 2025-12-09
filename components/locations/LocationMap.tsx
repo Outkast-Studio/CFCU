@@ -2,12 +2,12 @@
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
+import Button from '@components/global/ui/Button'
+import { WysiwygComopentsMin } from '@lib/portabletTextComponents'
+import { urlForImage } from '@lib/sanity.image'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
-import Button from 'components/global/ui/Button'
 import { gsap } from 'gsap'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
-import { urlForImage } from 'lib/sanity.image'
 import mapboxgl from 'mapbox-gl'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'

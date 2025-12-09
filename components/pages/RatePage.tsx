@@ -1,5 +1,5 @@
+import ModuleFactory from '@components/global/modules/RatesPageModuleFactory'
 import { clsx } from 'clsx'
-import ModuleFactory from 'components/global/modules/RatesPageModuleFactory'
 import { RatePageType } from 'types/sanity'
 
 import SubPageHero from '../global/modules/subPageHero'

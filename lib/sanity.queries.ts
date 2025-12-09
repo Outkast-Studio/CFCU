@@ -4,7 +4,7 @@ import {
   modulesFragment,
   ratesModulesFragment,
   wysiwygFragment,
-} from 'lib/sanity.modules'
+} from '@lib/sanity.modules'
 import { groq } from 'next-sanity'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
