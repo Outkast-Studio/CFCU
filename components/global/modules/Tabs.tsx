@@ -7,9 +7,8 @@ import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { TabsType } from 'types/sanity'
 
-import { useWindowSize } from '@/hooks/useWindowSize'
-
 import { useIsomorphicLayoutEffect } from './../../../hooks/useIsomorphicLayoutEffect'
+import { useWindowSize } from './../../../hooks/useWindowSize'
 import {
   WysiwygComopentsMin,
   WysiwygComponentsWithoutPadding,

@@ -3,11 +3,10 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { GroupMember, TeamGridType } from 'types/sanity'
 
-import { urlForImage } from '@/lib/sanity.image'
-import { formatPhoneNumber } from '@/lib/utils'
-
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
+import { urlForImage } from './../../../lib/sanity.image'
+import { formatPhoneNumber } from './../../../lib/utils'
 
 const TeamGrid = ({ data }: { data: TeamGridType }) => {
   return (
