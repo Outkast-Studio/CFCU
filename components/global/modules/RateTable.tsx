@@ -2,10 +2,11 @@ import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
 import { useEffect, useRef } from 'react'
 import { RateTableType } from 'types/sanity'
-import { formatDate } from 'utils'
 
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
+
+import { formatDate } from './../../../utils'
 
 const RateTable = ({ data }: { data: RateTableType }) => {
   const maxRows = data?.columns?.reduce(

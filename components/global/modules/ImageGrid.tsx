@@ -1,12 +1,12 @@
 import { PortableText } from '@portabletext/react'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import { LogoGridType } from 'types/sanity'
-import { externalOnClick } from 'utils'
 
-import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
+import { WysiwygComponentsWithoutPadding } from './../../../lib/portabletTextComponents'
+import { urlForImage } from './../../../lib/sanity.image'
+import { externalOnClick } from './../../../utils'
 
 const ImageGrid = ({ data }: { data: LogoGridType }) => {
   return (

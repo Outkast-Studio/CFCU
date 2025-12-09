@@ -1,11 +1,12 @@
 import { PortableText } from '@portabletext/react'
 import * as Accordion from '@radix-ui/react-accordion'
 import { clsx } from 'clsx'
+import { AccordionType } from 'types/sanity'
+
 import {
   WysiwygComopentsMin,
   WysiwygComponentsWithoutPadding,
-} from 'lib/portabletTextComponents'
-import { AccordionType } from 'types/sanity'
+} from './../../../lib/portabletTextComponents'
 
 const AccordionComponent = ({ data }: { data: AccordionType }) => {
   return (
