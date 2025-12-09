@@ -1,11 +1,12 @@
 import { groq } from 'next-sanity'
+
 import {
+  homepageModulesFragment,
+  markDefsFragment,
   modulesFragment,
   ratesModulesFragment,
-  homepageModulesFragment,
   wysiwygFragment,
-  markDefsFragment,
-} from 'lib/sanity.modules'
+} from '@/lib/sanity.modules'
 export const globalSettingsQuery = groq`*[_type == "globalSettings"][0]{
   ...,
   globalAlerts[]->{

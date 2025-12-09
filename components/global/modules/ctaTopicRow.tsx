@@ -1,17 +1,19 @@
-import { CtaTopicRowType } from 'types/sanity'
-import { clsx } from 'clsx'
-import Image from 'next/image'
-import { urlForImage } from 'lib/sanity.image'
-import { getThemeClasses } from 'lib/themeConfig'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
-import PageLink from '../ui/PageLink'
 import { stegaClean } from '@sanity/client/stega'
-import { useInView } from 'react-intersection-observer'
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import { useRef } from 'react'
+import { clsx } from 'clsx'
 import { gsap } from 'gsap'
+import Image from 'next/image'
+import { useRef } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { CtaTopicRowType } from 'types/sanity'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
+import { getThemeClasses } from '@/lib/themeConfig'
+
 import Button from '../ui/Button'
+import PageLink from '../ui/PageLink'
 
 const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
   const theme = getThemeClasses(stegaClean(data?.theme?.label))
@@ -29,8 +31,10 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
     if (!inView) return
     const ctx = gsap.context(() => {
       const q = gsap.utils.selector(containerRef.current)
+      const el = q('.elementAnimation')
+      if (el.length === 0) return
       const tl = gsap.timeline().fromTo(
-        q('.elementAnimation'),
+        el,
         { opacity: 0, y: 20 },
         {
           opacity: 1,
@@ -79,7 +83,9 @@ const CtaTopicRow = ({ data }: { data: CtaTopicRowType }) => {
               alt={data?.image.alt as string}
               width={1000}
               height={1000}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'object-cover w-full h-full opacity-0 transition-all  duration-300 ease-in-out-cubic',
               )}

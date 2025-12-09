@@ -1,12 +1,14 @@
-import Image from 'next/image'
-import { urlForImage } from '../lib/sanity.image'
-import clsx from 'clsx'
-import WTable from '@/components/global/ui/wTable'
 import { getImageDimensions } from '@sanity/asset-utils'
+import clsx from 'clsx'
+import Image from 'next/image'
+
+import SanitizedEmbed from '@/components/global/modules/Embed'
 import WysiwygButtonGroup from '@/components/global/modules/WysiwygButtonGroup'
 import WysiwygPageLink from '@/components/global/modules/WysiwygPageLink'
-import SanitizedEmbed from '@/components/global/modules/Embed'
 import { Eyebrow } from '@/components/global/ui/TextDecorators'
+import WTable from '@/components/global/ui/wTable'
+
+import { urlForImage } from '../lib/sanity.image'
 
 export const WysiwygComponentsWithoutPadding = {
   types: {
@@ -27,7 +29,9 @@ export const WysiwygComponentsWithoutPadding = {
             quality={100}
             width={getImageDimensions(value).width}
             height={getImageDimensions(value).height}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'w-full object-contain opacity-0 transition-all duration-300 ease-in-out-cubic',
             )}
@@ -53,7 +57,9 @@ export const WysiwygComponentsWithoutPadding = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[340px]',
               )}
@@ -80,7 +86,9 @@ export const WysiwygComponentsWithoutPadding = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[560px]',
               )}
@@ -109,7 +117,9 @@ export const WysiwygComponentsWithoutPadding = {
             alt={String(value.alt)}
             width={getImageDimensions(value).width}
             height={getImageDimensions(value).height}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
             )}
@@ -577,7 +587,9 @@ export const WysiwygComponents = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
               )}
@@ -605,7 +617,9 @@ export const WysiwygComponents = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[340px]',
               )}
@@ -632,7 +646,9 @@ export const WysiwygComponents = {
               width={getImageDimensions(value).width}
               height={getImageDimensions(value).height}
               quality={100}
-              onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+              onLoad={(event) =>
+                event.currentTarget.classList.remove('opacity-0')
+              }
               className={clsx(
                 'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic max-w-[560px]',
               )}
@@ -658,7 +674,9 @@ export const WysiwygComponents = {
             alt={String(value.alt)}
             width={getImageDimensions(value).width}
             height={getImageDimensions(value).height}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'w-full object-cover opacity-0 transition-all duration-300 ease-in-out-cubic',
             )}

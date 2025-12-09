@@ -1,34 +1,35 @@
 // pages/posts/[page].tsx
 
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { readToken } from 'lib/sanity.api'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { QueryParams } from 'next-sanity'
+import { useLiveQuery } from 'next-sanity/preview'
+import type { SharedPageProps } from 'pages/_app'
+import { Seo } from 'pages/_app'
+import { useEffect } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import {
-  getGlobalSettings,
-  getClient,
-  getAllPosts,
-  getBlogHomepage,
-  getAllTopics,
-} from 'lib/sanity.client'
-import {
-  allPostsQuery,
-  globalSettingsQuery,
-  blogHomepageQuery,
-  allTopicsQuery,
-} from 'lib/sanity.queries'
-import {
-  GlobalSettingsType,
   BlogHomepageType,
+  GlobalSettingsType,
   PostPageType,
   TopicWithRelatedPosts,
 } from 'types/sanity'
-import { QueryParams } from 'next-sanity'
-import type { SharedPageProps } from 'pages/_app'
-import { useLiveQuery } from 'next-sanity/preview'
-import { Layout } from 'components/layouts/Layout'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useEffect } from 'react'
-import PostHomePage from 'components/pages/PostHomePage'
-import { Seo } from 'pages/_app'
+
+import { Layout } from '@/components/layouts/Layout'
+import PostHomePage from '@/components/pages/PostHomePage'
+import { readToken } from '@/lib/sanity.api'
+import {
+  getAllPosts,
+  getAllTopics,
+  getBlogHomepage,
+  getClient,
+  getGlobalSettings,
+} from '@/lib/sanity.client'
+import {
+  allPostsQuery,
+  allTopicsQuery,
+  blogHomepageQuery,
+  globalSettingsQuery,
+} from '@/lib/sanity.queries'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

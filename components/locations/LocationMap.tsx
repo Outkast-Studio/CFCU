@@ -1,21 +1,24 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import 'mapbox-gl/dist/mapbox-gl.css'
+
+import { PortableText } from '@portabletext/react'
+import { clsx } from 'clsx'
+import { gsap } from 'gsap'
 import mapboxgl from 'mapbox-gl'
 import dynamic from 'next/dynamic'
-import { clsx } from 'clsx'
-import 'mapbox-gl/dist/mapbox-gl.css'
 import Image from 'next/image'
-import { LocationPage, ATMLocation } from 'types/sanity'
-import { urlForImage } from 'lib/sanity.image'
 import Link from 'next/link'
-import Button from 'components/global/ui/Button'
-import { gsap } from 'gsap'
+import { useEffect, useRef, useState } from 'react'
+import { ATMLocation, LocationPage } from 'types/sanity'
+
+import Button from '@/components/global/ui/Button'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
-import LocationCard from './map/LocationCard'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { urlForImage } from '@/lib/sanity.image'
+
 import ATMCard from './map/AtmCard'
-import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import LocationCard from './map/LocationCard'
 
 // Replace with your Mapbox access token
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN

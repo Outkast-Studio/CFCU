@@ -1,14 +1,16 @@
-import LocationGrid from 'components/locations/LocationGrid'
-import LocationHomeHero from 'components/locations/LocationHomeHero'
+import { clsx } from 'clsx'
 import React from 'react'
 import {
+  ATMLocation,
+  GlobalSettingsType,
   LocationHomepageType,
   LocationPage,
-  GlobalSettingsType,
-  ATMLocation,
 } from 'types/sanity'
-import LocationMap from 'components/locations/LocationMap'
-import { clsx } from 'clsx'
+
+import LocationGrid from '@/components/locations/LocationGrid'
+import LocationHomeHero from '@/components/locations/LocationHomeHero'
+import LocationMap from '@/components/locations/LocationMap'
+
 import ModuleFactory from '../global/modules/ModuleFactory'
 import { renderModule } from '../global/modules/ModuleFactory'
 

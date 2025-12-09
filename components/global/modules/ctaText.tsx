@@ -1,16 +1,17 @@
-import { CtaTextType, ThemeLabel } from 'types/sanity'
-import { clsx } from 'clsx'
-import { getThemeClasses } from 'lib/themeConfig'
-
 import { PortableText } from '@portabletext/react'
-import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
+import { stegaClean } from '@sanity/client/stega'
+import { clsx } from 'clsx'
+import { gsap } from 'gsap'
+import { useRef } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { CtaTextType, ThemeLabel } from 'types/sanity'
+
+import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
+import { WysiwygComopentsMin } from '@/lib/portabletTextComponents'
+import { getThemeClasses } from '@/lib/themeConfig'
+
 import Button from '../ui/Button'
 import PageLink from '../ui/PageLink'
-import { useRef } from 'react'
-import { useIsomorphicLayoutEffect } from 'hooks/useIsomorphicLayoutEffect'
-import { useInView } from 'react-intersection-observer'
-import { gsap } from 'gsap'
-import { stegaClean } from '@sanity/client/stega'
 
 const CtaText = ({ data }: { data: CtaTextType }) => {
   const theme = getThemeClasses(data?.theme?.label as ThemeLabel)

@@ -1,34 +1,35 @@
-import { readToken } from 'lib/sanity.api'
+import { GetStaticProps } from 'next'
+import { draftMode } from 'next/headers'
+import { QueryParams, SanityDocument } from 'next-sanity'
+import { useLiveQuery } from 'next-sanity/preview'
+import type { SharedPageProps } from 'pages/_app'
+import { Seo } from 'pages/_app'
+import { useEffect } from 'react'
+import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import {
-  getGlobalSettings,
-  getClient,
-  getLocationHomepage,
+  ATMLocation,
+  GlobalSettingsType,
+  LocationHomepageType,
+  LocationPage,
+} from 'types/sanity'
+
+import { Layout } from '@/components/layouts/Layout'
+import IndexPage from '@/components/pages/IndexPage'
+import LocationHomePage from '@/components/pages/LocationHomePage'
+import { readToken } from '@/lib/sanity.api'
+import {
   getAllLocations,
   getATMLocations,
-} from 'lib/sanity.client'
+  getClient,
+  getGlobalSettings,
+  getLocationHomepage,
+} from '@/lib/sanity.client'
 import {
   globalSettingsQuery,
   homepageQuery,
   locationHomepageQuery,
   locationsQuery,
-} from 'lib/sanity.queries'
-import {
-  LocationHomepageType,
-  GlobalSettingsType,
-  LocationPage,
-  ATMLocation,
-} from 'types/sanity'
-import { GetStaticProps } from 'next'
-import { draftMode } from 'next/headers'
-import { QueryParams, SanityDocument } from 'next-sanity'
-import type { SharedPageProps } from 'pages/_app'
-import { useLiveQuery } from 'next-sanity/preview'
-import IndexPage from 'components/pages/IndexPage'
-import { Layout } from 'components/layouts/Layout'
-import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
-import { useEffect } from 'react'
-import LocationHomePage from 'components/pages/LocationHomePage'
-import { Seo } from 'pages/_app'
+} from '@/lib/sanity.queries'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

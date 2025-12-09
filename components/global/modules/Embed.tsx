@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/router'
+import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import DOMPurify from 'isomorphic-dompurify'
-import { stegaClean } from '@sanity/client/stega'
+import { useRouter } from 'next/router'
 import Script from 'next/script'
+import { useEffect, useRef, useState } from 'react'
+import { EmbedType } from 'types/sanity'
 
 import ErrorBoundary from './ErrorBoundary'
-import { EmbedType } from 'types/sanity'
 
 function extractScriptContent(content) {
   const scriptRegex = /<script\b[^>]*>([\s\S]*?)<\/script>/gi

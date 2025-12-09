@@ -1,15 +1,16 @@
 //@ts-nocheck
 
-import Image from 'next/image'
-import { useState, useRef, useEffect } from 'react'
-import type { Media } from 'types/sanity'
-import { urlForImage } from 'lib/sanity.image'
-import { urlForFile } from 'lib/sanity.file'
-import { clsx } from 'clsx'
 import { stegaClean } from '@sanity/client/stega'
-import { SanityImage } from 'sanity-image'
+import { clsx } from 'clsx'
+import Image from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
+import { useEffect, useRef, useState } from 'react'
+import { SanityImage } from 'sanity-image'
+import type { Media } from 'types/sanity'
+
 import { getClient } from '@/lib/sanity.client'
+import { urlForFile } from '@/lib/sanity.file'
+import { urlForImage } from '@/lib/sanity.image'
 
 interface MediaComponentProps {
   media: Media
@@ -55,7 +56,9 @@ export default function MediaComponent({
             height={1080}
             quality={100}
             priority={priority}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full hidden',
               'opacity-0 transition-all duration-300 ease-in-out-cubic ',
@@ -71,7 +74,9 @@ export default function MediaComponent({
             height={isCtaContent ? 1948 : 1080}
             quality={100}
             priority={priority}
-            onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+            onLoad={(event) =>
+              event.currentTarget.classList.remove('opacity-0')
+            }
             className={clsx(
               'object-cover w-full h-full ',
               'opacity-0 transition-all duration-300 ease-in-out-cubic ',
@@ -95,7 +100,7 @@ export default function MediaComponent({
           height={1080}
           quality={100}
           priority={priority}
-          onLoadingComplete={(image) => image.classList.remove('opacity-0')}
+          onLoad={(event) => event.currentTarget.classList.remove('opacity-0')}
           className={clsx(
             'object-cover w-full h-full',
             'opacity-0 transition-all duration-300 ease-in-out-cubic',
