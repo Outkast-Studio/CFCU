@@ -3,9 +3,9 @@ import { clsx } from 'clsx'
 import { useEffect, useRef } from 'react'
 import { RateTableType } from 'types/sanity'
 
-import { useWindowSize } from '@/hooks/useWindowSize'
 import { WysiwygComponentsWithoutPadding } from '@/lib/portabletTextComponents'
 
+import { useWindowSize } from './../../../hooks/useWindowSize'
 import { formatDate } from './../../../utils'
 
 const RateTable = ({ data }: { data: RateTableType }) => {

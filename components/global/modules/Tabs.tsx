@@ -3,17 +3,18 @@ import * as Accordion from '@radix-ui/react-accordion'
 import { stegaClean } from '@sanity/client/stega'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
-import {
-  WysiwygComopentsMin,
-  WysiwygComponentsWithoutPadding,
-} from 'lib/portabletTextComponents'
-import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { TabsType } from 'types/sanity'
 
-import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useWindowSize } from '@/hooks/useWindowSize'
+
+import { useIsomorphicLayoutEffect } from './../../../hooks/useIsomorphicLayoutEffect'
+import {
+  WysiwygComopentsMin,
+  WysiwygComponentsWithoutPadding,
+} from './../../../lib/portabletTextComponents'
+import { urlForImage } from './../../../lib/sanity.image'
 
 const Tabs = ({ data }: { data: TabsType }) => {
   const [activeTab, setActiveTab] = useState(0)
