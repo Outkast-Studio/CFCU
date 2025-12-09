@@ -1,5 +1,7 @@
 // pages/posts/[page].tsx
 
+import { Layout } from 'components/layouts/Layout'
+import PostHomePage from 'components/pages/PostHomePage'
 import { readToken } from 'lib/sanity.api'
 import {
   getAllPosts,
@@ -27,9 +29,6 @@ import {
   PostPageType,
   TopicWithRelatedPosts,
 } from 'types/sanity'
-
-import { Layout } from 'components/layouts/Layout'
-import PostHomePage from 'components/pages/PostHomePage'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams

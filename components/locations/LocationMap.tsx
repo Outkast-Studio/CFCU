@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
+import Button from 'components/global/ui/Button'
 import { gsap } from 'gsap'
 import { WysiwygComopentsMin } from 'lib/portabletTextComponents'
 import { urlForImage } from 'lib/sanity.image'
@@ -14,7 +15,6 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { ATMLocation, LocationPage } from 'types/sanity'
 
-import Button from 'components/global/ui/Button'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 
 import ATMCard from './map/AtmCard'

@@ -1,10 +1,9 @@
 import { clsx } from 'clsx'
-import React from 'react'
-import { PostPageType } from 'types/sanity'
-
 import ModuleFactory from 'components/global/modules/ModuleFactory'
 import { renderModule } from 'components/global/modules/ModuleFactory'
 import Hero from 'components/posts/Hero'
+import React from 'react'
+import { PostPageType } from 'types/sanity'
 
 const PostPage = ({ data }: { data: PostPageType }) => {
   const siteAlerts = data?.modules?.filter(

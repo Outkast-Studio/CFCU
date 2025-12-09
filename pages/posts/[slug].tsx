@@ -1,3 +1,5 @@
+import { Layout } from 'components/layouts/Layout'
+import PostPage from 'components/pages/PostPage'
 import { readToken } from 'lib/sanity.api'
 import {
   getAllIndividualPostSlugs,
@@ -12,8 +14,6 @@ import { useEffect } from 'react'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
 import { GlobalSettingsType, PostPageType } from 'types/sanity'
 
-import { Layout } from 'components/layouts/Layout'
-import PostPage from 'components/pages/PostPage'
 import { postBySlugQuery } from '@/lib/sanity.queries'
 
 interface PageProps {

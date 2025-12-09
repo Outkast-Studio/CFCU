@@ -1,5 +1,6 @@
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
+import Pagination from 'components/posts/paginationPosts'
 import { gsap } from 'gsap'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,7 +12,6 @@ import {
   TopicWithRelatedPosts,
 } from 'types/sanity'
 
-import Pagination from 'components/posts/paginationPosts'
 import { useIsomorphicLayoutEffect } from '@/hooks/useIsomorphicLayoutEffect'
 import { useWindowSize } from '@/hooks/useWindowSize'
 

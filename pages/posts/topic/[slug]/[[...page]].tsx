@@ -1,3 +1,5 @@
+import { Layout } from 'components/layouts/Layout'
+import PostHomePage from 'components/pages/PostHomePage'
 import { readToken } from 'lib/sanity.api'
 import {
   getAllTopicSlugs,
@@ -18,8 +20,6 @@ import {
   TopicPageType,
 } from 'types/sanity'
 
-import { Layout } from 'components/layouts/Layout'
-import PostHomePage from 'components/pages/PostHomePage'
 import { topicBySlugQuery } from '@/lib/sanity.queries'
 import { Seo, SharedPageProps } from '@/pages/_app'
 import blogHomePage from '@/schemas/singletons/blogHomePage'

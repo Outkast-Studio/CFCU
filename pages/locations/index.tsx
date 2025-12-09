@@ -1,3 +1,6 @@
+import { Layout } from 'components/layouts/Layout'
+import IndexPage from 'components/pages/IndexPage'
+import LocationHomePage from 'components/pages/LocationHomePage'
 import { readToken } from 'lib/sanity.api'
 import {
   getAllLocations,
@@ -26,10 +29,6 @@ import {
   LocationHomepageType,
   LocationPage,
 } from 'types/sanity'
-
-import { Layout } from 'components/layouts/Layout'
-import IndexPage from 'components/pages/IndexPage'
-import LocationHomePage from 'components/pages/LocationHomePage'
 
 interface PageProps extends SharedPageProps {
   params: QueryParams
