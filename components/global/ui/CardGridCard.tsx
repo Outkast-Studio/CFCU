@@ -1,7 +1,7 @@
-import { WysiwygComponentsWithoutPadding } from '@lib/portabletTextComponents'
-import { urlForImage } from '@lib/sanity.image'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
+import { urlForImage } from 'lib/sanity.image'
 import Image from 'next/image'
 import { CtaCardGridHomeType } from 'types/sanity'
 

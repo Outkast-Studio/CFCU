@@ -1,6 +1,6 @@
-import { WysiwygComponentsWithoutPadding } from '@lib/portabletTextComponents'
 import { PortableText } from '@portabletext/react'
 import { clsx } from 'clsx'
+import { WysiwygComponentsWithoutPadding } from 'lib/portabletTextComponents'
 import { RateTableType } from 'types/sanity'
 import { formatDate } from 'utils'
 

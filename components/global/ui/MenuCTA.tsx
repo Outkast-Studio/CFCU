@@ -1,7 +1,7 @@
 import { useIsomorphicLayoutEffect } from '@hooks/useIsomorphicLayoutEffect'
-import { getThemeClasses, Theme } from '@lib/themeConfig'
 import { clsx } from 'clsx'
 import { gsap } from 'gsap'
+import { getThemeClasses, Theme } from 'lib/themeConfig'
 import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { GlobalSettingsType } from 'types/sanity'
