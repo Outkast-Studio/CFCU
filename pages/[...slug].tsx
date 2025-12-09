@@ -1,11 +1,4 @@
 import { stegaClean } from '@sanity/client/stega'
-import { readToken } from 'lib/sanity.api'
-import {
-  getClient,
-  getGlobalSettings,
-  getPostBySlug,
-  getSubPageBySlug,
-} from 'lib/sanity.client'
 import { postBySlugQuery, subPageBySlugQuery } from 'lib/sanity.queries'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { QueryParams } from 'next-sanity'
@@ -19,6 +12,13 @@ import { Layout } from '@/components/layouts/Layout'
 
 import PostPage from '../components/pages/PostPage'
 import SubPage from '../components/pages/SubPage'
+import { readToken } from './../lib/sanity.api'
+import {
+  getClient,
+  getGlobalSettings,
+  getPostBySlug,
+  getSubPageBySlug,
+} from './../lib/sanity.client'
 
 //TODO; Fix the type isues in this file.
 type PageData = SubPageType | PostPageType
