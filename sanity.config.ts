@@ -22,6 +22,7 @@ import { media } from 'sanity-plugin-media'
 import Logo from './components/Sanity/Logo'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 import { inlineSvgInput } from '@focus-reactive/sanity-plugin-inline-svg-input'
+import { debugSecrets } from '@sanity/preview-url-secret/sanity-plugin-debug-secrets'
 
 const title = 'CFCU'
 
@@ -53,6 +54,7 @@ export default defineConfig({
     inlineSvgInput(),
     unsplashImageAsset(),
     visionTool(),
+    process.env.NODE_ENV !== 'production' && debugSecrets(),
   ],
   icon: Logo,
 })
