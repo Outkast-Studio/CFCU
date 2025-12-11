@@ -93,7 +93,8 @@ export async function middleware(request) {
 
   if (
     request.nextUrl.pathname.startsWith('/_next/') ||
-    request.nextUrl.pathname.startsWith('/favicon/')
+    request.nextUrl.pathname.startsWith('/favicon/') ||
+    request.nextUrl.pathname.startsWith('/api/')
   ) {
     return NextResponse.next()
   }
