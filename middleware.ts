@@ -95,10 +95,11 @@ export async function middleware(request) {
     return NextResponse.next()
   }
 
-  if (
-    !request.nextUrl.pathname.startsWith('/go.php') &&
-    process.env.NODE_ENV !== 'production'
-  ) {
+  const isLocal = process.env.NODE_ENV === 'development'
+  const isProd = process.env.VERCEL_ENV === 'production'
+  const shouldProtect = isLocal || !isProd
+
+  if (!request.nextUrl.pathname.startsWith('/go.php') && shouldProtect) {
     const authHeader = request.headers.get('authorization')
 
     // If no Authorization header, ask for credentials
@@ -114,9 +115,10 @@ export async function middleware(request) {
     }
 
     // Decode "username:password"
+    // Edge-safe base64 decode
     let decoded = ''
     try {
-      decoded = Buffer.from(encoded, 'base64').toString('utf-8')
+      decoded = atob(encoded)
     } catch {
       return unauthorizedResponse()
     }
