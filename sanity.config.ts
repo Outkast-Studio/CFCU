@@ -54,7 +54,9 @@ export default defineConfig({
     inlineSvgInput(),
     unsplashImageAsset(),
     visionTool(),
-    process.env.NODE_ENV !== 'production' && debugSecrets(),
+    (process.env.NODE_ENV !== 'production' ||
+      process.env.VERCEL_ENV !== 'production') &&
+      debugSecrets(),
   ],
   icon: Logo,
 })
