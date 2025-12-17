@@ -24,16 +24,16 @@ applications:
 
     # Mounts define directories that are writable after the build is complete.
     # More information: https://docs.upsun.com/app/reference/mounts/
-    mounts:
-      '/.npm':
-        source: 'storage'
-        source_path: 'npm'
-      # '/.next/cache':
-      #   source: 'storage'
-      #   source_path: 'next-cache'
-      # '/.next':
-      #   source: local
-      #   source_path: 'next'
+    # mounts:
+    #   '/.npm':
+    #     source: 'storage'
+    #     source_path: 'npm'
+    # '/.next/cache':
+    #   source: 'storage'
+    #   source_path: 'next-cache'
+    # '/.next':
+    #   source: local
+    #   source_path: 'next'
 
     # The web key configures the web server running in front of your app.
     # More information: https://docs.upsun.com/app/reference/web/
@@ -53,14 +53,14 @@ applications:
         socket_family: tcp
       # Each key in locations is a path on your site with a leading /.
       # More information: https://docs.upsun.com/app/reference/web/locations/
-      locations:
-        '/':
-          passthru: true
-        #   allow: true
-        # '/_next/static':
-        #   passthru: false
-        #   allow: true
-        #   expires: 1y
+      # locations:
+      #   '/':
+      #     passthru: true
+      #   allow: true
+      # '/_next/static':
+      #   passthru: false
+      #   allow: true
+      #   expires: 1y
       # '/fonts':
       #   passthru: false
       #   allow: true
