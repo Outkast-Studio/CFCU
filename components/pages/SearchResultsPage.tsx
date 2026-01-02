@@ -88,9 +88,9 @@ const SearchResultsPage = ({
           )}
         >
           <Image
-            src={'/icons/LogoFull.png'}
-            alt={'Community Financial Logo'}
-            width={500}
+            src={'/icons/LogoFull.svg'}
+            alt={'orsa Credit Union Logo'}
+            width={470}
             height={108}
             className={clsx('w-[212px]', 'lg:w-[244.71px]')}
           />

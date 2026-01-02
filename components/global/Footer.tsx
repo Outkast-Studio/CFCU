@@ -1,7 +1,7 @@
 import { GlobalSettingsType } from 'types/sanity'
 import { clsx } from 'clsx'
 import Image from 'next/image'
-import LogoFull from '/public/icons/LogoFull.png'
+import LogoFull from '/public/icons/LogoFull.svg'
 import { urlForImage } from 'lib/sanity.image'
 import PageLink from './ui/PageLink'
 import { useGlobalSettingsStore } from 'stores/globalSettingsStore'
@@ -35,10 +35,10 @@ const Footer = () => {
             <Link href={'/'} className={clsx('block')}>
               <Image
                 src={LogoFull}
-                alt="Community Financial Logo"
-                width={273}
+                alt="orsa Credit Union Logo"
+                width={261}
                 height={60}
-                className={clsx('w-[208px]', 'lg:w-[273px]')}
+                className={clsx('w-[208px]', 'lg:w-[261px]')}
               />
             </Link>
             <nav
